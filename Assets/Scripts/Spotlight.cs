@@ -1,17 +1,23 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
+
+enum BlinkMode
+{
+    NONE, BLINK
+}
 
 public class Spotlight : MonoBehaviour
 {   
     [Header("Common")]
     [Range(0.0f, 360.0f)]
     [SerializeField] float hitDeg; // 스포트라이트가 플에이어를 감지하는 시야각
-    [SerializeField] bool isOn; // 켜짐 여부
+    public bool isOn { get; private set; } // 켜짐 여부
+    [SerializeField] BlinkMode blinkMode;
 
     [Header("Light")]
     [SerializeField] Light2D _light; // 불빛
@@ -29,6 +35,7 @@ public class Spotlight : MonoBehaviour
     
     Vector2 initDir;
     Vector2 lightDir;
+    IEnumerator blinkCoroutine = null;
 
     // Start is called before the first frame update
     void Start()
@@ -48,12 +55,6 @@ public class Spotlight : MonoBehaviour
 
         // Turn On/Off according to isOn value
         if(isOn) TurnOn(); else TurnOff();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void FixedUpdate()
@@ -95,12 +96,7 @@ public class Spotlight : MonoBehaviour
     // Switch Light
     public void Switch()
     {
-        if(isOn) {
-            TurnOff();
-        }
-        else {
-            TurnOn();
-        }
+        if(isOn) TurnOff(); else TurnOn();
     }
 
     // Turn On Light
@@ -108,21 +104,52 @@ public class Spotlight : MonoBehaviour
     {
         lampSpriteRenderer.sprite = onSprite;
         isOn = true;
-        SetActiveLightObject(isOn);
+        SetActiveLight(isOn);
+
+        // if blink mode is BLINK, light blink
+        if(blinkMode == BlinkMode.BLINK) {
+            blinkCoroutine = Blink();
+            StartCoroutine(blinkCoroutine);
+        }
     }
 
     // Turn Off Light
     void TurnOff()
     {
+        // stop blink coroutine
+        if(blinkCoroutine != null && blinkMode == BlinkMode.BLINK) {
+            StopCoroutine(blinkCoroutine);
+            blinkCoroutine = null;
+        }
+
         lampSpriteRenderer.sprite = offSprite;
         isOn = false;
-        SetActiveLightObject(isOn);
+        SetActiveLight(isOn);
     }
 
-    void SetActiveLightObject(bool isActive)
+    // Active/Inactive Light
+    void SetActiveLight(bool isActive)
     {
         sourceLight.gameObject.SetActive(isActive);
         _light.gameObject.SetActive(isActive);
         mask.gameObject.SetActive(isActive);
+    }
+
+    // Blink Light
+    IEnumerator Blink()
+    {
+        float waitTime;
+
+        while(isOn) {
+            waitTime = Random.Range(0.25f, 0.5f);
+            yield return new WaitForSeconds(waitTime);
+            SetActiveLight(false);
+
+            yield return null;
+            yield return null;
+            SetActiveLight(true);
+        }
+
+        yield return null;
     }
 }
