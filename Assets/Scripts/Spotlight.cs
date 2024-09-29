@@ -11,7 +11,7 @@ public class Spotlight : MonoBehaviour
     [Header("Common")]
     [Range(0.0f, 360.0f)]
     [SerializeField] float hitDeg; // 스포트라이트가 플에이어를 감지하는 시야각
-    [SerializeField] bool isOn; // 켜짐 여부
+    public bool isOn { get; private set; } // 켜짐 여부
 
     [Header("Light")]
     [SerializeField] Light2D _light; // 불빛
@@ -48,12 +48,6 @@ public class Spotlight : MonoBehaviour
 
         // Turn On/Off according to isOn value
         if(isOn) TurnOn(); else TurnOff();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void FixedUpdate()
