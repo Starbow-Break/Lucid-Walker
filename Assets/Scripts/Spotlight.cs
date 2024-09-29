@@ -8,14 +8,24 @@ using UnityEngine.UIElements;
 
 public class Spotlight : MonoBehaviour
 {   
+    [Header("Common")]
     [Range(0.0f, 360.0f)]
-    [SerializeField] float hitDeg;
-    [SerializeField] float hitRadius;
-    [SerializeField] bool isOn;
-    [SerializeField] Light2D _light;
-    [SerializeField] float lightDeg;
-    [SerializeField] float lightRadius;
-    [SerializeField] CircularSectorMesh mask;
+    [SerializeField] float hitDeg; // 스포트라이트가 플에이어를 감지하는 시야각
+    [SerializeField] bool isOn; // 켜짐 여부
+
+    [Header("Light")]
+    [SerializeField] Light2D _light; // 불빛
+    [SerializeField] float innerSpot; // Inner Spot
+    [SerializeField] float outerSpot; // Outer Spot
+    [SerializeField] float lightRadius; // 빛의 반지름
+    [SerializeField] CircularSectorMesh mask; // Mask
+
+    [Header("Source Light")]
+    [SerializeField] SpriteRenderer lampSpriteRenderer; // 전등 이미지에 사용되는 렌더러
+    [SerializeField] Sprite onSprite; // 점등 시 스프라이트
+    [SerializeField] Sprite offSprite; // 점멸 시 스프라이트
+    [SerializeField] Light2D sourceLight; // 광원 불빛
+    
     
     Vector2 initDir;
     Vector2 lightDir;
@@ -28,15 +38,16 @@ public class Spotlight : MonoBehaviour
         lightDir = initDir;
 
         // Setting Light
-        _light.pointLightInnerAngle = lightDeg;
-        _light.pointLightOuterAngle = lightDeg;
+        _light.pointLightInnerAngle = innerSpot;
+        _light.pointLightOuterAngle = outerSpot;
         _light.pointLightOuterRadius = lightRadius;
-        _light.gameObject.SetActive(isOn);
 
         // Setting Mask
         mask.SetRadius(lightRadius);
-        mask.SetAngle(lightDeg);
-        mask.gameObject.SetActive(isOn);
+        mask.SetAngle(outerSpot);
+
+        // Turn On/Off according to isOn value
+        if(isOn) TurnOn(); else TurnOff();
     }
 
     // Update is called once per frame
@@ -50,7 +61,7 @@ public class Spotlight : MonoBehaviour
         // Rotate SpotLight
         if(isOn) {
             // Check Overlap Player
-            Collider2D collider = Physics2D.OverlapCircle(transform.position, hitRadius, LayerMask.GetMask("Player"));
+            Collider2D collider = Physics2D.OverlapCircle(transform.position, lightRadius, LayerMask.GetMask("Player"));
             
             // Follow Player
             if(collider != null) {
@@ -66,7 +77,7 @@ public class Spotlight : MonoBehaviour
 
         float deg = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(initDir, nextDir));
 
-        if(deg <= hitDeg)
+        if(deg <= hitDeg / 2)
         {
             float curRotZ = Mathf.Rad2Deg * Mathf.Atan2(-lightDir.x, lightDir.y);
             float nextRotZ = Mathf.Rad2Deg * Mathf.Atan2(-nextDir.x, nextDir.y);
@@ -95,16 +106,23 @@ public class Spotlight : MonoBehaviour
     // Turn On Light
     void TurnOn()
     {
-        _light.gameObject.SetActive(true);
-        mask.gameObject.SetActive(true);
+        lampSpriteRenderer.sprite = onSprite;
         isOn = true;
+        SetActiveLightObject(isOn);
     }
 
     // Turn Off Light
     void TurnOff()
     {
-        _light.gameObject.SetActive(false);
-        mask.gameObject.SetActive(false);
+        lampSpriteRenderer.sprite = offSprite;
         isOn = false;
+        SetActiveLightObject(isOn);
+    }
+
+    void SetActiveLightObject(bool isActive)
+    {
+        sourceLight.gameObject.SetActive(isActive);
+        _light.gameObject.SetActive(isActive);
+        mask.gameObject.SetActive(isActive);
     }
 }

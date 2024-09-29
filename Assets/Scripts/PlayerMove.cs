@@ -41,7 +41,8 @@ public class PlayerMove : MonoBehaviour
 
         // Landing Platform
         if(rb.velocity.y < 0) {
-            RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector2.down, 0.55f, LayerMask.GetMask("Platform") | LayerMask.GetMask("Shadow Platform"));
+            float rayLength = sr.bounds.size.y / 2 + 0.5f;
+            RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector2.down, rayLength, LayerMask.GetMask("Platform") | LayerMask.GetMask("Shadow Platform"));
             if(!isLanding && rayHit.collider != null) {
                 isLanding = true;
             }
