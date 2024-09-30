@@ -1,39 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class SpotlightSwitch : MonoBehaviour
 {
-    [SerializeField] Spotlight spotlight;
-    [SerializeField] Sprite onSprite;
-    [SerializeField] Sprite offSprite;
+    [SerializeField] protected Spotlight spotlight;
 
-    bool isInteracting = false;
-    SpriteRenderer sr;
+    protected bool isInteracting { get; private set; } = false;
+    protected SpriteRenderer sr { get; private set;}
 
-    void Awake()
+    protected virtual void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-
-        if(spotlight.isOn) {
-            sr.sprite = onSprite;
-        }
-        else {
-            sr.sprite = offSprite;
-        }
-    }
-
-    void Update() {
-        if(isInteracting && Input.GetKeyDown(KeyCode.Z)) {
-            Switch();
-            spotlight.Switch();
-        }
-    }
-
-    void Switch()
-    {
-        sr.sprite = sr.sprite == onSprite ? offSprite : onSprite;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
