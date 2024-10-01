@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] float maxSpeed;
     [SerializeField] float jumpImpulse;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
+    Animator anim;
 
     bool isLanding;
 
@@ -17,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         isLanding = false;
     }
 
@@ -28,11 +30,16 @@ public class PlayerMove : MonoBehaviour
             rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
             isLanding = false;
         }
+
+        // Animation
+        if (Mathf.Abs(rb.velocity.x) < 0.3)
+            anim.SetBool("isWalking", false);
+        else
+            anim.SetBool("isWalking", true);
     }
 
     void FixedUpdate()
     {
-        // Get Move Input
         float h = Input.GetAxisRaw("Horizontal");
 
         // Calculate Velocity
