@@ -5,67 +5,63 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float maxSpeed;
-    [SerializeField] float jumpImpulse;
-
     Rigidbody2D rb;
-    SpriteRenderer sr;
-    Animator anim;
 
-    bool isLanding;
+    [SerializeField]
+    private float power;
+    [SerializeField]
+    Transform pos;
+    [SerializeField]
+    float checkRadius;
+    [SerializeField]
+    LayerMask isLayer;
 
-    void Awake()
+    public int jumpCount;
+    int jumpCnt;
+
+    bool isGround;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-        isLanding = false;
+        jumpCnt = jumpCount;
     }
 
-    void Update()
+    private void Update()
     {
-        // Jump
-        if (Input.GetButtonDown("Jump") && isLanding)
+        // (Vector2 point, float radius, int layer) 
+        isGround = Physics2D.OverlapCircle(pos.position, checkRadius, isLayer);
+        if (isGround == true && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
         {
-            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
-            isLanding = false;
+            rb.velocity = Vector2.up * power;
         }
-
-        // Animation
-        if (Mathf.Abs(rb.velocity.x) < 0.3)
-            anim.SetBool("isWalking", false);
-        else
-            anim.SetBool("isWalking", true);
-    }
-
-    void FixedUpdate()
-    {
-        float h = Input.GetAxisRaw("Horizontal");
-
-        // Calculate Velocity
-        rb.velocity = new Vector2(h * maxSpeed, rb.velocity.y);
-        Flip();
-
-        // Landing Platform
-        if (rb.velocity.y < 0)
+        if (isGround == false && Input.GetKeyDown(KeyCode.Space) && jumpCnt > 0)
         {
-            float rayLength = sr.bounds.size.y / 2 + 0.5f;
-            RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector2.down, rayLength, LayerMask.GetMask("Platform") | LayerMask.GetMask("Shadow Platform"));
-            if (!isLanding && rayHit.collider != null)
-            {
-                isLanding = true;
-            }
-
-            Debug.DrawRay(rb.position, Vector2.down, rayHit.collider != null ? Color.green : Color.red);
+            rb.velocity = Vector2.up * power;
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            jumpCnt--;
+        }
+        if (isGround)
+        {
+            jumpCnt = jumpCount;
         }
     }
 
-    void Flip()
+    private void FixedUpdate()
     {
-        // Flip Sprite
-        if (rb.velocity.x != 0.0f)
+        float hor = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(hor * 3, rb.velocity.y);
+
+        // hor left -1, right 1
+        if (hor > 0)
         {
-            sr.flipX = rb.velocity.x < 0.0f;
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (hor < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
     }
 }
