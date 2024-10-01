@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class CircularSectorMesh : MonoBehaviour
 {
@@ -59,9 +60,9 @@ public class CircularSectorMesh : MonoBehaviour
         Mesh mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
-        Vector3[] vertices = new Vector3[pieces + 2]; // vertex array
-        Vector2[] uv = new Vector2[vertices.Length];
-        int[] triangles = new int[3 * pieces]; // index array
+        vertices = new Vector3[pieces + 2]; // vertex array
+        uv = new Vector2[vertices.Length];
+        triangles = new int[3 * pieces]; // index array
 
         vertices[0] = Vector3.zero;
         for(int i = 0; i <= pieces; i++) {
@@ -92,5 +93,22 @@ public class CircularSectorMesh : MonoBehaviour
         mesh.uv = uv;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+        
+        Destroy(GetComponent<PolygonCollider2D>());
+        PolygonCollider2D collider = gameObject.AddComponent<PolygonCollider2D>();
+
+        collider.points = new Vector2[vertices.Length];
+        List<Vector2> path = new List<Vector2>();
+
+        for(int i = 0; i < vertices.Length; i++) {
+            collider.points[i] = new(vertices[i].x, vertices[i].y);
+            path.Add(new(vertices[i].x, vertices[i].y));
+        }
+        collider.SetPath(0, path);
+        collider.isTrigger = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Yay : " + other.gameObject.name);
     }
 }

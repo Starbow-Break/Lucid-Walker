@@ -25,7 +25,7 @@ public class Spotlight : MonoBehaviour
     [Header("Target")]
     [Range(0.0f, 360.0f)]
     [SerializeField] float hitDeg = 0.0f; // 스포트라이트가 플레이어를 감지하는 시야각
-    public bool isOn { get; private set; } // 켜짐 여부
+    public bool isOn; // 켜짐 여부
 
     [Header("Switch")]
     [SerializeField] int startIndex = 0;
