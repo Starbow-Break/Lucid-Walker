@@ -48,8 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 895b0f89e131b5d45857bc496d8ce21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveMode: 1
+  blinkMode: 1
   hitDeg: 90
-  isOn: 1
+  startIndex: 0
+  rotValue: []
   _light: {fileID: 4742962698180006627}
   innerSpot: 20
   outerSpot: 40
@@ -217,7 +220,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9485fc1458ca892448c8f9d13a8a147e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -343,7 +346,7 @@ GameObject:
   - component: {fileID: 3070144626479521603}
   m_Layer: 9
   m_Name: Mask
-  m_TagString: Untagged
+  m_TagString: Mask
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
