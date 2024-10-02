@@ -120,6 +120,11 @@ public class PlayerController : MonoBehaviour
                 // FlipPlayer();
                 anim.SetTrigger("wallJump");
             }
+            // 벽 점프 후 캐릭터 방향 전환
+            if ((isRight < 0 && input_x > 0) || (isRight > 0 && input_x < 0))
+            {
+                FlipPlayer();  // 방향키에 맞춰 캐릭터 방향을 전환
+            }
         }
 
         // 중력 가속도 적용
