@@ -106,17 +106,19 @@ public class PlayerController : MonoBehaviour
         }
 
         // 벽 슬라이드 및 점프
-        if (isWall)
+        if (!isGround && isWall)
         {
             isWallJump = false;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
+            anim.SetBool("isSliding", true);
 
             if (Input.GetAxis("Jump") != 0)
             {
                 isWallJump = true;
                 Invoke("FreezeX", 0.3f);
-                rb.velocity = new Vector2(-isRight * wallJumpPower, 0.9f * wallJumpPower);
-                FlipPlayer();
+                rb.velocity = new Vector2(-isRight * wallJumpPower, 1.5f * wallJumpPower);
+                // FlipPlayer();
+                anim.SetTrigger("wallJump");
             }
         }
 
