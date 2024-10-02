@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -41,6 +42,7 @@ public class Spotlight : MonoBehaviour
 
     [Header("Source Light")]
     [SerializeField] SpriteRenderer lampSpriteRenderer; // 전등 이미지에 사용되는 렌더러
+    [SerializeField] GameObject lampBase; // 전등 받침 스프라이트
     [SerializeField] Sprite onSprite; // 점등 시 스프라이트
     [SerializeField] Sprite offSprite; // 점멸 시 스프라이트
     [SerializeField] Light2D sourceLight; // 광원 불빛
@@ -93,6 +95,9 @@ public class Spotlight : MonoBehaviour
             else if(moveMode == MoveMode.SWITCH) {
                 Rotate(rotValue[switchIndex]);
             }
+
+            float rotZ = transform.rotation.eulerAngles.z;
+            lampBase.transform.localRotation = Quaternion.Euler(0, 0, 180.0f - rotZ);
         }
     }
 

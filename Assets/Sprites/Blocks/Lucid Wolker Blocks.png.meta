@@ -1,0 +1,1419 @@
+fileFormatVersion: 2
+guid: 6f4c66bda8fdcdb4f89a2b768c69c624
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 634
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 50}
+        - {x: -50, y: -10}
+        - {x: 50, y: -10}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff28c24d9c3f9648bb383260c49ffa6
+      internalID: 47194104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_1
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 634
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 50}
+        - {x: -50, y: -10}
+        - {x: 50, y: -10}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8400c737baed3c34f8c4daeec55fff58
+      internalID: -1834364332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_2
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 634
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 50}
+        - {x: -50, y: -10}
+        - {x: 50, y: -10}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cdeb81802974242b2ac4a20d9a9b94
+      internalID: -1563166067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_3
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 633
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 50}
+        - {x: -50, y: -9}
+        - {x: 50, y: -9}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e4729e89a146f64e9b8705e50c99359
+      internalID: 465074683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_4
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 677
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7071319ceb71e1e46a4cd9bdc21d4ec3
+      internalID: 2067867127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_5
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 678
+        width: 31
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96b65768b8ef2cb49baa71c2f68db128
+      internalID: 1510642332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 527
+        width: 100
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39c3e9e8120eaa3439cef439505e5479
+      internalID: 1366791276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_7
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 529
+        width: 105
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7956fadb2b835641a3320ecd5dbf302
+      internalID: -1661967812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_8
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 423
+        width: 208
+        height: 201
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f405126b164e14a43b582e913c6afd1b
+      internalID: 1985139318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_9
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 614
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877ce856533b0154785bc8a1a9054a66
+      internalID: 376723052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_10
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 612
+        width: 54
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ac0fb0305c88d84499b0faad2895992
+      internalID: 460974349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_11
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 613
+        width: 18
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e476c083e0805b41925c4cc1f9fa7bc
+      internalID: -1954773724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_12
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 612
+        width: 54
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1746654322fa7ad4496df1fa4f4e1228
+      internalID: 615114671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_13
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 530
+        width: 89
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c39780c5720bca2408a2ed7b54520c70
+      internalID: 295195558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_14
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 530
+        width: 86
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3c64d1483684b14dbdf2691dd6223d9
+      internalID: 840530519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_15
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 531
+        width: 78
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f1d9359b2482e94db6a7fac3796bd8c
+      internalID: 1877493386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 420
+        width: 200
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65aa6725cfebeaa49b5fa5f2a6b4a5bc
+      internalID: -1274071219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_17
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 423
+        width: 203
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da98aa1171215b438816c89a925a66b
+      internalID: -380114676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 329
+        width: 32
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a381eab2bdfa4478b26ee6bb410e7f
+      internalID: -327710069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_19
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 318
+        width: 75
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5b80e58461de6f4a99aab0ccb138fa2
+      internalID: 1241297704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_20
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 318
+        width: 75
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b972d4660fb2a04b953394c2a19941d
+      internalID: 2134991148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_21
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 318
+        width: 83
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae2e6b0e36c1f9d42aa99d11b8ce34eb
+      internalID: 547171816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_22
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 276
+        width: 50
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 748bc825454c5804f9538f07951dc0d5
+      internalID: -1450702539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_23
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 260
+        width: 58
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b314c3e1facc5a943b504c9558658056
+      internalID: 1976122306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_24
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 302
+        width: 32
+        height: 11
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0fa398ea1d5884d93d8226e4312a34
+      internalID: 1040925218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_25
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 249
+        width: 43
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7fbf40de81e5e64aa8b9b17434cf37c
+      internalID: 913484131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_26
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 235
+        width: 51
+        height: 78
+      alignment: 9
+      pivot: {x: 0.499, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d29d42ea19c1a54cb2f4ee2bcdea010
+      internalID: -812499945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_27
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 252
+        width: 45
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302bd6362299a0543846352a7deac284
+      internalID: -1641149683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_28
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 240
+        width: 50
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0288aa2408937d34e9055939cb34b9f3
+      internalID: -1238028646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_37
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 170
+        width: 50
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec070cc5f82e88a408dcfc1170c61203
+      internalID: -803585562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_38
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 154
+        width: 59
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626c0a33d5e890b44ada58fc6d8da786
+      internalID: 347692481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_39
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 196
+        width: 32
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 388188d3db6fda544b52a5b4814b0814
+      internalID: 1640621110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_40
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 143
+        width: 45
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e49838bcd6dffe4aabb1dc4e0129c70
+      internalID: 220443859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_41
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 129
+        width: 52
+        height: 78
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f33d6745de9b8447b07d1134810764a
+      internalID: -87203581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_42
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 146
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6387e6b6a857c474eaae3c74663728cd
+      internalID: -1914672924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_43
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 132
+        width: 51
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dd6796c853a06241ae3976e2dbc1d56
+      internalID: -1788812650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_52
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 82
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3c4c2c2afb726a47b7b210ef80e2a3c
+      internalID: 59807473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_53
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 85
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1003eb042340ed449a522fc3f43a32b
+      internalID: 1471931168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_54
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 2
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c94f834f0fb7b1458de18d5f957387b
+      internalID: 1474848633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_55
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 1
+        width: 100
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff101b347ecdb2429e0692d664f69bd
+      internalID: 1387495763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_56
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 1
+        width: 96
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d244b1c3fb42ea45b949d5c641c3f39
+      internalID: -1529186356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_57
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 50
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ef78e735ebeb94bb3a32304e47a520
+      internalID: 420119341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_58
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 66
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c28cf6c346cedde40aadead397d75795
+      internalID: 904037761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_59
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 46
+        width: 35
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e1f2c6bc5a984544bb3caa1b128cdba
+      internalID: 137100099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_60
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 69
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcf3af5e14b26d44ebbbb1cbf50edbef
+      internalID: -484339785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_61
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 49
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63fb8ff487e6e9e44bd7203695918dd0
+      internalID: 248837931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_62
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 58
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e0ed8e283edce842acdede4bf2c82be
+      internalID: -1148738246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_63
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 53
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f46f054f46cf5a0459664f96c30454b3
+      internalID: 461609450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_64
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 51
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2221b294aeb1c9c43bd8fc6c996a0a79
+      internalID: 1388137054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_65
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 48
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404102866b5d48f44939edcd8f8e0fb7
+      internalID: 1661120590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_66
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 5
+        width: 38
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60aca9f4103a86848a4abdaf5a78c468
+      internalID: -549161206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_67
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 101
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c68d6d2f091abab478dc677760a6f54a
+      internalID: -1110905159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_68
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 13
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b07e660b6212d4c9975dfbf4dae179
+      internalID: -1031775582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_69
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 9
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb54da5d87a8eb54d91b29ed39c9e372
+      internalID: 1198440204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_70
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 9
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88afde6037f74b34a80629b255ce8b16
+      internalID: 2081956100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_29
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 634
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 50}
+        - {x: -50, y: -10}
+        - {x: 50, y: -10}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 916cde20c805a0242aa3aab5d4b4f481
+      internalID: -57264754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_30
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 634
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 50}
+        - {x: -50, y: -10}
+        - {x: 50, y: -10}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc77b72890be2e469eac8b6637445af
+      internalID: 263502451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Lucid Wolker Blocks_0: 47194104
+      Lucid Wolker Blocks_1: -1834364332
+      Lucid Wolker Blocks_10: 460974349
+      Lucid Wolker Blocks_11: -1954773724
+      Lucid Wolker Blocks_12: 615114671
+      Lucid Wolker Blocks_13: 295195558
+      Lucid Wolker Blocks_14: 840530519
+      Lucid Wolker Blocks_15: 1877493386
+      Lucid Wolker Blocks_16: -1274071219
+      Lucid Wolker Blocks_17: -380114676
+      Lucid Wolker Blocks_18: -327710069
+      Lucid Wolker Blocks_19: 1241297704
+      Lucid Wolker Blocks_2: -1563166067
+      Lucid Wolker Blocks_20: 2134991148
+      Lucid Wolker Blocks_21: 547171816
+      Lucid Wolker Blocks_22: -1450702539
+      Lucid Wolker Blocks_23: 1976122306
+      Lucid Wolker Blocks_24: 1040925218
+      Lucid Wolker Blocks_25: 913484131
+      Lucid Wolker Blocks_26: -812499945
+      Lucid Wolker Blocks_27: -1641149683
+      Lucid Wolker Blocks_28: -1238028646
+      Lucid Wolker Blocks_29: -57264754
+      Lucid Wolker Blocks_3: 465074683
+      Lucid Wolker Blocks_30: 263502451
+      Lucid Wolker Blocks_31: -1406160969
+      Lucid Wolker Blocks_32: -1863719765
+      Lucid Wolker Blocks_33: 1617039682
+      Lucid Wolker Blocks_34: -1630813736
+      Lucid Wolker Blocks_35: 1796577830
+      Lucid Wolker Blocks_36: -1758570417
+      Lucid Wolker Blocks_37: -803585562
+      Lucid Wolker Blocks_38: 347692481
+      Lucid Wolker Blocks_39: 1640621110
+      Lucid Wolker Blocks_4: 2067867127
+      Lucid Wolker Blocks_40: 220443859
+      Lucid Wolker Blocks_41: -87203581
+      Lucid Wolker Blocks_42: -1914672924
+      Lucid Wolker Blocks_43: -1788812650
+      Lucid Wolker Blocks_44: -882440231
+      Lucid Wolker Blocks_45: -1798689728
+      Lucid Wolker Blocks_46: 1769398403
+      Lucid Wolker Blocks_47: -312600579
+      Lucid Wolker Blocks_48: -768207488
+      Lucid Wolker Blocks_49: -157310300
+      Lucid Wolker Blocks_5: 1510642332
+      Lucid Wolker Blocks_50: 902350957
+      Lucid Wolker Blocks_51: 1834382432
+      Lucid Wolker Blocks_52: 59807473
+      Lucid Wolker Blocks_53: 1471931168
+      Lucid Wolker Blocks_54: 1474848633
+      Lucid Wolker Blocks_55: 1387495763
+      Lucid Wolker Blocks_56: -1529186356
+      Lucid Wolker Blocks_57: 420119341
+      Lucid Wolker Blocks_58: 904037761
+      Lucid Wolker Blocks_59: 137100099
+      Lucid Wolker Blocks_6: 1366791276
+      Lucid Wolker Blocks_60: -484339785
+      Lucid Wolker Blocks_61: 248837931
+      Lucid Wolker Blocks_62: -1148738246
+      Lucid Wolker Blocks_63: 461609450
+      Lucid Wolker Blocks_64: 1388137054
+      Lucid Wolker Blocks_65: 1661120590
+      Lucid Wolker Blocks_66: -549161206
+      Lucid Wolker Blocks_67: -1110905159
+      Lucid Wolker Blocks_68: -1031775582
+      Lucid Wolker Blocks_69: 1198440204
+      Lucid Wolker Blocks_7: -1661967812
+      Lucid Wolker Blocks_70: 2081956100
+      Lucid Wolker Blocks_8: 1985139318
+      Lucid Wolker Blocks_9: 376723052
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
