@@ -107,8 +107,4 @@ public class CircularSectorMesh : MonoBehaviour
         collider.SetPath(0, path);
         collider.isTrigger = true;
     }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Yay : " + other.gameObject.name);
-    }
 }
