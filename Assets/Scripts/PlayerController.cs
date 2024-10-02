@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
     float input_x;
     bool isGround;
     public float chkDistance;
-    public float jumpPower = 1;
+    public float jumpPower = 4;  // 점프 파워
+    public float jumpBoost = 2;  // 점프 초기 가속도
+    public float fallMultiplier = 2.5f;  // 빠르게 떨어지기 위한 가속도
+    public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     public LayerMask g_layer;
     bool isRunning;  // 달리기 상태 확인
 
@@ -98,7 +101,8 @@ public class PlayerController : MonoBehaviour
         // 캐릭터 점프
         if (isGround && Input.GetAxis("Jump") != 0)
         {
-            rb.velocity = Vector2.up * jumpPower;
+            // 초기 점프 속도 증가를 위해 jumpBoost를 더해줌
+            rb.velocity = Vector2.up * (jumpPower + jumpBoost);
         }
 
         // 벽 슬라이드 및 점프
@@ -114,6 +118,23 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(-isRight * wallJumpPower, 0.9f * wallJumpPower);
                 FlipPlayer();
             }
+        }
+
+        // 중력 가속도 적용
+        ApplyGravityModifiers();
+    }
+
+    void ApplyGravityModifiers()
+    {
+        // 점프 후 천천히 떨어지도록 중력 가속도를 증가시킴
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        // Space 키를 떼면 천천히 떨어지는 속도를 높임
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 
