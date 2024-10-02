@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,15 +17,16 @@ public class PlayerController : MonoBehaviour
     public float wallJumpPower;
     public bool isWallJump;
 
-    public float runSpeed; // 이동속도
-    public float isRight; // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
+    public float walkSpeed = 2f; // 걷기 속도
+    public float runSpeed = 4f;  // 달리기 속도
+    public float isRight = 1;    // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
 
     float input_x;
     bool isGround;
     public float chkDistance;
     public float jumpPower = 1;
     public LayerMask g_layer;
-
+    bool isRunning;  // 달리기 상태 확인
 
     private void Start()
     {
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         input_x = Input.GetAxis("Horizontal");
+        isRunning = Input.GetKey(KeyCode.LeftShift);  // Shift로 달리기
 
         // 캐릭터의 앞쪽과 뒤쪽의 바닥 체크
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, g_layer);
@@ -57,24 +58,31 @@ public class PlayerController : MonoBehaviour
         isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, w_Layer);
         anim.SetBool("isSliding", isWall);
 
-        // 스페이스 바가 눌리면 점프 애니메이션
+        // 달리기 상태일 때 run 애니메이션
+        if (!isWallJump)
+        {
+            if (input_x != 0)
+            {
+                anim.SetBool("walk", !isRunning);  // 걷기 상태 (Shift를 누르지 않았을 때)
+                anim.SetBool("run", isRunning);    // 달리기 상태 (Shift를 누를 때)
+            }
+            else
+            {
+                anim.SetBool("walk", false);
+                anim.SetBool("run", false);
+            }
+        }
+
+        // 점프 애니메이션 트리거
         if (Input.GetAxis("Jump") != 0)
         {
             anim.SetTrigger("jump");
         }
 
-        // 방향키가 눌리는 방향과 캐릭터가 바라보는 방향이 다르다면 캐릭터의 방향 전환
-        if (!isWallJump)
+        // 캐릭터 방향 전환
+        if ((input_x > 0 && isRight < 0) || (input_x < 0 && isRight > 0))
         {
-            if ((input_x > 0 && isRight < 0) || (input_x < 0 && isRight > 0))
-            {
-                FlipPlayer();
-                anim.SetBool("run", true);
-            }
-            else if (input_x == 0)
-            {
-                anim.SetBool("run", false);
-            }
+            FlipPlayer();
         }
     }
 
@@ -82,15 +90,18 @@ public class PlayerController : MonoBehaviour
     {
         // 캐릭터 이동
         if (!isWallJump)
-            rb.velocity = (new Vector2((input_x) * runSpeed, rb.velocity.y));
-        if (isGround == true)
         {
-            // 캐릭터 점프
-            if (Input.GetAxis("Jump") != 0)
-            {
-                rb.velocity = Vector2.up * jumpPower;
-            }
+            float moveSpeed = isRunning ? runSpeed : walkSpeed;
+            rb.velocity = new Vector2(input_x * moveSpeed, rb.velocity.y);
         }
+
+        // 캐릭터 점프
+        if (isGround && Input.GetAxis("Jump") != 0)
+        {
+            rb.velocity = Vector2.up * jumpPower;
+        }
+
+        // 벽 슬라이드 및 점프
         if (isWall)
         {
             isWallJump = false;
@@ -110,6 +121,7 @@ public class PlayerController : MonoBehaviour
     {
         isWallJump = false;
     }
+
     void FlipPlayer()
     {
         // 방향 전환
@@ -117,7 +129,7 @@ public class PlayerController : MonoBehaviour
         isRight = isRight * -1;
     }
 
-    private void onDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(groundChkFront.position, Vector2.down * chkDistance);
