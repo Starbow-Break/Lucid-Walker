@@ -9,7 +9,7 @@ public class ScriptableTilemapCollider : MonoBehaviour
     [SerializeField] Tilemap tilemap; // Tilemap
     [SerializeField] GameObject tileCollision; // Tile Collision
 
-    void Start()
+    void Awake()
     {
         BoundsInt bounds = tilemap.cellBounds;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 public class ShadowTileCollider : MonoBehaviour
@@ -12,16 +13,19 @@ public class ShadowTileCollider : MonoBehaviour
     TileBase tile;
     public int lightCount;
 
-    void Start() { 
-        tile = tilemap.GetTile(tilePos);
+    void Awake() { 
         lightCount = 0;
+    }
+
+    void Start()
+    {
+        tile = tilemap.GetTile(tilePos);
         tilemap.SetTile(tilePos, null);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Mask"))
         {
-            Debug.Log(other.gameObject.name + " " + other.tag);
             if(lightCount == 0) {
                 tilemap.SetTile(tilePos, tile);
             }
