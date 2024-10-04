@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 767480469}
   - component: {fileID: 767480468}
   - component: {fileID: 767480470}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7422,7 +7422,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 767480466}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: de6edee1891d7407492c4f65896fe50e, type: 2}
+  m_Material: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7831,7 +7831,7 @@ Transform:
   m_GameObject: {fileID: 1067542231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: -0.79, z: -1}
+  m_LocalPosition: {x: 0.39, y: -0.77, z: 3}
   m_LocalScale: {x: 0.28, y: 0.28, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8542,7 +8542,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 2
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -8687,7 +8687,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 2
       spread: 0
       speed:
         serializedVersion: 2
@@ -17553,7 +17553,7 @@ GameObject:
   - component: {fileID: 2096861581}
   - component: {fileID: 2096861580}
   - component: {fileID: 2096861579}
-  m_Layer: 12
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17584,7 +17584,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 2096861577}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 8133fa17d63de406cb13be7f0eb7fde5, type: 2}
+  m_Material: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -24997,9 +24997,9 @@ MonoBehaviour:
   groundChkBack: {fileID: 1178236037}
   wallChk: {fileID: 1168435535}
   wallchkDistance: 0.2
-  w_Layer:
+  p_Layer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 64
   isWall: 0
   slidingSpeed: 0.5
   wallJumpPower: 10
@@ -25012,9 +25012,6 @@ MonoBehaviour:
   jumpBoost: 3
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
-  g_layer:
-    serializedVersion: 2
-    m_Bits: 2112
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

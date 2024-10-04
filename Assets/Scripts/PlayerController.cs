@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundChkBack;
     public Transform wallChk;
     public float wallchkDistance;
-    public LayerMask w_Layer;
+    public LayerMask p_Layer;
     public bool isWall;
     public float slidingSpeed;
     public float wallJumpPower;
@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     public float jumpBoost = 2;  // 점프 초기 가속도
     public float fallMultiplier = 2.5f;  // 빠르게 떨어지기 위한 가속도
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
-    public LayerMask g_layer;
     bool isRunning;  // 달리기 상태 확인
 
     private void Start()
@@ -43,8 +42,8 @@ public class PlayerController : MonoBehaviour
         isRunning = Input.GetKey(KeyCode.LeftShift);  // Shift로 달리기
 
         // 캐릭터의 앞쪽과 뒤쪽의 바닥 체크
-        bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, g_layer);
-        bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, g_layer);
+        bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, p_Layer);
+        bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
 
         // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
         if (!isGround && (ground_back || ground_front))
@@ -58,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("isGround", isGround);
 
-        isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, w_Layer);
+        isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, p_Layer);
         anim.SetBool("isSliding", isWall);
 
         // 달리기 상태일 때 run 애니메이션
