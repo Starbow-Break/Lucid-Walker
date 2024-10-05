@@ -330,7 +330,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 3.4077826
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -355,7 +355,7 @@ Transform:
   m_GameObject: {fileID: 421590893}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15, y: -11, z: -10}
+  m_LocalPosition: {x: -15, y: -11.041, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -418,6 +418,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2138555493}
+  shakeDuration: 1
+  shakeAmount: 0.4
+  decreaseFactor: 1
 --- !u!1001 &425638770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7923,7 +7926,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 6
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8030,10 +8033,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: f3913caf2051c8e4b9a1a6ef1032be3c, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 0e8181935d34ab144a6ecfdf34b7647b, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: 8e5525dde13134d41a77c7f2feaf3e89, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 8e5525dde13134d41a77c7f2feaf3e89, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 8
     m_Data:
@@ -13209,6 +13212,7 @@ Transform:
   - {fileID: 1813035465}
   - {fileID: 2096861578}
   - {fileID: 1005041507}
+  - {fileID: 2103650034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1813035464
@@ -25133,12 +25137,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103650030}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 19.5, y: -14.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1259391390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2103650035
 CircleCollider2D:
@@ -25454,4 +25458,3 @@ SceneRoots:
   - {fileID: 818043297}
   - {fileID: 841709215}
   - {fileID: 121683743}
-  - {fileID: 2103650034}
