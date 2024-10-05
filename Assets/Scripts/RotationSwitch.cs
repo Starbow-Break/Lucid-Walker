@@ -9,7 +9,12 @@ public class RotationSwitch : MonoBehaviour
   bool isRotate = false;
 
   [SerializeField] GameObject player;  // 플레이어 참조 추가
+  Animator anim;
 
+  void Start()
+  {
+    anim = GetComponent<Animator>();
+  }
   void Update()
   {
     if (isInteracting && Input.GetKeyDown(KeyCode.Z))
@@ -41,14 +46,15 @@ public class RotationSwitch : MonoBehaviour
   {
     if (!isRotate)
     {
+      anim.SetTrigger("Rotate");
       gridObject.transform.rotation = Quaternion.Euler(0, 0, -90); // 절대 회전
-      player.transform.rotation = Quaternion.Euler(0, 0, 0);      // 플레이어 회전
+      player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 0);      // 플레이어 회전
       isRotate = true;
     }
     else
     {
       gridObject.transform.rotation = Quaternion.Euler(0, 0, 0);  // 원래 상태로 복구
-      player.transform.rotation = Quaternion.Euler(0, 0, 0);     // 플레이어 원래 상태로 복구
+      player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 0);      // 플레이어 회전
       isRotate = false;  // 다시 초기 상태로 돌아갈 수 있게 플래그 초기화
     }
   }
