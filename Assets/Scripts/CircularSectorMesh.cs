@@ -22,18 +22,15 @@ public class CircularSectorMesh : MonoBehaviour
         if(mesh == null) return;
 
         if(radius > 0 && pieces > 0) {
-            SetMeshData(radius, pieces);
-            createMesh();
+            Generate();
         }
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         mesh = GetComponent<MeshFilter>().mesh;
-
-        SetMeshData(radius, pieces);
-        createMesh();
+        Generate();
     }
 
     //----------------------- Setter Function -----------------------
@@ -53,6 +50,13 @@ public class CircularSectorMesh : MonoBehaviour
         }
     }
     //----------------------- Setter Function -----------------------
+
+    // Generate Mesh
+    public void Generate()
+    {
+        SetMeshData(radius, pieces);
+        createMesh();
+    }
 
     // set mesh data
     void SetMeshData(float radius, int pieces)

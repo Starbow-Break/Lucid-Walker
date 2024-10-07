@@ -69,6 +69,7 @@ public class Spotlight : MonoBehaviour
         // Setting Mask
         mask.SetRadius(lightRadius);
         mask.SetAngle(outerSpot);
+        mask.Generate();
 
         // Turn On/Off according to isOn value
         if(isOn) TurnOn(); else TurnOff();
