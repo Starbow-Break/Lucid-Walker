@@ -263,7 +263,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -50, y: 51}
+        - {x: -50, y: -51}
+        - {x: 50, y: -51}
+        - {x: 50, y: 51}
       tessellationDetail: 0
       bones: []
       spriteID: 39c3e9e8120eaa3439cef439505e5479
@@ -280,11 +284,15 @@ TextureImporter:
         y: 529
         width: 105
         height: 101
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -52.5, y: 50.5}
+        - {x: -52.5, y: -50.5}
+        - {x: 51.5, y: -50.5}
+        - {x: 51.5, y: 50.5}
       tessellationDetail: 0
       bones: []
       spriteID: b7956fadb2b835641a3320ecd5dbf302
@@ -299,13 +307,17 @@ TextureImporter:
         serializedVersion: 2
         x: 420
         y: 423
-        width: 208
+        width: 100
         height: 201
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -50, y: 100.5}
+        - {x: -50, y: -100.5}
+        - {x: 50, y: -100.5}
+        - {x: 50, y: 100.5}
       tessellationDetail: 0
       bones: []
       spriteID: f405126b164e14a43b582e913c6afd1b
@@ -473,7 +485,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -100, y: 51.5}
+        - {x: -100, y: -50.5}
+        - {x: 100, y: -50.5}
+        - {x: 100, y: 51.5}
       tessellationDetail: 0
       bones: []
       spriteID: 65aa6725cfebeaa49b5fa5f2a6b4a5bc
@@ -490,11 +506,17 @@ TextureImporter:
         y: 423
         width: 203
         height: 100
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -101.5, y: 50}
+        - {x: -101.5, y: -37}
+        - {x: -79.5, y: -50}
+        - {x: 84.5, y: -50}
+        - {x: 101.5, y: -39}
+        - {x: 101.5, y: 50}
       tessellationDetail: 0
       bones: []
       spriteID: 0da98aa1171215b438816c89a925a66b
@@ -1326,6 +1348,32 @@ TextureImporter:
       bones: []
       spriteID: 0bc77b72890be2e469eac8b6637445af
       internalID: 263502451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lucid Wolker Blocks_31
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 423
+        width: 100
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 100}
+        - {x: -50, y: -100}
+        - {x: 48, y: -100}
+        - {x: 50, y: -94}
+        - {x: 50, y: 100}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45b4e166282076943a39a47fd69642e5
+      internalID: -1406160969
       vertices: []
       indices: 
       edges: []
