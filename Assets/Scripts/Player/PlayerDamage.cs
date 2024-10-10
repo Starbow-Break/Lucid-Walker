@@ -53,9 +53,15 @@ public class PlayerDamage : MonoBehaviour, IDamageable
         while (ctime < 0.2f)
         {
             if (transform.rotation.y == 0)
+            {
                 transform.Translate(Vector2.left * speed * Time.deltaTime * dir);
+                transform.position = new(transform.position.x, transform.position.y, 0.0f);
+            }
             else
+            {
                 transform.Translate(Vector2.left * speed * Time.deltaTime * -1f * dir);
+                transform.position = new(transform.position.x, transform.position.y, 0.0f);
+            }
 
             ctime += Time.deltaTime;
             yield return null;

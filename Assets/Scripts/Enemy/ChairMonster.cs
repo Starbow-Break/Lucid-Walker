@@ -25,10 +25,8 @@ public class ChairMonster : MonoBehaviour
         // 쿨타임이 끝났고 플레이어가 범위에 있을 때만 공격 시작
         if (collider != null && collider.CompareTag("Player"))
         {
-            Debug.Log("adf");
+            anim.SetTrigger("Attack");  // Attack 애니메이션 시작
 
-            anim.SetBool("Attack", true);  // Attack 애니메이션 시작
-            Debug.Log("adf------");
             IDamageable damageable = collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
@@ -45,12 +43,17 @@ public class ChairMonster : MonoBehaviour
             }
         }
 
+        // if (anim.GetCurrentAnimatorStateInfo(0).IsName("ChairMonster_Attack"))
+        // {
+        //     Debug.Log(anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        // }
+
         // 애니메이션 상태가 Idle로 돌아왔을 때 Attack을 false로 설정
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("ChairMonster_Attack") &&
-            anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-        {
-            anim.SetBool("Attack", false);  // 애니메이션 끝났을 때 Attack을 false로
-        }
+        // if (anim.GetCurrentAnimatorStateInfo(0).IsName("ChairMonster_Attack") &&
+        //     anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        // {
+        //     anim.SetBool("Attack", false);  // 애니메이션 끝났을 때 Attack을 false로
+        // }
     }
 
     // 기본 공격 콜라이더 활성화
