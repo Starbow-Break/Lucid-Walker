@@ -11,37 +11,36 @@ public class ChairMonster : MonoBehaviour
     public BoxCollider2D normalAttackBox;
     public BoxCollider2D bigAttackBox;
     public float coolTime;
-    private float currentTime;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        currentTime = 0;
     }
 
     void Update()
     {
-        currentTime -= Time.deltaTime;
-
-        Collider2D collider = Physics2D.OverlapBox(pos.position, new Vector2(1f, 1f), 1);
+        Collider2D collider = Physics2D.OverlapBox(pos.position, new Vector2(2f, 2f), 0);
 
 
         // 쿨타임이 끝났고 플레이어가 범위에 있을 때만 공격 시작
-        if (collider != null && collider.CompareTag("Player") && currentTime <= 0)
+        if (collider != null && collider.CompareTag("Player"))
         {
-            anim.SetBool("Attack", true);  // Attack 애니메이션 시작
-            currentTime = coolTime;
+            Debug.Log("adf");
 
+            anim.SetBool("Attack", true);  // Attack 애니메이션 시작
+            Debug.Log("adf------");
             IDamageable damageable = collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 if (normalAttackBox.enabled)
                 {
                     damageable.TakeDamage(damage, transform);
+                    Debug.Log("작은Collider 호출");
                 }
                 else if (bigAttackBox.enabled)
                 {
                     damageable.TakeDamage(bigDamage, transform);
+                    Debug.Log("큰Collider 호출");
                 }
             }
         }
@@ -77,4 +76,17 @@ public class ChairMonster : MonoBehaviour
     {
         bigAttackBox.enabled = false;
     }
+
+    void OnDrawGizmos()
+    {
+        // Gizmos 색상 설정 (빨간색으로 설정)
+        Gizmos.color = Color.red;
+
+        // 감지할 박스의 크기와 위치 설정
+        Vector2 boxSize = new Vector2(2f, 2f);
+        Vector3 boxPosition = pos != null ? pos.position : transform.position; // pos가 null이 아니면 pos 사용, 그렇지 않으면 기본 transform 위치 사용
+
+        Gizmos.DrawWireCube(boxPosition, boxSize);
+    }
+
 }

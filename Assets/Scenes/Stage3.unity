@@ -13360,7 +13360,7 @@ MonoBehaviour:
   bigDamage: 4
   normalAttackBox: {fileID: 2007822968}
   bigAttackBox: {fileID: 507727249}
-  coolTime: 3
+  coolTime: 0
 --- !u!95 &1807126328
 Animator:
   serializedVersion: 5
@@ -25685,7 +25685,7 @@ MonoBehaviour:
   groundChkFront: {fileID: 168503549}
   groundChkBack: {fileID: 1178236037}
   wallChk: {fileID: 1168435535}
-  wallchkDistance: 0.2
+  wallchkDistance: 0.1
   p_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -25714,7 +25714,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  isHurt: 0
   speed: 10
+  isKnockBack: 0
 --- !u!1001 &5772982306327254797
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerDamage : MonoBehaviour, IDamageable
 {
     public int health = 10;  // 플레이어의 초기 체력
-    bool isHurt;
+    public bool isHurt;
     SpriteRenderer sr;
     Color halfA = new Color(1, 1, 1, 0.5f);
     Color fullA = new Color(1, 1, 1, 1);
     public float speed;
     private Animator anim;     // Animator 참조
     private Rigidbody2D rb;    // Rigidbody2D 참조
-    bool isKnockBack = false;
+    public bool isKnockBack = false;
     private void Start()
     {
         anim = GetComponent<Animator>();
