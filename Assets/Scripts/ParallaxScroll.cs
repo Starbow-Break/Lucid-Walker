@@ -6,6 +6,8 @@ public class ParallaxScroll : MonoBehaviour
 {
     [SerializeField] Transform mainCamera; // 메인 카메라
 
+    [SerializeField] bool infiniteScroll; // 메인 카메라
+
     [Range(0.0f, 1.0f)]
     [Tooltip("수평 방향 평행 이동 강도")]
     [SerializeField] float horizontalAmount; // 수평 방향 평행 이동 강도
@@ -20,10 +22,13 @@ public class ParallaxScroll : MonoBehaviour
     void Awake()
     {
         pos = transform.position;
-        Vector2 renderSize = GetComponent<SpriteRenderer>().bounds.size;
-        Debug.Log(renderSize);
-        width = renderSize.x;
-        height = renderSize.y;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if(sr != null) {
+            Vector2 renderSize = sr.bounds.size;
+            width = renderSize.x;
+            height = renderSize.y;
+        }
     }
 
     void Update()
@@ -33,10 +38,12 @@ public class ParallaxScroll : MonoBehaviour
 
         transform.position = new(pos.x + dist.x, pos.y + dist.y, transform.position.z);
 
-        if(temp.x > pos.x + width / 2) pos += Vector3.right * width;
-        else if(temp.x < pos.x - width / 2) pos -= Vector3.right * width;
+        if(infiniteScroll) {
+            if(temp.x > pos.x + width / 2) pos += Vector3.right * width;
+            else if(temp.x < pos.x - width / 2) pos -= Vector3.right * width;
 
-        if(temp.y > pos.y + height / 2) pos += Vector3.up * height;
-        else if(temp.y < pos.y - height / 2) pos -= Vector3.up * height;
+            if(temp.y > pos.y + height / 2) pos += Vector3.up * height;
+            else if(temp.y < pos.y - height / 2) pos -= Vector3.up * height;
+        }
     }
 }

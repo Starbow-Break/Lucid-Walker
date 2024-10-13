@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CameraFollow : MonoBehaviour
 {
+    [SerializeField] Tilemap tilemap;
     [SerializeField] Transform target;
     public float shakeDuration = 0.5f;  // 흔들림 지속 시간
     public float shakeAmount = 0.1f;    // 흔들림 강도
@@ -9,17 +11,31 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 originalPos;
     private float currentShakeDuration = 0f;
+    private TilemapRenderer tr;
 
     void Start()
     {
         originalPos = transform.position;  // 카메라의 원래 위치 저장
+        tr = tilemap.gameObject.GetComponent<TilemapRenderer>();
         transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
     }
 
     void FixedUpdate()
     {
+        Camera camera = gameObject.GetComponent<Camera>();
+        
+        Vector3 bottomLeft = camera.ScreenToWorldPoint(Vector3.zero);
+        Vector3 topRight = camera.ScreenToWorldPoint(new(Screen.width, Screen.height));
+
+        float width = topRight.x - bottomLeft.x;
+        float height = topRight.y - bottomLeft.y;
+
         // 플레이어를 따라가는 기본 위치 설정
-        Vector3 followPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
+        Vector3 followPosition = new Vector3(
+            Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2, tr.bounds.max.x - width / 2), 
+            Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2, tr.bounds.max.x - height / 2), 
+            transform.position.z
+        );
 
         // 흔들림이 있을 경우 적용
         if (currentShakeDuration > 0)
