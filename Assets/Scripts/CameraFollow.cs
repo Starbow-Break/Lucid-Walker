@@ -40,7 +40,7 @@ public class CameraFollow : MonoBehaviour
             // 플레이어를 따라가는 기본 위치 설정
             followPosition = new Vector3(
                 Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2, tr.bounds.max.x - width / 2), 
-                Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2, tr.bounds.max.x - height / 2), 
+                Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2, tr.bounds.max.y - height / 2), 
                 transform.position.z
             );
         }

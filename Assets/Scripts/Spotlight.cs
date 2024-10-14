@@ -46,6 +46,16 @@ public class Spotlight : MonoBehaviour
     [SerializeField] Sprite onSprite; // 점등 시 스프라이트
     [SerializeField] Sprite offSprite; // 점멸 시 스프라이트
     [SerializeField] Light2D sourceLight; // 광원 불빛
+
+    [Header("Fall")]
+    [SerializeField] Collider2D fallCollider;
+    [Range(0.0f, 180.0f)]
+    [SerializeField] float angle;
+    [SerializeField] float period;
+    [SerializeField] float gravityScale = 1.0f;
+    public bool isFall { get; private set; } = false;
+    float fallTime = 0.0f;
+    float swingTime = 0.0f;
     
     
     Vector2 initDir;
@@ -72,13 +82,21 @@ public class Spotlight : MonoBehaviour
         mask.SetAngle(outerSpot);
         mask.Generate();
 
-        // Turn On/Off according to isOn value
-        if(isOn) TurnOn(); else TurnOff();
-
         // initialize switch index
         if(moveMode == MoveMode.SWITCH) {
             switchIndex = startIndex;
         }
+
+        if(fall) {
+            fallCollider.enabled = true;
+            StartCoroutine(Swing());
+        }
+        else {
+            fallCollider.enabled = false;
+        }
+
+        // Turn On/Off according to isOn value
+        if(isOn) TurnOn(); else TurnOff();
     }
 
     void FixedUpdate()
@@ -99,6 +117,11 @@ public class Spotlight : MonoBehaviour
             else if(moveMode == MoveMode.SWITCH) {
                 Rotate(rotValue[switchIndex]);
             }
+        }
+
+        if(isFall) {
+            transform.Translate(0.5f * Time.fixedDeltaTime * (2 * fallTime - Time.fixedDeltaTime) * gravityScale * Physics.gravity);
+            fallTime += Time.fixedDeltaTime;
         }
     }
 
@@ -142,7 +165,7 @@ public class Spotlight : MonoBehaviour
 
         float targetRotZ = curRotZ + diffRot * 5.0f * Time.fixedDeltaTime;
 
-        lamp.rotation *= Quaternion.Euler(0, 0, targetRotZ);
+        lamp.rotation = Quaternion.Euler(0, 0, targetRotZ);
         lightDir = new(Mathf.Sin(targetRotZ * Mathf.Deg2Rad), -Mathf.Cos(targetRotZ * Mathf.Deg2Rad));
     }
 
@@ -210,26 +233,31 @@ public class Spotlight : MonoBehaviour
         yield return null;
     }
 
+    // swing Lamp
+    IEnumerator Swing()
+    {
+        Quaternion start = Quaternion.Euler(0.0f, 0.0f, -angle);
+        Quaternion end = Quaternion.Euler(0.0f, 0.0f, angle);
+
+        while(!isFall) {
+            swingTime += Time.deltaTime;
+            lamp.rotation = Quaternion.Lerp(start, end, (Mathf.Sin(2 * Mathf.PI * swingTime / period) + 1.0f) / 2.0f);
+            yield return null;
+        }
+
+        yield return null;
+    }
+
     public void Fall()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1.0f;
+        isFall = true;
+        TurnOff();
     }
 
     public void Break()
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Platform")) {
-            Break();
-        }    
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.collider.CompareTag("Platform")) {
-            Break();
-        } 
+        transform.Translate(Vector3.zero);
+        isFall = false;
+        Destroy(gameObject, 1.0f);
     }
 }
