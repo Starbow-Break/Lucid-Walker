@@ -17,7 +17,7 @@ public class RotateSwitch : SpotlightSwitch
     }
 
     void Update() {
-        if(isInteracting && Input.GetKeyDown(KeyCode.Z) && !spotlight.isFall) {
+        if(isInteracting && Input.GetKeyDown(KeyCode.Z) && !spotlight.isBroken) {
             ChangeSprite();
             spotlight.RotateSwitch();
         }

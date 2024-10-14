@@ -20,7 +20,7 @@ public class OnOffSwitch : SpotlightSwitch
     }
 
     void Update() {
-        if(isInteracting && Input.GetKeyDown(KeyCode.Z) && !spotlight.isFall) {
+        if(isInteracting && Input.GetKeyDown(KeyCode.Z) && !spotlight.isBroken) {
             ChangeSprite();
             spotlight.Switch();
         }

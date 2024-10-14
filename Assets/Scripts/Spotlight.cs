@@ -48,13 +48,13 @@ public class Spotlight : MonoBehaviour
     [SerializeField] Light2D sourceLight; // 광원 불빛
 
     [Header("Fall")]
-    [SerializeField] Collider2D fallCollider;
+    [SerializeField] Collider2D fallCollider; // 낙하 감지 Collider
     [Range(0.0f, 180.0f)]
-    [SerializeField] float angle;
-    [SerializeField] float period;
-    [SerializeField] float gravityScale = 1.0f;
-    public bool isFall { get; private set; } = false;
-    float fallTime = 0.0f;
+    [SerializeField] float angle; // 흔들리는 각
+    [SerializeField] float period; // 흔들리는 주기
+    [SerializeField] GameObject fallenLampPrefab; // 떨어지는 램프
+    [SerializeField] float gravityScale; // 낙하 시 중력 스케일
+    public bool isBroken { get; private set; } = false; // 피손 여부
     float swingTime = 0.0f;
     
     
@@ -118,11 +118,6 @@ public class Spotlight : MonoBehaviour
                 Rotate(rotValue[switchIndex]);
             }
         }
-
-        if(isFall) {
-            transform.Translate(0.5f * Time.fixedDeltaTime * (2 * fallTime - Time.fixedDeltaTime) * gravityScale * Physics.gravity);
-            fallTime += Time.fixedDeltaTime;
-        }
     }
 
     // rotate to target
@@ -154,8 +149,6 @@ public class Spotlight : MonoBehaviour
         // Follow Target
         Vector2 nextDir = new(Mathf.Sin(zRot * Mathf.Deg2Rad), -Mathf.Cos(zRot * Mathf.Deg2Rad));
         nextDir = transform.rotation * nextDir;
-
-        float deg = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(initDir, nextDir));
 
         float curRotZ = Mathf.Rad2Deg * Mathf.Atan2(lightDir.x, -lightDir.y);
         float nextRotZ = Mathf.Rad2Deg * Mathf.Atan2(nextDir.x, -nextDir.y);
@@ -239,7 +232,7 @@ public class Spotlight : MonoBehaviour
         Quaternion start = Quaternion.Euler(0.0f, 0.0f, -angle);
         Quaternion end = Quaternion.Euler(0.0f, 0.0f, angle);
 
-        while(!isFall) {
+        while(!isBroken) {
             swingTime += Time.deltaTime;
             lamp.rotation = Quaternion.Lerp(start, end, (Mathf.Sin(2 * Mathf.PI * swingTime / period) + 1.0f) / 2.0f);
             yield return null;
@@ -248,16 +241,12 @@ public class Spotlight : MonoBehaviour
         yield return null;
     }
 
+    // Fall Lamp
     public void Fall()
     {
-        isFall = true;
-        TurnOff();
-    }
-
-    public void Break()
-    {
-        transform.Translate(Vector3.zero);
-        isFall = false;
-        Destroy(gameObject, 1.0f);
+        isBroken = true;
+        GameObject fallenLamp = Instantiate(fallenLampPrefab, lamp.position, lamp.rotation);
+        fallenLamp.GetComponent<Rigidbody2D>().gravityScale = gravityScale;
+        Destroy(lamp.gameObject);
     }
 }
