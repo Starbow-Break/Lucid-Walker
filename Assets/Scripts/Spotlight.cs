@@ -22,6 +22,7 @@ public class Spotlight : MonoBehaviour
     [Header("Mode")]
     [SerializeField] MoveMode moveMode;
     [SerializeField] BlinkMode blinkMode;
+    [SerializeField] bool fall;
     
     [Header("Target")]
     [Range(0.0f, 360.0f)]
@@ -101,6 +102,7 @@ public class Spotlight : MonoBehaviour
         }
     }
 
+    // rotate to target
     void Rotate(GameObject target)
     {
         // Follow Target
@@ -123,6 +125,7 @@ public class Spotlight : MonoBehaviour
         }
     }
 
+    // rotate while euler z == zrot
     void Rotate(float zRot)
     {
         // Follow Target
@@ -139,7 +142,7 @@ public class Spotlight : MonoBehaviour
 
         float targetRotZ = curRotZ + diffRot * 5.0f * Time.fixedDeltaTime;
 
-        lamp.rotation = Quaternion.Euler(0, 0, targetRotZ);
+        lamp.rotation *= Quaternion.Euler(0, 0, targetRotZ);
         lightDir = new(Mathf.Sin(targetRotZ * Mathf.Deg2Rad), -Mathf.Cos(targetRotZ * Mathf.Deg2Rad));
     }
 
@@ -205,5 +208,28 @@ public class Spotlight : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    public void Fall()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1.0f;
+    }
+
+    public void Break()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Platform")) {
+            Break();
+        }    
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.collider.CompareTag("Platform")) {
+            Break();
+        } 
     }
 }
