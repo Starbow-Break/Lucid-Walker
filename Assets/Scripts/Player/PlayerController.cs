@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGround", isGround);
 
         isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, p_Layer);
-        anim.SetBool("isSliding", isWall);
+        anim.SetBool("isSliding", !isGround && isWall);
 
         // 달리기 상태일 때 run 애니메이션
         if (!isWallJump)
@@ -111,14 +111,14 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
             anim.SetBool("isSliding", true);
 
-            if (Input.GetAxis("Jump") != 0)
+            if (Input.GetAxis("Jump") != 0 && ((input_x > 0 && isRight > 0) || (input_x < 0 && isRight < 0)))
             {
                 isWallJump = true;
                 Invoke("FreezeX", 0.3f);
                 rb.velocity = new Vector2(-isRight * wallJumpPower, 1.5f * wallJumpPower);
-                // FlipPlayer();
                 anim.SetTrigger("wallJump");
             }
+
             // 벽 점프 후 캐릭터 방향 전환
             if ((isRight < 0 && input_x > 0) || (isRight > 0 && input_x < 0))
             {
