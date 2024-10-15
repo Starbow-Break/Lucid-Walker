@@ -22,6 +22,7 @@ public class Spotlight : MonoBehaviour
     [Header("Mode")]
     [SerializeField] MoveMode moveMode;
     [SerializeField] BlinkMode blinkMode;
+    [SerializeField] bool fall;
     
     [Header("Target")]
     [Range(0.0f, 360.0f)]
@@ -45,6 +46,16 @@ public class Spotlight : MonoBehaviour
     [SerializeField] Sprite onSprite; // 점등 시 스프라이트
     [SerializeField] Sprite offSprite; // 점멸 시 스프라이트
     [SerializeField] Light2D sourceLight; // 광원 불빛
+
+    [Header("Fall")]
+    [SerializeField] Collider2D fallCollider; // 낙하 감지 Collider
+    [Range(0.0f, 180.0f)]
+    [SerializeField] float angle; // 흔들리는 각
+    [SerializeField] float period; // 흔들리는 주기
+    [SerializeField] GameObject fallenLampPrefab; // 떨어지는 램프
+    [SerializeField] float gravityScale; // 낙하 시 중력 스케일
+    public bool isBroken { get; private set; } = false; // 피손 여부
+    float swingTime = 0.0f;
     
     
     Vector2 initDir;
@@ -71,13 +82,21 @@ public class Spotlight : MonoBehaviour
         mask.SetAngle(outerSpot);
         mask.Generate();
 
-        // Turn On/Off according to isOn value
-        if(isOn) TurnOn(); else TurnOff();
-
         // initialize switch index
         if(moveMode == MoveMode.SWITCH) {
             switchIndex = startIndex;
         }
+
+        if(fall) {
+            fallCollider.enabled = true;
+            StartCoroutine(Swing());
+        }
+        else {
+            fallCollider.enabled = false;
+        }
+
+        // Turn On/Off according to isOn value
+        if(isOn) TurnOn(); else TurnOff();
     }
 
     void FixedUpdate()
@@ -101,6 +120,7 @@ public class Spotlight : MonoBehaviour
         }
     }
 
+    // rotate to target
     void Rotate(GameObject target)
     {
         // Follow Target
@@ -123,13 +143,12 @@ public class Spotlight : MonoBehaviour
         }
     }
 
+    // rotate while euler z == zrot
     void Rotate(float zRot)
     {
         // Follow Target
         Vector2 nextDir = new(Mathf.Sin(zRot * Mathf.Deg2Rad), -Mathf.Cos(zRot * Mathf.Deg2Rad));
         nextDir = transform.rotation * nextDir;
-
-        float deg = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(initDir, nextDir));
 
         float curRotZ = Mathf.Rad2Deg * Mathf.Atan2(lightDir.x, -lightDir.y);
         float nextRotZ = Mathf.Rad2Deg * Mathf.Atan2(nextDir.x, -nextDir.y);
@@ -205,5 +224,29 @@ public class Spotlight : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    // swing Lamp
+    IEnumerator Swing()
+    {
+        Quaternion start = Quaternion.Euler(0.0f, 0.0f, -angle);
+        Quaternion end = Quaternion.Euler(0.0f, 0.0f, angle);
+
+        while(!isBroken) {
+            swingTime += Time.deltaTime;
+            lamp.rotation = Quaternion.Lerp(start, end, (Mathf.Sin(2 * Mathf.PI * swingTime / period) + 1.0f) / 2.0f);
+            yield return null;
+        }
+
+        yield return null;
+    }
+
+    // Fall Lamp
+    public void Fall()
+    {
+        isBroken = true;
+        GameObject fallenLamp = Instantiate(fallenLampPrefab, lamp.position, lamp.rotation);
+        fallenLamp.GetComponent<Rigidbody2D>().gravityScale = gravityScale;
+        Destroy(lamp.gameObject);
     }
 }
