@@ -73,7 +73,7 @@ public class RotationSwitch : MonoBehaviour
             anim.SetTrigger("Rotate");
 
             // 플레이어 즉시 회전
-            player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 90);
+            player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 0);
 
             // 회전 목표 설정 (0도로 되돌리기)
             initialRotation = gridObject.transform.rotation;
