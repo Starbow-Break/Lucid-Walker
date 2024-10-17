@@ -6,7 +6,9 @@ public class ParallaxScroll : MonoBehaviour
 {
     [SerializeField] Transform mainCamera; // 메인 카메라
 
+    [Tooltip("수평 방향 무한 스크롤 사용 여부")]
     [SerializeField] bool horizontalInfiniteScroll; // 수평 무한 스크롤 사용 여부
+    [Tooltip("수직 방향 무한 스크롤 사용 여부")]
     [SerializeField] bool verticalInfiniteScroll; // 수직 무한 스크롤 사용 여부
 
     [Range(0.0f, 1.0f)]
