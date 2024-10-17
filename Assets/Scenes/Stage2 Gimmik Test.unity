@@ -8372,6 +8372,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
+      propertyPath: fall
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8912,7 +8916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1887403685}
-  infiniteScroll: 0
+  horizontalInfiniteScroll: 0
+  verticalInfiniteScroll: 0
   horizontalAmount: 0
   verticalAmount: 0
 --- !u!114 &1947856839

@@ -107,11 +107,12 @@ public class PlayerController : MonoBehaviour
         // 벽 슬라이드 및 점프
         if (!isGround && isWall)
         {
+            Debug.Log("뭐노");
             isWallJump = false;
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
+            //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
             anim.SetBool("isSliding", true);
 
-            if (Input.GetAxis("Jump") != 0 && ((input_x > 0 && isRight > 0) || (input_x < 0 && isRight < 0)))
+            if (Input.GetKeyDown(KeyCode.Space) && ((input_x > 0 && isRight > 0) || (input_x < 0 && isRight < 0)))
             {
                 isWallJump = true;
                 Invoke("FreezeX", 0.3f);
