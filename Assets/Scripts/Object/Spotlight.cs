@@ -63,6 +63,14 @@ public class Spotlight : MonoBehaviour
     IEnumerator blinkCoroutine = null;
     SpriteRenderer lampSpriteRenderer; // 전등 이미지에 사용되는 렌더러
 
+    private void OnValidate() {
+        if(0.0f <= lightRadius && 0.0f <= innerSpot && outerSpot <= 360.0f && innerSpot <= outerSpot) {
+            _light.pointLightInnerAngle = innerSpot;
+            _light.pointLightOuterAngle = outerSpot;
+            _light.pointLightOuterRadius = lightRadius;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

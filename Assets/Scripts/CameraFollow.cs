@@ -5,9 +5,16 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Tilemap tilemap;
     [SerializeField] Transform target;
+
     public float shakeDuration = 0.5f;  // 흔들림 지속 시간
     public float shakeAmount = 0.1f;    // 흔들림 강도
     public float decreaseFactor = 1.0f; // 흔들림 감소 속도
+    
+    [Header("Padding")]
+    [SerializeField] float paddingLeft = 0.0f;
+    [SerializeField] float paddingRight = 0.0f;
+    [SerializeField] float paddingTop = 0.0f;
+    [SerializeField] float paddingBottom = 0.0f;
 
     private Vector3 originalPos;
     private float currentShakeDuration = 0f;
@@ -39,8 +46,8 @@ public class CameraFollow : MonoBehaviour
 
             // 플레이어를 따라가는 기본 위치 설정
             followPosition = new Vector3(
-                Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2, tr.bounds.max.x - width / 2), 
-                Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2, tr.bounds.max.y - height / 2), 
+                Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2 + paddingLeft, tr.bounds.max.x - width / 2 - paddingRight), 
+                Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2 + paddingBottom, tr.bounds.max.y - height / 2 - paddingTop), 
                 transform.position.z
             );
         }
