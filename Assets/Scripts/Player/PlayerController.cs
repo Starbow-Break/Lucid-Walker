@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;  // 빠르게 떨어지기 위한 가속도
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     bool isRunning;  // 달리기 상태 확인
+
+    HashSet<GameObject> pushMovable = new(); // 밀고있는 물체 상태 확인
 
     private void Start()
     {
@@ -90,11 +93,46 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 이전 프레임에서 밀었던 물체들의 상태와 정보를 초기화 한다.
+        foreach(GameObject obj in pushMovable) {
+            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
+        }
+        pushMovable.Clear();
+
         // 캐릭터 이동
         if (!isWallJump)
         {
             float moveSpeed = isRunning ? runSpeed : walkSpeed;
-            rb.velocity = new Vector2(input_x * moveSpeed, rb.velocity.y);
+            Vector2 velocity = new(input_x * moveSpeed, rb.velocity.y);
+
+            // 땅에 서 있다면 밀고 있는 물체있는지 확인 후 속도에 반영
+            if(isGround) {
+                RaycastHit2D movableHit = Physics2D.Raycast(transform.position + 0.5f * Vector3.down, Vector2.right * isRight, 0.7f, p_Layer);
+                IMovable movable = movableHit.collider != null ? movableHit.collider.gameObject.GetComponent<IMovable>() : null;
+
+                float total = 0.0f;
+                if(movable != null && movable.pushable) {
+                    movable.GetAllOfMoveObject(isRight == 1, true, ref pushMovable);
+
+                    foreach(GameObject obj in pushMovable) {
+                        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+                        total += rb != null ? rb.mass : 0.0f;
+                    }
+                }
+
+                // 밀고있는 물체의 중량에 따라 속도 감소
+                // 만약에 밀 수 있는 중량을 넘어서면 움직이지 않는다.
+                velocity *= total > 10.0f ? 0.0f : 1.0f / (1.0f + total);
+                Debug.Log(velocity);
+
+                foreach(GameObject obj in pushMovable) {
+                    Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+                    rb.velocity = velocity;
+                }
+            }
+
+            rb.velocity = velocity;
         }
 
         // 캐릭터 점프
@@ -107,7 +145,6 @@ public class PlayerController : MonoBehaviour
         // 벽 슬라이드 및 점프
         if (!isGround && isWall)
         {
-            Debug.Log("뭐노");
             isWallJump = false;
             //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
             anim.SetBool("isSliding", true);
@@ -165,5 +202,8 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(wallChk.position, Vector2.right * isRight * wallchkDistance);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position + 0.5f * Vector3.down, Vector2.right * isRight * 0.7f);
     }
 }
