@@ -31,6 +31,12 @@ public class PlayerController : MonoBehaviour
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     bool isRunning;  // 달리기 상태 확인
 
+    #region Movable
+    [SerializeField] Transform movableChk; // movable 체크하는 위치
+    [SerializeField] float movableChkDistance; // 체크 거리
+    [SerializeField] float maximumPushMess; // 밀수 있는 최대 중량
+    #endregion
+
     HashSet<GameObject> pushMovable = new(); // 밀고있는 물체 상태 확인
 
     private void Start()
@@ -97,6 +103,7 @@ public class PlayerController : MonoBehaviour
         foreach(GameObject obj in pushMovable) {
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
+            obj.GetComponent<SpriteRenderer>().color = Color.white; // Debug
         }
         pushMovable.Clear();
 
@@ -108,7 +115,8 @@ public class PlayerController : MonoBehaviour
 
             // 땅에 서 있다면 밀고 있는 물체있는지 확인 후 속도에 반영
             if(isGround) {
-                RaycastHit2D movableHit = Physics2D.Raycast(transform.position + 0.5f * Vector3.down, Vector2.right * isRight, 0.7f, p_Layer);
+                LayerMask movableLayer = LayerMask.GetMask("Movable");
+                RaycastHit2D movableHit = Physics2D.Raycast(movableChk.position, Vector2.right * isRight, movableChkDistance, movableLayer);
                 IMovable movable = movableHit.collider != null ? movableHit.collider.gameObject.GetComponent<IMovable>() : null;
 
                 float total = 0.0f;
@@ -116,19 +124,20 @@ public class PlayerController : MonoBehaviour
                     movable.GetAllOfMoveObject(isRight == 1, true, ref pushMovable);
 
                     foreach(GameObject obj in pushMovable) {
-                        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-                        total += rb != null ? rb.mass : 0.0f;
+                        IMovable movableObj = obj.GetComponent<IMovable>();
+                        total += movableObj != null ? movableObj.mass : 0.0f;
                     }
                 }
 
                 // 밀고있는 물체의 중량에 따라 속도 감소
                 // 만약에 밀 수 있는 중량을 넘어서면 움직이지 않는다.
-                velocity *= total > 10.0f ? 0.0f : 1.0f / (1.0f + total);
+                velocity *= total > maximumPushMess ? 0.0f : 1.0f / (1.0f + total);
                 Debug.Log(velocity);
 
                 foreach(GameObject obj in pushMovable) {
                     Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
                     rb.velocity = velocity;
+                    obj.GetComponent<SpriteRenderer>().color = Color.magenta; // Debug
                 }
             }
 
@@ -204,6 +213,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawRay(wallChk.position, Vector2.right * isRight * wallchkDistance);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position + 0.5f * Vector3.down, Vector2.right * isRight * 0.7f);
+        Gizmos.DrawRay(movableChk.position, Vector2.right * isRight * movableChkDistance);
     }
 }
