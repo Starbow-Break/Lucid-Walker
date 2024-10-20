@@ -10578,8 +10578,8 @@ MonoBehaviour:
   fallMultiplier: 4
   lowJumpMultiplier: 2
   movableChk: {fileID: 2067846798}
-  movableChkDistance: 0.1
-  maximumPushMess: 2
+  movableChkDistance: 0.02
+  maximumPushMess: 5
 --- !u!95 &1587583565
 Animator:
   serializedVersion: 5
@@ -10633,8 +10633,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012041092, y: -0.00622797}
-  m_Size: {x: 1.2974834, y: 1.863658}
+  m_Offset: {x: 0.041107178, y: -0.00622797}
+  m_Size: {x: 0.9951992, y: 1.863658}
   m_Direction: 0
 --- !u!50 &1587583567
 Rigidbody2D:

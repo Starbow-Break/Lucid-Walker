@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
         foreach(GameObject obj in pushMovable) {
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
+            anim.SetFloat("movable_mess", 0.0f);
             obj.GetComponent<SpriteRenderer>().color = Color.white; // Debug
         }
         pushMovable.Clear();
@@ -113,8 +114,8 @@ public class PlayerController : MonoBehaviour
             float moveSpeed = isRunning ? runSpeed : walkSpeed;
             Vector2 velocity = new(input_x * moveSpeed, rb.velocity.y);
 
-            // 땅에 서 있다면 밀고 있는 물체있는지 확인 후 속도에 반영
-            if(isGround) {
+            // 땅에 서 있고 이동을 시도 한다면 밀고 있는 물체있는지 확인 후 속도에 반영
+            if(isGround && velocity != Vector2.zero) {
                 LayerMask movableLayer = LayerMask.GetMask("Movable");
                 RaycastHit2D movableHit = Physics2D.Raycast(movableChk.position, Vector2.right * isRight, movableChkDistance, movableLayer);
                 IMovable movable = movableHit.collider != null ? movableHit.collider.gameObject.GetComponent<IMovable>() : null;
@@ -132,11 +133,11 @@ public class PlayerController : MonoBehaviour
                 // 밀고있는 물체의 중량에 따라 속도 감소
                 // 만약에 밀 수 있는 중량을 넘어서면 움직이지 않는다.
                 velocity *= total > maximumPushMess ? 0.0f : 1.0f / (1.0f + total);
-                Debug.Log(velocity);
+                anim.SetFloat("movable_mess", total / maximumPushMess);
 
                 foreach(GameObject obj in pushMovable) {
                     Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-                    rb.velocity = velocity;
+                    rb.velocity = velocity.x * Vector2.right;
                     obj.GetComponent<SpriteRenderer>().color = Color.magenta; // Debug
                 }
             }
