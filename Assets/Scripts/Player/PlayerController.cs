@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     #region Movable
     [SerializeField] Transform movableChk; // movable 체크하는 위치
     [SerializeField] float movableChkDistance; // 체크 거리
-    [SerializeField] float maximumPushMess; // 밀수 있는 최대 중량
+    [SerializeField] float maximumPushMass; // 밀수 있는 최대 중량
     #endregion
 
     HashSet<GameObject> pushMovable = new(); // 밀고있는 물체 상태 확인
@@ -114,31 +114,43 @@ public class PlayerController : MonoBehaviour
             float moveSpeed = isRunning ? runSpeed : walkSpeed;
             Vector2 velocity = new(input_x * moveSpeed, rb.velocity.y);
 
-            // 땅에 서 있고 이동을 시도 한다면 밀고 있는 물체있는지 확인 후 속도에 반영
-            if(isGround && velocity != Vector2.zero) {
+            // 땅에 서 있고 수평 방향으로 이동을 시도 한다면 밀고 있는 물체있는지 확인 후 속도에 반영
+            if(isGround && velocity.x != 0.0f) {
                 LayerMask movableLayer = LayerMask.GetMask("Movable");
                 RaycastHit2D movableHit = Physics2D.Raycast(movableChk.position, Vector2.right * isRight, movableChkDistance, movableLayer);
                 IMovable movable = movableHit.collider != null ? movableHit.collider.gameObject.GetComponent<IMovable>() : null;
 
-                float total = 0.0f;
+                float totalMass = 0.0f; // 미는 물체들의 총 질량
+                bool isMove = true; // 힘이 충분히 클 때 이동 기능 여부
+
                 if(movable != null && movable.pushable) {
-                    movable.GetAllOfMoveObject(isRight == 1, true, ref pushMovable);
+                    isMove = movable.GetAllOfMoveObject(isRight == 1, true, ref pushMovable);
 
                     foreach(GameObject obj in pushMovable) {
                         IMovable movableObj = obj.GetComponent<IMovable>();
-                        total += movableObj != null ? movableObj.mass : 0.0f;
+                        totalMass += movableObj != null ? movableObj.mass : 0.0f;
                     }
                 }
 
-                // 밀고있는 물체의 중량에 따라 속도 감소
-                // 만약에 밀 수 있는 중량을 넘어서면 움직이지 않는다.
-                velocity *= total > maximumPushMess ? 0.0f : 1.0f / (1.0f + total);
-                anim.SetFloat("movable_mess", total / maximumPushMess);
+                if(isMove) { // 힘이 충분히 클 때 미는게 가능하다면
+                    // 밀고있는 물체의 중량에 따라 속도 감소
+                    // 만약에 밀 수 있는 중량을 넘어서면 움직이지 않는다.
+                    float weight = totalMass > maximumPushMass ? 0.0f : 1.0f / (1.0f + totalMass);
+                    velocity = new(velocity.x * weight, velocity.y);
+                    anim.SetFloat("movable_mess", totalMass / maximumPushMass);
+                }
+                else { // 불가능 하다면
+                    velocity = new(0.0f, velocity.y);
+                }
 
                 foreach(GameObject obj in pushMovable) {
                     Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
                     rb.velocity = velocity.x * Vector2.right;
-                    obj.GetComponent<SpriteRenderer>().color = Color.magenta; // Debug
+
+                    // Debug
+                    if(isMove) {
+                        obj.GetComponent<SpriteRenderer>().color = Color.magenta; 
+                    }
                 }
             }
 

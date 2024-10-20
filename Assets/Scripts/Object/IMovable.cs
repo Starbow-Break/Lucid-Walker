@@ -5,9 +5,10 @@ using UnityEngine;
 
 public interface IMovable
 {
-    public bool pushable { get; set; }
-    public float mass { get; set; }
+    public bool pushable { get; set; } // 밀기 가능 여부
+    public float mass { get; set; } // 질량
 
-    // 물체를 밀 때 밀리는 물체의 총 질량
-    public void GetAllOfMoveObject(bool isRight, bool checkPushable, ref HashSet<GameObject> output);
+    // 밀리는 물체를 output에 전달
+    // 반환값은 물체들의 이동 가능 여부
+    public bool GetAllOfMoveObject(bool isRight, bool checkPushable, ref HashSet<GameObject> output);
 }
