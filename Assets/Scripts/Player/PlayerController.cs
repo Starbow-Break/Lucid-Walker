@@ -100,7 +100,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // 이전 프레임에서 밀었던 물체들의 상태와 정보를 초기화 한다.
-        foreach(GameObject obj in pushMovable) {
+        foreach (GameObject obj in pushMovable)
+        {
             Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
             rb.velocity = Vector2.zero;
             anim.SetFloat("movable_mess", 0.0f);
@@ -115,7 +116,8 @@ public class PlayerController : MonoBehaviour
             Vector2 velocity = new(input_x * moveSpeed, rb.velocity.y);
 
             // 땅에 서 있고 수평 방향으로 이동을 시도 한다면 밀고 있는 물체있는지 확인 후 속도에 반영
-            if(isGround && velocity.x != 0.0f) {
+            if (isGround && velocity.x != 0.0f)
+            {
                 LayerMask movableLayer = LayerMask.GetMask("Movable");
                 RaycastHit2D movableHit = Physics2D.Raycast(movableChk.position, Vector2.right * isRight, movableChkDistance, movableLayer);
                 IMovable movable = movableHit.collider != null ? movableHit.collider.gameObject.GetComponent<IMovable>() : null;
@@ -123,33 +125,39 @@ public class PlayerController : MonoBehaviour
                 float totalMass = 0.0f; // 미는 물체들의 총 질량
                 bool isMove = true; // 힘이 충분히 클 때 이동 기능 여부
 
-                if(movable != null && movable.pushable) {
+                if (movable != null && movable.pushable)
+                {
                     isMove = movable.GetAllOfMoveObject(isRight == 1, true, ref pushMovable);
 
-                    foreach(GameObject obj in pushMovable) {
+                    foreach (GameObject obj in pushMovable)
+                    {
                         IMovable movableObj = obj.GetComponent<IMovable>();
                         totalMass += movableObj != null ? movableObj.mass : 0.0f;
                     }
                 }
 
-                if(isMove) { // 힘이 충분히 클 때 미는게 가능하다면
+                if (isMove)
+                { // 힘이 충분히 클 때 미는게 가능하다면
                     // 밀고있는 물체의 중량에 따라 속도 감소
                     // 만약에 밀 수 있는 중량을 넘어서면 움직이지 않는다.
                     float weight = totalMass > maximumPushMass ? 0.0f : 1.0f / (1.0f + totalMass);
                     velocity = new(velocity.x * weight, velocity.y);
                     anim.SetFloat("movable_mess", totalMass / maximumPushMass);
                 }
-                else { // 불가능 하다면
+                else
+                { // 불가능 하다면
                     velocity = new(0.0f, velocity.y);
                 }
 
-                foreach(GameObject obj in pushMovable) {
+                foreach (GameObject obj in pushMovable)
+                {
                     Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
                     rb.velocity = velocity.x * Vector2.right;
 
                     // Debug
-                    if(isMove) {
-                        obj.GetComponent<SpriteRenderer>().color = Color.magenta; 
+                    if (isMove)
+                    {
+                        obj.GetComponent<SpriteRenderer>().color = Color.magenta;
                     }
                 }
             }
@@ -171,19 +179,19 @@ public class PlayerController : MonoBehaviour
             //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
             anim.SetBool("isSliding", true);
 
-            if (Input.GetKeyDown(KeyCode.Space) && ((input_x > 0 && isRight > 0) || (input_x < 0 && isRight < 0)))
+            if (Input.GetKey(KeyCode.Space) && ((input_x > 0 && isRight > 0) || (input_x < 0 && isRight < 0)))
             {
                 isWallJump = true;
                 Invoke("FreezeX", 0.3f);
-                rb.velocity = new Vector2(-isRight * wallJumpPower, 1.5f * wallJumpPower);
+                rb.velocity = new Vector2(-isRight * 1.3f * wallJumpPower, wallJumpPower);
                 anim.SetTrigger("wallJump");
             }
 
             // 벽 점프 후 캐릭터 방향 전환
-            if ((isRight < 0 && input_x > 0) || (isRight > 0 && input_x < 0))
-            {
-                FlipPlayer();  // 방향키에 맞춰 캐릭터 방향을 전환
-            }
+            // if ((isRight < 0 && input_x > 0) || (isRight > 0 && input_x < 0))
+            // {
+            FlipPlayer();  // 방향키에 맞춰 캐릭터 방향을 전환
+            // }
         }
 
         // 중력 가속도 적용
@@ -206,6 +214,8 @@ public class PlayerController : MonoBehaviour
 
     void FreezeX()
     {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+
         isWallJump = false;
     }
 
