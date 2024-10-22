@@ -11,27 +11,47 @@ public class Warp : MonoBehaviour
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
 
-    Color targetTintColor; // 워프 이후 Tint Color
+    protected Color targetTintColor; // 워프 이후 Tint Color
 
-    void Awake()
+    protected virtual void Awake()
     {
         targetTintColor = targetMap.gameObject.GetComponent<Tilemap>().color;
     }
 
     void Update() {
         if(interactingPlayer != null && Input.GetKeyDown(KeyCode.Z)) {
-            // 플레이어를 목표 타일맵 및 목표 위치로 이동
-            interactingPlayer.transform.parent = targetMap.transform.parent;
-            interactingPlayer.transform.localScale = targetMap.transform.localScale;
-            interactingPlayer.transform.localPosition = targetTransform.localPosition;
-
-            // Tint 컬러 변경
-            interactingPlayer.GetComponent<SpriteRenderer>().color = targetTintColor;
-
-            // Collider 설정
-            DeactiveChildColliders(currentMap.transform.parent.gameObject);
-            ActiveChildColliders(targetMap.transform.parent.gameObject);
+            StartCoroutine(WarpTarget());
         }
+    }
+
+    IEnumerator WarpTarget() {
+        yield return WarpInAnim();
+        
+        /*
+        // 플레이어를 목표 타일맵 및 목표 위치로 이동
+        interactingPlayer.transform.parent = targetMap.transform.parent;
+        interactingPlayer.transform.localScale = targetMap.transform.localScale;
+        interactingPlayer.transform.localPosition = targetTransform.localPosition;
+
+        // Tint 컬러 변경
+        interactingPlayer.GetComponent<SpriteRenderer>().color = targetTintColor;
+
+        // Collider 설정
+        DeactiveChildColliders(currentMap.transform.parent.gameObject);
+        ActiveChildColliders(targetMap.transform.parent.gameObject);
+        */
+        
+        yield return WarpOutAnim();
+    }
+
+    protected virtual IEnumerator WarpInAnim()
+    {
+        yield return null;
+    }
+
+    protected virtual IEnumerator WarpOutAnim()
+    {
+        yield return null;
     }
 
     // 해당 오브젝트의 자식 오브젝트들의 collider를 활성화
