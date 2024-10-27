@@ -18,7 +18,6 @@ public class Case : MonoBehaviour, IMovable
     public bool pushable { get; set; }
     public float mass { get; set; }
 
-    Rigidbody2D rb; // RigidBody
     SpriteRenderer sr;
     // 물체의 크기
     float caseWidth;
@@ -28,21 +27,10 @@ public class Case : MonoBehaviour, IMovable
     {
         pushable = _pushable;
         mass = _mass;
-        
-        rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
 
         sr = GetComponent<SpriteRenderer>();
         caseWidth = sr.bounds.max.x - sr.bounds.min.x;
         caseHeight = sr.bounds.max.y - sr.bounds.min.y;
-    }
-
-    void FixedUpdate()
-    {
-        if(rb.totalForce == Vector2.zero)
-        {
-            rb.velocity = new(0.0f, rb.velocity.y);
-        }
     }
 
     // 밀리는 물체를 output에 전달
@@ -54,25 +42,35 @@ public class Case : MonoBehaviour, IMovable
         if(checkPushable && !pushable) return false;
 
         LayerMask movableLayer = LayerMask.GetMask("Movable");
+        LayerMask platformLayer = LayerMask.GetMask("Platform") | LayerMask.GetMask("Shadow Platform");
 
-        // 수평 방향에 Movable이 있는지 확인
+        // 수평 방향에 Movable이나 미는걸 가로막는 오브젝트가 있는지 확인
         RaycastHit2D hitHorizontal = Physics2D.BoxCast(
             (Vector2)transform.position + (caseWidth / 2 + pushCheckDistance / 2) * (isRight ? Vector2.right : Vector2.left) + caseHeight / 2 * Vector2.up,
             new(pushCheckDistance / 2, caseHeight / 2 * 0.9f),
             0.0f,
             isRight ? Vector2.right : Vector2.left,
             0.0f,
-            movableLayer
+            movableLayer | platformLayer
         );
 
-        // 있다면 해당 오브젝트로 이동하여 계속 추출
-        // 단, pushable을 체크하고 있었다면 다음 오브젝트에서도 그대로 체크한다.
-        IMovable movableHorizontal = hitHorizontal.collider != null ? hitHorizontal.collider.gameObject.GetComponent<IMovable>() : null;
-        if(movableHorizontal != null) {
-            MonoBehaviour movableMono = movableHorizontal as MonoBehaviour;
-            if(movableMono != null && !output.Contains(movableMono.gameObject)) {
-                if(!movableHorizontal.GetAllOfMoveObject(isRight, checkPushable, ref output)) {
-                    return false;
+        // 감지된게 있다면
+        Collider2D horizontalCollider = hitHorizontal.collider;
+        if(horizontalCollider != null) {
+            Debug.Log((1 << horizontalCollider.gameObject.layer) & platformLayer);
+            // Movable이 아닌경우 이동 불가
+            if(((1 << horizontalCollider.gameObject.layer) & platformLayer) != 0) {
+                return false;
+            }
+
+            // Movable이면 추가 탐색
+            IMovable movableHorizontal = horizontalCollider.gameObject.GetComponent<IMovable>();
+            if(movableHorizontal != null) {
+                MonoBehaviour movableMono = movableHorizontal as MonoBehaviour;
+                if(movableMono != null && !output.Contains(movableMono.gameObject)) {
+                    if(!movableHorizontal.GetAllOfMoveObject(isRight, true, ref output)) {
+                        return false;
+                    }
                 }
             }
         }
@@ -93,7 +91,7 @@ public class Case : MonoBehaviour, IMovable
         if(movableTop != null) {
             MonoBehaviour movableMono = movableTop as MonoBehaviour;
             if(movableMono != null && !output.Contains(movableMono.gameObject)) {
-                movableTop.GetAllOfMoveObject(isRight, false, ref output);
+                return movableTop.GetAllOfMoveObject(isRight, false, ref output);
             }
         }
 
