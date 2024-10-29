@@ -32,6 +32,19 @@ public class Mirror : Warp
         mirroringCamera.targetTexture = rt;
     }
 
+    void OnEnable() {
+        // 활성화 될 때마다 렌더 텍스쳐 재할당
+        // 이유는 모르겠으나 비활성화 후 활성화 시 할당해 놓은 렌더 택스쳐가 사라짐
+        mpb.SetTexture("_MainTex", rt);
+        mirroringSpriteRenderer.SetPropertyBlock(mpb);
+    }
+
+    // 렌더러 초기화
+    public void ResetRenderer()
+    {
+        SetMirrorRenderer(0.0f, 0.0f);
+    }
+
     // 워프 전 애니메이션
     protected override IEnumerator WarpInAnim()
     {
@@ -46,6 +59,8 @@ public class Mirror : Warp
 
             yield return null;
         }
+
+        ResetRenderer();
     }
 
     // 워프 후 애니메이션
