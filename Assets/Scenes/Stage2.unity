@@ -355,6 +355,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
       objectReference: {fileID: 0}
@@ -470,7 +474,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1668253563}
   horizontalInfiniteScroll: 1
   verticalInfiniteScroll: 0
-  horizontalAmount: 0.2
+  horizontalAmount: 0.1
   verticalAmount: 0
 --- !u!212 &242587293
 SpriteRenderer:
@@ -762,6 +766,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
       objectReference: {fileID: 0}
@@ -851,7 +859,7 @@ Transform:
   m_GameObject: {fileID: 495777508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.450133, y: -1.0519506, z: 0.0035327328}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -900,7 +908,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1668253563}
   horizontalInfiniteScroll: 0
   verticalInfiniteScroll: 0
-  horizontalAmount: 0.2
+  horizontalAmount: 0.1
   verticalAmount: 0
 --- !u!4 &496732866 stripped
 Transform:
@@ -999,6 +1007,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
@@ -6209,6 +6221,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
       objectReference: {fileID: 0}
@@ -9607,6 +9623,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
       objectReference: {fileID: 0}
@@ -9953,6 +9973,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
       objectReference: {fileID: 0}
@@ -10098,6 +10122,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
@@ -10258,6 +10286,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
@@ -10704,6 +10736,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
       objectReference: {fileID: 0}
@@ -10844,6 +10880,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
@@ -11075,6 +11115,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
       objectReference: {fileID: 0}
@@ -11150,6 +11194,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
@@ -11729,6 +11777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 495777509}
     m_Modifications:
+    - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 1626892829878386117, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
       propertyPath: m_SortingLayer
       value: -3
