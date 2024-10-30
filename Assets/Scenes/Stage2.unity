@@ -470,7 +470,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1668253563}
   horizontalInfiniteScroll: 1
   verticalInfiniteScroll: 0
-  horizontalAmount: 0
+  horizontalAmount: 0.2
   verticalAmount: 0
 --- !u!212 &242587293
 SpriteRenderer:
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 495777511}
   - component: {fileID: 495777510}
   m_Layer: 0
-  m_Name: Background Objects
+  m_Name: Night Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -851,7 +851,7 @@ Transform:
   m_GameObject: {fileID: 495777508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.7845438, y: -1.0519506, z: 0.0035327328}
+  m_LocalPosition: {x: 4.450133, y: -1.0519506, z: 0.0035327328}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -869,7 +869,7 @@ Transform:
   - {fileID: 674051041}
   - {fileID: 2032177978}
   - {fileID: 1158409789}
-  m_Father: {fileID: 1976163234}
+  m_Father: {fileID: 1383418238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &495777510
 MonoBehaviour:
@@ -9680,7 +9680,6 @@ GameObject:
   - component: {fileID: 814771411}
   - component: {fileID: 814771409}
   - component: {fileID: 814771410}
-  - component: {fileID: 814771412}
   - component: {fileID: 814771413}
   m_Layer: 0
   m_Name: Night Platform Tilemap
@@ -9815,23 +9814,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1976163234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &814771412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814771408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba15e0bf52f73bc4fb8982a144b34f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1668253563}
-  horizontalInfiniteScroll: 0
-  verticalInfiniteScroll: 0
-  horizontalAmount: 0.2
-  verticalAmount: 0
 --- !u!19719996 &814771413
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -10602,8 +10584,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1156989321}
-  - component: {fileID: 1156989322}
-  - component: {fileID: 1156989323}
   m_Layer: 0
   m_Name: Platform Objects
   m_TagString: Untagged
@@ -10620,8 +10600,8 @@ Transform:
   m_GameObject: {fileID: 1156989320}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.7845438, y: -1.0519506, z: 0.0035327328}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 936479413}
@@ -10640,37 +10620,6 @@ Transform:
   - {fileID: 1824739715}
   m_Father: {fileID: 1976163234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1156989322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156989320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba15e0bf52f73bc4fb8982a144b34f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1668253563}
-  horizontalInfiniteScroll: 0
-  verticalInfiniteScroll: 0
-  horizontalAmount: 0.2
-  verticalAmount: 0
---- !u!114 &1156989323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156989320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad9b051c572af4548844c2f77f7542c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zValue: 0.9
-  alpha: 1
 --- !u!4 &1158409789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4495306474806854694, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
@@ -11022,6 +10971,7 @@ Transform:
   m_Children:
   - {fileID: 1819039406}
   - {fileID: 242587291}
+  - {fileID: 495777509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393213440
@@ -12022,13 +11972,12 @@ Transform:
   m_GameObject: {fileID: 1976163233}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.784544, y: 1.0519506, z: -0.0035327328}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 814771411}
   - {fileID: 1156989321}
-  - {fileID: 495777509}
   m_Father: {fileID: 1264282544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1976163235
