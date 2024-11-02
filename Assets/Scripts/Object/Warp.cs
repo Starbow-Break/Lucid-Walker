@@ -27,6 +27,13 @@ public class Warp : MonoBehaviour
     }
 
     IEnumerator WarpTarget(GameObject warpObject) {
+        // 플레이어 컨트롤러 비활성화
+        PlayerController pc = warpObject.GetComponent<PlayerController>();
+        if(pc != null) {
+            pc.enabled = false;
+        }
+
+        // 워프 애니메이션
         yield return WarpInAnim();
 
         // 활성화할 오브젝트들을 먼저 활성화
@@ -55,7 +62,13 @@ public class Warp : MonoBehaviour
         DeactiveChildColliders(currentMap.transform.parent.gameObject);
         ActiveChildColliders(targetMap.transform.parent.gameObject);
         
+        // 워프 애니메이션
         yield return targetWarp.WarpOutAnim();
+
+        // 플레이어 컨트롤러 활성화
+        if(pc != null) {
+            pc.enabled = true;
+        }
     }
 
     protected virtual IEnumerator WarpInAnim()

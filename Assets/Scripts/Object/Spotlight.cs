@@ -71,11 +71,14 @@ public class Spotlight : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        lampSpriteRenderer = lamp.GetComponent<SpriteRenderer>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        lampSpriteRenderer = lamp.GetComponent<SpriteRenderer>();
-
         // Get initial Direction (-Y dir)
         initDir = lamp.rotation * Vector2.down;
         lightDir = initDir;
@@ -182,7 +185,7 @@ public class Spotlight : MonoBehaviour
     }
 
     // Turn On Light
-    void TurnOn()
+    public void TurnOn()
     {
         isOn = true;
         SetActiveLight(isOn);
@@ -195,7 +198,7 @@ public class Spotlight : MonoBehaviour
     }
 
     // Turn Off Light
-    void TurnOff()
+    public void TurnOff()
     {
         // stop blink coroutine
         if(blinkCoroutine != null && blinkMode == BlinkMode.BLINK) {
