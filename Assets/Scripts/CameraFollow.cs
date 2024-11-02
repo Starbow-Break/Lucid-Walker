@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     public float shakeDuration = 0.5f;  // 흔들림 지속 시간
     public float shakeAmount = 0.1f;    // 흔들림 강도
     public float decreaseFactor = 1.0f; // 흔들림 감소 속도
-    
+
     [Header("Padding")]
     [SerializeField] float paddingLeft = 0.0f;
     [SerializeField] float paddingRight = 0.0f;
@@ -24,7 +24,8 @@ public class CameraFollow : MonoBehaviour
     {
         originalPos = transform.position;  // 카메라의 원래 위치 저장
 
-        if(tilemap != null) {
+        if (tilemap != null)
+        {
             tr = tilemap.gameObject.GetComponent<TilemapRenderer>();
         }
 
@@ -35,9 +36,10 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 followPosition;
 
-        if(tr != null) {
+        if (tr != null)
+        {
             Camera camera = gameObject.GetComponent<Camera>();
-            
+
             Vector3 bottomLeft = camera.ScreenToWorldPoint(Vector3.zero);
             Vector3 topRight = camera.ScreenToWorldPoint(new(Screen.width, Screen.height));
 
@@ -46,12 +48,13 @@ public class CameraFollow : MonoBehaviour
 
             // 플레이어를 따라가는 기본 위치 설정
             followPosition = new Vector3(
-                Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2 + paddingLeft, tr.bounds.max.x - width / 2 - paddingRight), 
-                Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2 + paddingBottom, tr.bounds.max.y - height / 2 - paddingTop), 
+                Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2 + paddingLeft, tr.bounds.max.x - width / 2 - paddingRight),
+                Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2 + paddingBottom, tr.bounds.max.y - height / 2 - paddingTop),
                 transform.position.z
             );
         }
-        else {
+        else
+        {
             followPosition = new(target.position.x, target.position.y, transform.position.z);
         }
 
@@ -75,5 +78,10 @@ public class CameraFollow : MonoBehaviour
     {
         currentShakeDuration = shakeDuration;
         originalPos = new Vector3(target.position.x, target.position.y, transform.position.z);  // 현재 카메라 위치 저장
+    }
+    public void SetTarget(Tilemap newTilemap)
+    {
+        tilemap = newTilemap;
+        tr = tilemap != null ? tilemap.GetComponent<TilemapRenderer>() : null;
     }
 }
