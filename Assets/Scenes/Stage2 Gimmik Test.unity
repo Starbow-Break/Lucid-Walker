@@ -15241,56 +15241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zValue: 0.8
   alpha: 1
---- !u!1 &2005963398 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9032508542750585756, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
-  m_PrefabInstance: {fileID: 1793640343402590593}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &2005963402
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005963398}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.5645905, y: -0.7325305}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.9689484, y: 1.2321668}
-  m_EdgeRadius: 0
 --- !u!1 &2078423163
 GameObject:
   m_ObjectHideFlags: 0
@@ -19771,9 +19721,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1064715566648414678, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479849088725965269, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: thickness
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090974141627397553, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7713473645119636743, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_Positions.Array.data[0].x
+      value: 94.05355
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713473645119636743, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 1.982854
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713473645119636743, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 119.48645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713473645119636743, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: -6.6928544
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713473645119636743, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713473645119636743, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7771397147097134660, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19822,10 +19804,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9032508542750585756, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2005963402}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

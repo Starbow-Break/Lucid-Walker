@@ -244,7 +244,7 @@ TextureImporter:
         width: 102
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,6 +252,27 @@ TextureImporter:
       bones: []
       spriteID: 94006888bd908f047b38988c059a7dc9
       internalID: 60281597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hanger
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 478
+        width: 96
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a65a32a29aebe042aceaefcf0cdb20e
+      internalID: 1142439047
       vertices: []
       indices: 
       edges: []
@@ -274,6 +295,7 @@ TextureImporter:
       KakaoTalk_20241020_233818199_4: 950606648
       KakaoTalk_20241020_233818199_5: -1446328602
       KakaoTalk_20241020_233818199_6: 60281597
+      hanger: 1142439047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

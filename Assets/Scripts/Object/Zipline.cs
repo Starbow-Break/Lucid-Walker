@@ -18,6 +18,7 @@ public class Zipline : MonoBehaviour
     
     [Header("Wire")]
     [SerializeField] LineRenderer line; // 줄
+    [SerializeField] float thickness = 0.2f; // 두께
     [SerializeField] float additionalLength; // 줄의 추가 여분 길이
 
     [Header("Trolley")]
@@ -35,6 +36,12 @@ public class Zipline : MonoBehaviour
     Transform playerParent = null;
     PlayerController interactingPlayerController = null; // 상호작용중인 플레이어
     PlayerController attachingPlayerController = null; // 현재 부착중인 플레이어
+
+    void OnValidate() {
+        if(thickness > 0.0f) {
+            DrawWire(thickness);
+        }
+    }
 
     void Awake() {
         // Trolley 활성화 후 출발지로 이동
@@ -57,14 +64,7 @@ public class Zipline : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector2 dir = (arrivals.position - departures.position).normalized;
-
-        // 출발지 도착지에 맞춰서 줄 그리기
-        line.positionCount = 2;
-        line.startWidth = line.endWidth = 0.05f;
-        line.SetPosition(0, departures.position - additionalLength * (Vector3)dir);
-        line.SetPosition(1, arrivals.position + additionalLength * (Vector3)dir);
-        line.useWorldSpace = true;
+        DrawWire(thickness);
     }
 
     void Update()
@@ -105,6 +105,17 @@ public class Zipline : MonoBehaviour
                 break;
             }
         }
+    }
+
+    void DrawWire(float _thickness) {
+        Vector2 dir = (arrivals.position - departures.position).normalized;
+
+        // 출발지 도착지에 맞춰서 줄 그리기
+        line.positionCount = 2;
+        line.startWidth = line.endWidth = _thickness;
+        line.SetPosition(0, departures.position - additionalLength * (Vector3)dir);
+        line.SetPosition(1, arrivals.position + additionalLength * (Vector3)dir);
+        line.useWorldSpace = true;
     }
 
     void Move(Transform targetTransform, float acc, float maxSpd)
