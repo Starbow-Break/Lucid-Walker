@@ -19721,6 +19721,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 50852838854674343, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.635
+      objectReference: {fileID: 0}
+    - target: {fileID: 50852838854674343, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.068
+      objectReference: {fileID: 0}
+    - target: {fileID: 224931291112955329, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.635
+      objectReference: {fileID: 0}
+    - target: {fileID: 224931291112955329, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.068
+      objectReference: {fileID: 0}
     - target: {fileID: 1064715566648414678, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.23
@@ -19800,6 +19816,14 @@ PrefabInstance:
     - target: {fileID: 9032508542750585756, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
       propertyPath: m_Name
       value: Zipline
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066326911168070728, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.635
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066326911168070728, guid: e6509c50c8e87e14d85b9df2f8726e04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.068
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

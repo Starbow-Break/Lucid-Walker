@@ -226,6 +226,10 @@ public class PlayerController : MonoBehaviour
         isRight = isRight * -1;
     }
 
+    public void SetZiplineAnim(bool value) {
+        anim.SetBool("zipline", value);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

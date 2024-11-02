@@ -143,6 +143,8 @@ public class Zipline : MonoBehaviour
 
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
+
+        pc.SetZiplineAnim(true);
         pc.enabled = false;
     }
 
@@ -156,7 +158,9 @@ public class Zipline : MonoBehaviour
 
         rb.isKinematic = false;
         rb.velocity = Vector3.zero;
+
         attachingPlayerController.enabled = true;
+        attachingPlayerController.SetZiplineAnim(false);
         attachingPlayerController = null;
     }
 
