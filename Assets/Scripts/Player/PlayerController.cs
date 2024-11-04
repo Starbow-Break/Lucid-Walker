@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator anim;
+    CapsuleCollider2D capsuleCollider;
+
 
     public Transform groundChkFront;
     public Transform groundChkBack;
     public Transform wallChk;
     public float wallchkDistance;
     public LayerMask p_Layer;
+    public LayerMask w_Layer;
     public bool isWall;
     public float slidingSpeed;
     public float wallJumpPower;
@@ -20,16 +23,25 @@ public class PlayerController : MonoBehaviour
 
     public float walkSpeed = 2f; // 걷기 속도
     public float runSpeed = 4f;  // 달리기 속도
+    public float crouchWalkSpeed = 1f;
+
     public float isRight = 1;    // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
 
     float input_x;
     bool isGround;
+    bool isCrouching;
+    bool isCrouchWalking;
+
     public float chkDistance;
     public float jumpPower = 4;  // 점프 파워
     public float jumpBoost = 2;  // 점프 초기 가속도
     public float fallMultiplier = 2.5f;  // 빠르게 떨어지기 위한 가속도
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     bool isRunning;  // 달리기 상태 확인
+    private Vector2 originalColliderSize;
+    private Vector2 targetCrouchSize = new Vector2(1.0f, 1.0f); // 목표 crouch size
+    private float crouchTransitionSpeed = 5f; // 크기 변환 속도
+
 
     #region Movable
     [SerializeField] Transform movableChk; // movable 체크하는 위치
@@ -43,6 +55,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>(); // CapsuleCollider2D 컴포넌트 가져오기
+        originalColliderSize = capsuleCollider.size; // 원래 size 값 저장
+
     }
 
     private void Update()
@@ -65,8 +80,30 @@ public class PlayerController : MonoBehaviour
             isGround = false;
 
         anim.SetBool("isGround", isGround);
+        isCrouching = Input.GetKey(KeyCode.DownArrow); // 아래 방향키로 crouch 상태
+        isCrouchWalking = isCrouching && input_x != 0; // crouch 상태에서 좌우 이동 시 crouchWalk 상태
 
-        isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, p_Layer);
+        anim.SetBool("isCrouching", isCrouching); // crouching 애니메이션
+        anim.SetBool("isCrouchWalking", isCrouchWalking); // crouchWalk 애니메이션
+
+        // CapsuleCollider2D의 size 조정
+        if (isCrouching && !isCrouchWalking)
+        {
+            // crouching 상태에서만 Lerp로 점진적으로 변경
+            capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, targetCrouchSize, Time.deltaTime * crouchTransitionSpeed);
+        }
+        if (isCrouching && isCrouchWalking)
+        {
+            // crouching 상태에서만 Lerp로 점진적으로 변경
+            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 1.0f); // crouching 상태에서 y 크기를 1로 설정
+        }
+        else if (!isCrouching)
+        {
+            // crouching이 해제되면 원래 크기로 복구
+            capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed);
+        }
+
+        isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, w_Layer);
         anim.SetBool("isSliding", !isGround && isWall);
 
         // 달리기 상태일 때 run 애니메이션
@@ -95,6 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             FlipPlayer();
         }
+
     }
 
     private void FixedUpdate()
@@ -110,7 +148,7 @@ public class PlayerController : MonoBehaviour
         pushMovable.Clear();
 
         // 캐릭터 이동
-        if (!isWallJump)
+        if (!isWallJump && !isCrouchWalking)
         {
             float moveSpeed = isRunning ? runSpeed : walkSpeed;
             Vector2 velocity = new(input_x * moveSpeed, rb.velocity.y);
@@ -163,6 +201,12 @@ public class PlayerController : MonoBehaviour
             }
 
             rb.velocity = velocity;
+        }
+
+        // crouchWalk 속도 적용
+        if (isCrouchWalking)
+        {
+            rb.velocity = new Vector2(input_x * crouchWalkSpeed, rb.velocity.y);
         }
 
         // 캐릭터 점프
@@ -226,7 +270,8 @@ public class PlayerController : MonoBehaviour
         isRight = isRight * -1;
     }
 
-    public void SetZiplineAnim(bool value) {
+    public void SetZiplineAnim(bool value)
+    {
         anim.SetBool("zipline", value);
     }
 
