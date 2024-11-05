@@ -13,6 +13,8 @@ public class RotationSwitch : MonoBehaviour
     public float rotationDuration = 1f; // 회전이 걸리는 시간 (초)
     private Quaternion initialRotation;
     private Quaternion targetRotation;
+    [SerializeField] Rigidbody2D[] gravityObjects; // 중력이 있는 객체들 참조
+
 
     void Start()
     {
@@ -91,6 +93,12 @@ public class RotationSwitch : MonoBehaviour
 
     IEnumerator RotateOverTime(Quaternion targetRotation)
     {
+        // 회전 중 중력을 비활성화
+        foreach (var obj in gravityObjects)
+        {
+            obj.gravityScale = 0; // 중력 비활성화
+        }
+
         float timeElapsed = 0f;
 
         while (timeElapsed < rotationDuration)
@@ -105,5 +113,11 @@ public class RotationSwitch : MonoBehaviour
 
         // 마지막으로 정확하게 목표 각도에 맞추기
         gridObject.transform.rotation = targetRotation;
+
+        // 회전 완료 후 중력을 다시 활성화
+        foreach (var obj in gravityObjects)
+        {
+            obj.gravityScale = 1; // 중력 활성화
+        }
     }
 }
