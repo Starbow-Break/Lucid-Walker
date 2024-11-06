@@ -19,6 +19,14 @@ public class ParallaxScroll : MonoBehaviour
     [Tooltip("수직 방향 평행 이동 강도")]
     [SerializeField] float verticalAmount; // 직 방향 평행 이동 강도
 
+    [Min(1.0f)]
+    [Tooltip("수직 방향 스케일")]
+    [SerializeField] float verticalUnitScale = 1.0f; // 직 방향 평행 이동 강도
+
+    [Min(1.0f)]
+    [Tooltip("수평 방향 스케일")]
+    [SerializeField] float horizontalUnitScale = 1.0f; // 직 방향 평행 이동 강도
+
     Vector3 pos; // 기준 위치
     float width, height;
 
@@ -29,8 +37,8 @@ public class ParallaxScroll : MonoBehaviour
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if(sr != null) {
             Vector2 renderSize = sr.bounds.size;
-            width = renderSize.x;
-            height = renderSize.y;
+            width = renderSize.x * horizontalUnitScale;
+            height = renderSize.y * verticalUnitScale;
         }
     }
 
