@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public float walkSpeed = 2f; // 걷기 속도
     public float runSpeed = 4f;  // 달리기 속도
-    public float crouchWalkSpeed = 1f;
+    public float crouchWalkSpeed = 2f;
 
     public float isRight = 1;    // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
 
@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     bool isRunning;  // 달리기 상태 확인
     private Vector2 originalColliderSize;
-    private Vector2 targetCrouchSize = new Vector2(1.0f, 1.0f); // 목표 crouch size
-    private float crouchTransitionSpeed = 5f; // 크기 변환 속도
+    private Vector2 targetCrouchSize = new Vector2(1.0f, 0.9f); // 목표 crouch size
+    private float crouchTransitionSpeed = 3f; // 크기 변환 속도
 
 
     #region Movable
@@ -95,12 +95,12 @@ public class PlayerController : MonoBehaviour
         if (isCrouching && isCrouchWalking)
         {
             // crouching 상태에서만 Lerp로 점진적으로 변경
-            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 1.0f); // crouching 상태에서 y 크기를 1로 설정
+            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 0.9f); // crouching 상태에서 y 크기를 1로 설정
         }
         else if (!isCrouching)
         {
             // crouching이 해제되면 원래 크기로 복구
-            capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed);
+            capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed * 2);
         }
 
         isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, w_Layer);
@@ -226,8 +226,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.Space) && ((input_x > 0 && isRight > 0) || (input_x < 0 && isRight < 0)))
             {
                 isWallJump = true;
-                Invoke("FreezeX", 0.3f);
-                rb.velocity = new Vector2(-isRight * 1.3f * wallJumpPower, wallJumpPower);
+                Invoke("FreezeX", 0.5f);
+                rb.velocity = new Vector2(-isRight * 1.2f * wallJumpPower, wallJumpPower);
                 anim.SetTrigger("wallJump");
             }
 
