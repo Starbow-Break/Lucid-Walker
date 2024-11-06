@@ -21172,7 +21172,7 @@ GameObject:
   - component: {fileID: 1597357923}
   - component: {fileID: 1597357922}
   - component: {fileID: 1597357921}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Through Platform Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21209,7 +21209,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 118.4
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -21246,7 +21246,7 @@ CompositeCollider2D:
   m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -21397,7 +21397,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -100
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
