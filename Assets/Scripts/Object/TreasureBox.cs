@@ -11,6 +11,7 @@ public class TreasureBox : MonoBehaviour
 
     Animator anim;
     bool isInteracting = false;
+    bool isOpen = false;
 
     void Awake() {
         anim = GetComponent<Animator>();
@@ -18,13 +19,14 @@ public class TreasureBox : MonoBehaviour
 
     void Update()
     {
-        if(isInteracting && Input.GetKeyDown(KeyCode.Z)) {
+        if(isInteracting && !isOpen && Input.GetKeyDown(KeyCode.Z)) {
             Open();
         }
     }
 
     void Open()
     {
+        isOpen = true;
         anim.SetTrigger("open");
     }
 

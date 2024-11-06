@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class HiddenWall : MonoBehaviour
+public class HiddenRoomWall : MonoBehaviour
 {
     [SerializeField] float duration = 1.0f;
     Tilemap tilemap;
