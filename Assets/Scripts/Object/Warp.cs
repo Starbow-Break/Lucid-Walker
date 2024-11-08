@@ -48,9 +48,6 @@ public class Warp : MonoBehaviour
 
         // 워프 애니메이션
         yield return WarpInAnim(warpTarget);
-
-        // 워프 대상 오브젝트의 pivot에 맞춰서 offset 계산
-        SpriteRenderer sr = warpTarget.GetComponent<SpriteRenderer>();
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
         warpTarget.transform.parent = targetMap.transform.parent;
@@ -58,6 +55,7 @@ public class Warp : MonoBehaviour
         warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
 
         // Tint 컬러 변경
+        SpriteRenderer sr = warpTarget.GetComponent<SpriteRenderer>();
         sr.color = targetTintColor;
 
         // Collider 설정

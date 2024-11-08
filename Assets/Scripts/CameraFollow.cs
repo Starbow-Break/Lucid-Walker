@@ -43,7 +43,7 @@ public class CameraFollow : MonoBehaviour
 
         Vector3 followPosition;
 
-        if (tr != null) // 타일맵을 설정했다면 우선 적용
+        if (tr != null) // 타일맵을 설정했다면 우선 적용 (추후 제거 예정)
         {
             followPosition = new Vector3(
                 Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2 + paddingLeft, tr.bounds.max.x - width / 2 - paddingRight),
@@ -86,10 +86,5 @@ public class CameraFollow : MonoBehaviour
     {
         currentShakeDuration = shakeDuration;
         originalPos = new Vector3(target.position.x, target.position.y, transform.position.z);  // 현재 카메라 위치 저장
-    }
-    public void SetTarget(Tilemap newTilemap)
-    {
-        tilemap = newTilemap;
-        tr = tilemap != null ? tilemap.GetComponent<TilemapRenderer>() : null;
     }
 }
