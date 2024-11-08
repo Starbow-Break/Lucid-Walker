@@ -71,10 +71,11 @@ public class Mirror : Warp
         ResetRenderer();
     }
 
-    // 워프 후 애니메이션S
+    // 워프 후 애니메이션
     protected override IEnumerator WarpOutAnim(GameObject warpTarget)
     {
         float curTime = 0.0f;
+        Debug.Log(curTime);
         SpriteRenderer warpTargetRenderer = warpTarget.GetComponent<SpriteRenderer>();
 
         while(curTime < animTime) {

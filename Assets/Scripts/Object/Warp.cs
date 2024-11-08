@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,8 +9,6 @@ public class Warp : MonoBehaviour
     [SerializeField] Tilemap currentMap; // 현재 위프가 있는 타일 맵
     [SerializeField] Tilemap targetMap; // 워프 지점 타일 맵
     [SerializeField] Warp targetWarp; // 목표 Warp
-    [SerializeField] List<GameObject> activeObjects; // 워프 후 활성화 할 오브젝트
-    [SerializeField] List<GameObject> inactiveObjects; // 워프 후 비활성화 할 오브젝트
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
 
@@ -50,11 +49,6 @@ public class Warp : MonoBehaviour
         // 워프 애니메이션
         yield return WarpInAnim(warpTarget);
 
-        // 활성화할 오브젝트들을 먼저 활성화
-        foreach(GameObject obj in activeObjects) {
-            obj.SetActive(true);
-        }
-
         // 워프 대상 오브젝트의 pivot에 맞춰서 offset 계산
         SpriteRenderer sr = warpTarget.GetComponent<SpriteRenderer>();
         
@@ -66,10 +60,6 @@ public class Warp : MonoBehaviour
         // Tint 컬러 변경
         sr.color = targetTintColor;
 
-        foreach(GameObject obj in inactiveObjects) {
-            obj.SetActive(false);
-        }
-
         // Collider 설정
         DeactiveChildColliders(currentMap.transform.parent.gameObject);
         ActiveChildColliders(targetMap.transform.parent.gameObject);
@@ -77,7 +67,7 @@ public class Warp : MonoBehaviour
         // 워프 애니메이션
         yield return targetWarp.WarpOutAnim(warpTarget);
 
-        // 컨트롤러 활성화, 애니메이션 재시작, RigidBody는 Dynamic으로 설정
+        // 컨트롤러 활성화, 애니메이션 재생, RigidBody는 Dynamic으로 설정
         if(pc != null) {
             pc.enabled = true;
         }
