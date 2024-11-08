@@ -11,8 +11,6 @@ public class Mirror : Warp
     RenderTexture rt;
     MaterialPropertyBlock mpb;
 
-    float twirlIntensity = 0.0f;
-    float mirroringRotation = 0.0f;
     float animTime = 2.0f;
 
     protected override void Awake()
@@ -26,6 +24,8 @@ public class Mirror : Warp
         // SpriteRenderer에 적용
         mpb = new MaterialPropertyBlock();
         mpb.SetTexture("_MainTex", rt);
+        mpb.SetFloat("_Center_Twirl_Intensity", 0.0f);
+        mpb.SetFloat("_Rotation", 0.0f);
         mirroringSpriteRenderer.SetPropertyBlock(mpb);
 
         // 거울 상에 사용되는 카메라에 Render Texture 적용
@@ -46,16 +46,24 @@ public class Mirror : Warp
     }
 
     // 워프 전 애니메이션
-    protected override IEnumerator WarpInAnim()
+    protected override IEnumerator WarpInAnim(GameObject warpTarget)
     {
         float curTime = 0.0f;
+        SpriteRenderer warpTargetRenderer = warpTarget.GetComponent<SpriteRenderer>();
 
         while(curTime < animTime) {
             curTime = Mathf.Min(animTime, curTime + Time.deltaTime);
 
-            twirlIntensity = 100.0f * Mathf.Pow(curTime / animTime, 2);
-            mirroringRotation = 12.0f * Mathf.PI * Mathf.Pow(curTime / animTime, 2) % (2.0f * Mathf.PI);
+            // 거울에 효과 적용
+            float twirlIntensity = 100.0f * Mathf.Pow(curTime / animTime, 2);
+            float mirroringRotation = 12.0f * Mathf.PI * Mathf.Pow(curTime / animTime, 2) % (2.0f * Mathf.PI);
             SetMirrorRenderer(twirlIntensity, mirroringRotation);
+
+            // 플레이어에 효과 적용
+            if(warpTargetRenderer != null) {
+                float dissolveAmount = curTime / animTime;
+                SetWarpTargetRenderer(warpTargetRenderer, dissolveAmount);
+            }
 
             yield return null;
         }
@@ -63,20 +71,34 @@ public class Mirror : Warp
         ResetRenderer();
     }
 
-    // 워프 후 애니메이션
-    protected override IEnumerator WarpOutAnim()
+    // 워프 후 애니메이션S
+    protected override IEnumerator WarpOutAnim(GameObject warpTarget)
     {
         float curTime = 0.0f;
+        SpriteRenderer warpTargetRenderer = warpTarget.GetComponent<SpriteRenderer>();
 
         while(curTime < animTime) {
             curTime = Mathf.Min(animTime, curTime + Time.deltaTime);
 
-            twirlIntensity = 100.0f * Mathf.Pow(curTime / animTime - 1.0f, 2);
-            mirroringRotation = 12.0f * Mathf.PI * (1.0f - Mathf.Pow(curTime / animTime - 1.0f, 2)) % (2.0f * Mathf.PI);
+            float twirlIntensity = 100.0f * Mathf.Pow(curTime / animTime - 1.0f, 2);
+            float mirroringRotation = 12.0f * Mathf.PI * (1.0f - Mathf.Pow(curTime / animTime - 1.0f, 2)) % (2.0f * Mathf.PI);
             SetMirrorRenderer(twirlIntensity, mirroringRotation);
+
+            // 플레이어에 효과 적용
+            if(warpTargetRenderer != null) {
+                float dissolveAmount = 1.0f - curTime / animTime;
+                SetWarpTargetRenderer(warpTargetRenderer, dissolveAmount);
+            }
 
             yield return null;
         }
+    }
+
+    // 거울상의 렌더러 속성 값 변경
+    void SetWarpTargetRenderer(Renderer targetRenderer, float dissolveAmount)
+    {
+        mpb.SetFloat("_DissolveAmount", dissolveAmount);
+        targetRenderer.material.SetFloat("_DissolveAmount", dissolveAmount);
     }
 
     // 거울상의 렌더러 속성 값 변경
