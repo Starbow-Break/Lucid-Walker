@@ -34,19 +34,17 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        // 카메라 범위의 너비, 높이 계산
+        Camera camera = gameObject.GetComponent<Camera>();
+        Vector3 bottomLeft = camera.ScreenToWorldPoint(Vector3.zero);
+        Vector3 topRight = camera.ScreenToWorldPoint(new(Screen.width, Screen.height));
+        float width = topRight.x - bottomLeft.x;
+        float height = topRight.y - bottomLeft.y;
+
         Vector3 followPosition;
 
-        if (tr != null)
+        if (tr != null) // 타일맵을 설정했다면 우선 적용 (추후 제거 예정)
         {
-            Camera camera = gameObject.GetComponent<Camera>();
-
-            Vector3 bottomLeft = camera.ScreenToWorldPoint(Vector3.zero);
-            Vector3 topRight = camera.ScreenToWorldPoint(new(Screen.width, Screen.height));
-
-            float width = topRight.x - bottomLeft.x;
-            float height = topRight.y - bottomLeft.y;
-
-            // 플레이어를 따라가는 기본 위치 설정
             followPosition = new Vector3(
                 Mathf.Clamp(target.position.x, tr.bounds.min.x + width / 2 + paddingLeft, tr.bounds.max.x - width / 2 - paddingRight),
                 Mathf.Clamp(target.position.y, tr.bounds.min.y + height / 2 + paddingBottom, tr.bounds.max.y - height / 2 - paddingTop),
@@ -55,7 +53,17 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            followPosition = new(target.position.x, target.position.y, transform.position.z);
+            Map currentMap = target.parent.GetComponent<Map>();
+            if(currentMap != null) { // Map이 있다면 해당 Map에 설정된 경계 안에서 이동
+                followPosition = new Vector3(
+                    Mathf.Clamp(target.position.x, currentMap.boundMin.x + width / 2, currentMap.boundMax.x - width / 2),
+                    Mathf.Clamp(target.position.y, currentMap.boundMin.y + height / 2, currentMap.boundMax.y - height / 2),
+                    transform.position.z
+                );
+            }
+            else { // 아니면 범위 제한 X
+                followPosition = new(target.position.x, target.position.y, transform.position.z);
+            }
         }
 
         // 흔들림이 있을 경우 적용
@@ -78,10 +86,5 @@ public class CameraFollow : MonoBehaviour
     {
         currentShakeDuration = shakeDuration;
         originalPos = new Vector3(target.position.x, target.position.y, transform.position.z);  // 현재 카메라 위치 저장
-    }
-    public void SetTarget(Tilemap newTilemap)
-    {
-        tilemap = newTilemap;
-        tr = tilemap != null ? tilemap.GetComponent<TilemapRenderer>() : null;
     }
 }
