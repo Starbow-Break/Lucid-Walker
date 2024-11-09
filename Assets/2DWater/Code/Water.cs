@@ -30,7 +30,7 @@ namespace Bundos.WaterSystem
         [Header("Particles")]
         public GameObject splashParticle;
 
-        [HideInInspector]
+        [SerializeField]
         Spring[] springs;
         MeshFilter meshFilter;
         Mesh mesh;

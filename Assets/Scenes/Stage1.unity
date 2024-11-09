@@ -624,6 +624,8 @@ MonoBehaviour:
   verticalInfiniteScroll: 0
   horizontalAmount: 0.2
   verticalAmount: 0
+  verticalUnitScale: 1
+  horizontalUnitScale: 1
 --- !u!1001 &213879405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1048,6 +1050,8 @@ MonoBehaviour:
   verticalInfiniteScroll: 0
   horizontalAmount: 0
   verticalAmount: 0
+  verticalUnitScale: 1
+  horizontalUnitScale: 1
 --- !u!1001 &301678130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5540,6 +5544,8 @@ MonoBehaviour:
   verticalInfiniteScroll: 1
   horizontalAmount: 0
   verticalAmount: 0
+  verticalUnitScale: 1
+  horizontalUnitScale: 1
 --- !u!212 &1469358219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11464,7 +11470,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.3
+  m_Intensity: 0.6
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: effcc2699b7a7a420dc8eec12da38adf0000000055bb7cac2720fff2
@@ -11991,7 +11997,7 @@ Transform:
   m_GameObject: {fileID: 1587583561}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65.7, y: -0.5, z: 0}
+  m_LocalPosition: {x: -17.67, y: -9.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12037,12 +12043,16 @@ MonoBehaviour:
   p_Layer:
     serializedVersion: 2
     m_Bits: 16704
+  w_Layer:
+    serializedVersion: 2
+    m_Bits: 0
   isWall: 0
   slidingSpeed: 0.4
   wallJumpPower: 5
   isWallJump: 0
   walkSpeed: 3.5
   runSpeed: 6
+  crouchWalkSpeed: 2
   isRight: 1
   chkDistance: 0.05
   jumpPower: 3.5
