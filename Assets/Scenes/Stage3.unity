@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0459f32af5744014e83006578f701eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenRoomWall: {fileID: 978240920}
+  hiddenRoomWall: {fileID: 0}
   type: 1
 --- !u!61 &5874520
 BoxCollider2D:
@@ -556,6 +556,8 @@ MonoBehaviour:
   verticalInfiniteScroll: 0
   horizontalAmount: 0.2
   verticalAmount: 0
+  verticalUnitScale: 1
+  horizontalUnitScale: 1
   verticalUnitScale: 1
   horizontalUnitScale: 1
 --- !u!1 &63400668
@@ -5589,6 +5591,8 @@ MonoBehaviour:
   verticalAmount: 0
   verticalUnitScale: 1
   horizontalUnitScale: 1
+  verticalUnitScale: 1
+  horizontalUnitScale: 1
 --- !u!1001 &181338182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10260,7 +10264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0459f32af5744014e83006578f701eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenRoomWall: {fileID: 1006693996}
+  hiddenRoomWall: {fileID: 0}
   type: 1
 --- !u!61 &496327987
 BoxCollider2D:
@@ -16971,7 +16975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0459f32af5744014e83006578f701eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenRoomWall: {fileID: 497577080}
+  hiddenRoomWall: {fileID: 0}
   type: 1
 --- !u!61 &560246983
 BoxCollider2D:
@@ -71284,6 +71288,8 @@ MonoBehaviour:
   verticalInfiniteScroll: 0
   horizontalAmount: 0.2
   verticalAmount: 0
+  verticalUnitScale: 1
+  horizontalUnitScale: 1
   verticalUnitScale: 1
   horizontalUnitScale: 1
 --- !u!1 &1501499781
@@ -143609,6 +143615,7 @@ MonoBehaviour:
   crouchWalkSpeed: 2
   isRight: 1
   isGround: 0
+  isGround: 0
   chkDistance: 0.05
   jumpPower: 4
   jumpBoost: 3
@@ -143761,8 +143768,8 @@ Transform:
   m_GameObject: {fileID: 2068652419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -184.4, y: -18.87, z: 0}
-  m_LocalScale: {x: 1, y: 0.9921, z: 1}
+  m_LocalPosition: {x: -186, y: -19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 536920989}
@@ -143830,7 +143837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0459f32af5744014e83006578f701eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenRoomWall: {fileID: 497577080}
+  hiddenRoomWall: {fileID: 0}
   type: 0
 --- !u!61 &2086011312
 BoxCollider2D:
