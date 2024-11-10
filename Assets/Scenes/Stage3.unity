@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0459f32af5744014e83006578f701eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenRoomWall: {fileID: 0}
+  hiddenRoomWall: {fileID: 978240920}
   type: 1
 --- !u!61 &5874520
 BoxCollider2D:
@@ -19226,6 +19226,10 @@ PrefabInstance:
       propertyPath: hiddenWall
       value: 
       objectReference: {fileID: 978240920}
+    - target: {fileID: 452329254162605813, guid: bf3d84aa3f5982047a32f85ca260f474, type: 3}
+      propertyPath: hiddenRoomWall
+      value: 
+      objectReference: {fileID: 978240920}
     - target: {fileID: 2629670759982665278, guid: bf3d84aa3f5982047a32f85ca260f474, type: 3}
       propertyPath: m_Name
       value: Trigger
@@ -19252,6 +19256,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4853421829051315934, guid: bf3d84aa3f5982047a32f85ca260f474, type: 3}
       propertyPath: hiddenWall
+      value: 
+      objectReference: {fileID: 978240920}
+    - target: {fileID: 4853421829051315934, guid: bf3d84aa3f5982047a32f85ca260f474, type: 3}
+      propertyPath: hiddenRoomWall
       value: 
       objectReference: {fileID: 978240920}
     - target: {fileID: 5054750103565190073, guid: bf3d84aa3f5982047a32f85ca260f474, type: 3}
@@ -143093,7 +143101,7 @@ MonoBehaviour:
     m_Bits: 64
   isWall: 0
   slidingSpeed: 0.4
-  wallJumpPower: 4
+  wallJumpPower: 5
   isWallJump: 0
   walkSpeed: 3.5
   runSpeed: 6
