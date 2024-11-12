@@ -54,14 +54,16 @@ public class CameraFollow : MonoBehaviour
         else
         {
             Map currentMap = target.parent.GetComponent<Map>();
-            if(currentMap != null) { // Map이 있다면 해당 Map에 설정된 경계 안에서 이동
+            if (currentMap != null)
+            { // Map이 있다면 해당 Map에 설정된 경계 안에서 이동
                 followPosition = new Vector3(
                     Mathf.Clamp(target.position.x, currentMap.boundMin.x + width / 2, currentMap.boundMax.x - width / 2),
                     Mathf.Clamp(target.position.y, currentMap.boundMin.y + height / 2, currentMap.boundMax.y - height / 2),
                     transform.position.z
                 );
             }
-            else { // 아니면 범위 제한 X
+            else
+            { // 아니면 범위 제한 X
                 followPosition = new(target.position.x, target.position.y, transform.position.z);
             }
         }
@@ -86,5 +88,14 @@ public class CameraFollow : MonoBehaviour
     {
         currentShakeDuration = shakeDuration;
         originalPos = new Vector3(target.position.x, target.position.y, transform.position.z);  // 현재 카메라 위치 저장
+    }
+
+    public void SetTarget(Tilemap newTilemap)
+    {
+        tilemap = newTilemap;
+        if (tilemap != null)
+        {
+            tr = tilemap.gameObject.GetComponent<TilemapRenderer>();
+        }
     }
 }
