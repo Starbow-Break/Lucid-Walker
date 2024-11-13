@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public float isRight = 1;    // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
 
     float input_x;
-    bool isGround;
+    public bool isGround;
     bool isCrouching;
     bool isCrouchWalking;
 
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isSliding", !isGround && isWall);
 
         // 달리기 상태일 때 run 애니메이션
-        if (!isWallJump)
+        if (!isWallJump && isGround)
         {
             if (input_x != 0)
             {
@@ -122,17 +122,21 @@ public class PlayerController : MonoBehaviour
         }
 
         // 점프 애니메이션 트리거
-        if (Input.GetAxis("Jump") != 0)
+        if (Input.GetAxis("Jump") != 0 && !isWallJump)
         {
             anim.SetTrigger("jump");
         }
-
-        // 캐릭터 방향 전환
-        if ((input_x > 0 && isRight < 0) || (input_x < 0 && isRight > 0))
+        if (Input.GetAxis("Jump") != 0 && isWallJump)
         {
-            FlipPlayer();
+            anim.SetTrigger("wallJump");
         }
 
+        // 캐릭터 방향 전환
+        if (!isWallJump || isGround)
+            if ((input_x > 0 && isRight < 0) || (input_x < 0 && isRight > 0))
+            {
+                FlipPlayer();
+            }
     }
 
     private void FixedUpdate()
@@ -220,22 +224,17 @@ public class PlayerController : MonoBehaviour
         if (!isGround && isWall)
         {
             isWallJump = false;
-            //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * slidingSpeed);
             anim.SetBool("isSliding", true);
 
-            if (Input.GetKey(KeyCode.Space) && ((input_x > 0 && isRight > 0) || (input_x < 0 && isRight < 0)))
+            if (Input.GetAxis("Jump") != 0)
             {
                 isWallJump = true;
-                Invoke("FreezeX", 0.5f);
-                rb.velocity = new Vector2(-isRight * 1.2f * wallJumpPower, wallJumpPower);
-                anim.SetTrigger("wallJump");
+                Invoke("FreezeX", 0.3f);
+                rb.velocity = new Vector2(-isRight * wallJumpPower, 0.9f * wallJumpPower);
+                FlipPlayer();  // 방향키에 맞춰 캐릭터 방향을 전환
             }
 
-            // 벽 점프 후 캐릭터 방향 전환
-            // if ((isRight < 0 && input_x > 0) || (isRight > 0 && input_x < 0))
-            // {
-            FlipPlayer();  // 방향키에 맞춰 캐릭터 방향을 전환
-            // }
         }
 
         // 중력 가속도 적용
@@ -258,16 +257,16 @@ public class PlayerController : MonoBehaviour
 
     void FreezeX()
     {
+        isWallJump = false;
         rb.velocity = new Vector2(0, rb.velocity.y);
 
-        isWallJump = false;
     }
 
     void FlipPlayer()
     {
         // 방향 전환
         transform.eulerAngles = new Vector3(0, Mathf.Abs(transform.eulerAngles.y - 180), 0);
-        isRight = isRight * -1;
+        isRight = isRight == 1 ? -1 : 1;
     }
 
     public void SetZiplineAnim(bool value)
