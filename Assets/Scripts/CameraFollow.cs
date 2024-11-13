@@ -5,10 +5,14 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] Tilemap tilemap;
     [SerializeField] Transform target;
+    private Transform originalTarget;   // 원래의 타겟을 저장해둠
+
 
     public float shakeDuration = 0.5f;  // 흔들림 지속 시간
     public float shakeAmount = 0.1f;    // 흔들림 강도
     public float decreaseFactor = 1.0f; // 흔들림 감소 속도
+    public float followSpeed = 0.1f; // Lerp를 사용할 때 이동 속도
+
 
     [Header("Padding")]
     [SerializeField] float paddingLeft = 0.0f;
@@ -29,11 +33,18 @@ public class CameraFollow : MonoBehaviour
             tr = tilemap.gameObject.GetComponent<TilemapRenderer>();
         }
 
+
+        if (target != null)
+        {
         transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        originalTarget = target;
+        }
     }
 
     void LateUpdate()
     {
+        if (target == null) return;
+        
         // 카메라 범위의 너비, 높이 계산
         Camera camera = gameObject.GetComponent<Camera>();
         Vector3 bottomLeft = camera.ScreenToWorldPoint(Vector3.zero);
@@ -90,6 +101,7 @@ public class CameraFollow : MonoBehaviour
         originalPos = new Vector3(target.position.x, target.position.y, transform.position.z);  // 현재 카메라 위치 저장
     }
 
+    // tilemap 참조 변경 함수
     public void SetTarget(Tilemap newTilemap)
     {
         tilemap = newTilemap;
@@ -97,5 +109,20 @@ public class CameraFollow : MonoBehaviour
         {
             tr = tilemap.gameObject.GetComponent<TilemapRenderer>();
         }
+    }
+
+    // 대화 시 카메라 타겟을 대화 대상에 맞추는 메서드
+    public void SetDialogueFocus(Transform newFocusTarget)
+    {
+        if (newFocusTarget != null)
+        {
+            target = newFocusTarget;  // 대화 상대를 타겟으로 설정
+        }
+    }
+
+    // 대화 종료 시 카메라 타겟을 플레이어로 되돌림
+    public void ClearDialogueFocus()
+    {
+        target = originalTarget;  // 플레이어를 다시 타겟으로 설정
     }
 }
