@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696e935404f7a422499adfdf326416bc, type: 3}
+  m_Name: Stage3_Dungeon
+  m_EditorClassIdentifier: 
+  dialogueID: Stage3_Dungeon
+  lines:
+  - characterName: "\uC5EC\uC790"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\"\uB8E8\uC2DC\uB4DC\uC6CC\uCEE4\uB2D8..!\""
+  - characterName: "\uC8FC\uC778\uACF5"
+    characterImage: {fileID: 1137789122, guid: 49e77f1fd45a140f7a2799ab07a7d877, type: 3}
+    sentence: "\"\uC5B4..! \uC5EC\uAE30\uB294 \uC5B4\uB514\uC8E0?\""
+  - characterName: "\uC5EC\uC790"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\"\uC5EC\uAE30\uB294 \uBAAC\uC2A4\uD130 \uC18C\uAD74\uC774\uC5D0\uC694...
+      \uC800 \uB8E8\uBC84\uB97C \uD55C\uBC88 \uB3CC\uB824\uBCF4\uC2DC\uACA0\uC5B4\uC694?\""
