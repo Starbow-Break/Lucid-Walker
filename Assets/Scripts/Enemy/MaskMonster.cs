@@ -4,7 +4,9 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class MaskMonster : MonoBehaviour, IDamageable
-{
+{   
+    [SerializeField] bool rightStart = true;
+
     [Header("Animation")]
     [SerializeField] Animator anim;
     [SerializeField] Floating floating;
@@ -18,7 +20,7 @@ public class MaskMonster : MonoBehaviour, IDamageable
     [SerializeField, Min(0.0f)] float attackDist = 1.0f; // 공격 범위
 
     Vector3 routeLeft, routeRight; // 경로 제일 왼쪽, 오른쪽
-    int isRight = 1; // 오른쪽을 바라보면 1, 아니면 -1
+    public int isRight { get; private set; } // 오른쪽을 바라보면 1, 아니면 -1
     bool isMove = false; // 움직임 여부
     bool isTurn = false; // 방향전환 여부
     bool isDie = false; // 사망 여부
@@ -39,16 +41,24 @@ public class MaskMonster : MonoBehaviour, IDamageable
             LayerMask.GetMask("Player")).collider != null;
 
     void OnValidate() {
+        transform.localScale = new(rightStart ? 1 : -1, transform.localScale.y, transform.localScale.z);
+
         if(moveDistance >= 0.0f) {
-            routeLeft = transform.position;
-            routeRight = transform.position + Vector3.right * moveDistance;
+            if(rightStart) {
+                routeLeft = transform.position;
+                routeRight = transform.position + Vector3.right * moveDistance;
+            }
+            else {
+                routeLeft = transform.position + Vector3.left * moveDistance;
+                routeRight = transform.position;
+            }
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        isRight = rightStart ? 1 : -1;
+        transform.localScale = new(isRight, transform.localScale.y, transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -122,7 +132,7 @@ public class MaskMonster : MonoBehaviour, IDamageable
     void Flip()
     {
         isRight *= -1;
-        transform.localScale = new(isRight, transform.localScale.y);
+        transform.localScale = new(isRight, transform.localScale.y, transform.localScale.z);
     }
 
     public void TakeDamage(int damage, Transform attacker)
@@ -138,7 +148,7 @@ public class MaskMonster : MonoBehaviour, IDamageable
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(routeLeft, routeRight);
 
-        // 공격 범위 확인
+        // 플레이어 감지 범위 확인
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, attackDist * isRight * Vector2.right);
     }
