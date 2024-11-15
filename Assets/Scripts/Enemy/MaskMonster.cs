@@ -19,6 +19,9 @@ public class MaskMonster : MonoBehaviour, IDamageable
     [SerializeField, Min(0.0f)] float attackCoolTime = 1.0f; // 공격 쿨타임
     [SerializeField, Min(0.0f)] float attackDist = 1.0f; // 공격 범위
 
+    [Header("Particle")]
+    [SerializeField] ParticleSystem shadowParticle;
+
     Vector3 routeLeft, routeRight; // 경로 제일 왼쪽, 오른쪽
     public int isRight { get; private set; } // 오른쪽을 바라보면 1, 아니면 -1
     bool isMove = false; // 움직임 여부
@@ -93,6 +96,8 @@ public class MaskMonster : MonoBehaviour, IDamageable
             else if (isTurn) { // 방향 전환 상태라면
                 if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Turn")) {
                     Flip();
+                    shadowParticle.Play();
+
                     isTurn = false;
                     isMove = true;
                 }
@@ -106,6 +111,10 @@ public class MaskMonster : MonoBehaviour, IDamageable
                     if(moveFinished) { // 이동을 끝까지 해서 멈춘거라면 방향 전환
                         isTurn = true;
                         anim.SetTrigger("turn");
+
+                        ParticleSystem.VelocityOverLifetimeModule volm = shadowParticle.velocityOverLifetime;
+                        volm.xMultiplier *= -1;
+                        shadowParticle.Stop();
                     }
                     else { // 아니라면 바로 이동
                         isMove = true;
