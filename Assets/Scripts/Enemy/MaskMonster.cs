@@ -21,6 +21,7 @@ public class MaskMonster : MonoBehaviour, IDamageable
 
     [Header("Particle")]
     [SerializeField] ParticleSystem shadowParticle;
+    ParticleSystem.VelocityOverLifetimeModule volm;
 
     Vector3 routeLeft, routeRight; // 경로 제일 왼쪽, 오른쪽
     public int isRight { get; private set; } // 오른쪽을 바라보면 1, 아니면 -1
@@ -44,8 +45,6 @@ public class MaskMonster : MonoBehaviour, IDamageable
             LayerMask.GetMask("Player")).collider != null;
 
     void OnValidate() {
-        transform.localScale = new(rightStart ? 1 : -1, transform.localScale.y, transform.localScale.z);
-
         if(moveDistance >= 0.0f) {
             if(rightStart) {
                 routeLeft = transform.position;
@@ -62,6 +61,8 @@ public class MaskMonster : MonoBehaviour, IDamageable
     {
         isRight = rightStart ? 1 : -1;
         transform.localScale = new(isRight, transform.localScale.y, transform.localScale.z);
+        volm = shadowParticle.velocityOverLifetime;
+        volm.xMultiplier *= isRight;
     }
 
     // Update is called once per frame
@@ -97,7 +98,6 @@ public class MaskMonster : MonoBehaviour, IDamageable
                 if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Turn")) {
                     Flip();
                     shadowParticle.Play();
-
                     isTurn = false;
                     isMove = true;
                 }
@@ -111,8 +111,6 @@ public class MaskMonster : MonoBehaviour, IDamageable
                     if(moveFinished) { // 이동을 끝까지 해서 멈춘거라면 방향 전환
                         isTurn = true;
                         anim.SetTrigger("turn");
-
-                        ParticleSystem.VelocityOverLifetimeModule volm = shadowParticle.velocityOverLifetime;
                         volm.xMultiplier *= -1;
                         shadowParticle.Stop();
                     }
