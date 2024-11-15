@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundChkFront;
     public Transform groundChkBack;
+    public Transform wallChkUp;
     public Transform wallChk;
     public float wallchkDistance;
     public LayerMask p_Layer;
@@ -39,8 +40,8 @@ public class PlayerController : MonoBehaviour
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     bool isRunning;  // 달리기 상태 확인
     private Vector2 originalColliderSize;
-    private Vector2 targetCrouchSize = new Vector2(1.0f, 0.9f); // 목표 crouch size
-    private float crouchTransitionSpeed = 3f; // 크기 변환 속도
+    private Vector2 targetCrouchSize = new Vector2(0.92f, 0.8f); // 목표 crouch size
+    private float crouchTransitionSpeed = 5f; // 크기 변환 속도
 
 
     #region Movable
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         // 캐릭터의 앞쪽과 뒤쪽의 바닥 체크
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, p_Layer);
         bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
+        bool wall_up = Physics2D.Raycast(wallChkUp.position, Vector2.up, chkDistance, p_Layer);
 
         // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
         if (!isGround && (ground_back || ground_front))
@@ -80,27 +82,50 @@ public class PlayerController : MonoBehaviour
             isGround = false;
 
         anim.SetBool("isGround", isGround);
-        isCrouching = Input.GetKey(KeyCode.DownArrow); // 아래 방향키로 crouch 상태
-        isCrouchWalking = isCrouching && input_x != 0; // crouch 상태에서 좌우 이동 시 crouchWalk 상태
+        isCrouching = Input.GetKey(KeyCode.DownArrow);  // 아래 방향키로 crouch 상태
+        isCrouchWalking = isCrouching && Mathf.Abs(input_x) > 0.1f;         // 옆으로 이동 중에 아래키를 누르면 즉시 crouchWalking으로 전환
 
         anim.SetBool("isCrouching", isCrouching); // crouching 애니메이션
         anim.SetBool("isCrouchWalking", isCrouchWalking); // crouchWalk 애니메이션
 
+        // // CapsuleCollider2D의 size 조정
+        // if (isCrouching && !isCrouchWalking)
+        // {
+        //     // crouching 상태에서만 Lerp로 점진적으로 변경
+        //     capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, targetCrouchSize, Time.deltaTime * crouchTransitionSpeed);
+        // }
+        // if (isCrouching && isCrouchWalking)
+        // {
+        //     // crouching 상태에서만 Lerp로 점진적으로 변경
+        //     capsuleCollider.size = new Vector2(capsuleCollider.size.x, 0.9f); // crouching 상태에서 y 크기를 1로 설정
+        // }
+        // else if (!isCrouching)
+        // {
+        //     // crouching이 해제되면 원래 크기로 복구
+        //     capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed * 2);
+        // }
+
         // CapsuleCollider2D의 size 조정
-        if (isCrouching && !isCrouchWalking)
+        if (isCrouching || isCrouchWalking)
         {
-            // crouching 상태에서만 Lerp로 점진적으로 변경
             capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, targetCrouchSize, Time.deltaTime * crouchTransitionSpeed);
-        }
-        if (isCrouching && isCrouchWalking)
-        {
-            // crouching 상태에서만 Lerp로 점진적으로 변경
-            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 0.9f); // crouching 상태에서 y 크기를 1로 설정
+            Physics2D.SyncTransforms(); // 즉시 Physics 업데이트
         }
         else if (!isCrouching)
         {
-            // crouching이 해제되면 원래 크기로 복구
-            capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed * 2);
+
+            if (!wall_up)
+            {
+                // 머리 위에 공간이 있으면 Collider 크기 복구
+                capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed * 2);
+                Physics2D.SyncTransforms(); // 즉시 Physics 업데이트
+            }
+            else
+            {
+                // 공간이 없으면 crouching 상태 유지
+                isCrouching = true;
+                anim.SetBool("isCrouching", true); // 애니메이션 유지
+            }
         }
 
         isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, w_Layer);
