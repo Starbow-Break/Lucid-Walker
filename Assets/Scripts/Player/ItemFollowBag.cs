@@ -22,6 +22,16 @@ public class ItemFollowBag : MonoBehaviour
             obj.transform.localPosition = Vector2.left * (capacity - 1);
         }
     }
+
+    // 아이템 소지 여부
+    public bool HasItem(IFollowCollectable collectable)
+    {
+        foreach(IFollowCollectable col in collectItems) {
+            if(col == collectable) return true;
+        }
+
+        return false;
+    }
     
     // 아이템 추가
     public void AddItem(IFollowCollectable collectable)

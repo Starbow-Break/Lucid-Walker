@@ -25,7 +25,7 @@ public class Key : MonoBehaviour, IFollowCollectable
     public void SetFollow(bool follow)
     {
         if(follow && !isFollow) {
-            StartCoroutine(FollowTarget());
+            followCoroutine = StartCoroutine(FollowTarget());
         }
         if(!follow && isFollow) {
             StopCoroutine(followCoroutine);
@@ -35,7 +35,7 @@ public class Key : MonoBehaviour, IFollowCollectable
         isFollow = follow;
     }
 
-    // 목표 설정W
+    // 목표 설정
     public void SetTargetTransform(Transform target)
     {
         targetTransform = target;
