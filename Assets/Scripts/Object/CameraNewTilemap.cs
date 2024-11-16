@@ -1,17 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.Tilemaps;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 public class CameraNewTilemap : MonoBehaviour
 {
     public CameraFollow cameraFollow;
     public Tilemap newTilemap;
-    private void OnTriggerEnter2D(Collider2D other)
+
+    // 새 타일맵으로 카메라 이동 메서드
+    public void MoveCameraToNewTilemap()
     {
-        if (other.CompareTag("Player"))
+        if (cameraFollow != null && newTilemap != null)
         {
-            // Update the camera's target and tilemap
+            // 카메라 타겟을 새로운 타일맵으로 설정
             cameraFollow.SetTarget(newTilemap);
+        }
+        else
+        {
+            Debug.LogWarning("CameraFollow or newTilemap reference is missing!");
         }
     }
 }

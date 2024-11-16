@@ -59,4 +59,9 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false; // 대화 비활성화
         DialogueUI.Instance.HideDialogueBox();
     }
+    public bool IsDialogueFinished()
+    {
+        return !isDialogueActive; // 대화가 활성 상태가 아니면 끝난 것으로 간주
+    }
+
 }

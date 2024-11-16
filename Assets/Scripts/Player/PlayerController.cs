@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundChkFront;
     public Transform groundChkBack;
+    public Transform wallChkUp;
     public Transform wallChk;
     public float wallchkDistance;
     public LayerMask p_Layer;
@@ -39,8 +40,8 @@ public class PlayerController : MonoBehaviour
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     bool isRunning;  // 달리기 상태 확인
     private Vector2 originalColliderSize;
-    private Vector2 targetCrouchSize = new Vector2(1.0f, 0.9f); // 목표 crouch size
-    private float crouchTransitionSpeed = 3f; // 크기 변환 속도
+    private Vector2 targetCrouchSize = new Vector2(0.92f, 0.8f); // 목표 crouch size
+    private float crouchTransitionSpeed = 5f; // 크기 변환 속도
 
 
     #region Movable
@@ -50,6 +51,12 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     HashSet<GameObject> pushMovable = new(); // 밀고있는 물체 상태 확인
+
+    [SerializeField] private LayerMask waterLayer; // 물 레이어
+    [SerializeField] private float swimForce = 5f; // 헤엄치는 힘
+    [SerializeField] private float buoyancyForce = 2f; // 부력 힘
+    [SerializeField] private float dragInWater = 2f; // 물 속에서의 저항력
+    private bool isInWater = false; // 물 안에 있는지 여부
 
     private void Start()
     {
@@ -68,6 +75,7 @@ public class PlayerController : MonoBehaviour
         // 캐릭터의 앞쪽과 뒤쪽의 바닥 체크
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, p_Layer);
         bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
+        bool wall_up = Physics2D.Raycast(wallChkUp.position, Vector2.up, chkDistance, p_Layer);
 
         // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
         if (!isGround && (ground_back || ground_front))
@@ -80,27 +88,33 @@ public class PlayerController : MonoBehaviour
             isGround = false;
 
         anim.SetBool("isGround", isGround);
-        isCrouching = Input.GetKey(KeyCode.DownArrow); // 아래 방향키로 crouch 상태
-        isCrouchWalking = isCrouching && input_x != 0; // crouch 상태에서 좌우 이동 시 crouchWalk 상태
+        isCrouching = Input.GetKey(KeyCode.DownArrow);  // 아래 방향키로 crouch 상태
+        isCrouchWalking = isCrouching && Mathf.Abs(input_x) > 0.1f;         // 옆으로 이동 중에 아래키를 누르면 즉시 crouchWalking으로 전환
 
         anim.SetBool("isCrouching", isCrouching); // crouching 애니메이션
         anim.SetBool("isCrouchWalking", isCrouchWalking); // crouchWalk 애니메이션
 
         // CapsuleCollider2D의 size 조정
-        if (isCrouching && !isCrouchWalking)
+        if (isCrouching || isCrouchWalking)
         {
-            // crouching 상태에서만 Lerp로 점진적으로 변경
             capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, targetCrouchSize, Time.deltaTime * crouchTransitionSpeed);
-        }
-        if (isCrouching && isCrouchWalking)
-        {
-            // crouching 상태에서만 Lerp로 점진적으로 변경
-            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 0.9f); // crouching 상태에서 y 크기를 1로 설정
+            Physics2D.SyncTransforms(); // 즉시 Physics 업데이트
         }
         else if (!isCrouching)
         {
-            // crouching이 해제되면 원래 크기로 복구
-            capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed * 2);
+
+            if (!wall_up)
+            {
+                // 머리 위에 공간이 있으면 Collider 크기 복구
+                capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed * 2);
+                Physics2D.SyncTransforms(); // 즉시 Physics 업데이트
+            }
+            else
+            {
+                // 공간이 없으면 crouching 상태 유지
+                isCrouching = true;
+                anim.SetBool("isCrouching", true); // 애니메이션 유지
+            }
         }
 
         isWall = Physics2D.Raycast(wallChk.position, Vector2.right * isRight, wallchkDistance, w_Layer);
@@ -137,6 +151,19 @@ public class PlayerController : MonoBehaviour
             {
                 FlipPlayer();
             }
+
+        // 플레이어가 물 속에 있을 때만 헤엄치기 가능
+        if (isInWater)
+        {
+            if (Input.GetKey(KeyCode.Space)) // Space 키로 위로 이동
+            {
+                rb.AddForce(Vector2.up * swimForce, ForceMode2D.Force);
+            }
+
+            // 수평 이동
+            float horizontalInput = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(horizontalInput * walkSpeed, rb.velocity.y);
+        }
     }
 
     private void FixedUpdate()
@@ -239,6 +266,38 @@ public class PlayerController : MonoBehaviour
 
         // 중력 가속도 적용
         ApplyGravityModifiers();
+
+        if (isInWater)
+        {
+            // 물 안에서의 부력 적용
+            rb.AddForce(Vector2.up * buoyancyForce, ForceMode2D.Force);
+
+            // 물 속 저항력 적용
+            rb.drag = dragInWater;
+        }
+        else
+        {
+            // 물 밖에서는 기본 저항력 복구
+            rb.drag = 0f;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 물 레이어에 닿았을 때
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            isInWater = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        // 물에서 나왔을 때
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            isInWater = false;
+        }
     }
 
     void ApplyGravityModifiers()
