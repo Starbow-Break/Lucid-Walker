@@ -24,6 +24,14 @@ public class Bullet : MonoBehaviour
             if (ray.collider.tag == "Enemy")
             {
                 Debug.Log("명중!");
+                // IDamageable 인터페이스가 구현된 대상에게 데미지 전달
+                IDamageable damageable = ray.collider.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(1, transform); // 데미지 값 1
+                    Debug.Log($"Bullet hit {ray.collider.name}");
+                }
+
             }
             DestroyBullet();
         }
