@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class MonsterNpc : MonoBehaviour
+public class MonsterNpc : MonoBehaviour, IDamageable
 {
-    public int health = 2;
+    public int health = 3;
     public int damage = 2;
     public Transform player;           // 플레이어의 위치
     public float detectionRange = 5f;  // 플레이어 탐지 거리
@@ -17,6 +17,8 @@ public class MonsterNpc : MonoBehaviour
 
     private bool canAttack = true; // 공격 가능 여부 (쿨타임 상태 관리)
     public float attackCooldown = 2f; // 공격 후 쿨타임 시간 (2초)
+    private bool isDead = false; // 몬스터가 죽었는지 확인
+
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class MonsterNpc : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return; // 죽었으면 로직 실행 중지
         // 플랫폼 앞에 있는지 감지하고 방향 전환
         if (IsPlatformInFront())
         {
@@ -129,6 +132,32 @@ public class MonsterNpc : MonoBehaviour
         canAttack = true;
     }
 
+    public void TakeDamage(int damage, Transform attacker)
+    {
+        if (isDead) return;
+
+        health -= damage; // 체력 감소
+        anim.SetTrigger("Hurt"); // 피격 애니메이션
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        isDead = true;
+        anim.SetTrigger("Die"); // 죽는 애니메이션
+        StartCoroutine(DestroyAfterAnimation());
+    }
+
+    IEnumerator DestroyAfterAnimation()
+    {
+        // 죽는 애니메이션이 끝난 후 객체 삭제
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
+    }
     void Flip()
     {
         // 캐릭터의 방향을 반전 (x 스케일 반전)
