@@ -48,7 +48,6 @@ public class MaskMonstarAttack : MonoBehaviour
     }
 
      private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("*******");
         if(other.CompareTag("Player"))
         {
             IDamageable damageable = other.GetComponent<IDamageable>();

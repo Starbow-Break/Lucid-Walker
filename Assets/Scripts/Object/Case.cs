@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Case : MonoBehaviour, IMovable
 {
@@ -19,9 +20,14 @@ public class Case : MonoBehaviour, IMovable
     public float mass { get; set; }
 
     SpriteRenderer sr;
+    Rigidbody2D rb;
+
     // 물체의 크기
     float caseWidth;
     float caseHeight;
+
+    LayerMask movableLayer;
+    LayerMask platformLayer;
 
     void Awake()
     {
@@ -29,8 +35,32 @@ public class Case : MonoBehaviour, IMovable
         mass = _mass;
 
         sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         caseWidth = sr.bounds.max.x - sr.bounds.min.x;
         caseHeight = sr.bounds.max.y - sr.bounds.min.y;
+
+        movableLayer = LayerMask.GetMask("Movable");
+        platformLayer = LayerMask.GetMask("Platform") | LayerMask.GetMask("Shadow Platform");
+    }
+
+    void Update()
+    {
+        // 상자 바닥에 물체가 있는지 확인
+        RaycastHit2D hitBottom = Physics2D.BoxCast(
+            (Vector2)transform.position + 0.01f * Vector2.down,
+            new(caseWidth / 2, 0.01f),
+            0.0f,
+            Vector2.down,
+            0.0f,
+            movableLayer | platformLayer
+        );
+
+        if(hitBottom.collider == null) {
+            rb.velocity += Time.deltaTime * (Vector2)Physics.gravity;
+        }
+        else {
+            rb.velocity = new(rb.velocity.x, 0.0f);
+        }
     }
 
     // 밀리는 물체를 output에 전달
@@ -40,9 +70,6 @@ public class Case : MonoBehaviour, IMovable
 
         // pushable을 체크 하는데 pushable이 아닌 오브젝트가 있다면 밀기 불가능
         if(checkPushable && !pushable) return false;
-
-        LayerMask movableLayer = LayerMask.GetMask("Movable");
-        LayerMask platformLayer = LayerMask.GetMask("Platform") | LayerMask.GetMask("Shadow Platform");
 
         // 수평 방향에 Movable이나 미는걸 가로막는 오브젝트가 있는지 확인
         RaycastHit2D hitHorizontal = Physics2D.BoxCast(
@@ -120,5 +147,10 @@ public class Case : MonoBehaviour, IMovable
             new Vector3(w * 0.9f, pushCheckDistance, 0.5f)
         );
         
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(
+            transform.position + 0.01f * Vector3.down,
+            new Vector3(w, 0.02f, 0.5f)
+        );
     }
 }
