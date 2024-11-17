@@ -19,6 +19,9 @@ public class MonsterNpc : MonoBehaviour, IDamageable
     public float attackCooldown = 2f; // 공격 후 쿨타임 시간 (2초)
     private bool isDead = false; // 몬스터가 죽었는지 확인
 
+    public Vector2 attackCenter = new Vector2(0.5f, 0); // 공격 범위 중심
+    public Vector2 attackSize = new Vector2(0.3f, 0.6f);  // 공격 범위 크기 (줄임)
+
 
     void Start()
     {
@@ -44,7 +47,7 @@ public class MonsterNpc : MonoBehaviour, IDamageable
         else
         {
             // 감지 범위 내에 있으면 쫓아감
-            ChasePlayer();
+            ChaseAndAttackPlayer();
         }
     }
 
@@ -69,18 +72,53 @@ public class MonsterNpc : MonoBehaviour, IDamageable
         }
     }
 
-    void ChasePlayer()
+    void ChaseAndAttackPlayer()
     {
-        // 플레이어를 쫓는 행동
         Vector2 direction = (player.position - transform.position).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-        // 플레이어의 방향에 따라 NPC 방향 전환
         if ((player.position.x > transform.position.x && !isFacingRight) ||
             (player.position.x < transform.position.x && isFacingRight))
         {
             Flip();
         }
+
+        if (canAttack)
+        {
+            anim.SetTrigger("Attack"); // 공격 애니메이션 실행
+            StartCoroutine(AttackCooldown());
+        }
+    }
+
+    // 애니메이션 이벤트에서 호출될 함수
+    public void PerformAttack()
+    {
+        Vector2 boxCenter = (Vector2)transform.position + attackCenter * (isFacingRight ? 1 : -1);
+
+        RaycastHit2D hit = Physics2D.BoxCast(
+            boxCenter,
+            attackSize,
+            0f,
+            Vector2.zero,
+            0f,
+            LayerMask.GetMask("Player")
+        );
+
+        if (hit.collider != null)
+        {
+            IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage, transform); // 실제 공격 로직 실행
+            }
+        }
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 
     // 플랫폼이 앞에 있는지 감지하는 함수
@@ -99,38 +137,6 @@ public class MonsterNpc : MonoBehaviour, IDamageable
         return false;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // 충돌한 객체가 플레이어일 경우
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 공격할 수 있을 때 공격
-            if (canAttack)
-            {
-                IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-                if (damageable != null)
-                {
-                    Attack(damageable);
-                }
-            }
-        }
-    }
-
-    void Attack(IDamageable damageable)
-    {
-        // 플레이어에게 데미지를 입힘
-        damageable.TakeDamage(damage, transform);
-
-        // 공격 쿨타임 적용
-        StartCoroutine(AttackCooldown());
-    }
-
-    IEnumerator AttackCooldown()
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(attackCooldown); // 쿨타임 대기
-        canAttack = true;
-    }
 
     public void TakeDamage(int damage, Transform attacker)
     {
@@ -169,8 +175,13 @@ public class MonsterNpc : MonoBehaviour, IDamageable
 
     private void OnDrawGizmosSelected()
     {
-        // 감지 범위를 시각적으로 확인하기 위한 Raycast 표시
+        // 공격 범위를 시각적으로 확인하기 위한 Raycast 표시
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, isFacingRight ? Vector2.right : Vector2.left * platformDetectionDistance);
+
+        // 줄어든 BoxCast 크기 확인
+        Vector2 boxCenter = (Vector2)transform.position + attackCenter * (isFacingRight ? 1 : -1);
+        Gizmos.DrawWireCube(boxCenter, attackSize);
     }
+
 }

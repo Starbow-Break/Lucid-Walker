@@ -138,6 +138,7 @@ namespace Bundos.WaterSystem
             UpdateSpringPositions();
             UpdateMeshVerticePositions();
             UpdateMesh();
+            Physics2D.SyncTransforms(); // Collider 위치와 Transform 상태 동기화
         }
 
         private void UpdateMeshVerticePositions()

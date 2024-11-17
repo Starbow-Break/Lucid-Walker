@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-
 
 public class LeverController : MonoBehaviour
 {
@@ -12,12 +10,15 @@ public class LeverController : MonoBehaviour
 
     public bool isActivated = false; // 레버가 이미 작동했는지 여부
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isActivated)
         {
+            // Z 키 입력 확인
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                Debug.Log("레버 작동 시작");
+
                 // 레버 애니메이션 실행
                 if (leverAnimator != null)
                 {
