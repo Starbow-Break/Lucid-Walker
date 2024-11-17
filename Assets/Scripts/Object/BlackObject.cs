@@ -57,4 +57,9 @@ public class BlackObject : MonoBehaviour
         // 완전히 투명해지면 오브젝트 삭제
         Destroy(gameObject);
     }
+
+    private void Update()
+    {
+        Physics2D.SyncTransforms(); // Transform과 Collider 상태 동기화
+    }
 }
