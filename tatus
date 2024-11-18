@@ -1,0 +1,1121 @@
+[33mcommit 386d9fcf44368473bb79a9a153ac4a02b139699d[m[33m ([m[1;36mHEAD -> [m[1;32mfeat/beomsoo[m[33m, [m[1;31morigin/feat/beomsoo[m[33m)[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Nov 14 12:01:58 2024 +0900
+
+    ADD : 가면 몬스터에 파티클 추가 중
+
+[33mcommit f1ae9b50468b4613426dc4d382866f635d104645[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Nov 13 21:47:02 2024 +0900
+
+    ADD : 1스테이지에 점프로 통과되는 발판 추가
+
+[33mcommit b59bc573504437f5135f7407b87fdeca19c0322d[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Nov 13 21:03:58 2024 +0900
+
+    ADD : 가면 몬스터 구현 완료, 1 스테이지에 추가
+
+[33mcommit db4cc1cbf5ce2ff546e95edf0d9aaf590048cd8a[m
+Merge: b37ab36 32f0b6f
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Nov 13 17:58:48 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 32f0b6feec625e8dbd1ce38ad81dc44427a36e9a[m
+Merge: e8b1757 c9a6cf7
+Author: JiYoonB <94150712+1234jienf@users.noreply.github.com>
+Date:   Tue Nov 12 20:19:48 2024 +0900
+
+    Merge pull request #31 from Starbow-Break/feat/jiyoon
+    
+    Feat: 대화창 추가중
+
+[33mcommit c9a6cf76eb13cf5bda761d28f3e634a5e991555d[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Nov 12 20:19:13 2024 +0900
+
+    Feat: 대화창 추가중
+
+[33mcommit b37ab36d16efd4c108de3307246aeeb2d1936aea[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Nov 11 21:25:29 2024 +0900
+
+    가면 몬스터 구현 중
+
+[33mcommit e8b17572e0292f392d92345f84e4009872521fa8[m
+Merge: d23d7f9 ea68f9d
+Author: JiYoonB <94150712+1234jienf@users.noreply.github.com>
+Date:   Sun Nov 10 13:38:34 2024 +0900
+
+    Merge pull request #30 from Starbow-Break/feat/jiyoon
+    
+    Fix: 애니메이션 수정
+
+[33mcommit ea68f9d23b75a2fbae217038be14d86563657f50[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sun Nov 10 13:37:51 2024 +0900
+
+    Fix: 애니메이션 수정
+
+[33mcommit dc328f5135f94f62842689c471090aa70b1c6b95[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sat Nov 9 21:38:42 2024 +0900
+
+    ADD : 1 스테이지 확장 중
+
+[33mcommit 33303d53e34993f5153e7065b35d168d93c29b36[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sat Nov 9 18:35:38 2024 +0900
+
+    FIX : 1스테이지 확장 중
+
+[33mcommit d23d7f9f8f0c23cf0edd60de780d7da44ece5609[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sat Nov 9 18:02:15 2024 +0900
+
+    Fix: 벽점프 수정
+
+[33mcommit 9a4b0f6f7d94553fb7155faa15f4fb687dc6707c[m
+Merge: 3cd4d5d b1ff1ce
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Sat Nov 9 17:32:16 2024 +0900
+
+    Merge pull request #29 from Starbow-Break/feat/beomsoo
+    
+    FIX : 필요없는 코드 제거
+
+[33mcommit b1ff1ce0c079486c1740843ce17bad532deef643[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Nov 8 20:56:08 2024 +0900
+
+    FIX : 필요없는 코드 제거
+
+[33mcommit 17df1db0c7e784b6589b8b553c2a2fde2deb4dcd[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Nov 8 20:50:03 2024 +0900
+
+    FIX : 워프 시 플레이어 설정이 반영 안되는 ㅎ션상 수정
+
+[33mcommit 08d4f5bec6d3e5b17ab7aa18d0682e7fbe875143[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Nov 8 18:49:34 2024 +0900
+
+    FIX : 거울로 워프 시 플레이어의 위치를 반영해서 워프하도록 수정, 거울을 통해 워프 시 플레이어에 워프 연출이 재생되도록 수정
+
+[33mcommit 3cd4d5d992bd79cea30e13d034bea7cc870706f7[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Nov 7 11:15:53 2024 +0900
+
+    Feat: 물 구현중
+
+[33mcommit 7fee1dc66fe176692aca4b09fba6041d496756d8[m
+Merge: 8d3d488 a1241bd
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Thu Nov 7 02:01:42 2024 +0900
+
+    Merge pull request #27 from Starbow-Break/feat/beomsoo
+    
+    ADD : Dissolve 효과 추가
+
+[33mcommit a1241bd506f9be03c4818d4ea78a7a47743eaa32[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Nov 7 01:59:38 2024 +0900
+
+    ADD : Dissolve 효과 추가
+
+[33mcommit 8d3d48861da4353cba00897fd057ecf7a3ccc121[m
+Merge: 8c534bf ac0d2b4
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Wed Nov 6 23:47:45 2024 +0900
+
+    Merge pull request #26 from Starbow-Break/feat/beomsoo
+    
+    FIX : 밤하늘 배경 버그 수정
+
+[33mcommit ac0d2b4d00adc9d0c9e682d2e2f00806f321b4f4[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Nov 6 23:45:31 2024 +0900
+
+    FIX : 밤하늘 배경 버그 수정
+
+[33mcommit f3aafeb569d47bf35129c404f9ed94811cc12093[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Nov 6 23:28:03 2024 +0900
+
+    FIX : 2 스테이지 밤 하늘 배경 수정
+
+[33mcommit 34aeef34f793c23d507eba07a0a08ab602f0f172[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Nov 6 22:17:38 2024 +0900
+
+    FIX : 상자 열림 애니메이션 수정, 플레이어가 너무 빨리 움직이면 카메라가 지지직 거리는 현상 수정
+
+[33mcommit ba1da05490f316a2b1e3adf8d86c38a251506db5[m
+Merge: 3797d38 3e0ff0e
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Nov 6 21:14:58 2024 +0900
+
+    Merge branch 'feat/beomsoo' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 8c534bf48601fbbebbb31b8d376194bd5f6885b3[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Nov 6 19:48:26 2024 +0900
+
+    Feat: 영화관 퀴즈 추가
+
+[33mcommit 94bf5d609db3a160054947743a92b3f093db610d[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Nov 5 17:32:36 2024 +0900
+
+    Feat: 던전 맵 구상중
+
+[33mcommit 137631e5bd27bebad7b0ac16b6ac37aef3cfcf38[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Mon Nov 4 17:50:53 2024 +0900
+
+    Feat: 스테이지 3 던전 구상중
+
+[33mcommit 1a77b0791da461be2d496256ad75c65c97f2a759[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sun Nov 3 19:12:26 2024 +0900
+
+    Feat: 맵 수정중
+
+[33mcommit caf6a98d6845a46cc57039369d0e4800c30834e9[m
+Merge: fd4ecc7 3e0ff0e
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Sun Nov 3 03:25:59 2024 +0900
+
+    Merge pull request #25 from Starbow-Break/feat/beomsoo
+    
+    ADD : 조명이 번갈아 켜지는 기능 추가
+
+[33mcommit 3e0ff0e0512a535c18b568701a1e0d185969bc3b[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Nov 3 03:24:41 2024 +0900
+
+    ADD : 조명이 번갈아 켜지는 기능 추가
+
+[33mcommit a17a49961cfac60bf193b829364410404bc0d4da[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Nov 3 02:23:40 2024 +0900
+
+    ADD : 짚라인 애니메이션 추가
+
+[33mcommit ff32595b67a948894c28f3ffe27e85d379deaa5c[m
+Merge: 46574bf fd4ecc7
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Nov 3 01:58:10 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 46574bff7ae04b706c439c7ce905a56af0a2a0fc[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Nov 3 01:57:51 2024 +0900
+
+    ADD : 짚라인 와이어에 머터리얼 추가
+
+[33mcommit fd4ecc741ca1d4b7d9fe8157466868cbe0197912[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/feat/jiyoon[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Fri Nov 1 02:10:17 2024 +0900
+
+    fix: 맵 수정중
+
+[33mcommit a72420e994a17fe4b10d9b2e37a671cda0449a08[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Nov 1 00:33:48 2024 +0900
+
+    ADD : 짚라인 구현 완료
+
+[33mcommit 09c9b31e30605417e383f2da080e1169c9855885[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 31 18:14:01 2024 +0900
+
+    Feat: 맵 테스트 중
+
+[33mcommit 8d080f15962aaf4eba4f6ead1d1f0ec4ebb04ba8[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 30 16:18:09 2024 +0900
+
+    ADD : 짚라인 개발중:
+
+[33mcommit c6e0bf60e30947edc93b2b09ccb984468a01918e[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 30 14:16:52 2024 +0900
+
+    FIX : 바깥 공간으로 워프시의 로직 수정
+
+[33mcommit 07a9e9814495bae203c9d565d5f4da39937158c7[m
+Merge: 50f0e92 68dc346
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Wed Oct 30 00:55:53 2024 +0900
+
+    Merge pull request #24 from Starbow-Break/feat/beomsoo
+    
+    ADD : 2스테이지 씬 추가 및 의상실과 하늘 사이의 워프 기능 간단히 구현
+
+[33mcommit 68dc346f959125cea40f6f4fd10ed0cf6d371802[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 30 00:55:02 2024 +0900
+
+    ADD : 2스테이지 씬 추가 및 의상실과 하늘 사이의 워프 기능 간단히 구현
+
+[33mcommit 1a08195b05db59face0581ec0905cb9dd54242d1[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 27 23:20:19 2024 +0900
+
+    FIX : 상자 로직 수정
+
+[33mcommit 50f0e927d0ece0557c2401e3c3e74d12c3529f52[m
+Merge: 5f67581 26fd75a
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Fri Oct 25 20:21:50 2024 +0900
+
+    Merge pull request #23 from Starbow-Break/feat/beomsoo
+    
+    FIX : 1스테이지 히든 방 불빛 조명으로 교체, 히든 맵 트리거 수정
+
+[33mcommit 26fd75aca5eae23b31c05131f40b79fac99f5c87[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Oct 25 20:20:44 2024 +0900
+
+    FIX : 1스테이지 히든 방 불빛 조명으로 교체, 히든 맵 트리거 수정
+
+[33mcommit 6730612cb4452f18bf5d7167b8feedbee6c6582f[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Oct 25 20:02:47 2024 +0900
+
+    ADD : 열쇠 프리팹 추가
+
+[33mcommit 153ef86c285d48dff07c338a749feaf712411245[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Oct 25 19:23:53 2024 +0900
+
+    FIX : 스포트라이트 조명의 target sorting layer 수정
+
+[33mcommit 15f95f71b5b4a7ca4342d8d3b45f89007c449aaa[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Oct 25 19:17:42 2024 +0900
+
+    ADD : sorting layer 추가 및 1스테이지에 적용, 방 내부만 비치는 조명 구현 및 클리어 문 제작
+
+[33mcommit 5f675818e49363bdf614d810dcf2b66ce15bc42d[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Fri Oct 25 14:01:16 2024 +0900
+
+    Feat: 히든 맵 제작중
+
+[33mcommit 1b9b1307c94747f7fd24207bf6e83075135712cb[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Fri Oct 25 01:07:28 2024 +0900
+
+    Feat : 늪 추가
+
+[33mcommit f5256f4be0d448fa0e4d966ecfcba71dffe27d4c[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 24 18:36:07 2024 +0900
+
+    Fix: 맵 조정중
+
+[33mcommit aa9538e1d47f51136b749fde865024e170320bdc[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 23 23:50:01 2024 +0900
+
+    Feat: 맵 조정중
+
+[33mcommit cc53cf20a1bacca675b5bcd65cfd0e79b9700239[m
+Merge: 5d66a88 9c0bede
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Wed Oct 23 20:04:44 2024 +0900
+
+    Merge pull request #22 from Starbow-Break/feat/beomsoo
+    
+    ADD : 코인, 보물 상자 추가
+
+[33mcommit 3797d38a3ddb84b62b5deff5f10a5433a71a8cf0[m
+Merge: f9351a2 cc53cf2
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 20:03:28 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit f9351a2e4d9d950f7273d00e0b42646872dd2106[m
+Merge: 9c0bede 5d66a88
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 20:02:41 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 9c0bedea96e54b6bfeaf1fec5eb018f15619695f[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 20:02:23 2024 +0900
+
+    ADD : 코인, 보물 상자 추가
+
+[33mcommit 5d66a889a5e289c8f9b281e992107a2f482c85e4[m
+Merge: 63e5898 8f93f8c
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Wed Oct 23 13:10:36 2024 +0900
+
+    Merge pull request #21 from Starbow-Break/feat/beomsoo
+    
+    ADD : 숨겨진 방 진입 시 벽이 사라지는 연출 추가
+
+[33mcommit 8f93f8cc75931c4b03733594f55047313b9e7c6f[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 13:09:44 2024 +0900
+
+    ADD : 숨겨진 방 진입 시 벽이 사라지는 연출 추가
+
+[33mcommit d406d0a1fd2da510f621015a769c0d4dc21b886b[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 12:21:22 2024 +0900
+
+    ADD : 워프 출발지와 도착지 전부 애니메이션이 재생되도록 수정
+
+[33mcommit 63e58980cfebfa79d0f9253cabb4e0b48e2f0b01[m
+Merge: a181b6c d430c41
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Wed Oct 23 01:54:51 2024 +0900
+
+    Merge pull request #20 from Starbow-Break/feat/beomsoo
+    
+    ADD : 거울 워프 애니메이션 추가
+
+[33mcommit d430c4128921535e88d0f16e5a4f2102a9e36231[m
+Merge: b844716 a181b6c
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 01:50:59 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit b8447161ba0f6568aacf8b99a602d5650e43add4[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 01:48:47 2024 +0900
+
+    ADD : 거울 워프 애니메이션 추가
+
+[33mcommit 8237c69946b3a411691c717c41b7cb1a7a842fff[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 23 00:14:57 2024 +0900
+
+    FIX : 거울 버그 수정
+
+[33mcommit a181b6cc535e13e9c4955005e4132bb1dbe68c94[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Oct 22 17:28:11 2024 +0900
+
+    Feat: 맵 배치중
+
+[33mcommit 9d84cdc45285407e9049208010c53b1855669001[m
+Merge: 865388b 17e43c8
+Author: JiYoonB <94150712+1234jienf@users.noreply.github.com>
+Date:   Tue Oct 22 17:26:18 2024 +0900
+
+    Merge pull request #19 from Starbow-Break/feat/jiyoon
+    
+    Feat: vip 맵 배치중
+
+[33mcommit 17e43c8dcaef363f9a8b6293cab5286507066887[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Oct 22 17:24:05 2024 +0900
+
+    Feat: vip 맵 배치중
+
+[33mcommit 865388b1388c1ee16b8c10daba6fabc229434662[m
+Merge: 3cd90d4 546f9f0
+Author: JiYoonB <94150712+1234jienf@users.noreply.github.com>
+Date:   Mon Oct 21 23:40:11 2024 +0900
+
+    Merge pull request #18 from Starbow-Break/feat/jiyoon
+    
+    Feat/jiyoon
+
+[33mcommit 546f9f0a5b4ef6cf7162593fad5f41c0864028ee[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Mon Oct 21 23:39:13 2024 +0900
+
+    Feat: Stage3 map 제작중
+
+[33mcommit dcf0d0fb2f0a914116584d37c0993fa8948e0db3[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Mon Oct 21 20:24:52 2024 +0900
+
+    pull'
+
+[33mcommit 366f99b74e46624063a7a6bd9e58f024f8063366[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 21 18:59:05 2024 +0900
+
+    FIX : 거울 쉐이더 수정
+
+[33mcommit 3cd90d4ef5e8045b3e57b8c0ecd637ef6021da29[m
+Merge: 25944ab 1d87d98
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Mon Oct 21 03:42:42 2024 +0900
+
+    Merge pull request #17 from Starbow-Break/feat/beomsoo
+    
+    ADD : 거울 일그러짐 효과 프로토타입 추가
+
+[33mcommit eaf15f24d61240f309c7753e056882b70668dd8c[m
+Merge: 1d87d98 25944ab
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 21 03:31:30 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 1d87d98b5b252e3f04480d341c904171360dedd1[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 21 03:30:56 2024 +0900
+
+    ADD : 거울 일그러짐 효과 프로토타입 추가
+
+[33mcommit 25944abbb1a3592081fe4ec4e93888d8aa41fc92[m
+Merge: da01514 f19d86d
+Author: JiYoonB <94150712+1234jienf@users.noreply.github.com>
+Date:   Mon Oct 21 02:34:19 2024 +0900
+
+    Merge pull request #16 from Starbow-Break/feat/jiyoon
+    
+    Feat: Add particle prefabs
+
+[33mcommit f19d86d2cac64bf773a31880fc9b806b4c3480b5[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Mon Oct 21 02:33:36 2024 +0900
+
+    Feat: Add particle prefabs
+
+[33mcommit 686c48008425ac38fb508490e6efb1b95ea28261[m
+Merge: 43c0705 da01514
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 21 01:58:31 2024 +0900
+
+    Merge branch 'feat/beomsoo' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 43c0705b7f5a1cc62e2e8e184ae0f54c2b200fae[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 21 01:57:46 2024 +0900
+
+    ADD : 거울 프로토타입 추가
+
+[33mcommit da01514762e6507516c72a1dcde3352393e10c22[m
+Merge: efb94d8 d944f73
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Sun Oct 20 20:52:14 2024 +0900
+
+    Merge pull request #15 from Starbow-Break/feat/beomsoo
+    
+    FIX : non-pushable 오브젝트가 있을 때 pushable 오브젝트가 관통하는 현상 수정
+
+[33mcommit d944f7316c822a92bbe79469bc6fa73981c1f8e5[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 20 20:19:45 2024 +0900
+
+    FIX : non-pushable 오브젝트가 있을 때 pushable 오브젝트가 관통하는 현상 수정
+
+[33mcommit 14c18b8c14f6d5e28a3ebccbce0357a8da512396[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 20 19:41:30 2024 +0900
+
+    ADD : 미는 애니메이션 추가
+
+[33mcommit 83b4ab95a50f5a25ecc7ca6ea05a085d0aff6db8[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 20 18:26:20 2024 +0900
+
+    FIX : 상자 로직 수정, 플레이어가 물체를 미는 로직 수정
+
+[33mcommit efb94d85c03137b647127bfee729af549150085a[m
+Merge: bc897e5 49a8c51
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Sat Oct 19 20:59:33 2024 +0900
+
+    Merge pull request #14 from Starbow-Break/feat/beomsoo
+    
+    ADD : 밀고 있는 물체의 질량을 감지하는 로직 추가
+
+[33mcommit 49a8c513ee796bf5bb7b808351f4435e57e68dbe[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sat Oct 19 20:58:30 2024 +0900
+
+    ADD : 밀고 있는 물체의 질량을 감지하는 로직 추가
+
+[33mcommit 7436eaa479ac4f8ce3f88f082a9d6e448f5604ba[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sat Oct 19 17:38:45 2024 +0900
+
+    FIX : 플레이어의 점프력에 맞춰서 맵 높이 하향 조정
+
+[33mcommit bc897e53afef978ab9fadf1ffb4a1cc369f2e2f7[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Fri Oct 18 20:54:05 2024 +0900
+
+    Fix: 맵 수정중
+
+[33mcommit 16905123a7093f25dff2913135b1d9575c4e4bf4[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Fri Oct 18 15:31:16 2024 +0900
+
+    Feat: 영화관 좌석 타일 추가
+
+[33mcommit 3bba6f2baec4db8b666f861329ba420e4068b7be[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 17 23:47:52 2024 +0900
+
+    Feat: 맵 수정중
+
+[33mcommit 2d9909752c127ea57694aad584b8902f7a9ae208[m
+Merge: 545dc8f abaf2cb
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Thu Oct 17 14:57:46 2024 +0900
+
+    Merge pull request #13 from Starbow-Break/feat/beomsoo
+    
+    FIX : 플레이어 능력치 조정, 벽점프 보완
+
+[33mcommit abaf2cb0b9341ad6791eed35d3b52c35f75862f0[m
+Merge: c505179 545dc8f
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Thu Oct 17 14:57:38 2024 +0900
+
+    Merge branch 'master' into feat/beomsoo
+
+[33mcommit c5051796b036b14a5c0705e1b1bb00ad4061aaba[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Oct 17 14:55:29 2024 +0900
+
+    FIX : 플레이어 능력치 조정, 벽점프 보완
+
+[33mcommit c1dd7c173f066b072420920111438118a2bb01b3[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Oct 17 12:59:11 2024 +0900
+
+    FIX : 유리 조각 파티클 조정
+
+[33mcommit cf4cfdd92456d204c76e84c43cf220331c73c73d[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Oct 17 11:40:01 2024 +0900
+
+    ADD : Tooltip 추가
+
+[33mcommit 545dc8f9483ddf8063257c36b643be37dbddfbc5[m
+Merge: b9ae698 817bdfc
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 17 11:38:08 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit 817bdfc898f943464438a01db83d31bc65fe0b50[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 17 11:30:51 2024 +0900
+
+    Feat: map 수정중
+
+[33mcommit b9ae6983871acabf5bf4f1f1d3b921a8ca98e9fb[m
+Merge: 570da72 3488f19
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Thu Oct 17 11:29:41 2024 +0900
+
+    Merge pull request #12 from Starbow-Break/feat/beomsoo
+    
+    FIX : Parallex Scroll 수정
+
+[33mcommit 3488f196d24e0bb65b68feed159fce2f57b2733a[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Oct 17 11:28:59 2024 +0900
+
+    FIX : Parallex Scroll 수정
+
+[33mcommit 570da72786e40fc78d847b07b1d697d7b13b777c[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 16 00:27:41 2024 +0900
+
+    Fix: Stage3 수정중
+
+[33mcommit 9387a8905ed658b3c8ea080f57cb946aaaec1418[m
+Merge: 46d6673 49961d4
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Tue Oct 15 20:14:26 2024 +0900
+
+    Merge pull request #11 from Starbow-Break/feat/beomsoo
+    
+    ADD : 경사로 추가, 가시 데미지 추가
+
+[33mcommit 49961d4b7eae28668a0c0ba409e34381b1be865e[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Tue Oct 15 20:12:25 2024 +0900
+
+    ADD : 경사로 추가, 가시 데미지 추가
+
+[33mcommit 3c06271ecc5f21a6cf22c8aba517ad77facc10b0[m
+Merge: 2b8dd12 46d6673
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Tue Oct 15 19:16:31 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 2b8dd129cbf61aa9e4afbb9347c736a553ff7846[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Tue Oct 15 19:14:11 2024 +0900
+
+    ADD : 가시 추가
+
+[33mcommit 5d0b8f7c443dd613975cdad306900e0264b21b2d[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 14 23:06:22 2024 +0900
+
+    FIX : 낙하 조명 버그 수정
+
+[33mcommit f6afc2a5d4901679247985fa7cea5fba15b2bad4[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 14 22:36:53 2024 +0900
+
+    FIX : CameraFollow 수정
+
+[33mcommit 96e25e2de7663ea77f456bd315123c4d7f10a21a[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 14 18:36:20 2024 +0900
+
+    FIX : 타일 사이로 물체가 끼이는 현상 수정
+
+[33mcommit 46d6673b8c6ff02e2e0b5cd4e62f91a0d5b6339e[m
+Merge: 22ed8e4 427a164
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Mon Oct 14 00:21:29 2024 +0900
+
+    Merge pull request #10 from Starbow-Break/feat/beomsoo
+    
+    ADD : 예외처리 추가
+
+[33mcommit 427a164168a495fbade22f8c3df6eee43eba2981[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 14 00:18:41 2024 +0900
+
+    ADD : 예외처리 추가
+
+[33mcommit 22ed8e46d0f69a471e65afc6f5156739743d5ee3[m
+Merge: f83c88f 298d587
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Sun Oct 13 23:01:58 2024 +0900
+
+    Merge pull request #9 from Starbow-Break/feat/beomsoo
+    
+    FIX : 카메라카 맵 밖을 비추키 않도록 코드 수정
+
+[33mcommit 298d587426ad40d21c22cfb5bcb1bb5a2efd5f63[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 13 22:59:57 2024 +0900
+
+     FIX : 카메라카 맵 밖을 비추키 않도록 코드 수정
+
+[33mcommit 85e33aa7786bd753919ddf91f50b57aeada2139b[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 13 22:35:01 2024 +0900
+
+    ADD : 1 스테이지 프로토타입 제작
+
+[33mcommit f83c88fe4f879e1410765a8ca7cb5bffb65d4db7[m
+Merge: 0c45ed3 aa65423
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Sun Oct 13 00:30:01 2024 +0900
+
+    Merge pull request #8 from Starbow-Break/feat/beomsoo
+    
+    ADD : Parallax Scroll 구현
+
+[33mcommit aa65423bf542e376759e8c6ba7ea26a17053a35f[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 13 00:27:49 2024 +0900
+
+    ADD : Parallax Scroll 구현
+
+[33mcommit 495a710bfe8770dda9f8f602de116fa8b16414e1[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Oct 10 13:51:49 2024 +0900
+
+    ADD : 배경 추가 중
+
+[33mcommit 0c45ed323a93af2317bcfa27b8307a106a5adf73[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 10 13:50:23 2024 +0900
+
+    Fix: 좌석 애니메이션 해결
+
+[33mcommit 0d29c021c411429956ca0713125e0eb3080df2f9[m
+Merge: a2e8777 c43f487
+Author: JiYoonB <94150712+1234jienf@users.noreply.github.com>
+Date:   Thu Oct 10 13:19:18 2024 +0900
+
+    Merge pull request #7 from Starbow-Break/feat/jiyoon
+    
+    Feat/jiyoon
+
+[33mcommit c43f4878fee8cdd55400f747971f2df14edd08d6[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 10 13:18:15 2024 +0900
+
+    Delete: playermove 삭제
+
+[33mcommit 5adcb893fdc5cebce55df1d8d13b66a372581529[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 10 13:17:17 2024 +0900
+
+    Fix: 좌석 캐릭터 로직 수정
+
+[33mcommit c13c4e33cf7f8c4b7bc313adc444de981085d060[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Thu Oct 10 11:19:00 2024 +0900
+
+    Feat: 의자 몬스터 추가
+
+[33mcommit 61364951a99c9f285e2e9b7490f432d4841e5263[m
+Merge: e0e1686 a2e8777
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Thu Oct 10 11:16:45 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit a2e8777952730b1b24fc891042b02d438d054905[m
+Merge: 8772d55 705355f
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Thu Oct 10 11:15:21 2024 +0900
+
+    Merge pull request #6 from Starbow-Break/feat/beomsoo
+    
+    ADD : Depth 기믹 프로토타입 구현
+
+[33mcommit 705355f06ad48242751317d97ebc090a7f0ecdf0[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 9 20:25:27 2024 +0900
+
+    ADD : Depth 기믹 프로토타입 구현
+
+[33mcommit feae81207c1904944d102bff241023463fb78c62[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Tue Oct 8 18:06:25 2024 +0900
+
+    ADD : 스테이지 2 기믹 테스트를 위한 씬 추가
+
+[33mcommit 8772d554be7a673fdd21d8476b97e7bac21b5d99[m
+Merge: 17af420 0eb183a
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Mon Oct 7 23:06:08 2024 +0900
+
+    Merge pull request #5 from Starbow-Break/feat/beomsoo
+    
+    ADD : 1 스테이지맵 확장
+
+[33mcommit 0eb183a622565431576f408b89097603c6f68082[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 7 23:03:49 2024 +0900
+
+    ADD : 1 스테이지맵 확장
+
+[33mcommit 4ba6a2ad13fedae60030d13e0f78683773b374c8[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Mon Oct 7 18:17:26 2024 +0900
+
+    Feat: 영화관 좌석 몬스터 추가
+
+[33mcommit 83734f43d0d3967340faf114580f30a3fd865634[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Oct 7 18:02:18 2024 +0900
+
+    ADD : 1 스테이지 추가 디자인, FIX : 부채골 메쉬 로직 수정
+
+[33mcommit 0fa2ccc0dd1799b5570da6f66756b01885988852[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 6 20:34:41 2024 +0900
+
+    ADD : 1 스테이지 제작 중
+
+[33mcommit 55e605fa63ac1523c8de388b04e1e60bbe24ce2c[m
+Merge: e1078b9 17af420
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 6 19:47:19 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit e1078b96d247e13af96237619c0f759d4b8fb8f1[m
+Merge: 2303ed0 a52cf3b
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 6 19:46:17 2024 +0900
+
+    Merge branch 'feat/beomsoo' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit 2303ed06d34bc4188ee27d1bd5b6a72446210637[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Oct 6 19:45:39 2024 +0900
+
+    ADD : 1스테이지 씬 추가
+
+[33mcommit 17af420ae136013027bbb99ba64cee1085f4233e[m
+Merge: f077cdf 75de105
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sat Oct 5 21:49:34 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit 75de105c79cf9a9fdbbdcf44f8b0640a4bd2a5c4[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sat Oct 5 21:49:19 2024 +0900
+
+    Feat: 땅 흔들림 추가
+
+[33mcommit f077cdf300cc9701f8d30fd3f886069710e34828[m
+Merge: e299a69 c700baf
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sat Oct 5 20:51:07 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit c700bafb8495fc5c998c8d07922883d586112087[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sat Oct 5 20:49:38 2024 +0900
+
+    Feat: 톱니바퀴 추가
+
+[33mcommit e0e1686300b09f7cee5c990541c9d650f6944443[m
+Merge: a52cf3b e299a69
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Oct 4 11:31:42 2024 +0900
+
+    Merge branch 'master' of https://github.com/Starbow-Break/Lucid-Walker into feat/beomsoo
+
+[33mcommit a52cf3b64467f75d69969c6a9275e1c02fd7a5d3[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Oct 4 11:31:25 2024 +0900
+
+    ADD : 쉐이더 그래프 추가
+
+[33mcommit e299a69e1714d3be991943d38d652fd375ece3d4[m
+Merge: 823db80 427b98f
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Fri Oct 4 11:30:48 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit 427b98f25448f5aef46a3d2dcd0ed0620fae0b63[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Fri Oct 4 11:29:17 2024 +0900
+
+    Fix: layer 하나로  변경
+
+[33mcommit 823db80a32fa14fd98b54aeac11d73d0f551fec6[m
+Merge: 7701532 a757792
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Fri Oct 4 00:52:36 2024 +0900
+
+    Merge pull request #4 from Starbow-Break/feat/beomsoo
+    
+    FIX : 조명 버그 수정, 프리팹 재조정
+
+[33mcommit a7577921ecb7b5311c8ce71cd06286c5513391e1[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 2 22:57:23 2024 +0900
+
+    FIX : 조명 버그 수정, 프리팹 재조정
+
+[33mcommit e08b2e931ce6abca655d59232294dfe6991891f5[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 2 19:29:13 2024 +0900
+
+    MOD : 조명이 관절로 움직이도록 수정
+
+[33mcommit 770153258ba1936e09c208c4aca4ec4110ed9c83[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 2 19:28:15 2024 +0900
+
+    Feat: 구름 effect 추가중
+
+[33mcommit 0254ad60dff31aff5ef2aae7c4d82532373420ac[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 2 18:39:03 2024 +0900
+
+    Fix: 벽점프 수정
+
+[33mcommit a4825e27b3af54ac2bdb19ce16cd9e1cfa76a95e[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 2 14:36:10 2024 +0900
+
+    Feat: 점프 가속도 추가
+
+[33mcommit 7b730ab63c1b1f71555bfa0c77b722312dbc87f7[m
+Merge: 9511346 348fba2
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 2 14:09:14 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit 348fba29daaf49adb77b26c63e6d37d59d14f9db[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 2 14:08:49 2024 +0900
+
+    Feat: animation 추가
+
+[33mcommit 951134642862cadafac7d76d5e297f121fe11aed[m
+Merge: 7997126 1f1eba6
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 2 12:40:25 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit 1f1eba654b54890bb418e385eaa8d8db1b8e600e[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Wed Oct 2 12:40:00 2024 +0900
+
+    Feat: 벽점프 추가
+
+[33mcommit 79971265bab8a2ea6f7bf69fbcfcc5269af65d82[m
+Merge: c29114e 929a5f9
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Wed Oct 2 01:18:55 2024 +0900
+
+    Merge pull request #3 from Starbow-Break/feat/beomsoo
+    
+    ADD : 그림자 타일은 빛이 비추지 않으면 없어지도록 구현 (타일 단위로 생성/소멸)
+
+[33mcommit 929a5f9134a2a8da517972c3269eb5d5b9dba9ad[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Wed Oct 2 01:16:50 2024 +0900
+
+    ADD : 그림자 타일은 빛이 비추지 않으면 없어지도록 구현 (타일 단위로 생성/소멸)
+
+[33mcommit c29114e757fb298811ee9700e10c1c9e6378a1be[m
+Merge: f931029 878aca0
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Oct 1 11:55:17 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit 878aca003c466fbb5654eb1ddffea11d5186111a[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Oct 1 11:55:01 2024 +0900
+
+    Feat: Character controller 이중점프 구현
+
+[33mcommit f931029275cf2e75f0bee654fa6e99f6828e517a[m
+Merge: 53a224d c9ce437
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Oct 1 10:42:55 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit c9ce4377226938fe12ca627d978e4aa6884f6821[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Tue Oct 1 10:42:21 2024 +0900
+
+    Fix: character control
+
+[33mcommit 53a224d34fb7e88b714ae15884cc99ccecc13539[m
+Merge: 3ddec53 01ffe34
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Mon Sep 30 21:05:18 2024 +0900
+
+    Merge pull request #2 from Starbow-Break/feat/beomsoo
+    
+    Refactor : 스위치 코드 리팩토링
+
+[33mcommit 01ffe345752a7a1a1ee86d95ed2bc5448b5049b5[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Sep 30 21:03:12 2024 +0900
+
+    Refactor : 스위치 코드 리팩토링
+
+[33mcommit fc0c0f55996cb21ce2fbfe91f6ec629e5f924b57[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Mon Sep 30 20:18:17 2024 +0900
+
+    ADD : 토글식 조명 추가
+
+[33mcommit 3ddec53d5382e024fc84ac24c6db0ff627978db0[m
+Merge: 93116e2 f462e5d
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Mon Sep 30 11:36:42 2024 +0900
+
+    Merge branch 'feat/jiyoon'
+
+[33mcommit f462e5d26afed9413cd958de0f886251d8b779f5[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Mon Sep 30 11:36:08 2024 +0900
+
+    Feat: 맵 제작 중
+
+[33mcommit 93116e29461ecbb6a6d2ed9f4f41ea6794a3dada[m
+Merge: 82b280b 7f2999b
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Sun Sep 29 22:19:34 2024 +0900
+
+    Merge pull request #1 from Starbow-Break/feat/beomsoo
+    
+    ADD : 조명 깜빡임 효과 추가
+
+[33mcommit 7f2999bb97bbcfdc84a6aa6095e4718afda340c1[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Sep 29 22:18:35 2024 +0900
+
+    ADD : 조명 깜빡임 효과 추가
+
+[33mcommit 150c8545a1a5b0c1517b625c79c00eee9ba3ac24[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Sep 29 21:34:38 2024 +0900
+
+    ADD : 스위치 이미지 전환 추가, 부품 케이스 추가
+
+[33mcommit 82b280bd2db3760eecc63c47295f8d3db1b73035[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sun Sep 29 15:15:04 2024 +0900
+
+    Feat: cinemachine 추가
+
+[33mcommit a94d8a93e86960ada8d80db751dcfabe48235e66[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sun Sep 29 13:38:01 2024 +0900
+
+    ADD: 타일맵 추가
+
+[33mcommit e086428dab6d0004a5346d5d438359ed7d917095[m
+Merge: c31ff30 d0cab85
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sun Sep 29 13:19:28 2024 +0900
+
+    Merge branch 'master' into feat/jiyoon
+
+[33mcommit d0cab8506e4d6ebb7e849989cf01b3122d032acd[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Sep 29 04:24:31 2024 +0900
+
+    FIX : 임시로 사용하던 스프라이트 제거
+
+[33mcommit 27885d755520d88390ed7292ba90c93978973551[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Sun Sep 29 04:17:04 2024 +0900
+
+    FIx : 조명 수정
+
+[33mcommit c31ff30de54c28e5cd012b59fe259efa5e37a7d6[m
+Author: 백지윤 <wendy6992@naver.com>
+Date:   Sat Sep 28 23:46:08 2024 +0900
+
+    add branch
+
+[33mcommit a21c04a28a0809b7ea7954cd8f7d1947cf097ac5[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Sep 27 15:10:52 2024 +0900
+
+    First Commit
+
+[33mcommit 2e35963dffa5474dc280b4802fc65a2a8515c30f[m
+Author: Starbow-Break <phsyobs@naver.com>
+Date:   Fri Sep 27 15:02:44 2024 +0900
+
+    First Commit
+
+[33mcommit 483e11fbb239bfe3871604a3d781ced12a3148ff[m
+Author: STARBOW <103927296+Starbow-Break@users.noreply.github.com>
+Date:   Fri Sep 27 14:54:35 2024 +0900
+
+    Initial commit
