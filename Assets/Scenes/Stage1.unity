@@ -4668,18 +4668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1x2 Non-Movable Case
       objectReference: {fileID: 0}
-    - target: {fileID: 1583259803021187665, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
-      propertyPath: m_BodyType
-      value: 1
+    - target: {fileID: 4513657403015976937, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
       objectReference: {fileID: 0}
-    - target: {fileID: 1583259803021187665, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3854864769269586768, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4815,6 +4807,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
+    - target: {fileID: 4513657403015976937, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5216,6 +5212,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997591414}
     m_Modifications:
+    - target: {fileID: 1153505049718681296, guid: e0ecd6dacec042a4b8f9588e813bcde8, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     - target: {fileID: 1195807135646034670, guid: e0ecd6dacec042a4b8f9588e813bcde8, type: 3}
       propertyPath: m_Material
       value: 
@@ -5768,6 +5768,10 @@ PrefabInstance:
     - target: {fileID: 4085380734470783937, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
       propertyPath: m_Name
       value: 2x1 Non-Movable Case
+      objectReference: {fileID: 0}
+    - target: {fileID: 6892082282962333505, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
       objectReference: {fileID: 0}
     - target: {fileID: 7283381168622909519, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
       propertyPath: m_Material
@@ -6365,7 +6369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: blinkMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: innerSpot
@@ -7130,6 +7134,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997591414}
     m_Modifications:
+    - target: {fileID: 786576979980899211, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     - target: {fileID: 966466619749755853, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
       propertyPath: m_BodyType
       value: 1
@@ -7483,7 +7491,7 @@ GameObject:
   - component: {fileID: 1405354689}
   - component: {fileID: 1405354688}
   - component: {fileID: 1405354687}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Ground And Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37660,8 +37668,9 @@ GameObject:
   - component: {fileID: 1503113419}
   - component: {fileID: 1503113422}
   - component: {fileID: 1503113418}
-  - component: {fileID: 1503113417}
   - component: {fileID: 1503113423}
+  - component: {fileID: 1503113424}
+  - component: {fileID: 1503113417}
   m_Layer: 8
   m_Name: Shadow Platform
   m_TagString: Untagged
@@ -38292,7 +38301,7 @@ CompositeCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 1
@@ -38415,6 +38424,25 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1503113415}
+--- !u!251 &1503113424
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503113415}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 120
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1001 &1516878844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39096,7 +39124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: blinkMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: innerSpot
@@ -39241,7 +39269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: blinkMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: innerSpot
@@ -39352,10 +39380,10 @@ MonoBehaviour:
   wallchkDistance: 0.5
   p_Layer:
     serializedVersion: 2
-    m_Bits: 16704
+    m_Bits: 20800
   w_Layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   isWall: 0
   slidingSpeed: 0.4
   wallJumpPower: 5
@@ -39750,6 +39778,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
+    - target: {fileID: 2032671642689555074, guid: b5b63cd0b64f0f544baca221b3757472, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     - target: {fileID: 5858128733596387228, guid: b5b63cd0b64f0f544baca221b3757472, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2999997
@@ -41983,6 +42015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2x1 Non-Movable Case
       objectReference: {fileID: 0}
+    - target: {fileID: 6892082282962333505, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     - target: {fileID: 7283381168622909519, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
       propertyPath: m_Material
       value: 
@@ -42705,7 +42741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: blinkMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: innerSpot
@@ -42891,6 +42927,7 @@ GameObject:
   - component: {fileID: 1926089632}
   - component: {fileID: 1926089628}
   - component: {fileID: 1926089633}
+  - component: {fileID: 1926089634}
   m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
@@ -46699,7 +46736,7 @@ CompositeCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 1
@@ -47026,6 +47063,25 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1926089626}
+--- !u!251 &1926089634
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926089626}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 120
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1962441161
 GameObject:
   m_ObjectHideFlags: 0
@@ -47482,6 +47538,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997591414}
     m_Modifications:
+    - target: {fileID: 786576979980899211, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     - target: {fileID: 966466619749755853, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
       propertyPath: m_BodyType
       value: 1
@@ -47556,6 +47616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997591414}
     m_Modifications:
+    - target: {fileID: 1153505049718681296, guid: e0ecd6dacec042a4b8f9588e813bcde8, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     - target: {fileID: 1195807135646034670, guid: e0ecd6dacec042a4b8f9588e813bcde8, type: 3}
       propertyPath: m_Material
       value: 
@@ -47921,6 +47985,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
+    - target: {fileID: 4513657403015976937, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
+      propertyPath: platformLayer.m_Bits
+      value: 4416
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48289,7 +48357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: blinkMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: lightRadius
