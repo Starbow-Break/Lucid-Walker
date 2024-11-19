@@ -5,8 +5,7 @@ public class MonsterNpc : MonoBehaviour, IDamageable
 {
     public int health = 3;
     public int damage = 2;
-    public Transform player;           // 플레이어의 위치
-    public float detectionRange = 5f;  // 플레이어 탐지 거리
+    public float detectionRange = 4f;  // 플레이어 탐지 거리
     public float moveSpeed = 2f;       // 이동 속도
     public float patrolDistance = 5f;  // 순찰 범위
     public float platformDetectionDistance = 0.5f; // 플랫폼 감지 거리
@@ -22,6 +21,7 @@ public class MonsterNpc : MonoBehaviour, IDamageable
     public Vector2 attackCenter = new Vector2(0.5f, 0); // 공격 범위 중심
     public Vector2 attackSize = new Vector2(0.3f, 0.6f);  // 공격 범위 크기 (줄임)
 
+    private Transform detectedPlayer; // 감지된 플레이어 참조
 
     void Start()
     {
@@ -33,21 +33,37 @@ public class MonsterNpc : MonoBehaviour, IDamageable
     void Update()
     {
         if (isDead) return; // 죽었으면 로직 실행 중지
-        // 플랫폼 앞에 있는지 감지하고 방향 전환
+
+        DetectPlayer(); // 플레이어 감지
+
         if (IsPlatformInFront())
         {
             Flip();
         }
 
         // 플레이어가 감지 범위 내에 있지 않으면 순찰
-        if (Vector2.Distance(player.position, transform.position) > detectionRange)
+        if (detectedPlayer == null)
         {
+            // 플레이어가 감지되지 않으면 순찰
             Patrol();
         }
         else
         {
             // 감지 범위 내에 있으면 쫓아감
-            ChaseAndAttackPlayer();
+            ChasePlayer();
+        }
+    }
+    void DetectPlayer()
+    {
+        // 감지 범위 내에 있는 객체 중 태그가 "Player"인 대상 탐지
+        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, detectionRange, LayerMask.GetMask("Player"));
+        if (playerCollider != null)
+        {
+            detectedPlayer = playerCollider.transform; // 탐지된 플레이어 설정
+        }
+        else
+        {
+            detectedPlayer = null; // 탐지되지 않으면 null로 초기화
         }
     }
 
@@ -72,22 +88,38 @@ public class MonsterNpc : MonoBehaviour, IDamageable
         }
     }
 
-    void ChaseAndAttackPlayer()
+    void ChasePlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
+        Vector2 direction = ((Vector2)detectedPlayer.position - (Vector2)transform.position).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-        if ((player.position.x > transform.position.x && !isFacingRight) ||
-            (player.position.x < transform.position.x && isFacingRight))
+        // 방향이 맞지 않으면 Flip
+        if ((detectedPlayer.position.x > transform.position.x && !isFacingRight) ||
+            (detectedPlayer.position.x < transform.position.x && isFacingRight))
         {
             Flip();
         }
 
-        if (canAttack)
+        // 공격 범위 내 플레이어가 있는지 확인
+        if (IsPlayerInAttackRange() && canAttack)
         {
             anim.SetTrigger("Attack"); // 공격 애니메이션 실행
             StartCoroutine(AttackCooldown());
         }
+    }
+
+    bool IsPlayerInAttackRange()
+    {
+        // 공격 범위 안에 플레이어가 있는지 확인
+        Vector2 boxCenter = (Vector2)transform.position + attackCenter * (isFacingRight ? 1 : -1);
+        Collider2D playerInRange = Physics2D.OverlapBox(
+            boxCenter,
+            attackSize,
+            0f,
+            LayerMask.GetMask("Player")
+        );
+
+        return playerInRange != null;
     }
 
     // 애니메이션 이벤트에서 호출될 함수
