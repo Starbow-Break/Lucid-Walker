@@ -23,6 +23,9 @@ public class StageClearDoor : MonoBehaviour
 
         if(interactingPlayer != null && Input.GetKeyDown(KeyCode.Z)) {
             if(isOpen) {
+                /*
+                * TODO : 스테이지 클리어 로직
+                */
                 Debug.Log("스테이지 클리어!!!!!!!!");
             }
             else {

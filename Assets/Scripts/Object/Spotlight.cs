@@ -14,7 +14,7 @@ enum MoveMode
 
 enum BlinkMode
 {
-    NONE, BLINK
+    NONE
 }
 
 public class Spotlight : MonoBehaviour
@@ -57,10 +57,8 @@ public class Spotlight : MonoBehaviour
     public bool isBroken { get; private set; } = false; // 피손 여부
     float swingTime = 0.0f;
     
-    
     Vector2 initDir;
     Vector2 lightDir;
-    IEnumerator blinkCoroutine = null;
     SpriteRenderer lampSpriteRenderer; // 전등 이미지에 사용되는 렌더러
 
     private void OnValidate() {
@@ -189,23 +187,11 @@ public class Spotlight : MonoBehaviour
     {
         isOn = true;
         SetActiveLight(isOn);
-
-        // if blink mode is BLINK, light blink
-        if(blinkMode == BlinkMode.BLINK) {
-            blinkCoroutine = Blink();
-            StartCoroutine(blinkCoroutine);
-        }
     }
 
     // Turn Off Light
     public void TurnOff()
     {
-        // stop blink coroutine
-        if(blinkCoroutine != null && blinkMode == BlinkMode.BLINK) {
-            StopCoroutine(blinkCoroutine);
-            blinkCoroutine = null;
-        }
-
         isOn = false;
         SetActiveLight(isOn);
     }
@@ -217,24 +203,6 @@ public class Spotlight : MonoBehaviour
         sourceLight.gameObject.SetActive(isActive);
         _light.gameObject.SetActive(isActive);
         mask.gameObject.SetActive(isActive);
-    }
-
-    // Blink Light
-    IEnumerator Blink()
-    {
-        float waitTime;
-
-        while(isOn) {
-            waitTime = Random.Range(0.25f, 0.5f);
-            yield return new WaitForSeconds(waitTime);
-            SetActiveLight(false);
-
-            yield return null;
-            yield return null;
-            SetActiveLight(true);
-        }
-
-        yield return null;
     }
 
     // swing Lamp

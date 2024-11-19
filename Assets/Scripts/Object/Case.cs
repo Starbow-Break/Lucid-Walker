@@ -26,8 +26,9 @@ public class Case : MonoBehaviour, IMovable
     float caseWidth;
     float caseHeight;
 
+    [SerializeField] LayerMask platformLayer;
     LayerMask movableLayer;
-    LayerMask platformLayer;
+    
 
     void Awake()
     {
@@ -40,7 +41,6 @@ public class Case : MonoBehaviour, IMovable
         caseHeight = sr.bounds.max.y - sr.bounds.min.y;
 
         movableLayer = LayerMask.GetMask("Movable");
-        platformLayer = LayerMask.GetMask("Platform") | LayerMask.GetMask("Shadow Platform");
     }
 
     void Update()
