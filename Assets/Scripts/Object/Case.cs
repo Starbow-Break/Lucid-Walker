@@ -51,7 +51,7 @@ public class Case : MonoBehaviour, IMovable
             new(caseWidth / 2, 0.01f),
             0.0f,
             Vector2.down,
-            0.0f,
+            20.0f,
             movableLayer | platformLayer
         );
 
@@ -59,7 +59,14 @@ public class Case : MonoBehaviour, IMovable
             rb.velocity += Time.deltaTime * (Vector2)Physics.gravity;
         }
         else {
-            rb.velocity = new(rb.velocity.x, 0.0f);
+            if(hitBottom.point.y > transform.position.y + Time.deltaTime * rb.velocity.y) {
+                transform.Translate(hitBottom.point - (Vector2)transform.position);
+                rb.velocity = new(rb.velocity.x, 0.0f);
+            }
+            else {
+                rb.velocity += Time.deltaTime * (Vector2)Physics.gravity;
+            }
+            
         }
     }
 
@@ -145,12 +152,6 @@ public class Case : MonoBehaviour, IMovable
         Gizmos.DrawWireCube(
             transform.position + (h + pushCheckDistance / 2) * Vector3.up,
             new Vector3(w * 0.9f, pushCheckDistance, 0.5f)
-        );
-        
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(
-            transform.position + 0.01f * Vector3.down,
-            new Vector3(w, 0.02f, 0.5f)
         );
     }
 }
