@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MoviePortal : MonoBehaviour
 {
     public Transform SeatBehindMap; // 새로운 맵의 플레이어 시작 위치
@@ -9,9 +10,11 @@ public class MoviePortal : MonoBehaviour
     public List<Collider2D> collidersToEnable; // 포탈 이동 시 활성화할 Collider2D 리스트
     public Color portalParticleColor = Color.red; // 포탈 이동 시 적용할 파티클 색상
     public ParticleSystem playerParticleSystem; // 플레이어의 Particle System 참조
-    public float cameraTargetSize = 16f; // 카메라의 목표 크기
+    public float cameraTargetSize; // 카메라의 목표 크기
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
     private bool isPlayerInPortal = false; // 플레이어가 포탈에 있는지 여부 확인
+    private bool isUsingPortalCamera = false;   // 현재 Cinemachine 카메라를 사용하는지 여부
+    private Coroutine currentCameraCoroutine;   // 카메라 크기 변경 코루틴 참조
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -51,9 +54,8 @@ public class MoviePortal : MonoBehaviour
         // 플레이어를 새로운 맵의 시작 지점으로 이동
         player.transform.position = SeatBehindMap.position;
 
-
-        // 카메라 확대
-        StartCoroutine(LerpCameraSize(cameraTargetSize));
+        // 카메라 확대 (이전 코루틴 중단 후 실행)
+        StartCameraSizeChange(cameraTargetSize);
 
         // 비활성화된 타일맵 활성화
         if (tileMapToActivate != null)
@@ -71,7 +73,7 @@ public class MoviePortal : MonoBehaviour
         SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
         if (playerSprite != null)
         {
-            playerSprite.sortingOrder = 0;
+            playerSprite.sortingOrder = -1;
         }
 
         // 플레이어의 Particle System 색상을 빨간색으로 변경
@@ -82,22 +84,42 @@ public class MoviePortal : MonoBehaviour
         }
     }
 
+    public void StartCameraSizeChange(float targetSize)
+    {
+        if (currentCameraCoroutine != null)
+        {
+            StopCoroutine(currentCameraCoroutine);
+        }
+        currentCameraCoroutine = StartCoroutine(LerpCameraSize(targetSize));
+    }
+
+    public void StopCameraSizeChange()
+    {
+        if (currentCameraCoroutine != null)
+        {
+            StopCoroutine(currentCameraCoroutine);
+            currentCameraCoroutine = null;
+        }
+    }
+
     private IEnumerator LerpCameraSize(float targetSize)
     {
+        Debug.Log("포탈 탐");
         Camera mainCamera = Camera.main;
         if (mainCamera != null)
         {
             float initialSize = mainCamera.orthographicSize;
             float elapsedTime = 0f;
 
-            while (Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.01f)
+            while (elapsedTime < cameraLerpSpeed)
             {
-                elapsedTime += Time.deltaTime * cameraLerpSpeed;
-                mainCamera.orthographicSize = Mathf.Lerp(initialSize, targetSize, elapsedTime);
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / cameraLerpSpeed);
+                mainCamera.orthographicSize = Mathf.Lerp(initialSize, targetSize, t);
                 yield return null;
             }
 
-            mainCamera.orthographicSize = targetSize; // 정확히 목표 크기에 도달하도록 설정
+            mainCamera.orthographicSize = targetSize;
         }
     }
 }

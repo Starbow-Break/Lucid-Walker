@@ -7,18 +7,25 @@ public class LeverController : MonoBehaviour
     [SerializeField] private Animator leverAnimator; // 레버 애니메이터
     [SerializeField] private ParticleSystem leverParticle; // 레버별 고유 파티클
     [SerializeField] private int waterIncreaseAmount = 4; // 레버 당 증가하는 물 높이
+    private bool isPlayerIn = false; // 플레이어가 있는지 여부 확인
 
     public bool isActivated = false; // 레버가 이미 작동했는지 여부
-
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isActivated)
+        // 플레이어가 포탈에 들어왔을 때
+        if (other.gameObject.CompareTag("Player"))
         {
-            // Z 키 입력 확인
+            isPlayerIn = true; // 플레이어가 포탈에 있음을 표시
+            StartCoroutine(WaitForKeyPress(other)); // 키 입력을 기다리는 코루틴 시작
+        }
+    }
+
+    private IEnumerator WaitForKeyPress(Collider2D player)
+    {
+        while (isPlayerIn)
+        {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                Debug.Log("레버 작동 시작");
-
                 // 레버 애니메이션 실행
                 if (leverAnimator != null)
                 {
@@ -32,11 +39,9 @@ public class LeverController : MonoBehaviour
 
                     // 애니메이션 길이에 맞게 레버 작동 상태 설정
                     StartCoroutine(ActivateLever());
+                    yield break; // 코루틴 종료
                 }
-                else
-                {
-                    Debug.LogWarning("Lever Animator is not assigned!");
-                }
+                yield return null; // 다음 프레임까지 대기
             }
         }
     }

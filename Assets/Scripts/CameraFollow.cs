@@ -36,15 +36,15 @@ public class CameraFollow : MonoBehaviour
 
         if (target != null)
         {
-        transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
-        originalTarget = target;
+            transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+            originalTarget = target;
         }
     }
 
     void LateUpdate()
     {
         if (target == null) return;
-        
+
         // 카메라 범위의 너비, 높이 계산
         Camera camera = gameObject.GetComponent<Camera>();
         Vector3 bottomLeft = camera.ScreenToWorldPoint(Vector3.zero);

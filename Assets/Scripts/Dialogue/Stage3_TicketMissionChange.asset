@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696e935404f7a422499adfdf326416bc, type: 3}
+  m_Name: Stage3_TicketMissionChange
+  m_EditorClassIdentifier: 
+  dialogueID: Stage3_Dungeon
+  lines:
+  - characterName: "\uC8FC\uC778\uACF5"
+    characterImage: {fileID: 1137789122, guid: 49e77f1fd45a140f7a2799ab07a7d877, type: 3}
+    sentence: "\"\uBB50\uC57C?! \uB10C \uB204\uAD6C\uC57C..\""
+  - characterName: "\uC5EC\uC790"
+    characterImage: {fileID: 2070956530, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\"\uC544\uC27D\uC9C0\uB9CC \uACF5\uC5F0\uC740 \uC624\uB97C\uC218 \uC5C6\uAC8C
+      \uB410\uC5B4.\""
+  - characterName: "\uC5EC\uC790"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\"\uC774 \uC5EC\uC790\uB294 \uD3C9\uC0DD \uC8C4\uCC45\uAC10\uC5D0\uC11C
+      \uBC97\uC5B4\uB098\uC9C0 \uBABB\uD560\uAC70\uC57C\""

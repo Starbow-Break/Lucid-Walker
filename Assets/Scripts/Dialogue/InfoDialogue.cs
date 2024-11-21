@@ -6,11 +6,13 @@ public class InfoDialogue : MonoBehaviour
     public DialogueData dialogueData;
     public Transform focusPoint; // 대화 상대 (카메라가 포커스할 대상)
     private CameraFollow cameraFollow;
-    public Transform player; // 플레이어 Transform 참조
 
     public float cameraTargetSize; // 대화 중 카메라 목표 크기
     public float originalCameraSize = 7.5f; // 대화 종료 후 복구될 카메라 크기
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
+
+    private Transform detectedPlayer; // 감지된 플레이어
+    private bool dialoueFinished; // 대화 종료 판별 
 
     private void Start()
     {
@@ -27,6 +29,8 @@ public class InfoDialogue : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            detectedPlayer = other.transform; // 감지된 플레이어 저장
+
             // 카메라를 대화 대상에 포커스
             if (cameraFollow != null && focusPoint != null)
             {
@@ -52,6 +56,7 @@ public class InfoDialogue : MonoBehaviour
 
     private IEnumerator LerpCameraSize(float targetSize)
     {
+        Debug.Log("대화시작");
         Camera mainCamera = Camera.main;
         if (mainCamera != null)
         {
@@ -71,14 +76,16 @@ public class InfoDialogue : MonoBehaviour
 
     private IEnumerator HandlePostDialogue()
     {
+        Debug.Log("대화종료 함수");
         // 대화 종료
         DialogueManager.Instance.EndDialogue();
 
         // 플레이어로 카메라 포커스 이동
-        if (cameraFollow != null && player != null)
+        if (cameraFollow != null && detectedPlayer != null)
         {
-            cameraFollow.SetDialogueFocus(player);
+            cameraFollow.SetDialogueFocus(detectedPlayer); // 감지된 플레이어로 포커스 이동
         }
+
 
         // 카메라 크기 복구
         yield return StartCoroutine(LerpCameraSize(originalCameraSize));

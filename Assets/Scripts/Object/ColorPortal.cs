@@ -4,33 +4,34 @@ using UnityEngine;
 
 public class ColorPortal : MonoBehaviour
 {
-    public Transform targetPosition; // 이동할 타깃 위치
-    public ParticleSystem playerParticleSystem; // 플레이어의 파티클 시스템
-    public Color portalParticleColor; // 포탈 이동 시 적용할 파티클 색상
+    public Transform targetPosition;
+    public ParticleSystem playerParticleSystem;
+    public Color portalParticleColor;
 
-    public GameObject tileMapToDeactivate; // 비활성화할 타일맵 (특정 조건일 때만)
-    public List<Collider2D> collidersToDisable; // 비활성화할 Collider2D 리스트 (특정 조건일 때만)
-    public float targetCameraSize = 7.5f; // 목표 카메라 사이즈
-    public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
-    private bool isPlayerInPortal = false; // 플레이어가 포탈에 있는지 여부 확인
+    public GameObject tileMapToDeactivate;
+    public List<Collider2D> collidersToDisable;
+    public float targetCameraSize = 7.5f;
+    public float cameraLerpSpeed = 2f;
+    public MoviePortal moviePortal; // MoviePortal 참조
+
+    private float originalCameraSize;
+    private bool isPlayerInPortal = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 플레이어가 포탈에 들어왔을 때
         if (other.CompareTag("Player"))
         {
-            isPlayerInPortal = true; // 플레이어가 포탈에 있음을 표시
-            StartCoroutine(WaitForKeyPress(other)); // 키 입력을 기다리는 코루틴 시작
+            isPlayerInPortal = true;
+            StartCoroutine(WaitForKeyPress(other));
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // 플레이어가 포탈에서 나갔을 때
         if (other.CompareTag("Player"))
         {
-            isPlayerInPortal = false; // 플레이어가 포탈을 벗어났음을 표시
-            StopCoroutine(WaitForKeyPress(other)); // 코루틴 중지
+            isPlayerInPortal = false;
+            StopCoroutine(WaitForKeyPress(other));
         }
     }
 
@@ -40,70 +41,52 @@ public class ColorPortal : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                TeleportPlayer(player); // 키 입력을 받으면 텔레포트 실행
-                yield break; // 코루틴 종료
+                TeleportPlayer(player);
+                yield break;
             }
-            yield return null; // 다음 프레임까지 대기
+            yield return null;
         }
     }
 
     private void TeleportPlayer(Collider2D player)
     {
-        // 플레이어가 타깃 위치로 이동
         if (targetPosition != null)
         {
             player.transform.position = targetPosition.position;
         }
 
-        // 파티클 색상 변경
         if (playerParticleSystem != null)
         {
             var mainModule = playerParticleSystem.main;
             mainModule.startColor = portalParticleColor;
         }
 
-        // 특정 조건 (타깃 위치의 태그가 "PortalEnd"인 경우)에서 비활성화할 항목 처리
         if (targetPosition != null && targetPosition.CompareTag("PortalEnd"))
         {
-            // 타일맵 비활성화
             if (tileMapToDeactivate != null)
             {
                 tileMapToDeactivate.SetActive(false);
             }
 
-            // 콜라이더 비활성화
-            foreach (Collider2D collider in collidersToDisable)
-            {
-                collider.enabled = false;
-            }
-
+            // 플레이어의 Order in Layer를 0으로 설정
             SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
             if (playerSprite != null)
             {
                 playerSprite.sortingOrder = 10;
             }
 
-            // 카메라 크기를 Lerp로 자연스럽게 변경
-            StartCoroutine(LerpCameraSize(targetCameraSize));
-        }
-    }
-
-    private IEnumerator LerpCameraSize(float targetSize)
-    {
-        Camera mainCamera = Camera.main;
-        if (mainCamera != null)
-        {
-            float initialSize = mainCamera.orthographicSize;
-            float elapsedTime = 0f;
-
-            while (Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.01f)
+            foreach (Collider2D collider in collidersToDisable)
             {
-                elapsedTime += Time.deltaTime * cameraLerpSpeed;
-                mainCamera.orthographicSize = Mathf.Lerp(initialSize, targetSize, elapsedTime);
-                yield return null;
+                collider.enabled = false;
             }
 
-            mainCamera.orthographicSize = targetSize; // 목표 크기에 정확히 도달하도록 설정
+            // MoviePortal의 카메라 크기 변경 코루틴 종료
+            if (moviePortal != null)
+            {
+                moviePortal.StopCameraSizeChange();
+                moviePortal.StartCameraSizeChange(targetCameraSize);
+            }
         }
     }
+
 }
