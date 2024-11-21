@@ -8,7 +8,7 @@ public class DialogueTrigger : MonoBehaviour
     private CameraFollow cameraFollow;
     public Transform player; // 플레이어 Transform 참조
 
-    public float cameraTargetSize = 10f; // 대화 중 카메라 목표 크기
+    public float cameraTargetSize; // 대화 중 카메라 목표 크기
     public float originalCameraSize = 7.5f; // 대화 종료 후 복구될 카메라 크기
     public Vector3 characterTargetPosition; // 대화 종료 후 캐릭터 이동 목표 위치
 
