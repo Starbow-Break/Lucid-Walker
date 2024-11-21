@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 targetCrouchSize = new Vector2(0.92f, 0.8f); // 목표 crouch size
     private float crouchTransitionSpeed = 5f; // 크기 변환 속도
 
+    public bool isDialogueActive = false; // 대화 중 상태 플래그 추가
+
+
 
     #region Movable
     [SerializeField] Transform movableChk; // movable 체크하는 위치
@@ -145,7 +148,16 @@ public class PlayerController : MonoBehaviour
             {
                 FlipPlayer();
             }
-
+        // 대화 중일때 움직임 차단
+        if (isDialogueActive)
+        {
+            // 대화 중일 때는 입력을 무시
+            rb.velocity = Vector2.zero;
+            anim.SetFloat("movable_mess", 0.0f);
+            anim.SetBool("walk", false);
+            anim.SetBool("run", false);
+            return;
+        }
     }
 
     private void FixedUpdate()
@@ -273,6 +285,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    public void SetDialogueActive(bool active)
+    {
+        isDialogueActive = active;
+
+        if (active)
+        {
+            // 대화 시작 시 움직임 차단
+            rb.velocity = Vector2.zero;
+            anim.SetFloat("movable_mess", 0.0f);
+            anim.SetBool("walk", false);
+            anim.SetBool("run", false);
+        }
+    }
     void FlipPlayer()
     {
         // 방향 전환

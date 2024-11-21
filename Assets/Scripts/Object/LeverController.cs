@@ -10,38 +10,41 @@ public class LeverController : MonoBehaviour
     private bool isPlayerIn = false; // 플레이어가 있는지 여부 확인
 
     public bool isActivated = false; // 레버가 이미 작동했는지 여부
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     // 플레이어가 포탈에 들어왔을 때
+    //     if (other.gameObject.CompareTag("Player"))
+    //     {
+    //         isPlayerIn = true; // 플레이어가 포탈에 있음을 표시
+    //         StartCoroutine(WaitForKeyPress(other)); // 키 입력을 기다리는 코루틴 시작
+    //     }
+    // }
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어가 포탈에 들어왔을 때
         if (other.gameObject.CompareTag("Player"))
         {
             isPlayerIn = true; // 플레이어가 포탈에 있음을 표시
-            StartCoroutine(WaitForKeyPress(other)); // 키 입력을 기다리는 코루틴 시작
         }
     }
 
-    private IEnumerator WaitForKeyPress(Collider2D player)
+    void Update()
     {
-        while (isPlayerIn)
+        if (isPlayerIn && !isActivated && Input.GetKeyDown(KeyCode.Z))
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            // 레버 애니메이션 실행
+            if (leverAnimator != null)
             {
-                // 레버 애니메이션 실행
-                if (leverAnimator != null)
+                leverAnimator.SetTrigger("Rotate");
+
+                // 레버 파티클 실행
+                if (leverParticle != null && !leverParticle.isPlaying)
                 {
-                    leverAnimator.SetTrigger("Rotate");
-
-                    // 레버 파티클 실행
-                    if (leverParticle != null && !leverParticle.isPlaying)
-                    {
-                        leverParticle.Play();
-                    }
-
-                    // 애니메이션 길이에 맞게 레버 작동 상태 설정
-                    StartCoroutine(ActivateLever());
-                    yield break; // 코루틴 종료
+                    leverParticle.Play();
                 }
-                yield return null; // 다음 프레임까지 대기
+
+                // 애니메이션 길이에 맞게 레버 작동 상태 설정
+                StartCoroutine(ActivateLever());
             }
         }
     }
