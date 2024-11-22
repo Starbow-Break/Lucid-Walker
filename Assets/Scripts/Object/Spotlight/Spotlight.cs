@@ -97,11 +97,7 @@ public class Spotlight : MonoBehaviour
         }
 
         if(fall) {
-            fallCollider.enabled = true;
             StartCoroutine(Swing());
-        }
-        else {
-            fallCollider.enabled = false;
         }
 
         // Turn On/Off according to isOn value
