@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5812781158523635419}
   - component: {fileID: -3225090945633634420}
   - component: {fileID: 6740484572095743336}
+  - component: {fileID: -1169433462091817553}
   m_Layer: 0
   m_Name: Fallen Lamp
   m_TagString: Untagged
@@ -128,7 +129,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 110263
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -142,9 +143,25 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.003692627, y: -0.40018302}
   serializedVersion: 2
   m_Radius: 0.22874069
+--- !u!114 &-1169433462091817553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275660890973531738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca0468829a024e4a9050805f8224c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spike: {fileID: 7134591702338360429, guid: d006d766b37340b4dba03b1a73f2978b, type: 3}
+  scaleMultiplier: 1
+  offset: {x: 0, y: 0.3}
+  effect: {fileID: 1135735217227700808, guid: f29c70c411299e442b0e5db6c518aab4, type: 3}

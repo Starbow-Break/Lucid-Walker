@@ -20528,8 +20528,6 @@ MonoBehaviour:
   currentMap: {fileID: 2078423166}
   targetMap: {fileID: 869834683}
   targetWarp: {fileID: 0}
-  activeObjects: []
-  inactiveObjects: []
 --- !u!58 &956339659
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -20826,6 +20824,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2096629285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1243125762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243125763}
+  m_Layer: 7
+  m_Name: WallChkUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1243125763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243125762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2096629285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1269798907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21015,8 +21044,6 @@ MonoBehaviour:
   currentMap: {fileID: 869834683}
   targetMap: {fileID: 2078423166}
   targetWarp: {fileID: 0}
-  activeObjects: []
-  inactiveObjects: []
 --- !u!58 &1431916957
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -21231,10 +21258,6 @@ PrefabInstance:
     - target: {fileID: 5389731459263204878, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
-      propertyPath: fall
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21912,6 +21935,7 @@ MonoBehaviour:
   shakeDuration: 0.5
   shakeAmount: 0.1
   decreaseFactor: 1
+  followSpeed: 0.1
   paddingLeft: 0
   paddingRight: 0
   paddingTop: 0
@@ -26406,7 +26430,7 @@ Transform:
   m_GameObject: {fileID: 2096629284}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.55, y: -8.84, z: 0}
+  m_LocalPosition: {x: 44.94, y: -8.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26415,6 +26439,7 @@ Transform:
   - {fileID: 384113266}
   - {fileID: 1189335672}
   - {fileID: 289489867}
+  - {fileID: 1243125763}
   m_Father: {fileID: 2134115732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2096629286
@@ -26447,6 +26472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundChkFront: {fileID: 1066685321}
   groundChkBack: {fileID: 384113266}
+  wallChkUp: {fileID: 1243125763}
   wallChk: {fileID: 1189335672}
   wallchkDistance: 0.5
   p_Layer:
@@ -26463,6 +26489,7 @@ MonoBehaviour:
   runSpeed: 6
   crouchWalkSpeed: 2
   isRight: 1
+  isGround: 0
   chkDistance: 0.05
   jumpPower: 3.5
   jumpBoost: 3
