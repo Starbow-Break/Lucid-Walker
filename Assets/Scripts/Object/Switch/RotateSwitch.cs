@@ -5,27 +5,28 @@ using UnityEngine;
 public class RotateSwitch : SpotlightSwitch
 {
     [SerializeField] Sprite[] sprites;
-    [SerializeField] int startIndex = 0;
-    int currentIndex;
 
     protected override void Awake()
     {
         base.Awake();
         
-        currentIndex = startIndex;
-        sr.sprite = sprites[currentIndex];
+        if(sprites.Length > 0) {
+            sr.sprite = sprites[spotlight.switchIndex >= sprites.Length ? ^1 : spotlight.switchIndex];
+        }
     }
 
     void Update() {
         if(isInteracting && Input.GetKeyDown(KeyCode.Z) && !spotlight.isBroken) {
-            ChangeSprite();
             spotlight.RotateSwitch();
+            ChangeSprite(
+                spotlight.switchIndex >= sprites.Length 
+                ? spotlight.switchIndex - 1 
+                : spotlight.switchIndex);
         }
     }
 
-    void ChangeSprite()
+    void ChangeSprite(int index)
     {
-        currentIndex = (currentIndex + 1) % sprites.Length;
-        sr.sprite = sprites[currentIndex];
+        sr.sprite = sprites[index];
     }
 }

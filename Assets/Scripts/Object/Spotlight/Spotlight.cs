@@ -1,41 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UIElements;
-
-enum MoveMode
-{
-    NONE, FOLLOW_TARGET, SWITCH
-}
-
-enum BlinkMode
-{
-    NONE
-}
 
 public class Spotlight : MonoBehaviour
 {   
-    [Header("Mode")]
-    [SerializeField] MoveMode moveMode;
-    [SerializeField] BlinkMode blinkMode;
-    [SerializeField] bool fall;
-    
-    [Header("Target")]
-    [Range(0.0f, 360.0f)]
-    [SerializeField] float hitDeg = 0.0f; // 스포트라이트가 플레이어를 감지하는 시야각
-    public bool isOn; // 켜짐 여부
+    /* 
+    * 조명 타입
+    * NORMAL : 특별한 점 없음
+    * FOLLOW_TARGET : 목표를 따라감
+    * SWITCH : 특정 위치로 전환
+    * FALL : 떨어지는 조명
+    */
+    enum Type
+    {
+        NORMAL, FOLLOW_TARGET, SWITCH, FALL
+    }
 
-    [Header("Switch")]
-    [SerializeField] int startIndex = 0;
-    [SerializeField] float[] rotValue;
-    int switchIndex;
+    [Header("Type")]
+    [SerializeField] Type type;
 
     [Header("Light")]
     [SerializeField] Light2D _light; // 불빛
+    public bool isOn; // 켜짐 여부
     [SerializeField] float innerSpot; // Inner Spot
     [SerializeField] float outerSpot; // Outer Spot
     [SerializeField] float lightRadius; // 빛의 반지름
@@ -46,6 +32,15 @@ public class Spotlight : MonoBehaviour
     [SerializeField] Sprite onSprite; // 점등 시 스프라이트
     [SerializeField] Sprite offSprite; // 점멸 시 스프라이트
     [SerializeField] Light2D sourceLight; // 광원 불빛
+    
+    [Header("Target")]
+    [Range(0.0f, 360.0f)]
+    [SerializeField] float hitDeg = 0.0f; // 스포트라이트가 플레이어를 감지하는 시야각
+
+    [Header("Switch")]
+    [SerializeField] float[] rotValue;
+    [SerializeField] int startIndex  = 0;
+    public int switchIndex { get; private set; }
 
     [Header("Fall")]
     [SerializeField] Collider2D fallCollider; // 낙하 감지 Collider
@@ -92,11 +87,11 @@ public class Spotlight : MonoBehaviour
         mask.Generate();
 
         // initialize switch index
-        if(moveMode == MoveMode.SWITCH) {
+        if(type == Type.SWITCH) {
             switchIndex = startIndex;
         }
 
-        if(fall) {
+        if(type == Type.FALL) {
             StartCoroutine(Swing());
         }
 
@@ -109,7 +104,7 @@ public class Spotlight : MonoBehaviour
         // rotate spotlight
         if(isOn) {
             // if move mode is FOLLOW_TARGET, rotate spotlight to target
-            if(moveMode == MoveMode.FOLLOW_TARGET) {
+            if(type == Type.FOLLOW_TARGET) {
                 // Check Overlap Player
                 Collider2D collider = Physics2D.OverlapCircle(lamp.position, lightRadius, LayerMask.GetMask("Player"));
                 
@@ -119,7 +114,7 @@ public class Spotlight : MonoBehaviour
                 }
             }
             // if move mode is SWITCH, rotate spotlight to next rotation value
-            else if(moveMode == MoveMode.SWITCH) {
+            else if(type == Type.SWITCH) {
                 Rotate(rotValue[switchIndex]);
             }
         }
