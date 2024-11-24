@@ -148,16 +148,6 @@ public class PlayerController : MonoBehaviour
             {
                 FlipPlayer();
             }
-        // 대화 중일때 움직임 차단
-        if (isDialogueActive)
-        {
-            // 대화 중일 때는 입력을 무시
-            rb.velocity = Vector2.zero;
-            anim.SetFloat("movable_mess", 0.0f);
-            anim.SetBool("walk", false);
-            anim.SetBool("run", false);
-            return;
-        }
     }
 
     private void FixedUpdate()
@@ -277,27 +267,16 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
-
+    public bool IsJumping()
+    {
+        // 점프 상태는 바닥에 닿아있지 않으며, Y 속도가 양수일 때
+        return !isGround;
+    }
     void FreezeX()
     {
         isWallJump = false;
         rb.velocity = new Vector2(0, rb.velocity.y);
 
-    }
-
-
-    public void SetDialogueActive(bool active)
-    {
-        isDialogueActive = active;
-
-        if (active)
-        {
-            // 대화 시작 시 움직임 차단
-            rb.velocity = Vector2.zero;
-            anim.SetFloat("movable_mess", 0.0f);
-            anim.SetBool("walk", false);
-            anim.SetBool("run", false);
-        }
     }
     void FlipPlayer()
     {
