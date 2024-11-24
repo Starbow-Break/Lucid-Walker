@@ -10,8 +10,6 @@ public class DialogueTrigger : MonoBehaviour
 
     public float cameraTargetSize; // 대화 중 카메라 목표 크기
     public float originalCameraSize = 7.5f; // 대화 종료 후 복구될 카메라 크기
-    public Vector3 characterTargetPosition; // 대화 종료 후 캐릭터 이동 목표 위치
-
     private bool hasTriggered = false; // 트리거가 한 번만 실행되도록 제어
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
 
@@ -76,14 +74,6 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    private void MoveCharacter()
-    {
-        if (focusPoint != null)
-        {
-            // 캐릭터를 목표 위치로 즉시 이동
-            focusPoint.position = characterTargetPosition;
-        }
-    }
 
     private IEnumerator HandlePostDialogue()
     {
@@ -100,7 +90,7 @@ public class DialogueTrigger : MonoBehaviour
         yield return StartCoroutine(LerpCameraSize(originalCameraSize));
 
         // 캐릭터 이동
-        MoveCharacter();
+        focusPoint.gameObject.SetActive(false);
 
         // 모든 작업이 완료된 후 GameObject 비활성화
         gameObject.SetActive(false);

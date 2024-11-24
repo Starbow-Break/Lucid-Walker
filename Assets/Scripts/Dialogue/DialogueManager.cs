@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         // 대화가 활성 상태일 때만 클릭을 통해 다음 대사로 넘어감
-        if (isDialogueActive && Input.GetMouseButtonDown(0))
+        if (isDialogueActive && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)))
         {
             DisplayNextLine();
         }

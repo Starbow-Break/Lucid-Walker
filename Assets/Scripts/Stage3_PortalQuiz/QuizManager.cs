@@ -39,6 +39,13 @@ public class QuizManager : MonoBehaviour
 
     public void NowPortal(string portalName)
     {
+        // 중복된 포탈 이름이 이미 시퀀스에 존재하면 추가하지 않음
+        if (currentSequence.Contains(portalName))
+        {
+            Debug.Log($"중복된 포탈 이름 {portalName} - 추가하지 않음.");
+            return;
+        }
+
         // 새 포탈 추가
         currentSequence.Add(portalName);
 
@@ -91,15 +98,29 @@ public class QuizManager : MonoBehaviour
 
     private bool IsSequenceCorrect(List<string> playerSequence, List<string> correctSequence)
     {
-        if (playerSequence.Count != correctSequence.Count)
+        // correctSequence가 playerSequence의 하위 리스트인지 확인
+        if (playerSequence.Count < correctSequence.Count)
             return false;
 
-        for (int i = 0; i < playerSequence.Count; i++)
+        for (int i = 0; i <= playerSequence.Count - correctSequence.Count; i++)
         {
-            if (playerSequence[i] != correctSequence[i])
-                return false;
+            bool isMatch = true;
+            for (int j = 0; j < correctSequence.Count; j++)
+            {
+                if (playerSequence[i + j] != correctSequence[j])
+                {
+                    isMatch = false;
+                    break;
+                }
+            }
+
+            if (isMatch)
+            {
+                return true; // correctSequence가 포함된 경우
+            }
         }
-        return true;
+
+        return false;
     }
 
     private void ActivateLine(QuizStep step)
@@ -116,6 +137,7 @@ public class QuizManager : MonoBehaviour
         if (!activeButtons.ContainsKey(portalName))
         {
             activeButtons.Add(portalName, button); // 버튼 등록
+            Debug.Log($"Button {portalName} registered.");
         }
     }
 
@@ -128,6 +150,7 @@ public class QuizManager : MonoBehaviour
             if (activeButtons.ContainsKey(portalName))
             {
                 activeButtons[portalName].DeactivateButton(); // 버튼 비활성화
+                Debug.Log($"Deactivated button: {portalName}");
             }
         }
 

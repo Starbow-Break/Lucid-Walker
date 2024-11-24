@@ -16,6 +16,9 @@ public class MoviePortal : MonoBehaviour
     private bool isUsingPortalCamera = false;   // 현재 Cinemachine 카메라를 사용하는지 여부
     private Coroutine currentCameraCoroutine;   // 카메라 크기 변경 코루틴 참조
 
+    public List<GameObject> monstersToActivate; // 포탈 통과 시 활성화할 몬스터 리스트
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어가 포탈에 들어왔을 때
@@ -67,6 +70,15 @@ public class MoviePortal : MonoBehaviour
         foreach (Collider2D collider in collidersToEnable)
         {
             collider.enabled = true;
+        }
+
+        // 몬스터 리스트 활성화
+        foreach (GameObject monster in monstersToActivate)
+        {
+            if (monster != null)
+            {
+                monster.SetActive(true); // 몬스터 활성화
+            }
         }
 
         // 플레이어의 Order in Layer를 0으로 설정
