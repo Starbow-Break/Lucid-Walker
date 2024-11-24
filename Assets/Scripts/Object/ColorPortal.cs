@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ColorPortal : MonoBehaviour
 {
+    public QuizManager quizManager; // QuizManager 참조
     public Transform targetPosition;
     public ParticleSystem playerParticleSystem;
     public Color portalParticleColor;
-
     public GameObject tileMapToDeactivate;
     public List<Collider2D> collidersToDisable;
     public float targetCameraSize = 7.5f;
@@ -85,6 +85,11 @@ public class ColorPortal : MonoBehaviour
             {
                 moviePortal.StopCameraSizeChange();
                 moviePortal.StartCameraSizeChange(targetCameraSize);
+            }
+
+            if (quizManager != null)
+            {
+                quizManager.ResetCurrentSequence();
             }
         }
     }

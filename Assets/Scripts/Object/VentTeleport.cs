@@ -40,8 +40,6 @@ public class VentTeleport : MonoBehaviour
         // 텔레포트 실행
         if (teleportDestination != null)
         {
-            player.position = teleportDestination.position; // 설정된 위치로 이동
-
             // 도착 시 destination 애니메이션 실행
             if (destinationAnimator != null)
             {
@@ -51,7 +49,7 @@ public class VentTeleport : MonoBehaviour
             // 텔레포트 후 카메라를 새 타일맵으로 이동
             if (cameraNewTilemap != null)
             {
-                cameraNewTilemap.MoveCameraToNewTilemap(); // 새 타일맵으로 카메라 이동
+                cameraNewTilemap.MoveCameraToNewTilemap(true, false, player, teleportDestination); // 새 타일맵으로 카메라 이동
             }
         }
         else

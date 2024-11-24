@@ -12,6 +12,7 @@ public class SinkIntoTile : MonoBehaviour
     [SerializeField]
     private Animator playerAnimator; // Inspector에서 플레이어 애니메이터 참조
 
+
     public float sinkDelay = 1.0f; // 얼마나 천천히 빠질지 설정
     public float sinkSpeed = 0.5f; // 플레이어가 천천히 가라앉는 속도
     public float postTeleportFallDuration = 1f; // 텔레포트 후 천천히 떨어지는 시간
@@ -59,7 +60,7 @@ public class SinkIntoTile : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             player.position = Vector3.Lerp(originalPosition,
-                originalPosition + Vector3.down * 1f, // 가라앉는 깊이 조정
+                originalPosition + Vector3.down * 0.5f, // 가라앉는 깊이 조정
                 elapsedTime / sinkDelay); // 부드럽게 아래로 이동
             yield return null;
         }
@@ -67,26 +68,16 @@ public class SinkIntoTile : MonoBehaviour
         // 텔레포트 실행
         if (teleportDestination != null)
         {
-            player.position = teleportDestination.position; // 설정된 위치로 이동
-
             // vent 애니메이션 실행
             if (ventAnimator != null)
             {
                 ventAnimator.SetTrigger("Open"); // vent 오픈 애니메이션 트리거
             }
-            else
-            {
-                Debug.LogWarning("Vent animator is not set!");
-            }
 
             // 텔레포트 후 카메라를 새 타일맵으로 이동
-            if (cameraNewTilemap != null)
+            if (cameraNewTilemap != null && teleportDestination != null)
             {
-                cameraNewTilemap.MoveCameraToNewTilemap(); // 새 타일맵으로 카메라 이동
-            }
-            else
-            {
-                Debug.LogWarning("CameraNewTilemap reference is not set!");
+                cameraNewTilemap.MoveCameraToNewTilemap(true, true, player, teleportDestination);
             }
 
             // Falling 상태를 false로 설정
