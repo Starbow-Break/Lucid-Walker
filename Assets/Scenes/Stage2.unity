@@ -7017,50 +7017,6 @@ PrefabInstance:
       propertyPath: targetWarp
       value: 
       objectReference: {fileID: 1824739717}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: activeObjects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: deactiveObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: inactiveObjects.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: activeObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1156989320}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: activeObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1819039405}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: deactiveObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 2077452461}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: deactiveObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1819039405}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: inactiveObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1819039405}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: inactiveObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 495777508}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: inactiveObjects.Array.data[2]
-      value: 
-      objectReference: {fileID: 771126310}
-    - target: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-      propertyPath: inactiveObjects.Array.data[3]
-      value: 
-      objectReference: {fileID: 2073015687}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12891,7 +12847,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8850133398707597782, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
   m_PrefabInstance: {fileID: 733835442}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073015687}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4db99788229f41f48ae943483b3eee92, type: 3}
@@ -14231,6 +14187,7 @@ MonoBehaviour:
   shakeDuration: 0.5
   shakeAmount: 0.1
   decreaseFactor: 1
+  followSpeed: 0.1
   paddingLeft: 0
   paddingRight: 0
   paddingTop: 0
@@ -15752,6 +15709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundChkFront: {fileID: 688690405}
   groundChkBack: {fileID: 1670387607}
+  wallChkUp: {fileID: 557754130}
   wallChk: {fileID: 557754130}
   wallchkDistance: 0.5
   p_Layer:
@@ -15768,6 +15726,7 @@ MonoBehaviour:
   runSpeed: 6
   crouchWalkSpeed: 2
   isRight: 1
+  isGround: 0
   chkDistance: 0.05
   jumpPower: 3.5
   jumpBoost: 3
@@ -15999,11 +15958,6 @@ SpriteRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4166072975719531149, guid: e1346980df4c1ac4b85eb2bb7fe6572a, type: 3}
   m_PrefabInstance: {fileID: 808043989}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2073015687 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 332352193311587888, guid: 42783237a6c5d8946adb187e2107e5ce, type: 3}
-  m_PrefabInstance: {fileID: 733835442}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2073415857
 PrefabInstance:
