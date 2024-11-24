@@ -21,13 +21,13 @@ public class OnOffSwitch : SpotlightSwitch
 
     void Update() {
         if(isInteracting && Input.GetKeyDown(KeyCode.Z) && !spotlight.isBroken) {
-            ChangeSprite();
             spotlight.Switch();
+            ChangeSprite(spotlight.isOn);
         }
     }
 
-    void ChangeSprite()
+    void ChangeSprite(bool value)
     {
-        sr.sprite = sr.sprite == onSprite ? offSprite : onSprite;
+        sr.sprite = value ? onSprite : offSprite;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [System.Serializable]
 struct SequentialSpotlightData {
@@ -14,13 +15,29 @@ public class SequentialSpotlightGroup : MonoBehaviour
     [SerializeField] float timePerUnit; // 단위당 시간
     [SerializeField] List<SequentialSpotlightData> spotlightsData;
 
+    public bool isOn = true;
+
     int curTimeUnit = -1; // 현재 시간
     Dictionary<int, List<Spotlight>> targetSpotlight; // 각 시간마다 목표 스포트라이트
+    Coroutine coroutine = null;
 
     void Start()
     {
         InitializeTargetSpotlight();
-        StartCoroutine(SequentialSpotlightFlow());
+        if(isOn) {
+            coroutine = StartCoroutine(SequentialSpotlightFlow());
+        }
+    }
+
+    // 초기화
+    void ResetGroup()
+    {
+        curTimeUnit = -1; // 시간 초기화
+
+        // 모든 스포트라이트 끄기
+        foreach(SequentialSpotlightData ssd in spotlightsData) {
+            ssd.spotlight.TurnOff();
+        }
     }
 
     void InitializeTargetSpotlight()
@@ -28,6 +45,8 @@ public class SequentialSpotlightGroup : MonoBehaviour
         targetSpotlight = new Dictionary<int, List<Spotlight>>();
 
         foreach(SequentialSpotlightData ssd in spotlightsData) {
+            ssd.spotlight.TurnOff();
+
             foreach(int t in ssd.lightOnTime) {
                 if(!targetSpotlight.ContainsKey(t)) {
                     targetSpotlight.Add(t, new List<Spotlight>());
@@ -36,6 +55,8 @@ public class SequentialSpotlightGroup : MonoBehaviour
                 targetSpotlight[t].Add(ssd.spotlight);
             }
         }
+
+        ResetGroup();
     }
 
     IEnumerator SequentialSpotlightFlow()
@@ -58,5 +79,28 @@ public class SequentialSpotlightGroup : MonoBehaviour
 
             yield return new WaitForSeconds(timePerUnit);
         }
+    }
+    
+    
+
+    void TurnOff()
+    {
+        isOn = false;
+        if(coroutine != null) {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+        ResetGroup();
+    }
+
+    void TurnOn()
+    {
+        isOn = true;
+        coroutine ??= StartCoroutine(SequentialSpotlightFlow());
+    }
+
+    public void Switch()
+    {
+        if(isOn) TurnOff(); else TurnOn();
     }
 }
