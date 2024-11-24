@@ -10,6 +10,8 @@ public class ColorPortal : MonoBehaviour
     public Color portalParticleColor;
     public GameObject tileMapToDeactivate;
     public List<Collider2D> collidersToDisable;
+    public List<Animator> animatorsToHandle; // 애니메이터 리스트
+
     public float targetCameraSize = 7.5f;
     public float cameraLerpSpeed = 2f;
     public MoviePortal moviePortal; // MoviePortal 참조
@@ -90,6 +92,14 @@ public class ColorPortal : MonoBehaviour
             if (quizManager != null)
             {
                 quizManager.ResetCurrentSequence();
+            }
+
+            foreach (Animator animator in animatorsToHandle)
+            {
+                if (animator != null)
+                {
+                    animator.SetBool("Activate", false);
+                }
             }
         }
     }

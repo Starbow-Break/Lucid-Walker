@@ -11,26 +11,32 @@ public class StageClearDoor : MonoBehaviour
     GameObject interactingPlayer = null;
     bool isOpen = false;
 
-    void Awake() {
+    void Awake()
+    {
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if(!isOpen && anim.GetCurrentAnimatorStateInfo(0).IsName("Open")) {
+        if (!isOpen && anim.GetCurrentAnimatorStateInfo(0).IsName("Open"))
+        {
             isOpen = true;
         }
 
-        if(interactingPlayer != null && Input.GetKeyDown(KeyCode.Z)) {
-            if(isOpen) {
+        if (interactingPlayer != null && Input.GetKeyDown(KeyCode.Z))
+        {
+            if (isOpen)
+            {
                 /*
                 * TODO : 스테이지 클리어 로직
                 */
                 Debug.Log("스테이지 클리어!!!!!!!!");
             }
-            else {
+            else
+            {
                 ItemFollowBag bag = interactingPlayer.GetComponent<ItemFollowBag>();
-                if(bag != null && bag.HasItem(key)) {
+                if (bag != null && bag.HasItem(key))
+                {
                     Open();
                 }
             }
@@ -52,7 +58,8 @@ public class StageClearDoor : MonoBehaviour
         key.SetFollow(true);
         key.SetTargetTransform(keyHole);
 
-        while((keyHole.position - key.transform.position).sqrMagnitude <= 0.0001f) {
+        while ((keyHole.position - key.transform.position).sqrMagnitude <= 0.0001f)
+        {
             yield return null;
         }
 
@@ -66,15 +73,17 @@ public class StageClearDoor : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {   
-        if(other.CompareTag("Player")) {
+    {
+        if (other.CompareTag("Player"))
+        {
             interactingPlayer = other.gameObject;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(interactingPlayer == other.gameObject) {
+        if (interactingPlayer == other.gameObject)
+        {
             interactingPlayer = null;
         }
     }

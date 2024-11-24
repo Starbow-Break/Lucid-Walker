@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float wallchkDistance;
     public LayerMask p_Layer;
     public LayerMask w_Layer;
+    public LayerMask water_Layer;
     public bool isWall;
     public float slidingSpeed;
     public float wallJumpPower;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
         // 캐릭터의 앞쪽과 뒤쪽의 바닥 체크
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, p_Layer);
         bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
+        bool isInWater = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
         bool wall_up = Physics2D.Raycast(wallChkUp.position, Vector2.up, chkDistance, p_Layer);
 
         // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
@@ -118,7 +120,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isSliding", !isGround && isWall);
 
         // 달리기 상태일 때 run 애니메이션
-        if (!isWallJump && isGround)
+        if (!isWallJump && (isGround || isInWater))
         {
             if (input_x != 0)
             {
