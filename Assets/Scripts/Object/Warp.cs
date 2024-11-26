@@ -6,18 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class Warp : MonoBehaviour
 {
-    [SerializeField] Tilemap currentMap; // 현재 위프가 있는 타일 맵
-    [SerializeField] Tilemap targetMap; // 워프 지점 타일 맵
     [SerializeField] Warp targetWarp; // 목표 Warp
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
-
-    protected Color targetTintColor; // 워프 이후 Tint Color
-
-    protected virtual void Awake()
-    {
-        targetTintColor = targetMap.gameObject.GetComponent<Tilemap>().color;
-    }
 
     void Update() {
         if(interactingPlayer != null && Input.GetKeyDown(KeyCode.Z)) {
@@ -50,17 +41,8 @@ public class Warp : MonoBehaviour
         yield return WarpInAnim(warpTarget);
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
-        warpTarget.transform.parent = targetMap.transform.parent;
-        warpTarget.transform.localScale = targetMap.transform.localScale;
+        warpTarget.transform.parent = targetWarp.transform.parent;
         warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
-
-        // Tint 컬러 변경
-        SpriteRenderer sr = warpTarget.GetComponent<SpriteRenderer>();
-        sr.color = targetTintColor;
-
-        // Collider 설정
-        DeactiveChildColliders(currentMap.transform.parent.gameObject);
-        ActiveChildColliders(targetMap.transform.parent.gameObject);
 
         // 워프 애니메이션
         yield return targetWarp.WarpOutAnim(warpTarget);
