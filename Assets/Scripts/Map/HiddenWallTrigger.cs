@@ -13,16 +13,18 @@ public class HiddenWallTrigger : MonoBehaviour
     [SerializeField] HiddenWallTriggerType type;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        switch(type) {
-            case HiddenWallTriggerType.Enter : {
-                hiddenRoomWall.Enter();
-                break;
+        if(other.CompareTag("Player")) {
+            switch(type) {
+                case HiddenWallTriggerType.Enter : {
+                    hiddenRoomWall.Enter();
+                    break;
+                }
+                case HiddenWallTriggerType.Exit : {
+                    hiddenRoomWall.Exit();
+                    break;
+                }
+                default: break;
             }
-            case HiddenWallTriggerType.Exit : {
-                hiddenRoomWall.Exit();
-                break;
-            }
-            default: break;
         }
     }
 }
