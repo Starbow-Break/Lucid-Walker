@@ -13,7 +13,11 @@ public class FallenLamp : MonoBehaviour
     [SerializeField] GameObject effect; // 효과
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Vector2 spawnPoint = new(transform.position.x, Mathf.Floor(transform.position.y));
+        SpawnSpike();
+    }
+
+    void SpawnSpike() {
+        Vector2 spawnPoint = new(transform.position.x, Mathf.Round(transform.position.y));
         
         // 충돌 위치에 가시 및 연기 생성
         GameObject spawnedEffect = Instantiate(effect, spawnPoint + offset, Quaternion.identity);

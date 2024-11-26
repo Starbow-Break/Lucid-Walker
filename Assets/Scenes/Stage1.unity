@@ -40270,7 +40270,7 @@ Transform:
   m_GameObject: {fileID: 1587583561}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 254.66, y: 0.47, z: 0}
+  m_LocalPosition: {x: -25.08, y: -8.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40322,6 +40322,9 @@ MonoBehaviour:
   w_Layer:
     serializedVersion: 2
     m_Bits: 4096
+  water_Layer:
+    serializedVersion: 2
+    m_Bits: 0
   isWall: 0
   slidingSpeed: 0.4
   wallJumpPower: 5
@@ -40336,6 +40339,7 @@ MonoBehaviour:
   jumpBoost: 3
   fallMultiplier: 4
   lowJumpMultiplier: 2
+  isDialogueActive: 0
   movableChk: {fileID: 2067846798}
   movableChkDistance: 0.02
   maximumPushMass: 5
