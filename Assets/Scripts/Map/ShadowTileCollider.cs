@@ -10,7 +10,8 @@ public class ShadowTileCollider : MonoBehaviour
     public Tilemap tilemap;
     public Vector3Int tilePos;
 
-    TileBase tile;
+    TileBase tile; // 대응되는 타일
+    Matrix4x4 tileMat; // 타일 Transform 행렬
     public int lightCount;
 
     void Awake() { 
@@ -19,7 +20,7 @@ public class ShadowTileCollider : MonoBehaviour
 
     void Start()
     {
-        tile = tilemap.GetTile(tilePos);
+        tile = (Tile)tilemap.GetTile(tilePos);
         tilemap.SetTile(tilePos, null);
     }
 
