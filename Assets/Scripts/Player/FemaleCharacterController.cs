@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FemaleCharacterController : MonoBehaviour
 {
+    public bool isActive = false; // 활성화 상태 플래그
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D capsuleCollider;
@@ -41,6 +42,8 @@ public class FemaleCharacterController : MonoBehaviour
 
     private void Update()
     {
+        if (!isActive) return; // 비활성화 상태일 때 입력 처리 금지
+
         input_x = Input.GetAxis("Horizontal");
         isRunning = Input.GetKey(KeyCode.LeftShift);  // Shift로 달리기
 
@@ -90,6 +93,13 @@ public class FemaleCharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isActive) return; // 비활성화 상태일 때 물리 처리 금지
+
+        // 캐릭터 이동
+        float moveSpeed = isRunning ? runSpeed : walkSpeed;
+        Vector2 velocity = new(input_x * moveSpeed, rb.velocity.y);
+
+        rb.velocity = velocity;
 
         // 캐릭터 점프
         if (isGround && Input.GetAxis("Jump") != 0)

@@ -33,7 +33,10 @@ namespace Bundos.WaterSystem
         [HideInInspector]
         Spring[] springs;
         MeshFilter meshFilter;
-        Mesh mesh;
+        Mesh mesh; [Header("Shader Properties")]
+        public Color waterColor = new Color(0.0f, 0.5f, 1.0f, 0.5f);
+        public float shaderWaveSpeed = 1.0f;
+        public float shaderWaveAmplitude = 0.1f;
 
         [HideInInspector]
         public Vector2[] vertices, baseVertecies;
@@ -41,6 +44,7 @@ namespace Bundos.WaterSystem
         public int[] triangles;
         [HideInInspector]
         Vector2[] uvs;
+        public Material waterMaterial;
 
 
         private void Start()
@@ -48,8 +52,17 @@ namespace Bundos.WaterSystem
             Initialize();
             InitializeSprings();
             CreateShape();
-        }
+            // Assign the material to MeshRenderer
+            var meshRenderer = GetComponent<MeshRenderer>();
+            waterMaterial = meshRenderer.material;
 
+            if (waterMaterial != null)
+            {
+                waterMaterial.SetColor("_Color", waterColor);
+                waterMaterial.SetFloat("_WaveSpeed", shaderWaveSpeed);
+                waterMaterial.SetFloat("_WaveAmplitude", shaderWaveAmplitude);
+            }
+        }
         public void Initialize()
         {
             mesh = new Mesh()
@@ -139,6 +152,12 @@ namespace Bundos.WaterSystem
             UpdateMeshVerticePositions();
             UpdateMesh();
             Physics2D.SyncTransforms(); // Collider 위치와 Transform 상태 동기화
+            // Update shader properties dynamically
+            if (waterMaterial != null)
+            {
+                waterMaterial.SetFloat("_Time", Time.time);
+                waterMaterial.SetFloat("_WaveAmplitude", waveHeight * shaderWaveAmplitude);
+            }
         }
 
         private void UpdateMeshVerticePositions()

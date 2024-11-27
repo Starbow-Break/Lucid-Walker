@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool isActive = true; // 활성화 상태 플래그
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D capsuleCollider;
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundChkFront;
     public Transform groundChkBack;
+    public Transform waterChk;
     public Transform wallChkUp;
     public Transform wallChk;
     public float wallchkDistance;
@@ -40,6 +42,8 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;  // 빠르게 떨어지기 위한 가속도
     public float lowJumpMultiplier = 2f; // 낮은 점프 속도
     bool isRunning;  // 달리기 상태 확인
+    public bool isInWater;
+
     private Vector2 originalColliderSize;
     private Vector2 targetCrouchSize = new Vector2(0.92f, 0.8f); // 목표 crouch size
     private float crouchTransitionSpeed = 5f; // 크기 변환 속도
@@ -67,13 +71,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!isActive) return; // 비활성화 상태일 때 입력 처리 금지
+
         input_x = Input.GetAxis("Horizontal");
         isRunning = Input.GetKey(KeyCode.LeftShift);  // Shift로 달리기
 
         // 캐릭터의 앞쪽과 뒤쪽의 바닥 체크
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, p_Layer);
         bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
-        bool isInWater = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
+        isInWater = Physics2D.Raycast(waterChk.position, Vector2.down, chkDistance, water_Layer); // 로컬 변수가 아닌 클래스 변수 업데이트
         bool wall_up = Physics2D.Raycast(wallChkUp.position, Vector2.up, chkDistance, p_Layer);
 
         // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
@@ -154,6 +160,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isActive) return; // 비활성화 상태일 때 물리 처리 금지
+
         // 이전 프레임에서 밀었던 물체들의 상태와 정보를 초기화 한다.
         foreach (GameObject obj in pushMovable)
         {
@@ -186,11 +194,27 @@ public class PlayerController : MonoBehaviour
                     anim.SetFloat("movable_mess", 0.0f);
                 }
             }
-            else {
+            else
+            {
                 anim.SetFloat("movable_mess", 0.0f);
             }
 
             rb.velocity = velocity;
+        }
+
+        // 물 속 이동 속도 제한
+        float waterMoveSpeed = isInWater ? walkSpeed * 0.5f : (isRunning ? runSpeed : walkSpeed); // 이름 변경
+        Vector2 waterVelocity = new Vector2(input_x * waterMoveSpeed, rb.velocity.y); // 이름 변경
+
+        if (isInWater)
+        {
+            // 물 속에서의 부드러운 이동
+            rb.velocity = new Vector2(waterVelocity.x * 0.8f, rb.velocity.y * 0.9f); // 이름 변경
+        }
+        else
+        {
+            // 물 밖에서는 일반 이동
+            rb.velocity = waterVelocity;
         }
 
         // crouchWalk 속도 적용
@@ -200,10 +224,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // 캐릭터 점프
-        if (isGround && Input.GetAxis("Jump") != 0)
+        if ((isGround || isInWater) && Input.GetAxis("Jump") != 0)
         {
-            // 초기 점프 속도 증가를 위해 jumpBoost를 더해줌
-            rb.velocity = Vector2.up * (jumpPower + jumpBoost);
+            // If in water, reduce the jump force for a lighter jump
+            float adjustedJumpPower = isInWater ? jumpPower * 0.7f : jumpPower;
+            rb.velocity = Vector2.up * (adjustedJumpPower + jumpBoost);
         }
 
         // 벽 슬라이드 및 점프
@@ -231,17 +256,25 @@ public class PlayerController : MonoBehaviour
 
     void ApplyGravityModifiers()
     {
-        // 점프 후 천천히 떨어지도록 중력 가속도를 증가시킴
-        if (rb.velocity.y < 0)
+        if (isInWater) // 물 속이라면
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            // 물 속에서는 중력이 느리게 적용됨
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier * 0.2f) * Time.deltaTime;
         }
-        // Space 키를 떼면 천천히 떨어지는 속도를 높임
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        else
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            // 기본 중력 적용
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
         }
     }
+
     public bool IsJumping()
     {
         // 점프 상태는 바닥에 닿아있지 않으며, Y 속도가 양수일 때
