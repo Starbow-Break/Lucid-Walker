@@ -8,22 +8,22 @@ public class Mirror : Warp
 {
     [SerializeField] SpriteRenderer mirroringSpriteRenderer; // 거울 상에 사용되는 Material
     [SerializeField] Camera mirroringCamera;
+
     RenderTexture rt;
     MaterialPropertyBlock mpb;
 
     float animTime = 2.0f;
 
-    protected override void Awake()
+    void Awake()
     {   
-        base.Awake();
-
-        // Render Texture 생성
+        // Render Texture 생성 후 Sprite Renderer에 할당
         rt = new RenderTexture(256, 256, 16);
         rt.Create();
+        //sr.sprite = rt;
 
         // SpriteRenderer에 적용
         mpb = new MaterialPropertyBlock();
-        mpb.SetTexture("_MainTex", rt);
+        mpb.SetTexture("_MirroringTexture", rt);
         mpb.SetFloat("_Center_Twirl_Intensity", 0.0f);
         mpb.SetFloat("_Rotation", 0.0f);
         mirroringSpriteRenderer.SetPropertyBlock(mpb);
@@ -35,7 +35,7 @@ public class Mirror : Warp
     void OnEnable() {
         // 활성화 될 때마다 렌더 텍스쳐 재할당
         // 이유는 모르겠으나 비활성화 후 활성화 시 할당해 놓은 렌더 택스쳐가 사라짐
-        mpb.SetTexture("_MainTex", rt);
+        mpb.SetTexture("_MirroringTexture", rt);
         mirroringSpriteRenderer.SetPropertyBlock(mpb);
     }
 
