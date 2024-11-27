@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StageClearDoor : MonoBehaviour
@@ -52,24 +53,26 @@ public class StageClearDoor : MonoBehaviour
     {
         // ItemFollowBag에서 해당 열쇠 분리
         ItemFollowBag bag = interactingPlayer.GetComponent<ItemFollowBag>();
-        bag.RemoveItem(key);
 
-        // 열쇠의 타겟을 열쇠구멍으로 설정
-        key.SetFollow(true);
-        key.SetTargetTransform(keyHole);
+        // 맞는 열쇠가 있다면 문을 연다.
+        if(bag.HasItem(key)) {
+            bag.RemoveItem(key);
 
-        while ((keyHole.position - key.transform.position).sqrMagnitude <= 0.0001f)
-        {
+            key.isFollow = true;
+            key.FollowTarget(keyHole.position);
+            while ((keyHole.position - key.transform.position).sqrMagnitude <= 0.0001f)
+            {
+                yield return null;
+            }
+
+            // 대기
+            yield return new WaitForSeconds(1f);
+
+            // 문 열기
+            Destroy(key.gameObject);
+            anim.SetTrigger("open");
             yield return null;
         }
-
-        // 대기
-        yield return new WaitForSeconds(1f);
-
-        // 문 열기
-        Destroy(key.gameObject);
-        anim.SetTrigger("open");
-        yield return null;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

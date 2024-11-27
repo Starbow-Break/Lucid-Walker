@@ -5,20 +5,20 @@ using UnityEngine;
 public class Ticket : MonoBehaviour, IFollowCollectable
 {
     [SerializeField] float followSpeed = 5.0f; // 따라가는 속도
-    bool isFollow = false; // 특정 위치로 따라가는지 여부
-    public bool isCollect = false; // 획득 여부
-    Transform targetTransform = null; // 목표 위치
 
+    public bool isFollow { get; set; } = false;
+
+    Vector2 targetPosition = Vector2.zero; // 목표 위치
     Coroutine followCoroutine = null; // 코루틴
     public static int collectedTicketCount = 0; // 획득한 티켓 개수 (전역적으로 관리)
 
     // 획득
     public void Collect(GameObject owner)
     {
-        isCollect = true;
         collectedTicketCount++;
         Debug.Log($"티켓을 획득했습니다! 현재 티켓 개수: {collectedTicketCount}");
 
+        isFollow = true;
         ItemFollowBag bag = owner.GetComponent<ItemFollowBag>();
         bag.AddItem(this);
 
@@ -29,39 +29,23 @@ public class Ticket : MonoBehaviour, IFollowCollectable
         }
     }
 
-    // 목표를 향해 움직일 것인지를 설정
-    public void SetFollow(bool follow)
-    {
-        if (follow && !isFollow)
-        {
-            followCoroutine = StartCoroutine(FollowTarget());
-        }
-        if (!follow && isFollow)
-        {
-            StopCoroutine(followCoroutine);
-            followCoroutine = null;
-        }
-
-        isFollow = follow;
-    }
-
     // 목표 설정
-    public void SetTargetTransform(Transform target)
+    public void FollowTarget(Vector2 targetPosition)
     {
-        targetTransform = target;
+        this.targetPosition = targetPosition;
+        if(isFollow) {
+            followCoroutine ??= StartCoroutine(FollowTargetFlow());
+        }
     }
 
-    // 목표 위치를 향해 움직인다
-    IEnumerator FollowTarget()
+    // 목표 위치를 향해 움직인다.
+    IEnumerator FollowTargetFlow()
     {
-        while (true)
-        {
-            if (targetTransform != null)
-            {
-                transform.position -= followSpeed * Time.deltaTime * (transform.localPosition - targetTransform.position);
-            }
+        while(isFollow) {
+            transform.position -= followSpeed * Time.deltaTime * (transform.position - (Vector3)targetPosition);
             yield return null;
         }
+        followCoroutine = null;
     }
 
     // // 3개의 티켓을 모으면 호출되는 특별 이벤트
@@ -75,12 +59,10 @@ public class Ticket : MonoBehaviour, IFollowCollectable
     //     GameObject.FindObjectOfType<StageManager>()?.TransitionToDarkStage();
     // }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // 플레이어에게 닿으면 티켓 획득
-        if (!isCollect && other.CompareTag("Player"))
-        {
-            Collect(other.gameObject);
+    private void OnTriggerEnter2D(Collider2D other) {
+        // 플레이어에게 닿으면 플레이어는 열쇠을 얻는다.
+        if(!isFollow && other.CompareTag("Player")) {
+            Collect(other.gameObject); // 코인 획득
         }
     }
 }

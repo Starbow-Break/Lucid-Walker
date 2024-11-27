@@ -6414,14 +6414,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997591414}
     m_Modifications:
-    - target: {fileID: 2041989108373897988, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2041989108373897988, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3281047636197615712, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 215
@@ -6466,14 +6458,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2x1 Non-Movable Case
       objectReference: {fileID: 0}
-    - target: {fileID: 6892082282962333505, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
-      propertyPath: platformLayer.m_Bits
-      value: 4416
-      objectReference: {fileID: 0}
-    - target: {fileID: 7283381168622909519, guid: f17c4e1718026204ca2a3886d928e3b3, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7886,18 +7870,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997591414}
     m_Modifications:
-    - target: {fileID: 786576979980899211, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
-      propertyPath: platformLayer.m_Bits
-      value: 4416
-      objectReference: {fileID: 0}
-    - target: {fileID: 966466619749755853, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 966466619749755853, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2672388928651017070, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 220.09
@@ -7942,10 +7914,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1x1 Movable Case (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7909371362783790349, guid: 4d2c2759864384e41af328bb4902056b, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40270,7 +40238,7 @@ Transform:
   m_GameObject: {fileID: 1587583561}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.08, y: -8.66, z: 0}
+  m_LocalPosition: {x: 224.25, y: -3.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40490,8 +40458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456483a4754b82b4d88a8f1fdea96d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetParent: {fileID: 1235629843}
-  initializeSize: 5
+  bagPoint: {fileID: 1235629843}
+  interval: {x: -1, y: 0}
 --- !u!1001 &1588824278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40735,22 +40703,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 997591414}
     m_Modifications:
-    - target: {fileID: 679143344414065296, guid: b5b63cd0b64f0f544baca221b3757472, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 679143344414065296, guid: b5b63cd0b64f0f544baca221b3757472, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1520505687725860310, guid: b5b63cd0b64f0f544baca221b3757472, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
-    - target: {fileID: 2032671642689555074, guid: b5b63cd0b64f0f544baca221b3757472, type: 3}
-      propertyPath: platformLayer.m_Bits
-      value: 4416
-      objectReference: {fileID: 0}
     - target: {fileID: 5858128733596387228, guid: b5b63cd0b64f0f544baca221b3757472, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2999997
@@ -49596,22 +49548,6 @@ PrefabInstance:
     - target: {fileID: 1194464652820255977, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
       propertyPath: m_Name
       value: 1x2 Non-Movable Case
-      objectReference: {fileID: 0}
-    - target: {fileID: 1583259803021187665, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1583259803021187665, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3854864769269586768, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
-    - target: {fileID: 4513657403015976937, guid: b2df30a60ce94e947bb812cc61ee4275, type: 3}
-      propertyPath: platformLayer.m_Bits
-      value: 4416
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
