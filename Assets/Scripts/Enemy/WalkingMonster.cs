@@ -204,15 +204,8 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     {
         isDead = true;
         anim.SetTrigger("Die"); // 죽는 애니메이션
-        StartCoroutine(DestroyAfterAnimation());
     }
 
-    IEnumerator DestroyAfterAnimation()
-    {
-        // 죽는 애니메이션이 끝난 후 객체 삭제
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-        Destroy(gameObject);
-    }
     void Flip()
     {
         // 캐릭터의 방향을 반전 (x 스케일 반전)
