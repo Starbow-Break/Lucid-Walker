@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2775292234362051508}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -201.7, y: -19.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -288,8 +288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c9f5102ee0e4047bca38c44949b7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
   groundChkFront: {fileID: 3854955226411576554}
   groundChkBack: {fileID: 5227726881697678177}
+  waterChk: {fileID: 5227726881697678177}
   wallChkUp: {fileID: 8382948947834540020}
   wallChk: {fileID: 2704435228045379737}
   wallchkDistance: 0.1
@@ -316,6 +318,7 @@ MonoBehaviour:
   jumpBoost: 3
   fallMultiplier: 4
   lowJumpMultiplier: 2
+  isInWater: 0
   isDialogueActive: 0
   movableChk: {fileID: 8203873283280319657}
   movableChkDistance: 0.02
@@ -377,8 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456483a4754b82b4d88a8f1fdea96d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetParent: {fileID: 5181105698567754807}
-  initializeSize: 5
+  bagPoint: {fileID: 0}
+  interval: {x: 0, y: 0}
 --- !u!1 &2787959580327871506
 GameObject:
   m_ObjectHideFlags: 0
