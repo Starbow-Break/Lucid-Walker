@@ -155,7 +155,7 @@ namespace Bundos.WaterSystem
             // Update shader properties dynamically
             if (waterMaterial != null)
             {
-                waterMaterial.SetFloat("_Time", Time.time);
+                // waterMaterial.SetFloat("_Time", Time.time);
                 waterMaterial.SetFloat("_WaveAmplitude", waveHeight * shaderWaveAmplitude);
             }
         }
