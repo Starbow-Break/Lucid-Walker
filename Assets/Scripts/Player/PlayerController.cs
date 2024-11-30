@@ -72,10 +72,9 @@ public class PlayerController : MonoBehaviour
     #region Movable
     [SerializeField] Transform movableChk; // movable 체크하는 위치
     [SerializeField] float movableChkDistance; // 체크 거리
-    [SerializeField] float maximumPushMass; // 밀수 있는 최대 중량
+    bool needUpdateMovableAnim = false; // 애니메이션 업데이트 필요 여부
+    float anim_movable_mess_weight = 0.0f; // movable_mess 값
     #endregion
-
-    HashSet<GameObject> pushMovable = new(); // 밀고있는 물체 상태 확인
 
     private void Awake()
     {
@@ -322,30 +321,26 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
+        #region MOVABLE_ANIMATION
+        if(needUpdateMovableAnim) {
+            anim.SetFloat("movable_mess", anim_movable_mess_weight);
+            needUpdateMovableAnim = false;
+        }
+        #endregion
+
         // isWall = Physics2D.Raycast(wallChk.position, IsFacingRight ? Vector2.right : Vector2.left, wallchkDistance, w_Layer);
         anim.SetBool("isSliding", IsSliding);
     }
 
     private void FixedUpdate()
     {
-        if (!isActive) return; // 비활성화 상태일 때 물리 처리 금지
-
-        // 이전 프레임에서 밀었던 물체들의 상태와 정보를 초기화 한다.
-        foreach (GameObject obj in pushMovable)
-        {
-            Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.zero;
-            anim.SetFloat("movable_mess", 0.0f);
-            obj.GetComponent<SpriteRenderer>().color = Color.white; // Debug
-        }
-        pushMovable.Clear();
+        if (!isActive) return; // 비활성화 상태일 때 물리 처리 금
 
         // 캐릭터 이동
         if (!IsWallJumping)
         {
             // 캐릭터의 이동 속도 계산 (걷기와 달리기 구분)
             float moveSpeed = isRunning ? Data.runMaxSpeed : Data.runMaxSpeed * 0.5f; // Shift 누르면 달리기 속도
-
             Vector2 velocity = new(_moveInput.x * moveSpeed, rb.velocity.y);
 
             // 땅에 서 있고, 수평 방향으로 이동 중이면 밀고 있는 물체 체크
@@ -357,17 +352,26 @@ public class PlayerController : MonoBehaviour
                 if (movableHit.collider != null)
                 {
                     // 물체를 밀고 있을 때 애니메이션 상태 업데이트
-                    anim.SetFloat("movable_mess", 1 - Mathf.Abs(rb.velocity.x) / velocity.x);
-                    Debug.Log(Mathf.Abs(rb.velocity.x) / velocity.x);
+                    float new_movable_mess = Mathf.Max(0.0f, 1 - Mathf.Abs(rb.velocity.x / velocity.x));
+                    if(new_movable_mess != anim_movable_mess_weight) {
+                        anim_movable_mess_weight = new_movable_mess;
+                        needUpdateMovableAnim = true;
+                    }
                 }
                 else
                 {
-                    anim.SetFloat("movable_mess", 0.0f);
+                    if(anim_movable_mess_weight != 0.0f) {
+                        anim_movable_mess_weight = 0.0f;
+                        needUpdateMovableAnim = true;
+                    }
                 }
             }
             else
             {
-                anim.SetFloat("movable_mess", 0.0f);
+                if(anim_movable_mess_weight != 0.0f) {
+                    anim_movable_mess_weight = 0.0f;
+                    needUpdateMovableAnim = true;
+                }
             }
 
             // 실제 이동 속도 적용
