@@ -18,7 +18,7 @@ public class SequentialSpotlightGroup : MonoBehaviour
     public bool isOn = true;
 
     int curTimeUnit = -1; // 현재 시간
-    Dictionary<int, List<Spotlight>> targetSpotlight; // 각 시간마다 목표 스포트라이트
+    Dictionary<Spotlight, HashSet<int>> spotlightsDict; // 각 시간마다 목표 스포트라이트
     Coroutine coroutine = null;
 
     void Start()
@@ -34,7 +34,7 @@ public class SequentialSpotlightGroup : MonoBehaviour
     {
         curTimeUnit = -1; // 시간 초기화
 
-        // 모든 스포트라이트 끄기
+        // 모든 스포트라이트를 끈다.
         foreach(SequentialSpotlightData ssd in spotlightsData) {
             ssd.spotlight.TurnOff();
         }
@@ -42,17 +42,13 @@ public class SequentialSpotlightGroup : MonoBehaviour
 
     void InitializeTargetSpotlight()
     {
-        targetSpotlight = new Dictionary<int, List<Spotlight>>();
+        spotlightsDict = new Dictionary<Spotlight, HashSet<int>>();
 
         foreach(SequentialSpotlightData ssd in spotlightsData) {
             ssd.spotlight.TurnOff();
-
-            foreach(int t in ssd.lightOnTime) {
-                if(!targetSpotlight.ContainsKey(t)) {
-                    targetSpotlight.Add(t, new List<Spotlight>());
-                }
-
-                targetSpotlight[t].Add(ssd.spotlight);
+            spotlightsDict.Add(ssd.spotlight, new HashSet<int>());
+            foreach(int time in ssd.lightOnTime) {
+                spotlightsDict[ssd.spotlight].Add(time);
             }
         }
 
@@ -62,18 +58,14 @@ public class SequentialSpotlightGroup : MonoBehaviour
     IEnumerator SequentialSpotlightFlow()
     {
         while(true) {
-            // 기존 시간대에 켜진 스포트라이트들을 전부 끈다.
-            if(targetSpotlight.ContainsKey(curTimeUnit)) {
-                foreach(Spotlight sl in targetSpotlight[curTimeUnit]) {
-                    sl.TurnOff();
-                }
-            }
-
-            // 다음 시간에 켜져야 하는 모든 스포트라이트를 켠다.
+            // 모든 스포트라이트 상태 갱신
             curTimeUnit = (curTimeUnit + 1) % period;
-            if(targetSpotlight.ContainsKey(curTimeUnit)) {
-                foreach(Spotlight sl in targetSpotlight[curTimeUnit]) {
-                    sl.TurnOn();
+            foreach(SequentialSpotlightData ssd in spotlightsData) {
+                if (spotlightsDict[ssd.spotlight].Contains(curTimeUnit)) {
+                    ssd.spotlight.TurnOn();
+                }
+                else {
+                    ssd.spotlight.TurnOff();
                 }
             }
 
@@ -81,8 +73,6 @@ public class SequentialSpotlightGroup : MonoBehaviour
         }
     }
     
-    
-
     void TurnOff()
     {
         isOn = false;
