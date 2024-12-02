@@ -13,18 +13,20 @@ public class SineWaveLineGenerator : LineGenerator
     [Min(0.0f), SerializeField] float time = 1.0f; // 시간 길이
     [SerializeField] float timeOffset = 0.0f; // 시간 Offset
 
-    // 라인 생성
-    protected override void Generate() {
-        line.positionCount = vertices;
+    // 점선 생성
+    protected override void GenerateDotLine() {
+        line.positionCount = REPEAT * vertices;
 
-        for(int i = 0; i < line.positionCount; i++) {
+        for(int i = 0; i < vertices; i++) {
             Vector2 position = new(
                 1.0f * i / (vertices - 1) * time * wavelength,
                 amplitude * Mathf.Sin(2 * Mathf.PI * (time * i / (vertices - 1) + timeOffset))
             );
             position += positionOffset;
 
-            line.SetPosition(i, position);
+            for(int cnt = 0; cnt < REPEAT; cnt++) {
+                line.SetPosition(REPEAT * i + cnt, position);
+            }
         }
     }
 }

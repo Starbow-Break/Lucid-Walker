@@ -11,11 +11,11 @@ public class StarPolygonLineGenerator : LineGenerator
     [Min(0.0f), SerializeField] float radius = 1.0f; // 반지름
     [SerializeField] float rotation = 0.0f; // 회전
 
-    // 라인 생성
-    protected override void Generate() {
-        line.positionCount = edges + 1;
+    // 점선 생성
+    protected override void GenerateDotLine() {
+        line.positionCount = REPEAT * (edges + 1);
 
-        for(int i = 0; i < line.positionCount; i++) {
+        for(int i = 0; i <= edges; i++) {
             Vector2 position = new(
                 Mathf.Cos(2.0f * Mathf.PI * (1.0f * step * i / edges + rotation / 360.0f)),
                 Mathf.Sin(2.0f * Mathf.PI * (1.0f * step * i / edges + rotation / 360.0f))
@@ -23,7 +23,9 @@ public class StarPolygonLineGenerator : LineGenerator
             position *= radius;
             position += center;
 
-            line.SetPosition(i, position);
+            for(int cnt = 0; cnt < REPEAT; cnt++) {
+                line.SetPosition(REPEAT * i + cnt, position);
+            }
         }
     }
 }

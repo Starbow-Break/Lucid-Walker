@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class StraightLineGenerator : LineGenerator
@@ -8,9 +9,14 @@ public class StraightLineGenerator : LineGenerator
     [SerializeField] Vector2 endPoint1;
     [SerializeField] Vector2 endPoint2;
 
-    // 라인 생성
-    protected override void Generate() {
-        line.positionCount = 2;
-        line.SetPositions(new Vector3[]{endPoint1, endPoint2});
+    // 점선 생성
+    protected override void GenerateDotLine() {
+        line.positionCount = 2 * REPEAT;
+        for(int cnt = 0; cnt < REPEAT; cnt++) {
+            line.SetPosition(cnt, endPoint1);
+        }
+        for(int cnt = 0; cnt < REPEAT; cnt++) {
+            line.SetPosition(REPEAT + cnt, endPoint2);
+        }
     }
 }

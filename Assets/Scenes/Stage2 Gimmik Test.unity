@@ -351,6 +351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 282183041368888206, guid: 7c7d01114f659494ca391c91c3868e39, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
+      objectReference: {fileID: 0}
     - target: {fileID: 2192754458650045982, guid: 7c7d01114f659494ca391c91c3868e39, type: 3}
       propertyPath: m_Name
       value: MovingStar_SW
@@ -394,6 +398,10 @@ PrefabInstance:
     - target: {fileID: 2915948538378871941, guid: 7c7d01114f659494ca391c91c3868e39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5176934807566377714, guid: 7c7d01114f659494ca391c91c3868e39, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15944,6 +15952,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
+--- !u!1001 &1162100123
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1392604842328102163, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 61.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979775095006780129, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525431630189004992, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
+      propertyPath: m_Name
+      value: MovingStar_StarPoly
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
 --- !u!1001 &1164137602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16086,6 +16159,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3343393362348762603, guid: 9ac1a2210fab3554eafde017378a75cf, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3911424327936871548, guid: 9ac1a2210fab3554eafde017378a75cf, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
+      objectReference: {fileID: 0}
     - target: {fileID: 6957186158349552579, guid: 9ac1a2210fab3554eafde017378a75cf, type: 3}
       propertyPath: m_Name
       value: MovingStar_SL
@@ -17137,7 +17218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 869834683}
-  target: {fileID: 0}
+  target: {fileID: 557759619}
   shakeDuration: 0.5
   shakeAmount: 0.1
   decreaseFactor: 1
@@ -21731,9 +21812,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6642075653781364416, guid: 0ced36e406de8934bb8ef37168081104, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
+      objectReference: {fileID: 0}
     - target: {fileID: 6907227479834849706, guid: 0ced36e406de8934bb8ef37168081104, type: 3}
       propertyPath: m_Name
       value: MovingStar_Arc
+      objectReference: {fileID: 0}
+    - target: {fileID: 8468483333350170794, guid: 0ced36e406de8934bb8ef37168081104, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21948,11 +22037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5454057622344056590, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.749996
+      value: 49.3
       objectReference: {fileID: 0}
     - target: {fileID: 5454057622344056590, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.18
+      value: -8.75
       objectReference: {fileID: 0}
     - target: {fileID: 5454057622344056590, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21985,69 +22074,20 @@ PrefabInstance:
     - target: {fileID: 5454057622344056590, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5674977461782571330, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689851356505761759, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
---- !u!1001 &7203767964738714280
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 61.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5076048218919489322, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8525431630189004992, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
-      propertyPath: m_Name
-      value: MovingStar_StarPoly
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 37b2a0fb3f0deb544b02e3561430a89b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -22067,5 +22107,5 @@ SceneRoots:
   - {fileID: 1296815664}
   - {fileID: 466105852}
   - {fileID: 3791656103932643691}
-  - {fileID: 7203767964738714280}
+  - {fileID: 1162100123}
   - {fileID: 479602546801658864}
