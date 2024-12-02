@@ -159,9 +159,15 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
+
+        isInWater = Physics2D.Raycast(waterChk.position, Vector2.down, chkDistance, water_Layer); // 로컬 변수가 아닌 클래스 변수 업데이트
+        bool wall_up = Physics2D.Raycast(wallChkUp.position, Vector2.up, chkDistance, w_Layer);
+
         #region 애니메이션 상태 업데이트
         if (isGround) // 땅에 있을 때만 걷기, 달리기, 멈춤 상태 업데이트
         {
+            anim.SetBool("isSwim", false);
+
             if (Mathf.Abs(_moveInput.x) > 0.1f) // 이동 중
             {
                 anim.SetBool("walk", !isRunning); // Shift가 눌리지 않으면 걷기
@@ -176,10 +182,13 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("isGround", isGround); // 현재 Ground 상태 업데이트
         anim.SetBool("isSliding", IsSliding); // 슬라이딩 상태 업데이트
+
+        if (isInWater)
+        {
+            anim.SetBool("isSwim", isInWater);
+        }
         #endregion
 
-        isInWater = Physics2D.Raycast(waterChk.position, Vector2.down, chkDistance, water_Layer); // 로컬 변수가 아닌 클래스 변수 업데이트
-        bool wall_up = Physics2D.Raycast(wallChkUp.position, Vector2.up, chkDistance, w_Layer);
 
         // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
         // if (!isGround && (ground_back || ground_front))
@@ -322,7 +331,8 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region MOVABLE_ANIMATION
-        if(needUpdateMovableAnim) {
+        if (needUpdateMovableAnim)
+        {
             anim.SetFloat("movable_mess", anim_movable_mess_weight);
             needUpdateMovableAnim = false;
         }
@@ -353,14 +363,16 @@ public class PlayerController : MonoBehaviour
                 {
                     // 물체를 밀고 있을 때 애니메이션 상태 업데이트
                     float new_movable_mess = Mathf.Max(0.0f, 1 - Mathf.Abs(rb.velocity.x / velocity.x));
-                    if(new_movable_mess != anim_movable_mess_weight) {
+                    if (new_movable_mess != anim_movable_mess_weight)
+                    {
                         anim_movable_mess_weight = new_movable_mess;
                         needUpdateMovableAnim = true;
                     }
                 }
                 else
                 {
-                    if(anim_movable_mess_weight != 0.0f) {
+                    if (anim_movable_mess_weight != 0.0f)
+                    {
                         anim_movable_mess_weight = 0.0f;
                         needUpdateMovableAnim = true;
                     }
@@ -368,7 +380,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if(anim_movable_mess_weight != 0.0f) {
+                if (anim_movable_mess_weight != 0.0f)
+                {
                     anim_movable_mess_weight = 0.0f;
                     needUpdateMovableAnim = true;
                 }
