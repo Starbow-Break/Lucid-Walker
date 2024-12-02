@@ -16,7 +16,8 @@ public class SineWaveLineGenerator : LineGenerator
     // 라인 생성
     protected override void Generate() {
         line.positionCount = vertices;
-        for(int i = 0; i < vertices; i++) {
+
+        for(int i = 0; i < line.positionCount; i++) {
             Vector2 position = new(
                 1.0f * i / (vertices - 1) * time * wavelength,
                 amplitude * Mathf.Sin(2 * Mathf.PI * (time * i / (vertices - 1) + timeOffset))

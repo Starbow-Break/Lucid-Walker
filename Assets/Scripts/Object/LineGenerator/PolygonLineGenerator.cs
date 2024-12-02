@@ -13,7 +13,8 @@ public class PolygonLineGenerator : LineGenerator
     // 라인 생성
     protected override void Generate() {
         line.positionCount = edges + 1;
-        for(int i = 0; i <= edges; i++) {
+
+        for(int i = 0; i < line.positionCount; i++) {
             Vector2 position = new(
                 Mathf.Cos(2.0f * Mathf.PI * (1.0f * i / edges + rotation / 360.0f)),
                 Mathf.Sin(2.0f * Mathf.PI * (1.0f * i / edges + rotation / 360.0f))
