@@ -33,6 +33,10 @@ public class PlayerData : ScriptableObject
 	public bool doConserveMomentum = true;
 
 	[Space(20)]
+	[Header("Swim")]
+	public float swimSpeed; //Target speed we want the player to reach.
+	[Space(5)]
+
 
 	[Header("Jump")]
 	public float jumpHeight; //Height of the player's jump

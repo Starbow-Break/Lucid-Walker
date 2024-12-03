@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Tilemaps;
+
 
 public class LeverController : MonoBehaviour
 {
@@ -7,6 +9,9 @@ public class LeverController : MonoBehaviour
     [SerializeField] private Animator leverAnimator; // 레버 애니메이터
     [SerializeField] private ParticleSystem leverParticle; // 레버별 고유 파티클
     [SerializeField] private int waterIncreaseAmount = 4; // 레버 당 증가하는 물 높이
+    [SerializeField] private string newLayerName = "Water"; // 변경될 Layer 이름
+    [SerializeField] private Tilemap targetTilemap; // 타일맵 참조
+
     private bool isPlayerIn = false; // 플레이어가 있는지 여부 확인
 
     public bool isActivated = false; // 레버가 이미 작동했는지 여부
@@ -60,6 +65,16 @@ public class LeverController : MonoBehaviour
             waterController.IncreaseWaterLevel(waterIncreaseAmount, leverParticle);
         }
 
+
+        // 타일맵 Layer 변경
+        if (targetTilemap != null)
+        {
+            int layerIndex = LayerMask.NameToLayer(newLayerName);
+            if (layerIndex != -1) // Ensure the layer exists
+            {
+                targetTilemap.gameObject.layer = layerIndex;
+            }
+        }
         // 레버가 작동된 상태로 설정
         isActivated = true;
     }
