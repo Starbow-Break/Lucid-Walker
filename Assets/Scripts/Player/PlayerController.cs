@@ -92,8 +92,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!isActive) return; // 비활성화 상태일 때 입력 처리 금지
-
+        if (!isActive)
+        {
+            // 비활성화 상태일 때 Idle 상태 강제 설정
+            SetToIdleState();
+            return; // 입력 및 동작 처리 중지
+        }
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
         LastOnWallTime -= Time.deltaTime;
@@ -234,11 +238,6 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
         #endregion
-
-
-        // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
-        // if (!isGround && (ground_back || ground_front))
-        //     rb.velocity = new Vector2(rb.velocity.x, 0);
 
         isCrouching = Input.GetKey(KeyCode.DownArrow);  // 아래 방향키로 crouch 상태
         isCrouchWalking = isCrouching && Mathf.Abs(_moveInput.x) > 0.1f;         // 옆으로 이동 중에 아래키를 누르면 즉시 crouchWalking으로 전환
@@ -468,6 +467,19 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(_moveInput.x * crouchWalkSpeed, rb.velocity.y);
         }
     }
+
+    private void SetToIdleState()
+    {
+        rb.velocity = Vector2.zero; // 이동 중지
+        anim.SetBool("walk", false);
+        anim.SetBool("run", false);
+        anim.SetBool("isGround", true);
+        anim.SetBool("isSliding", false);
+        anim.SetBool("isCrouching", false);
+        anim.SetBool("isCrouchWalking", false);
+        anim.Play("Idle"); // 강제로 Idle 애니메이션 재생
+    }
+
     #region INPUT CALLBACKS
 
     public void OnJumpInput()

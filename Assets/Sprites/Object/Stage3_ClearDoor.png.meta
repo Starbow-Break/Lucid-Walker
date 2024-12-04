@@ -1,0 +1,839 @@
+fileFormatVersion: 2
+guid: 979a5e74d401c4da0a4fb969f6337a3a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_1
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 1254
+        width: 122
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7363dcf26a3d04411a8a3e67eabe25f1
+      internalID: 509506214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_2
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1259
+        width: 121
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f4bf60e4996d46719aba36a8748c67e
+      internalID: -946923166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_66
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 513
+        width: 439
+        height: 461
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8db2176d94143619f882c304c2e83a
+      internalID: 175043516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_67
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 513
+        width: 421
+        height: 461
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afbef816d84a34665a9023823737f3d2
+      internalID: 319755117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_68
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 569
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d0194478be744439d06d6f6cdfd6dd
+      internalID: -1587654672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_69
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 516
+        width: 418
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 265368e772b404acea1bf7c35ac90ba2
+      internalID: -1413225714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_70
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 516
+        width: 417
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3df64adb376b944d5a9dda051fd68677
+      internalID: 535776748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_71
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 565
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8b0dda59668e4086bea29ec96fdbb6e
+      internalID: 955681522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_72
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 514
+        width: 882
+        height: 461
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c525afb6fbe58478a9b729df88a51b9d
+      internalID: -994048767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_73
+      rect:
+        serializedVersion: 2
+        x: 1697
+        y: 573
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b2ecd997b9a34d12ba182458d3be179
+      internalID: -1224602557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_74
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 575
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d2d838016d5499094f0e594962b3ba
+      internalID: -2096722857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_75
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 547
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d77c500a63f3c498bb5321247c2814f6
+      internalID: 612566015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_76
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 558
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc7292d79f2964212b684b7bb60e2231
+      internalID: 1467046647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_77
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 566
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a18cc82d8c934dabb3d13d83b67cf00
+      internalID: 447528214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_78
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 545
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5d39c59916742ccaf44fc2458c4b97
+      internalID: 392199293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_79
+      rect:
+        serializedVersion: 2
+        x: 2558
+        y: 564
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad9f8ec6d2cc4f49bdfb6ae9c23dc04
+      internalID: 1378198414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_80
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 564
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e517932f414fe4a4db7ac136fc17b780
+      internalID: -1780022684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_81
+      rect:
+        serializedVersion: 2
+        x: 2558
+        y: 555
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf8ad365064ab40649fddebd8c2dea81
+      internalID: -627413677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_82
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 548
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d12a189297e949d19caa6bf432fb728
+      internalID: -1933060790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_83
+      rect:
+        serializedVersion: 2
+        x: 2559
+        y: 550
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fd59ca587c1453d91c341057a8354a
+      internalID: -1578648692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_84
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 18
+        width: 406
+        height: 461
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e3e016a87454f65b25d9a767650164
+      internalID: -1658224097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_85
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 14
+        width: 410
+        height: 465
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972951308e38248eaba3768f54dc10dd
+      internalID: 827512690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_86
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 21
+        width: 405
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7abba6768c034d3082fbf1f4c8aa683
+      internalID: 1288564345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_87
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 21
+        width: 405
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0fa6d80d4fea44a6be2613bfe78d6f5
+      internalID: 917199635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_88
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 21
+        width: 405
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66c1bc5671324f4180f4926c2b21ab4
+      internalID: 373153084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_89
+      rect:
+        serializedVersion: 2
+        x: 2139
+        y: 19
+        width: 412
+        height: 461
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ea3fcc5e6db4ade9f6e9862d9c76eb
+      internalID: 1265722987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_90
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 4
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82397689eaee84731aca225ce7e8f157
+      internalID: 1653822333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_91
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 5
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831a855aed2cc47cca2b450f61fedb2a
+      internalID: 966663532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_92
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 8
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e08801dbecfe4f4683a691ca17b54d5
+      internalID: -694262290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_ClearDoor_93
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 0
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dc6fcbcb849647a1bd544bebb939cbb
+      internalID: -1147225000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Stage3_ClearDoor_0: -511854193
+      Stage3_ClearDoor_1: 509506214
+      Stage3_ClearDoor_10: -1463777222
+      Stage3_ClearDoor_11: -1809789360
+      Stage3_ClearDoor_12: 1703910394
+      Stage3_ClearDoor_13: 912962935
+      Stage3_ClearDoor_14: 1928315646
+      Stage3_ClearDoor_15: 1118970862
+      Stage3_ClearDoor_16: -1138209617
+      Stage3_ClearDoor_17: -1110139599
+      Stage3_ClearDoor_18: 437584701
+      Stage3_ClearDoor_19: -325459657
+      Stage3_ClearDoor_2: -946923166
+      Stage3_ClearDoor_20: -1950595917
+      Stage3_ClearDoor_21: -658302503
+      Stage3_ClearDoor_22: -228847318
+      Stage3_ClearDoor_23: -735461654
+      Stage3_ClearDoor_24: 850467264
+      Stage3_ClearDoor_25: -1681173100
+      Stage3_ClearDoor_26: -704142384
+      Stage3_ClearDoor_27: -899040406
+      Stage3_ClearDoor_28: 1882735376
+      Stage3_ClearDoor_29: -1902599340
+      Stage3_ClearDoor_3: -993316171
+      Stage3_ClearDoor_30: -1008518224
+      Stage3_ClearDoor_31: 469742803
+      Stage3_ClearDoor_32: 944718625
+      Stage3_ClearDoor_33: -868067196
+      Stage3_ClearDoor_34: 825507698
+      Stage3_ClearDoor_35: -967020425
+      Stage3_ClearDoor_36: -810459806
+      Stage3_ClearDoor_37: 1098919282
+      Stage3_ClearDoor_38: 2130139786
+      Stage3_ClearDoor_39: 561771524
+      Stage3_ClearDoor_4: 1747301600
+      Stage3_ClearDoor_40: -1026918234
+      Stage3_ClearDoor_41: 1558049745
+      Stage3_ClearDoor_42: 525048227
+      Stage3_ClearDoor_43: -221612244
+      Stage3_ClearDoor_44: -1866939624
+      Stage3_ClearDoor_45: -504271932
+      Stage3_ClearDoor_46: -1128836154
+      Stage3_ClearDoor_47: 1375187196
+      Stage3_ClearDoor_48: -1143440976
+      Stage3_ClearDoor_49: 1911614291
+      Stage3_ClearDoor_5: 1802565086
+      Stage3_ClearDoor_50: -633909676
+      Stage3_ClearDoor_51: 2097458065
+      Stage3_ClearDoor_52: -815427535
+      Stage3_ClearDoor_53: -928941610
+      Stage3_ClearDoor_54: -211214764
+      Stage3_ClearDoor_55: 1258803579
+      Stage3_ClearDoor_56: 1032514975
+      Stage3_ClearDoor_57: 782014240
+      Stage3_ClearDoor_58: 1876609455
+      Stage3_ClearDoor_59: -226419839
+      Stage3_ClearDoor_6: 427943536
+      Stage3_ClearDoor_60: -435776335
+      Stage3_ClearDoor_61: -1321834628
+      Stage3_ClearDoor_62: 1029841310
+      Stage3_ClearDoor_63: -1198729476
+      Stage3_ClearDoor_64: -1528245063
+      Stage3_ClearDoor_65: -145372659
+      Stage3_ClearDoor_66: 175043516
+      Stage3_ClearDoor_67: 319755117
+      Stage3_ClearDoor_68: -1587654672
+      Stage3_ClearDoor_69: -1413225714
+      Stage3_ClearDoor_7: -1385616832
+      Stage3_ClearDoor_70: 535776748
+      Stage3_ClearDoor_71: 955681522
+      Stage3_ClearDoor_72: -994048767
+      Stage3_ClearDoor_73: -1224602557
+      Stage3_ClearDoor_74: -2096722857
+      Stage3_ClearDoor_75: 612566015
+      Stage3_ClearDoor_76: 1467046647
+      Stage3_ClearDoor_77: 447528214
+      Stage3_ClearDoor_78: 392199293
+      Stage3_ClearDoor_79: 1378198414
+      Stage3_ClearDoor_8: 1855890912
+      Stage3_ClearDoor_80: -1780022684
+      Stage3_ClearDoor_81: -627413677
+      Stage3_ClearDoor_82: -1933060790
+      Stage3_ClearDoor_83: -1578648692
+      Stage3_ClearDoor_84: -1658224097
+      Stage3_ClearDoor_85: 827512690
+      Stage3_ClearDoor_86: 1288564345
+      Stage3_ClearDoor_87: 917199635
+      Stage3_ClearDoor_88: 373153084
+      Stage3_ClearDoor_89: 1265722987
+      Stage3_ClearDoor_9: 269751164
+      Stage3_ClearDoor_90: 1653822333
+      Stage3_ClearDoor_91: 966663532
+      Stage3_ClearDoor_92: -694262290
+      Stage3_ClearDoor_93: -1147225000
+      Stage3_ClearDoor_94: 507357171
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

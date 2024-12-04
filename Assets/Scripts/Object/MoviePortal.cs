@@ -13,7 +13,6 @@ public class MoviePortal : MonoBehaviour
     public float cameraTargetSize; // 카메라의 목표 크기
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
     private bool isPlayerInPortal = false; // 플레이어가 포탈에 있는지 여부 확인
-    private bool isUsingPortalCamera = false;   // 현재 Cinemachine 카메라를 사용하는지 여부
     private Coroutine currentCameraCoroutine;   // 카메라 크기 변경 코루틴 참조
 
     public List<GameObject> monstersToActivate; // 포탈 통과 시 활성화할 몬스터 리스트

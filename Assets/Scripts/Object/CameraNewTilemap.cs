@@ -38,7 +38,7 @@ public class CameraNewTilemap : MonoBehaviour
         // 카메라를 새 타일맵으로 이동
         if (cameraFollow != null && newTilemap != null)
         {
-            cameraFollow.SetTarget(newTilemap); // 카메라 타겟을 새 타일맵으로 설정
+            cameraFollow.SetTileMap(newTilemap); // 카메라 타겟을 새 타일맵으로 설정
         }
         else
         {
