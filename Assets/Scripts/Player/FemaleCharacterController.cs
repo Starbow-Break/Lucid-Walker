@@ -6,89 +6,226 @@ using UnityEngine;
 public class FemaleCharacterController : MonoBehaviour
 {
     public bool isActive = false; // 활성화 상태 플래그
+    public PlayerData Data;
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D capsuleCollider;
-
-
-    public Transform groundChkFront;
-    public Transform groundChkBack;
-    public Transform wallChkUp;
     public LayerMask p_Layer;
-    public float wallJumpPower;
+    public LayerMask w_Layer;
+    public LayerMask water_Layer;
+    public bool IsFacingRight { get; private set; }
+    public bool isRunning { get; private set; }
+    public bool IsJumping { get; private set; }
+    public bool IsWallJumping { get; private set; }
 
-    public float walkSpeed = 2f; // 걷기 속도
-    public float runSpeed = 4f;  // 달리기 속도
+    //Jump
+    private bool _isJumpCut;
+    private bool _isJumpFalling;
 
-    public float isRight = 1;    // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
+    //Timers (also all fields, could be private and a method returning a bool could be used)
+    public float LastOnGroundTime { get; private set; }
+    public float LastOnWallTime { get; private set; }
+    public float LastOnWallRightTime { get; private set; }
+    public float LastOnWallLeftTime { get; private set; }
 
-    float input_x;
+    #region INPUT PARAMETERS
+    public Vector2 _moveInput;
+
+    public float LastPressedJumpTime { get; private set; }
+    // public float LastPressedDashTime { get; private set; }
+    #endregion
+
     public bool isGround;
 
     public float chkDistance;
-    public float jumpPower = 4;  // 점프 파워
-    public float jumpBoost = 2;  // 점프 초기 가속도
-    public float fallMultiplier = 2.5f;  // 빠르게 떨어지기 위한 가속도
-    public float lowJumpMultiplier = 2f; // 낮은 점프 속도
-    bool isRunning;  // 달리기 상태 확인
 
+    #region CHECK PARAMETERS
+    //Set all of these up in the inspector
+    [Header("Checks")]
+    [SerializeField] private Transform _groundCheckPoint;
+    //Size of groundCheck depends on the size of your character generally you want them slightly small than width (for ground) and height (for the wall check)
+    [SerializeField] private Vector2 _groundCheckSize = new Vector2(0.49f, 0.03f);
+    #endregion
 
-    private void Start()
+    public bool isDialogueActive = false; // 대화 중 상태 플래그 추가
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        SetGravityScale(Data.gravityScale);
+        IsFacingRight = true;
         capsuleCollider = GetComponent<CapsuleCollider2D>(); // CapsuleCollider2D 컴포넌트 가져오기
+
     }
 
     private void Update()
     {
-        if (!isActive) return; // 비활성화 상태일 때 입력 처리 금지
-
-        input_x = Input.GetAxis("Horizontal");
-        isRunning = Input.GetKey(KeyCode.LeftShift);  // Shift로 달리기
-
-        // 캐릭터의 앞쪽과 뒤쪽의 바닥 체크
-        bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, p_Layer);
-        bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, p_Layer);
-
-        // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
-        if (!isGround && (ground_back || ground_front))
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-
-        // 앞 또는 뒤쪽의 바닥이 감지되면 isGround 변수를 참으로
-        if (ground_back || ground_front)
-            isGround = true;
-        else
-            isGround = false;
-
-        anim.SetBool("isGround", isGround);
-
-        // 달리기 상태일 때 run 애니메이션
-        if (isGround)
+        if (!isActive)
         {
-            if (input_x != 0)
+            // 비활성화 상태일 때 Idle 상태 강제 설정
+            SetToIdleState();
+            return; // 입력 및 동작 처리 중지
+        }
+        #region TIMERS
+        LastOnGroundTime -= Time.deltaTime;
+        LastOnWallTime -= Time.deltaTime;
+        LastOnWallRightTime -= Time.deltaTime;
+        LastOnWallLeftTime -= Time.deltaTime;
+        #endregion
+
+
+        #region INPUT HANDLER
+        _moveInput.x = Input.GetAxisRaw("Horizontal");
+        _moveInput.y = Input.GetAxisRaw("Vertical");
+
+        if (_moveInput.x != 0)
+            CheckDirectionToFace(_moveInput.x > 0);
+
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isRunning = true; // 달리기 상태를 활성화
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false; // 달리기 상태를 비활성화
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnJumpInput();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            OnJumpUpInput();
+        }
+
+        #endregion
+
+        #region COLLISION CHECKS
+        if (!IsJumping)
+        {
+            //Ground Check
+            if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, p_Layer)) //checks if set box overlaps with ground
             {
-                anim.SetBool("walk", !isRunning);  // 걷기 상태 (Shift를 누르지 않았을 때)
-                anim.SetBool("run", isRunning);    // 달리기 상태 (Shift를 누를 때)
+                if (LastOnGroundTime < -0.1f)
+                {
+                    isGround = true;
+                }
+
+                LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
             }
-            else
+
+            // //Right Wall Check
+            // if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, w_Layer) && IsFacingRight)
+            //         || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, w_Layer) && !IsFacingRight)) && !IsWallJumping)
+            //     LastOnWallRightTime = Data.coyoteTime;
+
+            // //Right Wall Check
+            // if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, w_Layer) && !IsFacingRight)
+            //     || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, w_Layer) && IsFacingRight)) && !IsWallJumping)
+            //     LastOnWallLeftTime = Data.coyoteTime;
+
+            //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
+            LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+        }
+        #endregion
+
+
+        #region 애니메이션 상태 업데이트
+        if (isGround) // 땅에 있을 때만 걷기, 달리기, 멈춤 상태 업데이트
+        {
+
+            if (Mathf.Abs(_moveInput.x) > 0.1f) // 이동 중
+            {
+                anim.SetBool("walk", !isRunning); // Shift가 눌리지 않으면 걷기
+                anim.SetBool("run", isRunning);  // Shift가 눌리면 달리기
+            }
+            else // 이동하지 않음
             {
                 anim.SetBool("walk", false);
                 anim.SetBool("run", false);
             }
         }
 
-        // 점프 애니메이션 트리거
-        if (Input.GetAxis("Jump") != 0)
+        anim.SetBool("isGround", isGround); // 현재 Ground 상태 업데이트
+        #endregion
+
+
+        #region JUMP CHECKS
+        if (IsJumping && rb.velocity.y < 0)
         {
-            anim.SetTrigger("jump");
+            IsJumping = false;
+
+            _isJumpFalling = true;
+            isGround = false;
+
         }
 
-        // 캐릭터 방향 전환
-        if ((input_x > 0 && isRight < 0) || (input_x < 0 && isRight > 0))
+
+        if (LastOnGroundTime > 0 && !IsJumping)
         {
-            FlipPlayer();
+            _isJumpCut = false;
+
+            _isJumpFalling = false;
+
         }
+
+
+        //Jump
+        if (CanJump() && LastPressedJumpTime > 0)
+        {
+            IsJumping = true;
+            _isJumpCut = false;
+            _isJumpFalling = false;
+            isGround = false;
+
+            Jump();
+
+            anim.SetTrigger("jump");
+        }
+        #endregion
+        #region GRAVITY
+        //Higher gravity if we've released the jump input or are falling
+
+        if (rb.velocity.y < 0 && _moveInput.y < 0)
+        {
+            //Much higher gravity if holding down
+            SetGravityScale(Data.gravityScale * Data.fastFallGravityMult);
+            //Caps maximum fall speed, so when falling over large distances we don't accelerate to insanely high speeds
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFastFallSpeed));
+        }
+        else if (_isJumpCut)
+        {
+            //Higher gravity if jump button released
+            SetGravityScale(Data.gravityScale * Data.jumpCutGravityMult);
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
+        }
+        else if ((IsJumping || _isJumpFalling) && Mathf.Abs(rb.velocity.y) < Data.jumpHangTimeThreshold)
+        {
+            SetGravityScale(Data.gravityScale * Data.jumpHangGravityMult);
+        }
+        else if (rb.velocity.y < 0)
+        {
+            //Higher gravity if falling
+            SetGravityScale(Data.gravityScale * Data.fallGravityMult);
+            //Caps maximum fall speed, so when falling over large distances we don't accelerate to insanely high speeds
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
+        }
+        else
+        {
+            //Default gravity if standing on a platform or moving upwards
+            SetGravityScale(Data.gravityScale);
+        }
+        #endregion
+
+
+
     }
 
     private void FixedUpdate()
@@ -96,24 +233,178 @@ public class FemaleCharacterController : MonoBehaviour
         if (!isActive) return; // 비활성화 상태일 때 물리 처리 금지
 
         // 캐릭터 이동
-        float moveSpeed = isRunning ? runSpeed : walkSpeed;
-        Vector2 velocity = new(input_x * moveSpeed, rb.velocity.y);
-
-        rb.velocity = velocity;
-
-        // 캐릭터 점프
-        if (isGround && Input.GetAxis("Jump") != 0)
+        if (!IsWallJumping)
         {
-            // 초기 점프 속도 증가를 위해 jumpBoost를 더해줌
-            rb.velocity = Vector2.up * (jumpPower + jumpBoost);
+            // 캐릭터의 이동 속도 계산 (걷기와 달리기 구분)
+            float moveSpeed = isRunning ? Data.runMaxSpeed : Data.runMaxSpeed * 0.5f; // Shift 누르면 달리기 속도
+            Vector2 velocity = new(_moveInput.x * moveSpeed, rb.velocity.y);
+
+            // 실제 이동 속도 적용
+            rb.velocity = velocity;
         }
 
+        //Handle Run
+        if (IsWallJumping)
+            Run(Data.wallJumpRunLerp);
+        else
+            Run(1);
+
     }
 
-    void FlipPlayer()
+
+    private void SetToIdleState()
     {
-        // 방향 전환
-        transform.eulerAngles = new Vector3(0, Mathf.Abs(transform.eulerAngles.y - 180), 0);
-        isRight = isRight == 1 ? -1 : 1;
+        rb.velocity = Vector2.zero; // 이동 중지
+        anim.SetBool("walk", false);
+        anim.SetBool("run", false);
+        anim.SetBool("isGround", true);
+        anim.Play("Idle"); // 강제로 Idle 애니메이션 재생
     }
+
+    #region INPUT CALLBACKS
+
+    public void OnJumpInput()
+    {
+        LastPressedJumpTime = Data.jumpInputBufferTime;
+    }
+    public void OnJumpUpInput()
+    {
+        if (CanJumpCut())
+            _isJumpCut = true;
+    }
+    #endregion
+
+
+    #region GENERAL METHODS
+    public void SetGravityScale(float scale)
+    {
+        rb.gravityScale = scale;
+    }
+
+    private void Sleep(float duration)
+    {
+        //Method used so we don't need to call StartCoroutine everywhere
+        //nameof() notation means we don't need to input a string directly.
+        //Removes chance of spelling mistakes and will improve error messages if any
+        StartCoroutine(nameof(PerformSleep), duration);
+    }
+
+    private IEnumerator PerformSleep(float duration)
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(duration); //Must be Realtime since timeScale with be 0 
+        Time.timeScale = 1;
+    }
+    #endregion
+
+    //MOVEMENT METHODS
+    #region RUN METHODS
+    private void Run(float lerpAmount)
+    {
+        //Calculate the direction we want to move in and our desired velocity
+        float targetSpeed = _moveInput.x * Data.runMaxSpeed;
+        //We can reduce are control using Lerp() this smooths changes to are direction and speed
+        targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpAmount);
+
+        #region Calculate AccelRate
+        float accelRate;
+
+        //Gets an acceleration value based on if we are accelerating (includes turning) 
+        //or trying to decelerate (stop). As well as applying a multiplier if we're air borne.
+        if (LastOnGroundTime > 0)
+            accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDeccelAmount;
+        else
+            accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount * Data.accelInAir : Data.runDeccelAmount * Data.deccelInAir;
+        #endregion
+
+        #region Add Bonus Jump Apex Acceleration
+        //Increase are acceleration and maxSpeed when at the apex of their jump, makes the jump feel a bit more bouncy, responsive and natural
+        if ((IsJumping || IsWallJumping || _isJumpFalling) && Mathf.Abs(rb.velocity.y) < Data.jumpHangTimeThreshold)
+        {
+            accelRate *= Data.jumpHangAccelerationMult;
+            targetSpeed *= Data.jumpHangMaxSpeedMult;
+        }
+        #endregion
+
+        #region Conserve Momentum
+        //We won't slow the player down if they are moving in their desired direction but at a greater speed than their maxSpeed
+        if (Data.doConserveMomentum && Mathf.Abs(rb.velocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(rb.velocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && LastOnGroundTime < 0)
+        {
+            //Prevent any deceleration from happening, or in other words conserve are current momentum
+            //You could experiment with allowing for the player to slightly increae their speed whilst in this "state"
+            accelRate = 0;
+        }
+        #endregion
+
+        //Calculate difference between current velocity and desired velocity
+        float speedDif = targetSpeed - rb.velocity.x;
+        //Calculate force along x-axis to apply to thr player
+
+        float movement = speedDif * accelRate;
+
+        //Convert this to a vector and apply to rigidbody
+        rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
+
+        /*
+         * For those interested here is what AddForce() will do
+         * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);
+         * Time.fixedDeltaTime is by default in Unity 0.02 seconds equal to 50 FixedUpdate() calls per second
+        */
+    }
+
+    private void Turn()
+    {
+        //stores scale and flips the player along the x axis, 
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+
+        IsFacingRight = !IsFacingRight;
+    }
+    #endregion
+
+
+    #region JUMP METHODS
+    private void Jump()
+    {
+        LastPressedJumpTime = 0;
+        LastOnGroundTime = 0;
+
+        #region Perform Jump
+        //We increase the force applied if we are falling
+        //This means we'll always feel like we jump the same amount 
+        //(setting the player's Y velocity to 0 beforehand will likely work the same, but I find this more elegant :D)
+        float force = Data.jumpForce;
+        if (rb.velocity.y < 0)
+            force -= rb.velocity.y;
+
+        rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        #endregion
+    }
+
+    public void CheckDirectionToFace(bool isMovingRight)
+    {
+        if (isMovingRight != IsFacingRight)
+            Turn();
+    }
+
+    private bool CanJump()
+    {
+        return LastOnGroundTime > 0 && !IsJumping;
+    }
+
+    private bool CanJumpCut()
+    {
+        return IsJumping && rb.velocity.y > 0;
+    }
+    #endregion
+
+    #region EDITOR METHODS
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(_groundCheckPoint.position, _groundCheckSize);
+        Gizmos.color = Color.blue;
+    }
+    #endregion
 }

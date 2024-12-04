@@ -102,12 +102,22 @@ public class CameraFollow : MonoBehaviour
     }
 
     // tilemap 참조 변경 함수
-    public void SetTarget(Tilemap newTilemap)
+    public void SetTileMap(Tilemap newTilemap)
     {
         tilemap = newTilemap;
         if (tilemap != null)
         {
             tr = tilemap.gameObject.GetComponent<TilemapRenderer>();
+        }
+    }
+
+    // 카메라 타겟 변경 메서드
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+        if (newTarget != null)
+        {
+            originalTarget = newTarget; // 원래 타겟 업데이트
         }
     }
 

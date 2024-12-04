@@ -92,8 +92,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!isActive) return; // 비활성화 상태일 때 입력 처리 금지
-
+        if (!isActive)
+        {
+            // 비활성화 상태일 때 Idle 상태 강제 설정
+            SetToIdleState();
+            return; // 입력 및 동작 처리 중지
+        }
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
         LastOnWallTime -= Time.deltaTime;
@@ -120,7 +124,14 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnJumpInput();
+            if (isInWater)
+            {
+                SwimUpward(); // Swim upwards
+            }
+            else
+            {
+                OnJumpInput();
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
@@ -183,16 +194,50 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGround", isGround); // 현재 Ground 상태 업데이트
         anim.SetBool("isSliding", IsSliding); // 슬라이딩 상태 업데이트
 
+        #region SWIMMING LOGIC
         if (isInWater)
         {
-            anim.SetBool("isSwim", isInWater);
+            isGround = false;
+            anim.SetBool("isSwim", true); // Set swim animation state
+            rb.gravityScale = 0.5f; // Reduce gravity to simulate buoyancy
+
+            // Allow upward movement
+            if (_moveInput.y > 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, Data.swimSpeed);
+            }
+            else if (_moveInput.y < 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -Data.swimSpeed * 0.5f); // Slower descent
+            }
+            // Adjust sprite rotation for direction
+            if (_moveInput.x > 0) // Moving right
+            {
+                if (_moveInput.y > 0)
+                    transform.rotation = Quaternion.Euler(0, 0, 20);
+                else if (_moveInput.y < 0)
+                    transform.rotation = Quaternion.Euler(0, 0, -20);
+            }
+            else if (_moveInput.x < 0) // Moving left
+            {
+                if (_moveInput.y > 0)
+                    transform.rotation = Quaternion.Euler(0, 0, -20);
+                else if (_moveInput.y < 0)
+                    transform.rotation = Quaternion.Euler(0, 0, 20);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation
+            }
+        }
+        else
+        {
+            anim.SetBool("isSwim", false); // Exit swim animation state
+            rb.gravityScale = Data.gravityScale; // Reset gravity
+            transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation
         }
         #endregion
-
-
-        // 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하게 변경
-        // if (!isGround && (ground_back || ground_front))
-        //     rb.velocity = new Vector2(rb.velocity.x, 0);
+        #endregion
 
         isCrouching = Input.GetKey(KeyCode.DownArrow);  // 아래 방향키로 crouch 상태
         isCrouchWalking = isCrouching && Mathf.Abs(_moveInput.x) > 0.1f;         // 옆으로 이동 중에 아래키를 누르면 즉시 crouchWalking으로 전환
@@ -201,12 +246,12 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isCrouchWalking", isCrouchWalking); // crouchWalk 애니메이션
 
         // CapsuleCollider2D의 size 조정
-        if (isCrouching || isCrouchWalking)
+        if (isCrouching || isCrouchWalking || isInWater)
         {
             capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, targetCrouchSize, Time.deltaTime * crouchTransitionSpeed);
             Physics2D.SyncTransforms(); // 즉시 Physics 업데이트
         }
-        else if (!isCrouching)
+        else if (!isCrouching && !isInWater)
         {
 
             if (!wall_up)
@@ -299,7 +344,7 @@ public class PlayerController : MonoBehaviour
         {
             SetGravityScale(Data.slideGravityScale); // 슬라이딩 전용 낮은 중력 값
         }
-        else if (rb.velocity.y < 0 && _moveInput.y < 0)
+        else if (rb.velocity.y < 0 && _moveInput.y < 0 && !isInWater)
         {
             //Much higher gravity if holding down
             SetGravityScale(Data.gravityScale * Data.fastFallGravityMult);
@@ -422,6 +467,19 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(_moveInput.x * crouchWalkSpeed, rb.velocity.y);
         }
     }
+
+    private void SetToIdleState()
+    {
+        rb.velocity = Vector2.zero; // 이동 중지
+        anim.SetBool("walk", false);
+        anim.SetBool("run", false);
+        anim.SetBool("isGround", true);
+        anim.SetBool("isSliding", false);
+        anim.SetBool("isCrouching", false);
+        anim.SetBool("isCrouchWalking", false);
+        anim.Play("Idle"); // 강제로 Idle 애니메이션 재생
+    }
+
     #region INPUT CALLBACKS
 
     public void OnJumpInput()
@@ -429,6 +487,11 @@ public class PlayerController : MonoBehaviour
         LastPressedJumpTime = Data.jumpInputBufferTime;
     }
 
+
+    private void SwimUpward()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, Data.swimSpeed); // Apply upward velocity
+    }
     public void OnJumpUpInput()
     {
         if (CanJumpCut() || CanWallJumpCut())
