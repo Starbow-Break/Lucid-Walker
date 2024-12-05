@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 public class TicketDialogueTrigger : MonoBehaviour
 {
@@ -122,6 +124,34 @@ public class TicketDialogueTrigger : MonoBehaviour
         {
             bridgeTilemap.SetActive(true);
         }
+        // 모든 티켓 제거
+        RemoveAllTickets();
     }
+    private void RemoveAllTickets()
+    {
+        // 플레이어의 ItemFollowBag에서 티켓 제거
+        if (player != null)
+        {
+            ItemFollowBag bag = player.GetComponent<ItemFollowBag>();
+            if (bag != null)
+            {
+                // collectItems에서 Ticket 타입만 필터링
+                List<IFollowCollectable> ticketsToRemove = new List<IFollowCollectable>(
+                    bag.CollectItems.Where(item => item is Ticket)
+                );
+
+                // 필터링된 티켓 제거
+                foreach (var ticket in ticketsToRemove)
+                {
+                    bag.RemoveItem(ticket);
+                    Destroy(((MonoBehaviour)ticket).gameObject); // Ticket GameObject 제거
+                }
+
+                Ticket.collectedTicketCount = 0; // 티켓 개수 초기화
+                Debug.Log("모든 티켓을 제거했습니다.");
+            }
+        }
+    }
+
 
 }
