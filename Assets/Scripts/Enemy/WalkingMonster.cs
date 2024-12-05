@@ -28,6 +28,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     private Transform detectedPlayer; // 감지된 플레이어 참조
 
     public LayerMask platformLayer;
+    public LayerMask WaterLayer;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     void Update()
     {
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, platformLayer);
+        bool isInWater = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, WaterLayer);
         bool ground_back = Physics2D.Raycast(groundChkBack.position, Vector2.down, chkDistance, platformLayer);
 
         if (isDead) return; // 죽었으면 로직 실행 중지
@@ -46,9 +48,19 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         DetectPlayer(); // 플레이어 감지
 
         // 플랫폼에서 벗어나려는 경우 또는 앞에 장애물이 있을 경우
-        if (!ground_front || !ground_back || IsPlatformInFront())
+        if (!isInWater)
         {
-            Flip();
+            if (!ground_front || !ground_back || IsPlatformInFront())
+            {
+                Flip();
+            }
+        }
+        else
+        {
+            if (IsPlatformInFront())
+            {
+                Flip();
+            }
         }
 
         // 플레이어가 감지 범위 내에 있지 않으면 순찰
@@ -108,12 +120,12 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         Vector2 direction = ((Vector2)detectedPlayer.position - (Vector2)transform.position).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-        // 플랫폼 끝이나 장애물이 감지되면 Flip
-        if (!ground_front || IsPlatformInFront())
-        {
-            Flip();
-            return; // Flip한 후 더 이상 추적 로직 실행하지 않음
-        }
+        // // 플랫폼 끝이나 장애물이 감지되면 Flip
+        // if (!ground_front || IsPlatformInFront())
+        // {
+        //     Flip();
+        //     return; // Flip한 후 더 이상 추적 로직 실행하지 않음
+        // }
 
         // 플레이어의 위치에 따라 방향을 수정
         if ((detectedPlayer.position.x > transform.position.x && !isFacingRight) ||

@@ -12,15 +12,23 @@ public class DialogueTrigger : MonoBehaviour
     public float originalCameraSize = 7.5f; // 대화 종료 후 복구될 카메라 크기
     private bool hasTriggered = false; // 트리거가 한 번만 실행되도록 제어
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
+    public float focusPointMoveSpeed = 2f; // 포커스 포인트 이동 속도
+    public float fadeOutSpeed = 2f; // 페이드아웃 속도
+
+    private SpriteRenderer focusPointSprite; // focusPoint의 SpriteRenderer 참조
 
     private void Start()
     {
         cameraFollow = Camera.main.GetComponent<CameraFollow>();
 
-        // 초기 카메라 크기 저장
         if (Camera.main != null)
         {
             originalCameraSize = Camera.main.orthographicSize;
+        }
+
+        if (focusPoint != null)
+        {
+            focusPointSprite = focusPoint.GetComponent<SpriteRenderer>();
         }
     }
 
@@ -28,7 +36,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            hasTriggered = true; // 트리거가 한 번만 실행되도록 설정
+            hasTriggered = true;
 
             // 카메라를 대화 대상에 포커스
             if (cameraFollow != null && focusPoint != null)
@@ -48,7 +56,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (hasTriggered && DialogueManager.Instance.IsDialogueFinished())
         {
-            hasTriggered = false; // 중복 실행 방지
+            hasTriggered = false;
 
             // 대화가 끝난 후 실행
             StartCoroutine(HandlePostDialogue());
@@ -70,10 +78,9 @@ public class DialogueTrigger : MonoBehaviour
                 yield return null;
             }
 
-            mainCamera.orthographicSize = targetSize; // 정확히 목표 크기에 도달하도록 설정
+            mainCamera.orthographicSize = targetSize;
         }
     }
-
 
     private IEnumerator HandlePostDialogue()
     {
@@ -86,13 +93,45 @@ public class DialogueTrigger : MonoBehaviour
             cameraFollow.SetDialogueFocus(player);
         }
 
+        // focusPoint 이동 및 페이드아웃
+        if (focusPoint != null)
+        {
+            StartCoroutine(MoveAndFadeOutFocusPoint());
+        }
+
         // 카메라 크기 복구
         yield return StartCoroutine(LerpCameraSize(originalCameraSize));
 
-        // 캐릭터 이동
-        focusPoint.gameObject.SetActive(false);
-
         // 모든 작업이 완료된 후 GameObject 비활성화
         gameObject.SetActive(false);
+    }
+
+    private IEnumerator MoveAndFadeOutFocusPoint()
+    {
+        Vector3 moveDirection = new Vector3(1, 0, 0); // focusPoint가 왼쪽으로 이동
+        float targetAlpha = 0f;
+
+        if (focusPointSprite != null)
+        {
+            // 방향 전환 (Flip)
+            focusPointSprite.flipX = false;
+
+            // 이동 및 페이드아웃
+            while (focusPointSprite.color.a > targetAlpha)
+            {
+                // 이동
+                focusPoint.position += moveDirection * focusPointMoveSpeed * Time.deltaTime;
+
+                // 페이드아웃
+                Color color = focusPointSprite.color;
+                color.a = Mathf.MoveTowards(color.a, targetAlpha, fadeOutSpeed * Time.deltaTime);
+                focusPointSprite.color = color;
+
+                yield return null;
+            }
+        }
+
+        // focusPoint 비활성화
+        focusPoint.gameObject.SetActive(false);
     }
 }
