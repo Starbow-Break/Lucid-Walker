@@ -30,11 +30,6 @@ public class QuizManager : MonoBehaviour
             }
         }
 
-        // 최종 문 비활성화
-        if (finalPortal != null)
-        {
-            finalPortal.SetActive(false);
-        }
     }
 
     public void NowPortal(string portalName)
