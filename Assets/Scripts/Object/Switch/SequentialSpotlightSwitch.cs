@@ -9,22 +9,18 @@ public class SequentialSpotlightSwitch : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] bool isBroken;
 
-    SpriteRenderer sr; // 스위치 스프라이트
-
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
         anim.SetBool("isOn", sequentialSpotlightGroup.isOn);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player")) {
-            if(isBroken && sequentialSpotlightGroup.isOn) {
+            sequentialSpotlightGroup.Switch();
+            if(isBroken && !sequentialSpotlightGroup.isOn) {
                 anim.SetTrigger("broken");
             }
-            
-            sequentialSpotlightGroup.Switch();
             anim.SetBool("isOn", sequentialSpotlightGroup.isOn);
         }
     }

@@ -13,23 +13,24 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   slideGravityScale: 0.5
-  gravityStrength: -77.77777
-  gravityScale: 7.9284167
+  gravityStrength: -62.222218
+  gravityScale: 6.3427334
   fallGravityMult: 1
   maxFallSpeed: 12
   fastFallGravityMult: 1.5
   maxFastFallSpeed: 14.7
-  runMaxSpeed: 11
+  runMaxSpeed: 8.8
   runAcceleration: 2.5
-  runAccelAmount: 11.363636
+  runAccelAmount: 14.204545
   runDecceleration: 5
-  runDeccelAmount: 22.727272
+  runDeccelAmount: 28.40909
   accelInAir: 0.406
   deccelInAir: 0.361
   doConserveMomentum: 1
-  jumpHeight: 3.5
+  swimSpeed: 0
+  jumpHeight: 2.8
   jumpTimeToApex: 0.3
-  jumpForce: 23.333332
+  jumpForce: 18.666666
   jumpCutGravityMult: 2
   jumpHangGravityMult: 0.5
   jumpHangTimeThreshold: 1
