@@ -35,6 +35,7 @@ public class PlayerData : ScriptableObject
 	[Space(20)]
 	[Header("Swim")]
 	public float swimSpeed; //Target speed we want the player to reach.
+	public float swimAcceleration;
 	[Space(5)]
 
 
