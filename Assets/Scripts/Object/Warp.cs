@@ -4,11 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Warp : MonoBehaviour
+public abstract class Warp : MonoBehaviour
 {
+    [SerializeField] Map map; // Warp가 속한 Map
     [SerializeField] Warp targetWarp; // 목표 Warp
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
+
+    public Map GetMap() => map;
 
     void Update() {
         if(interactingPlayer != null && Input.GetKeyDown(KeyCode.Z)) {
@@ -41,7 +44,7 @@ public class Warp : MonoBehaviour
         yield return WarpInAnim(warpTarget);
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
-        warpTarget.transform.parent = targetWarp.transform.parent;
+        warpTarget.transform.parent = targetWarp.map.transform;
         warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
 
         // 워프 애니메이션
@@ -59,8 +62,8 @@ public class Warp : MonoBehaviour
         }
     }
 
-    protected virtual IEnumerator WarpInAnim(GameObject warpTarget) { yield return null; }
-    protected virtual IEnumerator WarpOutAnim(GameObject warpTarget) { yield return null; }
+    protected abstract IEnumerator WarpInAnim(GameObject warpTarget);
+    protected abstract IEnumerator WarpOutAnim(GameObject warpTarget);
 
     // 해당 오브젝트의 자식 오브젝트들의 collider를 활성화
     void ActiveChildColliders(GameObject obj) {
