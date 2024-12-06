@@ -4847,7 +4847,7 @@ GameObject:
   - component: {fileID: 4633225912960162167}
   - component: {fileID: 1604735690226824660}
   - component: {fileID: 146297349297052220}
-  - component: {fileID: 4557776243826055601}
+  - component: {fileID: 4994270879498653629}
   m_Layer: 6
   m_Name: Cloud Sprite
   m_TagString: Untagged
@@ -5031,7 +5031,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4557776243826055601
+--- !u!114 &4994270879498653629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5040,12 +5040,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5248529644940038564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317ebad442aa5d04187f66c1ca95c333, type: 3}
+  m_Script: {fileID: 11500000, guid: 0abd27a553a849c46a2949f82b33fe8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 849045423143809926}
   disappearTime: 2
   spawnTime: 2
-  particle: {fileID: 849045423143809926}
 --- !u!1 &7656961091961413247
 GameObject:
   m_ObjectHideFlags: 0
