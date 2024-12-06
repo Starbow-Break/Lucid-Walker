@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
         IsFacingRight = true;
         capsuleCollider = GetComponent<CapsuleCollider2D>(); // CapsuleCollider2D 컴포넌트 가져오기
         originalColliderSize = capsuleCollider.size; // 원래 size 값 저장
-
     }
 
     private void Update()
@@ -199,44 +198,51 @@ public class PlayerController : MonoBehaviour
         {
             isGround = false;
             anim.SetBool("isSwim", true); // Set swim animation state
-            rb.gravityScale = 0.5f; // Reduce gravity to simulate buoyancy
 
             // Allow upward movement
             if (_moveInput.y > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, Data.swimSpeed);
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Min(Data.swimSpeed, rb.velocity.y + Data.swimAcceleration * Time.deltaTime));
             }
             else if (_moveInput.y < 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, -Data.swimSpeed * 0.5f); // Slower descent
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(-Data.swimSpeed * 0.5f, rb.velocity.y - Data.swimAcceleration * Time.deltaTime)); // Slower descent
             }
+            else
+            {
+                // 자연스러운 부력 적용 (속도 점진적으로 감소)
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Lerp(rb.velocity.y, 0, Time.deltaTime * 2));
+            }
+
             // Adjust sprite rotation for direction
+            Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
             if (_moveInput.x > 0) // Moving right
             {
                 if (_moveInput.y > 0)
-                    transform.rotation = Quaternion.Euler(0, 0, 20);
+                    targetRotation = Quaternion.Euler(0, 0, 20);
                 else if (_moveInput.y < 0)
-                    transform.rotation = Quaternion.Euler(0, 0, -20);
+                    targetRotation = Quaternion.Euler(0, 0, -20);
             }
             else if (_moveInput.x < 0) // Moving left
             {
                 if (_moveInput.y > 0)
-                    transform.rotation = Quaternion.Euler(0, 0, -20);
+                    targetRotation = Quaternion.Euler(0, 0, -20);
                 else if (_moveInput.y < 0)
-                    transform.rotation = Quaternion.Euler(0, 0, 20);
+                    targetRotation = Quaternion.Euler(0, 0, 20);
             }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation
-            }
+
+            // Smoothly rotate towards target
+            float rotationSpeed = 5f; // Adjust rotation speed here
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
         else
         {
             anim.SetBool("isSwim", false); // Exit swim animation state
-            rb.gravityScale = Data.gravityScale; // Reset gravity
-            transform.rotation = Quaternion.Euler(0, 0, 0); // Reset rotation
+            float rotationSpeed = 5f; // Adjust rotation speed here
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
         }
         #endregion
+
         #endregion
 
         isCrouching = Input.GetKey(KeyCode.DownArrow);  // 아래 방향키로 crouch 상태
@@ -343,6 +349,10 @@ public class PlayerController : MonoBehaviour
         if (IsSliding)
         {
             SetGravityScale(Data.slideGravityScale); // 슬라이딩 전용 낮은 중력 값
+        }
+        if (isInWater)
+        {
+            SetGravityScale(Data.slideGravityScale * 0.1f); // 슬라이딩 전용 낮은 중력 값
         }
         else if (rb.velocity.y < 0 && _moveInput.y < 0 && !isInWater)
         {

@@ -47,6 +47,7 @@ namespace Bundos.WaterSystem
         public Material waterMaterial;
 
 
+
         private void Start()
         {
             Initialize();
@@ -205,6 +206,7 @@ namespace Bundos.WaterSystem
             mesh.uv = uvs;
 
             mesh.RecalculateNormals();
+
         }
 
         private void Ripple(Vector3 contactPoint, bool sink)

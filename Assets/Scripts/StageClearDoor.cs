@@ -12,9 +12,15 @@ public class StageClearDoor : MonoBehaviour
     GameObject interactingPlayer = null;
     bool isOpen = false;
 
+    #region 스테이지 클리어 UI
+    [SerializeField] GameObject stageClearUI; // 스테이지 클리어 UI
+
+    #endregion
+
     void Awake()
     {
         anim = GetComponent<Animator>();
+        stageClearUI.SetActive(false);
     }
 
     void Update()
@@ -28,9 +34,7 @@ public class StageClearDoor : MonoBehaviour
         {
             if (isOpen)
             {
-                /*
-                * TODO : 스테이지 클리어 로직
-                */
+                StartCoroutine(StageClearSequence());
                 Debug.Log("스테이지 클리어!!!!!!!!");
             }
             else
@@ -55,7 +59,8 @@ public class StageClearDoor : MonoBehaviour
         ItemFollowBag bag = interactingPlayer.GetComponent<ItemFollowBag>();
 
         // 맞는 열쇠가 있다면 문을 연다.
-        if(bag.HasItem(key)) {
+        if (bag.HasItem(key))
+        {
             bag.RemoveItem(key);
 
             key.isFollow = true;
@@ -75,6 +80,17 @@ public class StageClearDoor : MonoBehaviour
         }
     }
 
+    IEnumerator StageClearSequence()
+    {
+        // UI 활성화
+        stageClearUI.SetActive(true);
+
+        // 2초 대기 (클리어 메시지 표시 시간)
+        yield return new WaitForSeconds(2f);
+
+        // 씬 전환
+        LevelManager.Instance.LoadScene("Start", "CrossFade");
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

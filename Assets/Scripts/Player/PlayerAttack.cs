@@ -42,7 +42,12 @@ public class PlayerAttack : MonoBehaviour
     {
         if (bullet != null && pos != null)
         {
-            Instantiate(bullet, pos.position, transform.rotation); // 총알 생성
+            // Instantiate the bullet at the spawn position
+            GameObject newBullet = Instantiate(bullet, pos.position, Quaternion.identity);
+
+            // Set the bullet's facing direction based on the player's scale
+            float direction = transform.localScale.x > 0 ? 1 : -1;
+            newBullet.transform.localScale = new Vector3(direction, 1, 1); // Flip bullet if facing left
         }
     }
 }

@@ -82,10 +82,8 @@ public class MoviePortal : MonoBehaviour
 
         // 플레이어의 Order in Layer를 0으로 설정
         SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
-        if (playerSprite != null)
-        {
-            playerSprite.sortingOrder = -1;
-        }
+        playerSprite.sortingOrder = -1;
+
 
         // 플레이어의 Particle System 색상을 빨간색으로 변경
         if (playerParticleSystem != null)

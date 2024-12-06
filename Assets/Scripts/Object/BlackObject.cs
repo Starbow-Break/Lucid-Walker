@@ -13,10 +13,7 @@ public class BlackObject : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
-            Debug.LogError("SpriteRenderer가 없습니다!");
-        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
