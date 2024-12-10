@@ -34,6 +34,7 @@ public class StageClearDoor : MonoBehaviour
         {
             if (isOpen)
             {
+                Debug.Log("오ㅐ 안됨");
                 StartCoroutine(StageClearSequence());
                 Debug.Log("스테이지 클리어!!!!!!!!");
             }
@@ -86,10 +87,10 @@ public class StageClearDoor : MonoBehaviour
         stageClearUI.SetActive(true);
 
         // 2초 대기 (클리어 메시지 표시 시간)
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
         // 씬 전환
-        LevelManager.Instance.LoadScene("Start", "CrossFade");
+        LevelManager.Instance.LoadScene("Start", "CircleWipe");
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
