@@ -774,11 +774,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: 55.22
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.96
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15696,10 +15696,8 @@ CompositeCollider2D:
         Y: -86000000
     - - X: 760000000
         Y: -100000000
-      - X: -239300000
-        Y: -100000000
       - X: -240000000
-        Y: -100700000
+        Y: -100000000
       - X: -240000000
         Y: -160000000
       - X: 760000000
@@ -15792,8 +15790,7 @@ CompositeCollider2D:
       - {x: 117.00003, y: -16}
     - - {x: 75.99997, y: -16}
       - {x: 75.99997, y: -10}
-      - {x: -23.930008, y: -10.000009}
-      - {x: -24, y: -10.070011}
+      - {x: -24, y: -10.00003}
       - {x: -23.999971, y: -16}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
@@ -22675,6 +22672,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform Star
       objectReference: {fileID: 0}
+    - target: {fileID: 5487762115332819092, guid: 3447c827c954d374c95c16051c4e175f, type: 3}
+      propertyPath: m_Name
+      value: Star
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630176106166869693, guid: 3447c827c954d374c95c16051c4e175f, type: 3}
+      propertyPath: m_Name
+      value: Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630176106166869693, guid: 3447c827c954d374c95c16051c4e175f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7506216820974751977, guid: 3447c827c954d374c95c16051c4e175f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.331275
@@ -22715,8 +22724,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8694501161627435198, guid: 3447c827c954d374c95c16051c4e175f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2424409321493716931, guid: 3447c827c954d374c95c16051c4e175f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3447c827c954d374c95c16051c4e175f, type: 3}

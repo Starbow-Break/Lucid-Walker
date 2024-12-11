@@ -34,11 +34,19 @@ public class Cloud : MonoBehaviour
     // 밟으면 구름이 사라질 징조를 보여주고 일정 시간이 지난 후 사라진다.
     protected virtual void OnCollisionEnter2D(Collision2D other) {
         if(other.collider.CompareTag("Player")) {
+            Debug.Log("Fall Speed : " + other.collider.GetComponent<Rigidbody2D>().velocity);
             isStepped = true;
             originalParent = other.transform.parent;
             other.transform.parent = transform;
-            particle?.Play();
-        }
+
+            if(particle != null) {
+                ContactPoint2D contact = other.contacts[0];
+                Vector3 landingPoint = contact.point;
+
+                ParticleSystem spawnedParticle = Instantiate(particle, landingPoint, Quaternion.identity, transform.parent);
+                Destroy(spawnedParticle.gameObject, spawnedParticle.main.duration);
+            }
+        } 
     }
 
     private void OnCollisionExit2D(Collision2D other) {
@@ -46,7 +54,6 @@ public class Cloud : MonoBehaviour
             isStepped = false;
             other.transform.parent = originalParent;
             originalParent = null;
-            particle?.Stop();
         }
     }
 }
