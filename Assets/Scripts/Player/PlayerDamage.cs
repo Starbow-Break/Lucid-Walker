@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour, IDamageable
 {
-    public int health = 10;  // 플레이어의 초기 체력
+    public int maxHealth = 3; // 최대 체력
+    public int currentHealth; // 현재 체력
     public bool isHurt;
     SpriteRenderer sr;
     Color halfA = new Color(1, 1, 1, 0.5f);
@@ -13,57 +14,69 @@ public class PlayerDamage : MonoBehaviour, IDamageable
     private Animator anim;     // Animator 참조
     private Rigidbody2D rb;    // Rigidbody2D 참조
     public bool isKnockBack = false;
+    [SerializeField] private HealthUI healthUI; // HealthUI 참조
+    [SerializeField] private GameObject failUI; // Fail UI
     private void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        // 체력 초기화
+        currentHealth = maxHealth;
+
+        // UI 초기화
+        healthUI.InitializeHealthUI(maxHealth);
+        healthUI.UpdateHealthUI(currentHealth);
+
+        failUI.SetActive(false); // Fail UI 비활성화
     }
 
     public void TakeDamage(int damage, Transform attacker)
     {
-        Debug.Log("TakeDamage called"); // 디버그 로그 추가
         if (!isHurt)
         {
             isHurt = true;
-            health -= damage;
+            currentHealth -= damage;
 
-            if (health <= 0)
+            healthUI.UpdateHealthUI(currentHealth);
+
+            if (currentHealth <= 0)
             {
-                // 죽음 처리
-                Debug.Log("Player Died"); // 죽음 처리 확인용 로그
-
+                StartCoroutine(HandleDeath());
             }
             else
             {
-                Debug.Log("Player took damage: " + damage); // 데미지 확인용 로그
-                float x = transform.position.x - attacker.position.x;
-                x = x < 0 ? 1 : -1;
-                StartCoroutine(DamageRoutine(x));
+                StartCoroutine(DamageRoutine(attacker));
             }
+            // if (health <= 0)
+            // {
+            //     // 죽음 처리
+            //     anim.SetTrigger("Die");
+            //     Debug.Log("Player Died"); // 죽음 처리 확인용 로그
+            // }
+            // else
+            // {
+            //     Debug.Log("Player took damage: " + damage); // 데미지 확인용 로그
+            //     float x = transform.position.x - attacker.position.x;
+            //     x = x < 0 ? 1 : -1;
+            //     StartCoroutine(DamageRoutine(x));
+            // }
         }
     }
 
-    IEnumerator DamageRoutine(float dir)
+    IEnumerator DamageRoutine(Transform attacker)
     {
         // Knockback 처리
         isKnockBack = true;
-        float ctime = 0;
-        anim.SetTrigger("hurt");
-        while (ctime < 0.2f)
-        {
-            if (transform.rotation.y == 0)
-            {
-                transform.Translate(Vector2.left * speed * Time.deltaTime * dir);
-                transform.position = new(transform.position.x, transform.position.y, 0.0f);
-            }
-            else
-            {
-                transform.Translate(Vector2.left * speed * Time.deltaTime * -1f * dir);
-                transform.position = new(transform.position.x, transform.position.y, 0.0f);
-            }
+        float knockbackDuration = 0.2f;
+        float elapsedTime = 0;
 
-            ctime += Time.deltaTime;
+        anim.SetTrigger("hurt");
+        while (elapsedTime < knockbackDuration)
+        {
+            transform.Translate(Vector2.left * 2 * Time.deltaTime); // Knockback 예제
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
         isKnockBack = false;
@@ -83,5 +96,20 @@ public class PlayerDamage : MonoBehaviour, IDamageable
 
         // HurtRoutine 종료 처리
         isHurt = false;
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        // 사망 애니메이션
+        anim.SetTrigger("hurt");
+        anim.SetTrigger("Die");
+        yield return new WaitForSeconds(1.5f);
+
+        // Fail UI 활성화
+        failUI.SetActive(true);
+        yield return new WaitForSeconds(5f); // 2초 대기
+
+        // Start 화면으로 전환
+        LevelManager.Instance.LoadScene("Start", "CircleWipe");
     }
 }

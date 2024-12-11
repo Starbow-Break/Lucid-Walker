@@ -20,7 +20,6 @@ public class StageClearDoor : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
-        stageClearUI.SetActive(false);
     }
 
     void Update()
