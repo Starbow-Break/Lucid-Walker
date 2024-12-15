@@ -34,6 +34,8 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (hasTriggered) return; // 이미 트리거가 활성화되었다면 실행 안 함
+
         if (other.CompareTag("Player"))
         {
             hasTriggered = true;
