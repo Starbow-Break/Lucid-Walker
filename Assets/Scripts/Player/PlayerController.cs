@@ -176,6 +176,7 @@ public class PlayerController : MonoBehaviour
         #region 애니메이션 상태 업데이트
         if (isGround) // 땅에 있을 때만 걷기, 달리기, 멈춤 상태 업데이트
         {
+
             anim.SetBool("isSwim", false);
 
             if (Mathf.Abs(_moveInput.x) > 0.1f) // 이동 중
@@ -237,7 +238,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            anim.SetBool("isSwim", false); // Exit swim animation state
+            // anim.SetBool("isSwim", false); // Exit swim animation state
             float rotationSpeed = 5f; // Adjust rotation speed here
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
         }

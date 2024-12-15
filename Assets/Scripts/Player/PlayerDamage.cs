@@ -16,6 +16,8 @@ public class PlayerDamage : MonoBehaviour, IDamageable
     public bool isKnockBack = false;
     [SerializeField] private HealthUI healthUI; // HealthUI 참조
     [SerializeField] private GameObject failUI; // Fail UI
+    [SerializeField] private Animator failUIAnimator; // FailUI의 Animator
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -107,6 +109,9 @@ public class PlayerDamage : MonoBehaviour, IDamageable
 
         // Fail UI 활성화
         failUI.SetActive(true);
+        failUIAnimator.SetTrigger("Bounce");
+
+
         yield return new WaitForSeconds(5f); // 2초 대기
 
         // Start 화면으로 전환
