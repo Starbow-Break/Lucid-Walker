@@ -2590,6 +2590,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3941208028432973102, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
+      propertyPath: failUI
+      value: 
+      objectReference: {fileID: 332531492}
+    - target: {fileID: 3941208028432973102, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 846936404}
+    - target: {fileID: 3941208028432973102, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
+      propertyPath: failUIAnimator
+      value: 
+      objectReference: {fileID: 295062470}
     - target: {fileID: 7913414178622303165, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: bagPoint
       value: 
