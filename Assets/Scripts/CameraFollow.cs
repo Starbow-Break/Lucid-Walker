@@ -65,7 +65,6 @@ public class CameraFollow : MonoBehaviour
         else
         {
             Map currentMap = FindMap(target);
-            Debug.Log(currentMap);
             if (currentMap != null)
             { // Map이 있다면 해당 Map에 설정된 경계 안에서 이동
                 followPosition = new Vector3(
