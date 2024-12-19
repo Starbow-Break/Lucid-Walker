@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 4903817556618310298}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.942598, y: 3.7122684, z: 0}
+  m_LocalPosition: {x: -18.942596, y: 3.7122684, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -232,7 +232,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.014400154, y: -0.19713938}
@@ -487,8 +487,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Positions:
-  - {x: 1, y: 8.1331005, z: 0}
-  - {x: 45, y: -0.8668995, z: 0}
+  - {x: 75.57, y: 5.5631003, z: 0}
+  - {x: 119.57, y: -3.4368997, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
