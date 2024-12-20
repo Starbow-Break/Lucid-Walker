@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParallaxScroll : MonoBehaviour
 {
@@ -17,15 +18,15 @@ public class ParallaxScroll : MonoBehaviour
 
     [Range(0.0f, 1.0f)]
     [Tooltip("수직 방향 평행 이동 강도")]
-    [SerializeField] float verticalAmount; // 직 방향 평행 이동 강도
+    [SerializeField] float verticalAmount; // 수직 방향 평행 이동 강도
 
     [Min(1.0f)]
     [Tooltip("수직 방향 스케일")]
-    [SerializeField] float verticalUnitScale = 1.0f; // 직 방향 평행 이동 강도
+    [SerializeField] float verticalUnitScale = 1.0f; // 수직 방향 스케일
 
     [Min(1.0f)]
     [Tooltip("수평 방향 스케일")]
-    [SerializeField] float horizontalUnitScale = 1.0f; // 직 방향 평행 이동 강도
+    [SerializeField] float horizontalUnitScale = 1.0f; // 수평 방향 스케일
 
     Vector3 pos; // 기준 위치
     float width, height;
@@ -44,6 +45,10 @@ public class ParallaxScroll : MonoBehaviour
 
     void Update()
     {
+        Scroll();
+    }
+
+    protected virtual void Scroll() {
         Vector2 temp = new(mainCamera.transform.position.x * (1 - horizontalAmount), mainCamera.transform.position.y * (1 - verticalAmount));
         Vector2 dist = new(mainCamera.transform.position.x * horizontalAmount, mainCamera.transform.position.y * verticalAmount);
 
