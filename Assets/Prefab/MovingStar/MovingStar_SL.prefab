@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7957265166842857402}
-  - component: {fileID: 168603076225696384}
+  - component: {fileID: 2477913909084929748}
   m_Layer: 0
   m_Name: MovingStar_SL
   m_TagString: Untagged
@@ -204,7 +204,7 @@ Transform:
   - {fileID: 8173615486050710568}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &168603076225696384
+--- !u!114 &2477913909084929748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,13 +213,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6957186158349552579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a845d76cdaa064c83ff8f240f96510, type: 3}
+  m_Script: {fileID: 11500000, guid: 16b341faca57e884d92c4e5b0c9aa0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star: {fileID: 4643069218775819301}
-  routeLine: {fileID: 4034039110266764301}
-  starSpeed: 3
-  backAndForth: 1
+  movingObject: {fileID: 4643069218775819301}
+  pathLine: {fileID: 4034039110266764301}
+  objectSpeed: 1
+  backAndForth: 0
 --- !u!1001 &7038811171686859969
 PrefabInstance:
   m_ObjectHideFlags: 0

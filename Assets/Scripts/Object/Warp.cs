@@ -8,10 +8,12 @@ public abstract class Warp : MonoBehaviour
 {
     [SerializeField] Map map; // Warp가 속한 Map
     [SerializeField] Warp targetWarp; // 목표 Warp
+    [SerializeField] WarpFade warpFade; // 워프 페이트 효과
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
 
     public Map GetMap() => map;
+    WaitForCoroutines wfc;
 
     void Update() {
         if(interactingPlayer != null && Input.GetKeyDown(KeyCode.Z)) {
@@ -40,15 +42,22 @@ public abstract class Warp : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
-        // 워프 애니메이션
-        yield return WarpInAnim(warpTarget);
+        // 워프 연출
+        warpFade.gameObject.SetActive(true);
+        Vector2 fadeEndScreenPos = Camera.main.WorldToScreenPoint(warpTarget.transform.position);
+        yield return new WaitForCoroutines(this, WarpInAnim(warpTarget), warpFade.FadeInFlow(fadeEndScreenPos, 2.0f));
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
         warpTarget.transform.parent = targetWarp.map.transform;
         warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
+        yield return null;
+
+        yield return new WaitForSeconds(0.5f);
 
         // 워프 애니메이션
-        yield return targetWarp.WarpOutAnim(warpTarget);
+        Vector2 fadeInScreenPos = Camera.main.WorldToScreenPoint(warpTarget.transform.position);
+        yield return new WaitForCoroutines(this, WarpOutAnim(warpTarget), warpFade.FadeOutFlow(fadeInScreenPos, 2.0f));
+        warpFade.gameObject.SetActive(false);
 
         // 컨트롤러 활성화, 애니메이션 재생, RigidBody는 Dynamic으로 설정
         if(pc != null) {

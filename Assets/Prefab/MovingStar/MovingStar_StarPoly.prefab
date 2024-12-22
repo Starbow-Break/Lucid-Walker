@@ -192,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5076048218919489322}
-  - component: {fileID: 8250887413915881851}
+  - component: {fileID: 992956928614163352}
   m_Layer: 0
   m_Name: MovingStar_StarPoly
   m_TagString: Untagged
@@ -219,7 +219,7 @@ Transform:
   - {fileID: 5502021949274571984}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8250887413915881851
+--- !u!114 &992956928614163352
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,12 +228,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8525431630189004992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a845d76cdaa064c83ff8f240f96510, type: 3}
+  m_Script: {fileID: 11500000, guid: 16b341faca57e884d92c4e5b0c9aa0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star: {fileID: 7926887117545858651}
-  routeLine: {fileID: 5897173340497823235}
-  starSpeed: 3
+  movingObject: {fileID: 7926887117545858651}
+  pathLine: {fileID: 5897173340497823235}
+  objectSpeed: 1
   backAndForth: 0
 --- !u!1001 &367789938287481436
 PrefabInstance:
