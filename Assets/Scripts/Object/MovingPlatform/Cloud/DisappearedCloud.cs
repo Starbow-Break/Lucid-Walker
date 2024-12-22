@@ -34,16 +34,12 @@ public class DisappearedCloud : Cloud
 
     // 구름이 사라짐
     public void Disappear() {
-        if(disappearCoroutine == null) {
-            disappearCoroutine = StartCoroutine(DisappearFlow());
-        }
+        disappearCoroutine ??= StartCoroutine(DisappearFlow());
     }
 
     // 구름 생성
     public void Spawn() {
-        if(spawnCoroutine == null) {
-            spawnCoroutine = StartCoroutine(SpawnFlow());
-        }
+        spawnCoroutine ??= StartCoroutine(SpawnFlow());
     }
 
     IEnumerator DisappearFlow() {
