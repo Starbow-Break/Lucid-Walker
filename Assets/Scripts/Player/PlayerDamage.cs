@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Image를 사용하려면 추가
 
 public class PlayerDamage : MonoBehaviour, IDamageable
 {
@@ -51,19 +52,6 @@ public class PlayerDamage : MonoBehaviour, IDamageable
             {
                 StartCoroutine(DamageRoutine(attacker));
             }
-            // if (health <= 0)
-            // {
-            //     // 죽음 처리
-            //     anim.SetTrigger("Die");
-            //     Debug.Log("Player Died"); // 죽음 처리 확인용 로그
-            // }
-            // else
-            // {
-            //     Debug.Log("Player took damage: " + damage); // 데미지 확인용 로그
-            //     float x = transform.position.x - attacker.position.x;
-            //     x = x < 0 ? 1 : -1;
-            //     StartCoroutine(DamageRoutine(x));
-            // }
         }
     }
 
@@ -111,10 +99,36 @@ public class PlayerDamage : MonoBehaviour, IDamageable
         failUI.SetActive(true);
         failUIAnimator.SetTrigger("Bounce");
 
+        // Fail UI 알파값 그라데이션
+        yield return StartCoroutine(FadeInFailUI());
 
-        yield return new WaitForSeconds(5f); // 2초 대기
+        yield return new WaitForSeconds(4f); // 2초 대기
 
         // Start 화면으로 전환
         LevelManager.Instance.LoadScene("Start", "CircleWipe");
+    }
+
+    private IEnumerator FadeInFailUI()
+    {
+        float duration = 1f; // 페이드 시간
+        float startAlpha = 0.5f; // 시작 알파값
+        float endAlpha = 1f; // 끝 알파값
+        float elapsedTime = 0f;
+
+        // GameObject에서 Image 컴포넌트 가져오기
+        Image failUIImage = failUI.GetComponent<Image>();
+
+        Color color = failUIImage.color;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            failUIImage.color = color;
+            yield return null;
+        }
+
+        color.a = endAlpha; // 알파값 최종 설정
+        failUIImage.color = color;
     }
 }

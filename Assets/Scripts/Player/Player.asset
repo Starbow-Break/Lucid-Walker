@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7a68560f9f745aaa10172aaa184cf3, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  slideGravityScale: 0.5
+  slideGravityScale: 0.371
   gravityStrength: -62.222218
   gravityScale: 6.3427334
   fallGravityMult: 1
@@ -41,8 +41,8 @@ MonoBehaviour:
   wallJumpRunLerp: 0.5
   wallJumpTime: 0.15
   doTurnOnWallJump: 0
-  slideSpeed: 0
-  slideAccel: 0
+  slideSpeed: -5
+  slideAccel: 0.88
   coyoteTime: 0.1
   jumpInputBufferTime: 0.1
   dashAmount: 1
