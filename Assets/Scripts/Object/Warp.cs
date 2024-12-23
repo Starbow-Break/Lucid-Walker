@@ -48,7 +48,7 @@ public abstract class Warp : MonoBehaviour
         yield return new WaitForCoroutines(this, WarpInAnim(warpTarget), warpFade.FadeInFlow(fadeEndScreenPos, 2.0f));
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
-        warpTarget.transform.parent = targetWarp.map.transform;
+        warpTarget.transform.SetParent(targetWarp.map.transform);
         warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
         yield return null;
 
