@@ -9,7 +9,7 @@ public class TicketDialogueTrigger : MonoBehaviour
     public DialogueData notEnoughTicketsDialogue; // 티켓이 부족할 때 대화 데이터
     public Transform focusPoint; // 대화 대상 (카메라 포커스)
     public GameObject key; // 생성할 키 프리팹
-    public GameObject bridgeTilemap; // 활성화할 다리 Tilemap
+    public GameObject bridge; // 활성화할 다리 Tilemap
 
 
     private CameraFollow cameraFollow;
@@ -120,9 +120,9 @@ public class TicketDialogueTrigger : MonoBehaviour
         }
 
         // 다리 활성화
-        if (bridgeTilemap != null)
+        if (bridge != null)
         {
-            bridgeTilemap.SetActive(true);
+            bridge.SetActive(true);
         }
         // 모든 티켓 제거
         RemoveAllTickets();

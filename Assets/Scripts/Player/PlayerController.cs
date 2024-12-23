@@ -239,8 +239,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             // anim.SetBool("isSwim", false); // Exit swim animation state
-            float rotationSpeed = 5f; // Adjust rotation speed here
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
+            // float rotationSpeed = 5f; // Adjust rotation speed here
+            // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
         }
         #endregion
 
@@ -353,7 +353,7 @@ public class PlayerController : MonoBehaviour
         }
         if (isInWater)
         {
-            SetGravityScale(Data.slideGravityScale * 0.1f); // 슬라이딩 전용 낮은 중력 값
+            SetGravityScale(Data.slideGravityScale * 0.1f); // 수영 전용 낮은 중력 값
         }
         else if (rb.velocity.y < 0 && _moveInput.y < 0 && !isInWater)
         {
