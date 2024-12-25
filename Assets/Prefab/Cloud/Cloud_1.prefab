@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 252885080245673267}
   - component: {fileID: 577375374378898120}
   - component: {fileID: 2978419812196463531}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cloud_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 4941591878125503452}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c9bf49a3a31a5c84cb7f2c4177572162, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -143,7 +143,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

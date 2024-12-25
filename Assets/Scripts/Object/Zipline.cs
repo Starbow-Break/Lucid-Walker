@@ -5,10 +5,8 @@ using UnityEditor.Rendering;
 using UnityEngine;
 
 enum ZiplineStatus {
-    READY, // 출발 준비 상태
-    MOVE, // 이동 상태
-    ARRIVE, // 도착 상태
-    RETURN // 복귀 상태
+    // 초기, 출발 준비, 이동 중, 도착, 복귀
+    INIT, READY, MOVE, ARRIVE, RETURN
 }
 
 public class Zipline : MonoBehaviour
@@ -24,7 +22,7 @@ public class Zipline : MonoBehaviour
     [Header("Trolley")]
     [SerializeField] float departurePositionOffset; // 출발 위치 오프셋
     [SerializeField] float arrivalPositionOffset; // 도착 위치 오프셋
-    [SerializeField] GameObject trolley; // 플레이어가 잡는 부분
+    [SerializeField] Trolley trolley; // 플레이어가 잡는 부분
     [SerializeField] Transform playerAttachPoint; // 플레이어가 부착되는 위치
 
     [Header("Speed")]
@@ -46,16 +44,8 @@ public class Zipline : MonoBehaviour
 
         if(departuresWireAttachPoint != null && arrivalsWireAttachPoint != null) {
             float wireLen = Vector3.Distance(departuresWireAttachPoint.position, arrivalsWireAttachPoint.position);
-            
-
             departurePositionOffset = Mathf.Clamp(departurePositionOffset, 0.0f, wireLen);
             arrivalPositionOffset = Mathf.Clamp(arrivalPositionOffset, 0.0f, wireLen);
-
-            if(trolley) {
-                Vector3 dir = (arrivalsWireAttachPoint.position - departuresWireAttachPoint.position) / wireLen;
-                Vector3 trolleyPos = departuresWireAttachPoint.position + dir * departurePositionOffset;
-                trolley.transform.position = trolleyPos;
-            }
         }
     }
 
@@ -66,12 +56,7 @@ public class Zipline : MonoBehaviour
         departures = departuresWireAttachPoint.position + dir * departurePositionOffset;
         arrivals = arrivalsWireAttachPoint.position - dir * arrivalPositionOffset;
 
-        // Trolley 활성화 후 출발지로 이동
-        trolley.gameObject.SetActive(true);
-        trolley.transform.position = departures;
-
-        // 초기 상태는 출발 준비 상태
-        status = ZiplineStatus.READY;
+        status = ZiplineStatus.INIT;
     }
 
     // Start is called before the first frame update
@@ -117,6 +102,33 @@ public class Zipline : MonoBehaviour
         line.SetPosition(0, departuresWireAttachPoint.position);
         line.SetPosition(1, arrivalsWireAttachPoint.position);
         line.useWorldSpace = true;
+    }
+
+    public Trolley GetTargetTrolley() {
+        return trolley;
+    }
+    
+    public void SetTrolley(ItemFollowBag bag, Trolley trolley) {
+        StartCoroutine(SetTrolleyFlow(bag, trolley));
+    }
+
+    IEnumerator SetTrolleyFlow(ItemFollowBag bag, Trolley trolley) {
+        bag.RemoveItem(trolley);
+
+        trolley.isFollow = true;
+        trolley.FollowTarget(departures);
+        while((departures - trolley.transform.position).sqrMagnitude >= 0.0001f)
+        {
+            yield return null;
+        }
+
+        // 옷걸이 위치 정확히 맞추고 준비 상태로 변경
+        trolley.transform.SetParent(transform);
+        trolley.transform.position = departures;
+        status = ZiplineStatus.READY;
+        trolley.isFollow = false;
+        trolley.SetZipline(this);
+        yield return null;
     }
 
     void Move(Vector3 targetPosition, float acc, float maxSpd)

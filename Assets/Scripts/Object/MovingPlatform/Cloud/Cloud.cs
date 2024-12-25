@@ -26,7 +26,6 @@ public class Cloud : MovingPlatform
             float delta = sinkSpeed * Time.deltaTime * (initLocalPosition.y - transform.localPosition.y);
             transform.Translate(delta * Vector2.up, Space.Self);
         }
-        
     }
 
     // 밟으면 밟은 위치에 구름 파티클을 생성한다.

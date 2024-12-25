@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7888857001877703809}
   - component: {fileID: 5897173340497823235}
   - component: {fileID: 2362862857062195619}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,6 +247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start Point
       objectReference: {fileID: 0}
+    - target: {fileID: 153680163175542248, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 643548220295780734, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.09
@@ -317,6 +321,10 @@ PrefabInstance:
     - target: {fileID: 153680163175542248, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
       propertyPath: m_Name
       value: End Point
+      objectReference: {fileID: 0}
+    - target: {fileID: 153680163175542248, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 643548220295780734, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
       propertyPath: m_LocalPosition.x

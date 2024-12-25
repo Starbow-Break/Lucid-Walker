@@ -12,11 +12,11 @@ public class ParallaxScroll : MonoBehaviour
     [Tooltip("수직 방향 무한 스크롤 사용 여부")]
     [SerializeField] bool verticalInfiniteScroll; // 수직 무한 스크롤 사용 여부
 
-    [Range(0.0f, 1.0f)]
+    [Range(-1.0f, 1.0f)]
     [Tooltip("수평 방향 평행 이동 강도")]
     [SerializeField] float horizontalAmount; // 수평 방향 평행 이동 강도
 
-    [Range(0.0f, 1.0f)]
+    [Range(-1.0f, 1.0f)]
     [Tooltip("수직 방향 평행 이동 강도")]
     [SerializeField] float verticalAmount; // 수직 방향 평행 이동 강도
 
