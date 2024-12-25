@@ -33,9 +33,7 @@ public class StageClearDoor : MonoBehaviour
         {
             if (isOpen)
             {
-                Debug.Log("오ㅐ 안됨");
                 StartCoroutine(StageClearSequence());
-                Debug.Log("스테이지 클리어!!!!!!!!");
             }
             else
             {
@@ -65,7 +63,7 @@ public class StageClearDoor : MonoBehaviour
 
             key.isFollow = true;
             key.FollowTarget(keyHole.position);
-            while ((keyHole.position - key.transform.position).sqrMagnitude <= 0.0001f)
+            while ((keyHole.position - key.transform.position).sqrMagnitude >= 0.0001f)
             {
                 yield return null;
             }
@@ -91,6 +89,7 @@ public class StageClearDoor : MonoBehaviour
         // 씬 전환
         LevelManager.Instance.LoadScene("Start", "CircleWipe");
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
