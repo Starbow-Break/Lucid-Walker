@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5174247011521957125}
   - component: {fileID: 93386534531843666}
   - component: {fileID: 4800565833777166531}
+  - component: {fileID: 3211534275927565789}
   m_Layer: 6
   m_Name: Wardrobe_1
   m_TagString: Untagged
@@ -27,9 +28,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854220657666892713}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.78, y: -7, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -143,7 +144,7 @@ PolygonCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -161,10 +162,29 @@ PolygonCollider2D:
       - {x: 0.96474814, y: 2.0284736}
       - {x: 0.9211099, y: 1.9810164}
       - {x: 0.9323281, y: 1.9507773}
-      - {x: -1.017028, y: -0.0010820925}
+      - {x: -1.0047275, y: -0.0011147559}
       - {x: 1.0192086, y: -0.010233074}
       - {x: 1.8943475, y: 0.8717304}
       - {x: 1.9720395, y: 0.92419314}
       - {x: 2.0060632, y: 0.92010105}
       - {x: 2.0539567, y: 0.97758055}
   m_UseDelaunayMesh: 0
+--- !u!251 &3211534275927565789
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854220657666892713}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 150
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1

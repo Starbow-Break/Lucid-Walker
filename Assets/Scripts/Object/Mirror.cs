@@ -75,7 +75,6 @@ public class Mirror : Warp
     protected override IEnumerator WarpOutAnim(GameObject warpTarget)
     {
         float curTime = 0.0f;
-        Debug.Log(curTime);
         SpriteRenderer warpTargetRenderer = warpTarget.GetComponent<SpriteRenderer>();
 
         while(curTime < animTime) {

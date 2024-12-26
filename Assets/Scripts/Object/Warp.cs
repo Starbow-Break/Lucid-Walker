@@ -4,14 +4,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Warp : MonoBehaviour
+public abstract class Warp : MonoBehaviour
 {
+    [SerializeField] Map map; // Warp가 속한 Map
     [SerializeField] Warp targetWarp; // 목표 Warp
+    [SerializeField] WarpFade warpFade; // 워프 페이트 효과
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
+    bool isOpen = true;
+
+    public Map GetMap() => map;
+    WaitForCoroutines wfc;
 
     void Update() {
-        if(interactingPlayer != null && Input.GetKeyDown(KeyCode.Z)) {
+        if(interactingPlayer != null 
+        && Input.GetKeyDown(KeyCode.Z)
+        && interactingPlayer.GetComponent<PlayerController>().enabled) {
             StartCoroutine(WarpTarget(interactingPlayer));
         }
     }
@@ -37,15 +45,22 @@ public class Warp : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
-        // 워프 애니메이션
-        yield return WarpInAnim(warpTarget);
+        // 워프 연출
+        warpFade.gameObject.SetActive(true);
+        Vector2 fadeEndScreenPos = Camera.main.WorldToScreenPoint(warpTarget.transform.position);
+        yield return new WaitForCoroutines(this, WarpInAnim(warpTarget), warpFade.FadeInFlow(fadeEndScreenPos, 2.0f));
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
-        warpTarget.transform.parent = targetWarp.transform.parent;
+        warpTarget.transform.SetParent(targetWarp.map.transform);
         warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
+        yield return null;
+
+        yield return new WaitForSeconds(0.5f);
 
         // 워프 애니메이션
-        yield return targetWarp.WarpOutAnim(warpTarget);
+        Vector2 fadeInScreenPos = Camera.main.WorldToScreenPoint(warpTarget.transform.position);
+        yield return new WaitForCoroutines(this, WarpOutAnim(warpTarget), warpFade.FadeOutFlow(fadeInScreenPos, 2.0f));
+        warpFade.gameObject.SetActive(false);
 
         // 컨트롤러 활성화, 애니메이션 재생, RigidBody는 Dynamic으로 설정
         if(pc != null) {
@@ -59,8 +74,8 @@ public class Warp : MonoBehaviour
         }
     }
 
-    protected virtual IEnumerator WarpInAnim(GameObject warpTarget) { yield return null; }
-    protected virtual IEnumerator WarpOutAnim(GameObject warpTarget) { yield return null; }
+    protected abstract IEnumerator WarpInAnim(GameObject warpTarget);
+    protected abstract IEnumerator WarpOutAnim(GameObject warpTarget);
 
     // 해당 오브젝트의 자식 오브젝트들의 collider를 활성화
     void ActiveChildColliders(GameObject obj) {

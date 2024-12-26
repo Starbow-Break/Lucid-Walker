@@ -64,7 +64,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            Map currentMap = target.parent.GetComponent<Map>();
+            Map currentMap = FindMap(target);
             if (currentMap != null)
             { // Map이 있다면 해당 Map에 설정된 경계 안에서 이동
                 followPosition = new Vector3(
@@ -92,6 +92,18 @@ public class CameraFollow : MonoBehaviour
             currentShakeDuration = 0f;
             transform.position = followPosition;
         }
+    }
+
+    private Map FindMap(Transform t) {
+        while(t != null) {
+            Map map = t.GetComponent<Map>();
+            if(map != null) {
+                return map;
+            }
+            t = t.parent;
+        }
+
+        return null;
     }
 
     // 카메라 흔들림을 시작하는 함수
