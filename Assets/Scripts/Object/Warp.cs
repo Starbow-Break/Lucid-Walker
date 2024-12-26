@@ -11,7 +11,6 @@ public abstract class Warp : MonoBehaviour
     [SerializeField] WarpFade warpFade; // 워프 페이트 효과
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
-    bool isOpen = true;
 
     public Map GetMap() => map;
     WaitForCoroutines wfc;
