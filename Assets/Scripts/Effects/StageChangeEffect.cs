@@ -28,6 +28,12 @@ public class StageChangeEffect : MonoBehaviour
     {
         float elapsed = 0f;
 
+        // 흔들림 효과 시작
+        if (cameraFollow != null)
+        {
+            cameraFollow.TriggerShake();
+        }
+
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
@@ -46,11 +52,7 @@ public class StageChangeEffect : MonoBehaviour
             yield return null;
         }
 
-        // 흔들림 효과 시작
-        if (cameraFollow != null)
-        {
-            cameraFollow.TriggerShake();
-        }
+
 
         // 완전히 투명하게 설정
         curtain.color = new Color(curtainOriginalColor.r, curtainOriginalColor.g, curtainOriginalColor.b, 0f);
