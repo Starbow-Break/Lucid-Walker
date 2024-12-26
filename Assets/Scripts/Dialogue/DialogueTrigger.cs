@@ -96,10 +96,11 @@ public class DialogueTrigger : MonoBehaviour
         }
 
         // focusPoint 이동 및 페이드아웃
-        if (focusPoint != null)
+        if (focusPoint != null && focusPoint.tag != "Player")
         {
             StartCoroutine(MoveAndFadeOutFocusPoint());
         }
+
 
         // 카메라 크기 복구
         yield return StartCoroutine(LerpCameraSize(originalCameraSize));
