@@ -1,0 +1,1084 @@
+fileFormatVersion: 2
+guid: eb8bb1dce31ce4b06b8713437ca4375a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Clear Door_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 2831
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04ca335d52c854ab983d42281f00d08b
+      internalID: -1016103175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_1
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 2831
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52345252a59b8403a9ccaa8b8b181e79
+      internalID: -1319543143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key_1
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 3074
+        width: 124
+        height: 215
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af7ccb1eeb2e0409787ddf908c19a1f7
+      internalID: 215846679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Key_2
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 3080
+        width: 124
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22dd5b8ea8dfa42f587901f412dd9d11
+      internalID: 1520433616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lock
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 3085
+        width: 121
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f08b5772405b949b3a4359bb8fd1ef66
+      internalID: 1338924192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_2
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 2362
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00c668a373fe1446aa6192835addf757
+      internalID: 541471560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_3
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 2362
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03c0cc715002442ca4bba65d1d6dc41
+      internalID: -970631882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_4
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 2362
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0456cfb0a5a754826814f6bf27cd84a0
+      internalID: 937072566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_5
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 2362
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dafd2b60923f4d7d9542132a10b79db
+      internalID: 855068747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_6
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 2362
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb2da3b788adc4041a943dcbe0652c7b
+      internalID: 1267149087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_7
+      rect:
+        serializedVersion: 2
+        x: 2130
+        y: 2362
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f060341aa2a043e780b7b68d7208ef0
+      internalID: 1969303561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_8
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1898
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad5f0104ecbeb4bb6976874180b8351e
+      internalID: -1417471622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_9
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1898
+        width: 403
+        height: 460
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85db822857d8f4d89a200f43a0ca41cc
+      internalID: -874423158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_10
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 1898
+        width: 403
+        height: 460
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e8cb1b0dd15420abc44d53b853728d
+      internalID: 1225473550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_11
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 1898
+        width: 403
+        height: 460
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a4146e33f6a843e28876b21d4d77ee7
+      internalID: 982329300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_12
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 1898
+        width: 403
+        height: 460
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94981a08799f94076b9d400f498b1276
+      internalID: 1588001928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_13
+      rect:
+        serializedVersion: 2
+        x: 2130
+        y: 1898
+        width: 403
+        height: 461
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55d2664c3b938430eaa5a9b2e5ae12e8
+      internalID: 1809204762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_18
+      rect:
+        serializedVersion: 2
+        x: 1700
+        y: 1425
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb0dbd57e504436a84ba0a3064301f6
+      internalID: 523012329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_14
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 1425
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fab52c0c1fb56406b9c9e855a92af711
+      internalID: 262396455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_15
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 1425
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f490847f6fe994a26873f4bc0e98ba72
+      internalID: -881784341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_16
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 1425
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61907ca6c0ba428e9a4f7ef2504f520
+      internalID: 97056272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_17
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 1425
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf7983563b4c416d811dac2fa62b168
+      internalID: 326227086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_19
+      rect:
+        serializedVersion: 2
+        x: 2130
+        y: 1425
+        width: 403
+        height: 457
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd843189f1dd44dfcac864bbf041ddbc
+      internalID: -1005189069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 950
+        width: 421
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd992f366b6d4746ad3d46d5cdd76de
+      internalID: -1690340053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_50
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 950
+        width: 424
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490970797b66644d28f7742c766daf88
+      internalID: 1020222070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_51
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 950
+        width: 406
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4a0775e29d840019270542cb43246b
+      internalID: -2033821841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_52
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 950
+        width: 421
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c8494a1cb3c45f6bf1b3f374ea8762
+      internalID: 1708477827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_53
+      rect:
+        serializedVersion: 2
+        x: 1676
+        y: 950
+        width: 427
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1dd8347b0360406b872ea26fc59bcdc
+      internalID: 1789251916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_54
+      rect:
+        serializedVersion: 2
+        x: 2104
+        y: 950
+        width: 432
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c550ee6e6995040d8a7fa2a751cd7f7b
+      internalID: -195635321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_56
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 983
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c73f582e6a875459a93fdd3a587c6a8b
+      internalID: -2099615843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_58
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 479
+        width: 424
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2cbccd443359403c820827654c8e9a3
+      internalID: 670354363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_60
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 479
+        width: 426
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f2baba653dbf4ffabd95462ba3b1bc5
+      internalID: -924715413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_61
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 472
+        width: 410
+        height: 466
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e968d96c900fa4691a09bb856ca0fb4c
+      internalID: -869396804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_62
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 479
+        width: 406
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 622939d23b43142dcadced43ed0df06c
+      internalID: 645161167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_63
+      rect:
+        serializedVersion: 2
+        x: 1676
+        y: 479
+        width: 427
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c581c5ccbccd44afd9dc2eb5579f94da
+      internalID: -491405413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_64
+      rect:
+        serializedVersion: 2
+        x: 2126
+        y: 479
+        width: 407
+        height: 459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed5f4fbd099c74df281075c7ede87d8e
+      internalID: -1897636238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_65
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 552
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c423c7a378ab148298d699655e3bc2bb
+      internalID: -1421976453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_69
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 6
+        width: 406
+        height: 462
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f065d4c7366446fa97c50c38bec1b36
+      internalID: 222976776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_75
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 6
+        width: 414
+        height: 458
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f067c01a187e04ae19622f7c5879a307
+      internalID: -129035318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_76
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 6
+        width: 406
+        height: 458
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edef0f50fc2774d7d899098c32976ab5
+      internalID: -1873974085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_77
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 6
+        width: 407
+        height: 458
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd72659f739d440ce98f530b18a33f79
+      internalID: -1416480865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_78
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 6
+        width: 406
+        height: 458
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cf66da8aa32947ffa87c8211495c416
+      internalID: 1256024446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clear Door_79
+      rect:
+        serializedVersion: 2
+        x: 2125
+        y: 6
+        width: 407
+        height: 458
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2197ab97e14514448b178307dad1a5a8
+      internalID: -1674902143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Clear Door_0: -1016103175
+      Clear Door_1: -1319543143
+      Clear Door_10: 1225473550
+      Clear Door_11: 982329300
+      Clear Door_12: 1588001928
+      Clear Door_13: 1809204762
+      Clear Door_14: 262396455
+      Clear Door_15: -881784341
+      Clear Door_16: 97056272
+      Clear Door_17: 326227086
+      Clear Door_18: 523012329
+      Clear Door_19: -1005189069
+      Clear Door_2: 541471560
+      Clear Door_22: -1228292342
+      Clear Door_24: 711707346
+      Clear Door_25: -587780848
+      Clear Door_26: -1516056233
+      Clear Door_28: -271113341
+      Clear Door_3: -970631882
+      Clear Door_34: 110151580
+      Clear Door_35: -1385779132
+      Clear Door_36: -1592719236
+      Clear Door_37: 1690379547
+      Clear Door_39: -1606713196
+      Clear Door_4: 937072566
+      Clear Door_40: 390391963
+      Clear Door_42: 406531373
+      Clear Door_48: -1690340053
+      Clear Door_49: 1251690298
+      Clear Door_5: 855068747
+      Clear Door_50: 1020222070
+      Clear Door_51: -2033821841
+      Clear Door_52: 1708477827
+      Clear Door_53: 1789251916
+      Clear Door_54: -195635321
+      Clear Door_55: -678481804
+      Clear Door_56: -2099615843
+      Clear Door_57: 913167178
+      Clear Door_58: 670354363
+      Clear Door_59: -288558573
+      Clear Door_6: 1267149087
+      Clear Door_60: -924715413
+      Clear Door_61: -869396804
+      Clear Door_62: 645161167
+      Clear Door_63: -491405413
+      Clear Door_64: -1897636238
+      Clear Door_65: -1421976453
+      Clear Door_66: 325675950
+      Clear Door_67: 326561913
+      Clear Door_68: 70344655
+      Clear Door_69: 222976776
+      Clear Door_7: 1969303561
+      Clear Door_70: 261653694
+      Clear Door_71: 1375421658
+      Clear Door_72: -427068841
+      Clear Door_73: -429667786
+      Clear Door_74: 1245144921
+      Clear Door_75: -129035318
+      Clear Door_76: -1873974085
+      Clear Door_77: -1416480865
+      Clear Door_78: 1256024446
+      Clear Door_79: -1674902143
+      Clear Door_8: -1417471622
+      Clear Door_9: -874423158
+      Key_1: 215846679
+      Key_2: 1520433616
+      Lock: 1338924192
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
