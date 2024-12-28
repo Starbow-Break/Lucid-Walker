@@ -19,8 +19,8 @@ public class Mirror : MonoBehaviour
         // SpriteRenderer에 적용
         mpb = new MaterialPropertyBlock();
         mpb.SetTexture("_MirroringTexture", rt);
-        mpb.SetFloat("_Center_Twirl_Intensity", 0.0f);
-        mpb.SetFloat("_Rotation", 0.0f);
+        mpb.SetFloat("_Twirl_Strength", 0.0f);
+        mpb.SetFloat("_Twirl_Rotation", 0.0f);
         mirroringSpriteRenderer.SetPropertyBlock(mpb);
 
         // 거울 상에 사용되는 카메라에 Render Texture 적용
@@ -48,10 +48,10 @@ public class Mirror : MonoBehaviour
     }
 
     // 거울상의 렌더러 속성 값 변경
-    public void SetMirrorRenderer(float twirlIntensity, float mirroringRotation)
+    public void SetMirrorRenderer(float twirlStrength, float twirlRotation)
     {
-        mpb.SetFloat("_Center_Twirl_Intensity", twirlIntensity);
-        mpb.SetFloat("_Rotation", mirroringRotation);
+        mpb.SetFloat("_Twirl_Strength", twirlStrength);
+        mpb.SetFloat("_Twirl_Rotation", twirlRotation);
         mirroringSpriteRenderer.SetPropertyBlock(mpb);
     }
 }
