@@ -58,7 +58,7 @@ public abstract class Warp : MonoBehaviour
 
         // 워프 애니메이션
         Vector2 fadeInScreenPos = Camera.main.WorldToScreenPoint(warpTarget.transform.position);
-        yield return new WaitForCoroutines(this, WarpOutAnim(warpTarget), warpFade.FadeOutFlow(fadeInScreenPos, 2.0f));
+        yield return new WaitForCoroutines(this, targetWarp.WarpOutAnim(warpTarget), warpFade.FadeOutFlow(fadeInScreenPos, 2.0f));
         warpFade.gameObject.SetActive(false);
 
         // 컨트롤러 활성화, 애니메이션 재생, RigidBody는 Dynamic으로 설정
@@ -73,8 +73,8 @@ public abstract class Warp : MonoBehaviour
         }
     }
 
-    protected abstract IEnumerator WarpInAnim(GameObject warpTarget);
-    protected abstract IEnumerator WarpOutAnim(GameObject warpTarget);
+    public abstract IEnumerator WarpInAnim(GameObject warpTarget);
+    public abstract IEnumerator WarpOutAnim(GameObject warpTarget);
 
     // 해당 오브젝트의 자식 오브젝트들의 collider를 활성화
     void ActiveChildColliders(GameObject obj) {

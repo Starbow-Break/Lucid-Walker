@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4495306474806854694}
   - component: {fileID: 1232432126437105488}
   - component: {fileID: 7535630106776291304}
+  - component: {fileID: 3884555778203465489}
   - component: {fileID: 8850133398707597782}
   - component: {fileID: 2046566506193455338}
   m_Layer: 15
@@ -141,6 +142,20 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3884555778203465489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332352193311587888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1419d8874f340c4ac1b6c53ffbb627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mirroringSpriteRenderer: {fileID: 4282770058455123712}
+  mirroringCamera: {fileID: 566380628973668186}
 --- !u!114 &8850133398707597782
 MonoBehaviour:
   m_ObjectHideFlags: 0
