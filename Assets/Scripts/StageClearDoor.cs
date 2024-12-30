@@ -63,13 +63,10 @@ public class StageClearDoor : MonoBehaviour
 
             key.isFollow = true;
             key.FollowTarget(keyHole.position);
-            while ((keyHole.position - key.transform.position).sqrMagnitude >= 0.0001f)
+            while ((keyHole.position - key.transform.position).sqrMagnitude >= 0.001f)
             {
                 yield return null;
             }
-
-            // 대기
-            yield return new WaitForSeconds(1f);
 
             // 문 열기
             Destroy(key.gameObject);

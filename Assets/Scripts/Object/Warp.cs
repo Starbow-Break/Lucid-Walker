@@ -11,7 +11,6 @@ public abstract class Warp : MonoBehaviour
     [SerializeField] WarpFade warpFade; // 워프 페이트 효과
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
-    bool isOpen = true;
 
     public Map GetMap() => map;
     WaitForCoroutines wfc;
@@ -52,14 +51,14 @@ public abstract class Warp : MonoBehaviour
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
         warpTarget.transform.SetParent(targetWarp.map.transform);
-        warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
+        warpTarget.transform.position = targetWarp.transform.position + targetWarp.transform.rotation * offset;
         yield return null;
 
         yield return new WaitForSeconds(0.5f);
 
         // 워프 애니메이션
         Vector2 fadeInScreenPos = Camera.main.WorldToScreenPoint(warpTarget.transform.position);
-        yield return new WaitForCoroutines(this, WarpOutAnim(warpTarget), warpFade.FadeOutFlow(fadeInScreenPos, 2.0f));
+        yield return new WaitForCoroutines(this, targetWarp.WarpOutAnim(warpTarget), warpFade.FadeOutFlow(fadeInScreenPos, 2.0f));
         warpFade.gameObject.SetActive(false);
 
         // 컨트롤러 활성화, 애니메이션 재생, RigidBody는 Dynamic으로 설정
@@ -74,8 +73,8 @@ public abstract class Warp : MonoBehaviour
         }
     }
 
-    protected abstract IEnumerator WarpInAnim(GameObject warpTarget);
-    protected abstract IEnumerator WarpOutAnim(GameObject warpTarget);
+    public abstract IEnumerator WarpInAnim(GameObject warpTarget);
+    public abstract IEnumerator WarpOutAnim(GameObject warpTarget);
 
     // 해당 오브젝트의 자식 오브젝트들의 collider를 활성화
     void ActiveChildColliders(GameObject obj) {

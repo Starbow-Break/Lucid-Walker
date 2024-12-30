@@ -37,6 +37,8 @@ public class Zipline : MonoBehaviour
     Transform playerParent = null;
     PlayerController attachingPlayerController = null; // 현재 부착중인 플레이어
 
+    public bool isRightDir => arrivals.x - departures.x >= 0;
+
     void OnValidate() {
         if(thickness > 0.0f) {
             DrawWire(thickness);
@@ -117,7 +119,7 @@ public class Zipline : MonoBehaviour
 
         trolley.isFollow = true;
         trolley.FollowTarget(departures);
-        while((departures - trolley.transform.position).sqrMagnitude >= 0.0001f)
+        while((departures - trolley.transform.position).sqrMagnitude >= 0.001f)
         {
             yield return null;
         }
