@@ -14,7 +14,12 @@ public class Trolley : MonoBehaviour, IFollowCollectable
     // Update is called once per frame
     void Update()
     {
-        if(zipline && Input.GetKeyDown(KeyCode.Z) && interactingPlayerController) {
+        if(
+            zipline 
+            && Input.GetKeyDown(KeyCode.Z) 
+            && interactingPlayerController
+            && interactingPlayerController.IsFacingRight == zipline.isRightDir
+        ) {
             zipline.BoardPlayer(interactingPlayerController);
         }
     }

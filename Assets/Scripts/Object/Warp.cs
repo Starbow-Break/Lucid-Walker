@@ -51,7 +51,7 @@ public abstract class Warp : MonoBehaviour
         
         // 워프 대상 오브젝트를 목표 타일맵 및 목표 위치로 이동
         warpTarget.transform.SetParent(targetWarp.map.transform);
-        warpTarget.transform.localPosition = targetWarp.transform.localPosition + targetWarp.transform.rotation * offset;
+        warpTarget.transform.position = targetWarp.transform.position + targetWarp.transform.rotation * offset;
         yield return null;
 
         yield return new WaitForSeconds(0.5f);
