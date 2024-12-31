@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -49,7 +50,11 @@ public class ItemFollowBag : MonoBehaviour
             for (int i = 0; i < collectItems.Count; i++)
             {
                 Vector2 targetPosition = Vector2.zero;
-                float multiplierX = Mathf.Cos(transform.rotation.eulerAngles.y / 180.0f * Mathf.PI);
+                float multiplierX = 1;
+                PlayerController pc = GetComponent<PlayerController>();
+                if(pc != null) {
+                    multiplierX = pc.IsFacingRight ? 1 : -1;
+                }
 
                 if (i > 0)
                 {

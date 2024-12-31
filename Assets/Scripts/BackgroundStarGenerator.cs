@@ -1,13 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class BackgroundStarGenerator : MonoBehaviour
 {
+    [Header("Range")]
     [SerializeField] Vector2 min = new(-1, -1); // 왼쪽 아래
     [SerializeField] Vector2 max = new(1, 1); // 오른쪽 위
-    [SerializeField, Min(0)] int generateCount = 1; // 생성 갯수
+
+    [Header("Star Generator")]
+    [SerializeField, Min(0.1f)] float radius = 1.0f; // 별 사이의 최소 간격
+    [SerializeField] int tryCount = 10; // 별 스폰 위치 생성할 때 시도 횟수
+    [SerializeField, Range(0.0f, 100.0f)] float generateProbability = 100.0f; // 별 생성 확률 (Percent)
     [SerializeField] List<Item> items; // 생성할 오브젝트들
 
     void Awake() {
@@ -23,28 +26,35 @@ public class BackgroundStarGenerator : MonoBehaviour
 
     // 지정죈 범위에 별 랜덤 생성
     void GenerateStars() {
-        List<float> totalWeight = new() { 0.0f };
+        // 별을 생성시킬 위치
+        List<Vector2> starPositions = PoissonDiskSampling.GeneratePoints(
+            radius,
+            new Vector2(max.x - min.x, max.y - min.y),
+            tryCount
+        );
+        for(int i = 0; i < starPositions.Count; i++) {
+            starPositions[i] += min;
+        }
 
+        List<float> totalWeight = new() { 0.0f };
         foreach(Item item in items) {
             totalWeight.Add(totalWeight[^1] + item.weight);
         }
 
-        if(items.Count > 0) {
-            for(int cnt = 0; cnt < generateCount; cnt++) {
-                float x = Random.Range(min.x, max.x);
-                float y = Random.Range(min.y, max.y);
-                Vector2 spawnPosition = new(x, y);
+        // 각 위치마다 별 생성
+        foreach(Vector2 starPosition in starPositions) {
+            float generateValue = Random.Range(0.0f, 100.0f);
+            if(generateValue > generateProbability) continue;
 
-                int itemIndex = 0;
-                float randomValue = Random.Range(0.0f, totalWeight[^1]);
-                for(;; itemIndex++) {
-                    if(randomValue <= totalWeight[itemIndex+1]) {
-                        break;
-                    }
+            int itemIndex = 0;
+            float starValue = Random.Range(0.0f, totalWeight[^1]);
+            for(;; itemIndex++) {
+                if(starValue <= totalWeight[itemIndex+1]) {
+                    break;
                 }
-
-                Instantiate(items[itemIndex].obj, spawnPosition, Quaternion.identity, transform);
             }
+
+            Instantiate(items[itemIndex].obj, starPosition, Quaternion.identity, transform);
         }
     }
 
