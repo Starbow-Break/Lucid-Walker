@@ -54,42 +54,46 @@ public class RotationSwitch : MonoBehaviour
         {
             anim.SetTrigger("Rotate");
 
-            // 플레이어 즉시 회전
-            player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 90);      // 플레이어 회전
+            // 캐릭터 회전
+            player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 90);
+
+            // 카메라 회전
+            FindObjectOfType<CameraFollow>().transform.rotation = Quaternion.Euler(0, 0, 90);
 
             // 회전 목표 설정 (-90도)
             initialRotation = gridObject.transform.rotation;
             targetRotation = Quaternion.Euler(0, 0, -90);
 
-
-            // 카메라 흔들림 시작
+            // 카메라 흔들림
             FindObjectOfType<CameraFollow>().TriggerShake();
 
-            // Coroutine을 통해 천천히 회전
+            // Coroutine으로 천천히 회전
             StartCoroutine(RotateOverTime(targetRotation));
-
             isRotate = true;
         }
         else
         {
             anim.SetTrigger("Rotate");
 
-            // 플레이어 즉시 회전
+            // 캐릭터 회전 복원
             player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 0);
 
-            // 회전 목표 설정 (0도로 되돌리기)
+            // 카메라 회전 복원
+            FindObjectOfType<CameraFollow>().transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            // 회전 목표 복원
             initialRotation = gridObject.transform.rotation;
             targetRotation = Quaternion.Euler(0, 0, 0);
 
-            // 카메라 흔들림 시작
+            // 카메라 흔들림
             FindObjectOfType<CameraFollow>().TriggerShake();
 
-            // Coroutine을 통해 천천히 회전
+            // Coroutine으로 천천히 복원
             StartCoroutine(RotateOverTime(targetRotation));
-
             isRotate = false;
         }
     }
+
 
     IEnumerator RotateOverTime(Quaternion targetRotation)
     {
