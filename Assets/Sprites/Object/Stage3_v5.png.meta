@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 93bba3de512e241f6b62780e3530a9eb
+guid: 0f2c7c423125d4d2f8dbb951323ea869
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,48 +97,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: trolley
-      rect:
-        serializedVersion: 2
-        x: 898
-        y: 69
-        width: 98
-        height: 76
-      alignment: 9
-      pivot: {x: 0.48298115, y: 0.76649565}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 642e3ba3e44394b4d9a70c55d5939c82
-      internalID: -902194076
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mirror Case
-      rect:
-        serializedVersion: 2
-        x: 678
-        y: 47
-        width: 128
-        height: 295
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5c71be0bdd9c45ec843b214dc3e97a9
-      internalID: -278891597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: clock_0
       rect:
         serializedVersion: 2
@@ -153,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee9da41e62c23470697304ac8bd880af
-      internalID: 1483333142
+      spriteID: deabde674423e4fe5885f930ef35d419
+      internalID: 1969664130
       vertices: []
       indices: 
       edges: []
@@ -174,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b7696e44ed0c4891b2c2e033128901d
-      internalID: -1195220423
+      spriteID: 3d793752ed9b1430c97ae38fdc5c6068
+      internalID: 2041974648
       vertices: []
       indices: 
       edges: []
@@ -195,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51b0ea647621b41aa9e374a6855c9742
-      internalID: -1675121460
+      spriteID: 920038f7a1cf64ab9bbcf31a3ddf5919
+      internalID: -835682847
       vertices: []
       indices: 
       edges: []
@@ -216,8 +174,66 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a04845e37514341149d952461ba8c3c4
-      internalID: 1412193328
+      spriteID: ed628b87657b4456abce6e6940a2f11d
+      internalID: -343989402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_v5_0
+      rect:
+        serializedVersion: 2
+        x: 1951
+        y: 33
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -50, y: 50}
+        - {x: -50, y: 25}
+        - {x: 50, y: 25}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8839cbf14730042548030fa781dd7d45
+      internalID: 2101384528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage3_v5_1
+      rect:
+        serializedVersion: 2
+        x: 1843
+        y: 33
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: 50}
+        - {x: 1, y: 48}
+        - {x: 13, y: 32}
+        - {x: 20, y: 32}
+        - {x: 20, y: 25}
+        - {x: 30, y: 25}
+        - {x: 33, y: 21}
+        - {x: 35, y: 17}
+        - {x: 37, y: 9}
+        - {x: 39, y: -3}
+        - {x: 50, y: -3}
+        - {x: 50, y: 50}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d2982b388d44418a3c64476650cde8
+      internalID: 2063434940
       vertices: []
       indices: 
       edges: []
@@ -233,12 +249,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mirror Case: -278891597
-      clock_0: 1483333142
-      clock_1: -1195220423
-      clock_interior: -1675121460
-      pendulum: 1412193328
-      trolley: -902194076
+      Stage3_v5_0: 2101384528
+      Stage3_v5_1: 2063434940
+      Stage3_v5_2: 336817423
+      clock_0: 1969664130
+      clock_1: 2041974648
+      clock_interior: -835682847
+      pendulum: -343989402
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
