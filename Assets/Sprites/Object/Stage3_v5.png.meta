@@ -238,6 +238,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: small_mirror_frame_off
+      rect:
+        serializedVersion: 2
+        x: 1171
+        y: 24
+        width: 106
+        height: 206
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87be8d52cfac3d24ea78a932dfa69a60
+      internalID: 547001871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: small_mirror_frame_on
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 24
+        width: 106
+        height: 206
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a8b6d371912193459ab45a950ee5949
+      internalID: -57428275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: small_mirror
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 52
+        width: 76
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec07e22498e25d345a0777b988af4502
+      internalID: 1451174230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -251,11 +314,13 @@ TextureImporter:
     nameFileIdTable:
       Stage3_v5_0: 2101384528
       Stage3_v5_1: 2063434940
-      Stage3_v5_2: 336817423
       clock_0: 1969664130
       clock_1: 2041974648
       clock_interior: -835682847
       pendulum: -343989402
+      small_mirror: 1451174230
+      small_mirror_frame_off: 336817423
+      small_mirror_frame_on: -57428275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
