@@ -13013,6 +13013,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607461729}
   m_CullTransparentMesh: 1
+--- !u!1001 &624296426
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 46.03377
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.371188
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &624296427 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 624296426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &636055303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2956194381659194350, guid: dc41f0ef485134393bfc052d1f1b4192, type: 3}
@@ -58147,6 +58209,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc41f0ef485134393bfc052d1f1b4192, type: 3}
+--- !u!1001 &898259636
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 353.3149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.6185217
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &898259637 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 898259636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &899408094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3567295934789329036, guid: 3447c827c954d374c95c16051c4e175f, type: 3}
@@ -58462,6 +58586,68 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5055796552036210043, guid: c95008f466adbcd4a895a59b60026bde, type: 3}
   m_PrefabInstance: {fileID: 1233455244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &942374525
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 92.13567
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.3810015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &942374526 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 942374525}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &958846147 stripped
 Transform:
@@ -59151,6 +59337,130 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eb85ff2fc6cf4afd982aeaaf01d5478, type: 3}
+--- !u!1001 &1038388676
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 54.05298
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.273393
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &1038388677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 1038388676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1040505299
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.3513718
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.52668
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &1040505300 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 1040505299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1041325842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62980,7 +63290,15 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 624296427}
+  - {fileID: 1038388677}
+  - {fileID: 942374526}
+  - {fileID: 1505524574}
+  - {fileID: 1040505300}
+  - {fileID: 1958620803}
+  - {fileID: 1307938944}
+  - {fileID: 898259637}
   m_Father: {fileID: 2077452463}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1213749239
@@ -66338,6 +66656,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc521c91a70cb094dbe2890d972849f5, type: 3}
+--- !u!1001 &1307938943
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 345.9932
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.6503248
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &1307938944 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 1307938943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1312993324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2450617837616620434, guid: b8dab679335a847048de2253cd8809f2, type: 3}
@@ -70029,6 +70409,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5454057622344056590, guid: 0b33b0395af68f945ab73194dc549c7a, type: 3}
   m_PrefabInstance: {fileID: 1500016595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1505524573
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.024555
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.1669807
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &1505524574 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 1505524573}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1508839132
 PrefabInstance:
@@ -80403,6 +80845,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc41f0ef485134393bfc052d1f1b4192, type: 3}
+--- !u!1001 &1958620802
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1211613843}
+    m_Modifications:
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 339.61624
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.6185217
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376338334799963674, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+      propertyPath: m_Name
+      value: WalkingMonster
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+--- !u!4 &1958620803 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4166823203463633053, guid: 160985b56aae7435f825400fb529bde5, type: 3}
+  m_PrefabInstance: {fileID: 1958620802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1961696504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5178855569157786995, guid: 0ced36e406de8934bb8ef37168081104, type: 3}
