@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7489825102513875708}
   - component: {fileID: 2117148616675225519}
   - component: {fileID: 5700562519374124861}
-  m_Layer: 15
+  m_Layer: 6
   m_Name: MirrorGlass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790751041291624460}
   - component: {fileID: 6153302101659165380}
-  m_Layer: 15
+  m_Layer: 6
   m_Name: MirroringSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 196144283190919232}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: 0, y: 1.22, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 1109010384358925627}
   - component: {fileID: 8454147756952409040}
   - component: {fileID: 6583038676365756321}
-  m_Layer: 15
+  m_Layer: 6
   m_Name: MirroringCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 3199280819973555375}
   - component: {fileID: 9040812656482405128}
   - component: {fileID: 4164698612033461975}
-  m_Layer: 15
+  m_Layer: 6
   m_Name: Light Frame Mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mirroringSpriteRenderer: {fileID: 6153302101659165380}
   mirroringCamera: {fileID: 8454147756952409040}
-  lightOn: 0
+  lightOn: 1
   lightOnSprite: {fileID: -57428275, guid: 0f2c7c423125d4d2f8dbb951323ea869, type: 3}
   lightOffSprite: {fileID: 547001871, guid: 0f2c7c423125d4d2f8dbb951323ea869, type: 3}
   mirrorCollider: {fileID: 4164698612033461975}
