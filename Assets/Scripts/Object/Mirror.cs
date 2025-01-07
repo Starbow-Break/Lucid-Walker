@@ -10,7 +10,7 @@ public class Mirror : MonoBehaviour
     RenderTexture rt;
     MaterialPropertyBlock mpb;
 
-    void Awake()
+    protected virtual void Awake()
     {   
         // Render Texture 생성 후 Sprite Renderer에 할당
         rt = new RenderTexture(256, 256, 16);

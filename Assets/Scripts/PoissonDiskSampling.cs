@@ -4,10 +4,24 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public static class PoissonDiskSampling
+public class PoissonDiskSampling
 {   
+    InstantiableRandom random; // System.Random 객체
+
+    public PoissonDiskSampling() {
+        random = new InstantiableRandom();
+    }
+
+    public PoissonDiskSampling(int seed) {
+        random = new InstantiableRandom(seed);
+    }
+
+    public PoissonDiskSampling(InstantiableRandom random) {
+        this.random = random;
+    }
+
     // 포인트 생성
-    public static List<Vector2> GeneratePoints(float radius, Vector2 regionSize, int numSampleTry = 10) {
+    public List<Vector2> GeneratePoints(float radius, Vector2 regionSize, int numSampleTry = 10) {
         float cellSize = radius / Mathf.Sqrt(2); // 셀 크기
         int[,] grid = new int[Mathf.CeilToInt(regionSize.x / cellSize), Mathf.CeilToInt(regionSize.y / cellSize)]; // 그리드
 
@@ -16,13 +30,13 @@ public static class PoissonDiskSampling
 
         // 생성 포인트들이 전부 소멸할 때까지 포인트 생성 
         while(spawnPoints.Count > 0) {
-            int spawnIndex = Random.Range(0, spawnPoints.Count);
+            int spawnIndex = random.Range(0, spawnPoints.Count);
             bool generateSuccess = false;
 
             for(int i = 0; i < numSampleTry; i++) {
-                float angle = Random.Range(0, 2 * Mathf.PI);
+                float angle = random.Range(0, 2 * Mathf.PI);
                 Vector2 dir = new(Mathf.Cos(angle), Mathf.Sin(angle));
-                float dist = Random.Range(radius, 2 * radius);
+                float dist = random.Range(radius, 2 * radius);
                 Vector2 newPoint = spawnPoints[spawnIndex] + dist * dir;
 
                 if(IsValid(newPoint, radius, regionSize, cellSize, grid, points)) {
@@ -43,7 +57,7 @@ public static class PoissonDiskSampling
     }
 
     // 해당 포인트가 유효한지 확인
-    public static bool IsValid(Vector2 point, float radius, Vector2 regionSize, float cellSize, int[,] grid, List<Vector2> generatedPoints) {
+    bool IsValid(Vector2 point, float radius, Vector2 regionSize, float cellSize, int[,] grid, List<Vector2> generatedPoints) {
         if(point.x >= 0 && point.x <= regionSize.x && point.y >= 0 && point.y <= regionSize.y) {
             Vector2Int cell = new(Mathf.FloorToInt(point.x / cellSize), Mathf.FloorToInt(point.y / cellSize));
             int minX = Mathf.Max(0, cell.x - 2);
