@@ -13,7 +13,6 @@ public class LightFrameMirrorController : MonoBehaviour
     List<int> _lightOnTime;
     int lightOnTimeIndex = 0;
     int curTimeUnit; // 현재 시간
-    Coroutine coroutine = null;
 
     void Awake() {
         mirror = GetComponent<LightFrameMirror>();
