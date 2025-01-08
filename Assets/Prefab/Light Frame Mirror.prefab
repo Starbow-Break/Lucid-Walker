@@ -292,7 +292,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 262272
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 712a703c9e49ab1489896c0d2877b0be, type: 2}
   m_TargetDisplay: 0
@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 3199280819973555375}
   - component: {fileID: 9040812656482405128}
   - component: {fileID: 4164698612033461975}
+  - component: {fileID: 7240964571054714823}
   m_Layer: 6
   m_Name: Light Frame Mirror
   m_TagString: Untagged
@@ -485,7 +486,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.0042533875, y: 0.6411536}
   m_SpriteTilingProperty:
@@ -500,3 +501,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0108337, y: 0.34712934}
   m_EdgeRadius: 0
+--- !u!251 &7240964571054714823
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772142271824856601}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 150
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
