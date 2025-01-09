@@ -17,7 +17,6 @@ public class EpisodeSelector : MonoBehaviour
     public Image episodeNameImage;      // 에피소드 이름을 표시할 UI 이미지
     public Image episodeIcon;           // 에피소드 아이콘
     public Image characterFaceImage;    // 주인공 얼굴을 표시할 UI 이미지
-    public TextMeshProUGUI episodeDescriptionText; // 에피소드 설명
     public int currentEpisodeIndex = 0; // 현재 에피소드 인덱스
 
     // 버튼 클릭 시 호출
@@ -43,7 +42,6 @@ public class EpisodeSelector : MonoBehaviour
         episodeNameImage.sprite = episodes[currentEpisodeIndex].episodeNameImage; // 에피소드 이름 이미지
         episodeIcon.sprite = episodes[currentEpisodeIndex].icon;                  // 에피소드 아이콘
         characterFaceImage.sprite = episodes[currentEpisodeIndex].characterFace;  // 주인공 얼굴 이미지
-        episodeDescriptionText.text = episodes[currentEpisodeIndex].description;  // 에피소드 설명
     }
 
     private void Start()
