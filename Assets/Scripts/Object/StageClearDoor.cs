@@ -7,18 +7,23 @@ public class StageClearDoor : MonoBehaviour
 {
     [SerializeField] Key key; // 열쇠
     [SerializeField] Transform keyHole; // 열쇠 구멍
+    [SerializeField] KeyGuide keyGuide;
 
     Animator anim;
     GameObject interactingPlayer = null;
     bool isOpen = false;
 
+    Vector2 openUiSize;
+    Vector2 enterUiSize;
+
     #region 스테이지 클리어 UI
     [SerializeField] GameObject stageClearUI; // 스테이지 클리어 UI
-
     #endregion
 
     void Awake()
     {
+        openUiSize = new Vector2(1.66f, 0.7f);
+        enterUiSize = new Vector2(2.5f, 0.7f);
         anim = GetComponent<Animator>();
     }
 
@@ -52,7 +57,9 @@ public class StageClearDoor : MonoBehaviour
     }
 
     IEnumerator DoorOpenFlow()
-    {
+    {   
+        keyGuide.InActive();
+
         // ItemFollowBag에서 해당 열쇠 분리
         ItemFollowBag bag = interactingPlayer.GetComponent<ItemFollowBag>();
 
@@ -73,10 +80,16 @@ public class StageClearDoor : MonoBehaviour
             anim.SetTrigger("open");
             yield return null;
         }
+
+        if(interactingPlayer) {
+            keyGuide.Active(KeyCode.Z, "들어가기", enterUiSize);
+        }
     }
 
     IEnumerator StageClearSequence()
     {
+        keyGuide.InActive();
+
         // UI 활성화
         stageClearUI.SetActive(true);
 
@@ -91,7 +104,20 @@ public class StageClearDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            interactingPlayer = other.gameObject;
+            if(!isOpen)
+            {
+                interactingPlayer = other.gameObject;
+                ItemFollowBag bag = other.GetComponent<ItemFollowBag>();
+                if(bag != null & bag.HasItem(key))
+                {
+                    keyGuide.Active(KeyCode.Z, "열기", openUiSize);
+                }
+            }
+            else
+            {
+                interactingPlayer = other.gameObject;
+                keyGuide.Active(KeyCode.Z, "들어가기", enterUiSize);
+            }
         }
     }
 
@@ -100,6 +126,7 @@ public class StageClearDoor : MonoBehaviour
         if (interactingPlayer == other.gameObject)
         {
             interactingPlayer = null;
+            keyGuide.InActive();
         }
     }
 }
