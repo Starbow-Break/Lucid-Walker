@@ -12,9 +12,14 @@ public class QuizManager : MonoBehaviour
     }
 
     public List<QuizStep> quizSteps; // 전체 퀴즈 리스트
-    public GameObject finalPortal; // 최종 문 오브젝트
-    public Dictionary<string, ButtonPress> activeButtons = new Dictionary<string, ButtonPress>(); // 활성화된 버튼 관리
+    public GameObject chandelier;
+    public float moveDownDistance = 1f; // 샹들리에가 내려갈 거리
+    public float moveSpeed = 2f; // 샹들리에 이동 속도
 
+    private Vector3 targetPosition; // 샹들리에의 목표 위치
+    private bool isMoving = false; // 샹들리에가 움직이는 중인지 확인
+
+    public Dictionary<string, ButtonPress> activeButtons = new Dictionary<string, ButtonPress>(); // 활성화된 버튼 관리
     private List<string> currentSequence = new List<string>(); // 현재 플레이어가 진행 중인 답
 
     private void Start()
@@ -25,6 +30,23 @@ public class QuizManager : MonoBehaviour
             if (step.lineRenderer != null)
             {
                 step.lineRenderer.gameObject.SetActive(false);
+            }
+        }
+
+        // 샹들리에 초기 위치 설정
+        targetPosition = chandelier.transform.position;
+    }
+
+    private void Update()
+    {
+        // 샹들리에 이동 처리
+        if (isMoving)
+        {
+            chandelier.transform.position = Vector3.Lerp(chandelier.transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            if (Vector3.Distance(chandelier.transform.position, targetPosition) < 0.01f)
+            {
+                chandelier.transform.position = targetPosition;
+                isMoving = false;
             }
         }
     }
@@ -56,14 +78,14 @@ public class QuizManager : MonoBehaviour
                 // 정답 맞춤
                 ActivateLine(step);
                 RemoveSequence(step.correctSequence); // 정답 시퀀스를 currentSequence에서 제거
+                MoveChandelierDown(); // 샹들리에 이동
             }
         }
 
         // 모든 퀴즈 완료 시 최종 문 활성화
-        if (quizSteps.TrueForAll(step => step.lineRenderer.gameObject.activeSelf) && finalPortal != null)
+        if (quizSteps.TrueForAll(step => step.lineRenderer.gameObject.activeSelf))
         {
-            finalPortal.SetActive(true);
-            Debug.Log("모든 퀴즈 완료! 최종 문 활성화.");
+            quizSuccess();
         }
     }
 
@@ -78,6 +100,11 @@ public class QuizManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void quizSuccess()
+    {
+        Debug.Log("모든 퀴즈 성공!");
     }
 
     private void RemoveSequence(List<string> sequence)
@@ -99,6 +126,14 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    private void MoveChandelierDown()
+    {
+        // 샹들리에의 목표 위치 설정
+        targetPosition -= new Vector3(0, moveDownDistance, 0);
+        isMoving = true; // 이동 시작
+        Debug.Log("Chandelier is moving down!");
+    }
+
     public void RegisterButton(string portalName, ButtonPress button)
     {
         if (!activeButtons.ContainsKey(portalName))
@@ -111,16 +146,10 @@ public class QuizManager : MonoBehaviour
     public void DeactivatePortal(string portalName)
     {
         // 버튼 비활성화 처리
-        if (activeButtons.ContainsKey(portalName))
-        {
-            activeButtons[portalName].DeactivateButton();
-            activeButtons.Remove(portalName);
-            currentSequence.Remove(portalName); // currentSequence에서 제거
-            Debug.Log($"Portal {portalName} deactivated and removed from sequence.");
-        }
+        currentSequence.Remove(portalName); // currentSequence에서 제거
+        Debug.Log($"Portal {portalName} deactivated and removed from sequence.");
     }
 
-    // 현재 스택 초기화 함수 추가
     public void ResetCurrentSequence()
     {
         foreach (var portalName in currentSequence)
