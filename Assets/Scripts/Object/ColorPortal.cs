@@ -6,8 +6,6 @@ public class ColorPortal : MonoBehaviour
 {
     public QuizManager quizManager; // QuizManager 참조
     public Transform targetPosition;
-    public ParticleSystem playerParticleSystem;
-    public Color portalParticleColor;
     public GameObject tileMapToDeactivate;
     public List<Collider2D> collidersToDisable;
     public List<Animator> animatorsToHandle; // 애니메이터 리스트
@@ -41,7 +39,7 @@ public class ColorPortal : MonoBehaviour
     {
         while (isPlayerInPortal)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 TeleportPlayer(player);
                 yield break;
@@ -57,11 +55,7 @@ public class ColorPortal : MonoBehaviour
             player.transform.position = targetPosition.position;
         }
 
-        if (playerParticleSystem != null)
-        {
-            var mainModule = playerParticleSystem.main;
-            mainModule.startColor = portalParticleColor;
-        }
+
 
         if (targetPosition != null && targetPosition.CompareTag("PortalEnd"))
         {

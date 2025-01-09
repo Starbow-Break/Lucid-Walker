@@ -1,13 +1,15 @@
-using System.Collections;
 using UnityEngine;
 
 public class ButtonPress : MonoBehaviour
 {
     public QuizManager quizManager; // QuizManager 참조
-    public string portalName; // 포탈 이름 (예: "ㄱ_first", "ㄱ_second")
+    public string portalName; // 포탈 이름
     public Animator buttonAnimator; // 버튼 애니메이터
+    public GameObject deactivateSwitch;
+    public GameObject light; // Light 컴포넌트
 
     private bool isPlayerInTrigger = false; // 플레이어가 트리거 안에 있는지 확인
+    private bool activated = false;
 
     private void Start()
     {
@@ -16,14 +18,17 @@ public class ButtonPress : MonoBehaviour
         {
             quizManager.RegisterButton(portalName, this);
         }
+
     }
 
     private void Update()
     {
-        // 플레이어가 트리거 안에 있을 때 Z 키 입력 감지
         if (isPlayerInTrigger && Input.GetKeyDown(KeyCode.Z))
         {
-            ActivateButton();
+            if (!activated)
+                ActivateButton();
+            else
+                DeactivateButton();
         }
     }
 
@@ -31,7 +36,7 @@ public class ButtonPress : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInTrigger = true; // 플레이어가 트리거 안에 들어옴
+            isPlayerInTrigger = true;
             Debug.Log("Player entered trigger area!");
         }
     }
@@ -40,35 +45,49 @@ public class ButtonPress : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInTrigger = false; // 플레이어가 트리거를 떠남
+            isPlayerInTrigger = false;
             Debug.Log("Player exited trigger area!");
         }
     }
 
     private void ActivateButton()
     {
-        // 버튼 애니메이터의 Activate 트리거 활성화
+        deactivateSwitch.SetActive(false);
+
+        // Light 활성화
+        light.SetActive(true);
         if (buttonAnimator != null)
         {
             buttonAnimator.SetBool("Activate", true);
             Debug.Log("Button activated!");
         }
 
-        // QuizManager 호출
         if (quizManager != null)
         {
             quizManager.NowPortal(portalName);
-            Debug.Log($"QuizManager called with portal: {portalName}");
         }
+
+        activated = true; // 버튼 활성화 상태 갱신
     }
 
     public void DeactivateButton()
     {
-        // 버튼 애니메이터의 Activate 트리거 비활성화
+        deactivateSwitch.SetActive(true);
+
+        light.SetActive(false);
+
+
         if (buttonAnimator != null)
         {
             buttonAnimator.SetBool("Activate", false);
             Debug.Log($"Button {portalName} deactivated!");
         }
+
+        if (quizManager != null)
+        {
+            quizManager.DeactivatePortal(portalName);
+        }
+
+        activated = false; // 버튼 비활성화 상태 갱신
     }
 }
