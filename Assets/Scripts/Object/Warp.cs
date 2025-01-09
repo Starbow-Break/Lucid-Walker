@@ -9,6 +9,7 @@ public abstract class Warp : MonoBehaviour
     [SerializeField] Map map; // Warp가 속한 Map
     [SerializeField] Warp targetWarp; // 목표 Warp
     [SerializeField] WarpFade warpFade; // 워프 페이트 효과
+    [SerializeField] KeyGuide keyGuide; // 상호작용 버튼 안내 UI
 
     GameObject interactingPlayer = null; // 상호작용 중인 오브젝트
 
@@ -99,12 +100,14 @@ public abstract class Warp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
             interactingPlayer = other.gameObject;
+            keyGuide.Active(KeyCode.Z, "워프하기");
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.CompareTag("Player")) {
             interactingPlayer = null;
+            keyGuide.InActive();
         }
     }
 }

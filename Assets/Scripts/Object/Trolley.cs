@@ -18,7 +18,6 @@ public class Trolley : MonoBehaviour, IFollowCollectable
             zipline 
             && Input.GetKeyDown(KeyCode.Z) 
             && interactingPlayerController
-            && interactingPlayerController.IsFacingRight == zipline.isRightDir
         ) {
             zipline.BoardPlayer(interactingPlayerController);
         }
