@@ -7,8 +7,17 @@ public class MainChairconnect : MonoBehaviour
     public GameObject connectUI; // 활성화할 연결 UI 오브젝트
     private Animator chairAnimator; // 의자 오브젝트의 Animator
 
-    public Animator televisionAnimator; // 두 번째 애니메이터 참조
-    public Animator televisionAnimator2;  // 세 번째 애니메이터 참조
+    #region ONOFF Animators
+    // Set all of these up in the inspector
+    [Header("Animator")]
+    [SerializeField] private Animator televisionAnimator;
+    [SerializeField] private Animator televisionAnimator2;
+    [SerializeField] private Animator smalltv1_Animator;
+    [SerializeField] private Animator smalltv2_Animator;
+    [SerializeField] private Animator smalltv3_Animator;
+    [SerializeField] private Animator smalltv4_Animator;
+    [SerializeField] private Animator smalltv5_Animator;
+    #endregion
 
     private bool isInteracting = false; // 상호작용 상태 체크
 
@@ -47,7 +56,6 @@ public class MainChairconnect : MonoBehaviour
                         chairAnimator.SetBool("Connect", true);
                     }
 
-
                     // UI 패널 활성화
                     if (panel != null)
                     {
@@ -55,14 +63,19 @@ public class MainChairconnect : MonoBehaviour
                     }
 
                     // 애니메이터 활성화
-
                     televisionAnimator.SetBool("On", true);
                     televisionAnimator2.SetBool("On", true);
+                    smalltv1_Animator.SetBool("On", true);
+                    smalltv2_Animator.SetBool("On", true);
+                    smalltv3_Animator.SetBool("On", true);
+                    smalltv4_Animator.SetBool("On", true);
+                    smalltv5_Animator.SetBool("On", true);
 
-                    // 연결 UI 활성화
+                    // 연결 UI 활성화 후 2초 뒤 비활성화
                     if (connectUI != null)
                     {
                         connectUI.SetActive(true);
+                        StartCoroutine(DisableConnectUI());
                     }
                 }
                 else
@@ -79,9 +92,14 @@ public class MainChairconnect : MonoBehaviour
                         chairAnimator.SetBool("Connect", false);
                     }
 
-                    //  애니메이터 비활성화
+                    // 애니메이터 비활성화
                     televisionAnimator.SetBool("On", false);
                     televisionAnimator2.SetBool("On", false);
+                    smalltv1_Animator.SetBool("On", false);
+                    smalltv2_Animator.SetBool("On", false);
+                    smalltv3_Animator.SetBool("On", false);
+                    smalltv4_Animator.SetBool("On", false);
+                    smalltv5_Animator.SetBool("On", false);
 
                     // UI 패널 비활성화
                     if (panel != null)
@@ -98,6 +116,16 @@ public class MainChairconnect : MonoBehaviour
             }
 
             yield return null; // 매 프레임 대기
+        }
+    }
+
+    private IEnumerator DisableConnectUI()
+    {
+        yield return new WaitForSeconds(2f); // 2초 대기
+
+        if (connectUI != null)
+        {
+            connectUI.SetActive(false); // 연결 UI 비활성화
         }
     }
 }

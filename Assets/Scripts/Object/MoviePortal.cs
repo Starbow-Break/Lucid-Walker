@@ -7,9 +7,9 @@ public class MoviePortal : MonoBehaviour
 {
     public Transform SeatBehindMap; // 새로운 맵의 플레이어 시작 위치
     public GameObject tileMapToActivate; // 비활성화된 타일맵 (활성화할 타일맵을 여기에 할당)
+    public GameObject ObjectToDeActivate; // 비활성화된 타일맵 (활성화할 타일맵을 여기에 할당)
+
     public List<Collider2D> collidersToEnable; // 포탈 이동 시 활성화할 Collider2D 리스트
-    public Color portalParticleColor = Color.red; // 포탈 이동 시 적용할 파티클 색상
-    public ParticleSystem playerParticleSystem; // 플레이어의 Particle System 참조
     public float cameraTargetSize; // 카메라의 목표 크기
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
     private bool isPlayerInPortal = false; // 플레이어가 포탈에 있는지 여부 확인
@@ -42,7 +42,7 @@ public class MoviePortal : MonoBehaviour
     {
         while (isPlayerInPortal)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 TeleportPlayer(player); // 키 입력을 받으면 텔레포트 실행
                 yield break; // 코루틴 종료
@@ -64,7 +64,10 @@ public class MoviePortal : MonoBehaviour
         {
             tileMapToActivate.SetActive(true);
         }
-
+        if (ObjectToDeActivate != null)
+        {
+            ObjectToDeActivate.SetActive(false);
+        }
         // 포탈 이동 시 리스트에 담긴 Collider2D들을 활성화
         foreach (Collider2D collider in collidersToEnable)
         {
@@ -85,12 +88,6 @@ public class MoviePortal : MonoBehaviour
         playerSprite.sortingOrder = -1;
 
 
-        // 플레이어의 Particle System 색상을 빨간색으로 변경
-        if (playerParticleSystem != null)
-        {
-            var mainModule = playerParticleSystem.main;
-            mainModule.startColor = portalParticleColor; // 색상을 빨간색으로 변경
-        }
     }
 
     public void StartCameraSizeChange(float targetSize)
