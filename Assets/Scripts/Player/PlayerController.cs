@@ -586,7 +586,7 @@ public class PlayerController : MonoBehaviour
         */
     }
 
-    private void Turn()
+    public void Turn()
     {
         //stores scale and flips the player along the x axis, 
         Vector3 scale = transform.localScale;

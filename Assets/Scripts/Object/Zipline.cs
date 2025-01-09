@@ -150,7 +150,9 @@ public class Zipline : MonoBehaviour
     public void BoardPlayer(PlayerController pc) {
         if(status == ZiplineStatus.READY) { // 짚라인이 준비 상태라면 플레이어 탑승
             status = ZiplineStatus.MOVE;
-            // 필요 시 플레이어 Flip
+            if(pc.IsFacingRight != isRightDir) {
+                pc.Turn();
+            }
             AttachPlayer(pc);
             Debug.Log("짚라인 이동!");
         }
