@@ -30,6 +30,7 @@ public class QuizManager : MonoBehaviour
     public Transform focusPoint; // 대화 상대 (카메라가 포커스할 대상)
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
     private int count = 0;
+    public GameObject chandelierSmoke;
 
 
     private void Start()
@@ -143,13 +144,13 @@ public class QuizManager : MonoBehaviour
     private IEnumerator CameraEffect()
     {
         yield return new WaitForSeconds(1f);
+        cameraFollow.TriggerShake();
+        chandelierSmoke.SetActive(true);
+        cameraFollow.SetDialogueFocus(focusPoint);
+        yield return new WaitForSeconds(3f);
         chandelier.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
         brokenChandelier.SetActive(true);
-        if (cameraFollow != null && focusPoint != null)
-        {
-            cameraFollow.SetDialogueFocus(focusPoint);
-            cameraFollow.TriggerShake();
-        }
         yield return new WaitForSeconds(5f);
         cameraFollow.ClearDialogueFocus();
     }
