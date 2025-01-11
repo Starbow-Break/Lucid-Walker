@@ -6,7 +6,7 @@ public class ButtonPress : MonoBehaviour
     public string portalName; // 포탈 이름
     public Animator buttonAnimator; // 버튼 애니메이터
     public GameObject deactivateSwitch;
-    public GameObject light; // Light 컴포넌트
+    public GameObject Purplelight; // Light 컴포넌트
 
     private bool isPlayerInTrigger = false; // 플레이어가 트리거 안에 있는지 확인
     private bool activated = false;
@@ -37,7 +37,6 @@ public class ButtonPress : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInTrigger = true;
-            Debug.Log("Player entered trigger area!");
         }
     }
 
@@ -46,7 +45,6 @@ public class ButtonPress : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInTrigger = false;
-            Debug.Log("Player exited trigger area!");
         }
     }
 
@@ -55,11 +53,10 @@ public class ButtonPress : MonoBehaviour
         deactivateSwitch.SetActive(false);
 
         // Light 활성화
-        light.SetActive(true);
+        Purplelight.SetActive(true);
         if (buttonAnimator != null)
         {
             buttonAnimator.SetBool("Activate", true);
-            Debug.Log("Button activated!");
         }
 
         if (quizManager != null)
@@ -74,7 +71,7 @@ public class ButtonPress : MonoBehaviour
     {
         deactivateSwitch.SetActive(true);
 
-        light.SetActive(false);
+        Purplelight.SetActive(false);
 
 
         if (buttonAnimator != null)
