@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+
 
 public class QuizManager : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class QuizManager : MonoBehaviour
 
     public List<QuizStep> quizSteps; // 전체 퀴즈 리스트
     public GameObject chandelier;
-    public float moveDownDistance = 1f; // 샹들리에가 내려갈 거리
+    public float moveDownDistance = 9f; // 샹들리에가 내려갈 거리
     public float moveSpeed = 2f; // 샹들리에 이동 속도
 
     private Vector3 targetPosition; // 샹들리에의 목표 위치
@@ -21,6 +23,14 @@ public class QuizManager : MonoBehaviour
 
     public Dictionary<string, ButtonPress> activeButtons = new Dictionary<string, ButtonPress>(); // 활성화된 버튼 관리
     private List<string> currentSequence = new List<string>(); // 현재 플레이어가 진행 중인 답
+    public GameObject brokenChandelier;
+
+    // 카메라 포커싱과 흔들림 효과
+    public CameraFollow cameraFollow;
+    public Transform focusPoint; // 대화 상대 (카메라가 포커스할 대상)
+    public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
+    private int count = 0;
+
 
     private void Start()
     {
@@ -73,38 +83,75 @@ public class QuizManager : MonoBehaviour
         foreach (var step in quizSteps)
         {
             // 순서 상관없이 정답 확인
-            if (IsSequenceCorrectIgnoringOrder(currentSequence, step.correctSequence))
             {
-                // 정답 맞춤
-                ActivateLine(step);
-                RemoveSequence(step.correctSequence); // 정답 시퀀스를 currentSequence에서 제거
-                MoveChandelierDown(); // 샹들리에 이동
+                if (IsSequenceCorrectIgnoringOrder(currentSequence, step.correctSequence))
+                {
+                    // 정답 맞춤
+                    ActivateLine(step);
+                    RemoveSequence(step.correctSequence); // 정답 시퀀스를 currentSequence에서 제거
+                    if (count == 0)
+                        MoveChandelierDown(); // 샹들리에 이동
+                    count++;
+                }
+            }
+            if (count == 2)
+            {
+                // 모든 퀴즈 완료 시 최종 문 활성화
+                if (quizSteps.TrueForAll(step => step.lineRenderer.gameObject.activeSelf))
+                {
+                    moveSpeed = 5f;
+                    MoveChandelierDown(); // 샹들리에 이동
+                    QuizSuccess();
+                }
             }
         }
 
-        // 모든 퀴즈 완료 시 최종 문 활성화
-        if (quizSteps.TrueForAll(step => step.lineRenderer.gameObject.activeSelf))
-        {
-            quizSuccess();
-        }
     }
 
     private bool IsSequenceCorrectIgnoringOrder(List<string> playerSequence, List<string> correctSequence)
     {
-        // correctSequence의 모든 요소가 playerSequence에 포함되어 있는지 확인
-        foreach (var correct in correctSequence)
+        // 길이 먼저 비교
+        if (playerSequence.Count != correctSequence.Count)
         {
-            if (!playerSequence.Contains(correct))
+            return false;
+        }
+
+        // 두 리스트를 정렬 후 요소 비교
+        var sortedPlayerSequence = new List<string>(playerSequence);
+        var sortedCorrectSequence = new List<string>(correctSequence);
+
+        sortedPlayerSequence.Sort();
+        sortedCorrectSequence.Sort();
+
+        for (int i = 0; i < sortedPlayerSequence.Count; i++)
+        {
+            if (sortedPlayerSequence[i] != sortedCorrectSequence[i])
             {
                 return false;
             }
         }
+
         return true;
     }
 
-    private void quizSuccess()
+    private void QuizSuccess()
     {
+        StartCoroutine(CameraEffect());
         Debug.Log("모든 퀴즈 성공!");
+    }
+
+    private IEnumerator CameraEffect()
+    {
+        yield return new WaitForSeconds(1f);
+        chandelier.SetActive(false);
+        brokenChandelier.SetActive(true);
+        if (cameraFollow != null && focusPoint != null)
+        {
+            cameraFollow.SetDialogueFocus(focusPoint);
+            cameraFollow.TriggerShake();
+        }
+        yield return new WaitForSeconds(5f);
+        cameraFollow.ClearDialogueFocus();
     }
 
     private void RemoveSequence(List<string> sequence)
@@ -148,6 +195,7 @@ public class QuizManager : MonoBehaviour
         // 버튼 비활성화 처리
         currentSequence.Remove(portalName); // currentSequence에서 제거
         Debug.Log($"Portal {portalName} deactivated and removed from sequence.");
+        CheckCurrentSequence();
     }
 
     public void ResetCurrentSequence()

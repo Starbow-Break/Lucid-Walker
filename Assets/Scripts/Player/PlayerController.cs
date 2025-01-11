@@ -91,8 +91,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!isActive)
+        if (!isActive || isDialogueActive)
         {
+            Debug.Log("비활성화 상태");
             // 비활성화 상태일 때 Idle 상태 강제 설정
             SetToIdleState();
             return; // 입력 및 동작 처리 중지
@@ -146,10 +147,10 @@ public class PlayerController : MonoBehaviour
             //Ground Check
             if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, p_Layer)) //checks if set box overlaps with ground
             {
-                if (LastOnGroundTime < -0.1f)
-                {
-                    isGround = true;
-                }
+                // if (LastOnGroundTime < -0.1f)
+                // {
+                isGround = true;
+                // }
 
                 LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
             }
@@ -176,7 +177,6 @@ public class PlayerController : MonoBehaviour
         #region 애니메이션 상태 업데이트
         if (isGround) // 땅에 있을 때만 걷기, 달리기, 멈춤 상태 업데이트
         {
-
             anim.SetBool("isSwim", false);
 
             if (Mathf.Abs(_moveInput.x) > 0.1f) // 이동 중
@@ -479,16 +479,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SetToIdleState()
+    public void SetToIdleState()
     {
-        rb.velocity = Vector2.zero; // 이동 중지
         anim.SetBool("walk", false);
         anim.SetBool("run", false);
         anim.SetBool("isGround", true);
         anim.SetBool("isSliding", false);
         anim.SetBool("isCrouching", false);
         anim.SetBool("isCrouchWalking", false);
-        anim.Play("Idle"); // 강제로 Idle 애니메이션 재생
+        // rb.velocity = Vector3.zero; // 이동 중지
+        // anim.Play("Idle"); // 강제로 Idle 애니메이션 재생
     }
 
     #region INPUT CALLBACKS
