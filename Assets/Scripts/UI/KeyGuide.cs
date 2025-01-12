@@ -43,7 +43,16 @@ public class KeyGuide : MonoBehaviour
             image.sprite = keyDist[keyCode];
         }
         scriptTMP.text = script;
-        gameObject.SetActive(true);
+        Active();
+    }
+
+    public void Active(KeyCode keyCode, String script, Vector2 uiSize) {
+        RectTransform rt = GetComponent<RectTransform>();
+        Vector2 oldSize = rt.rect.size;
+        Vector2 deltaSize = uiSize - oldSize;
+        rt.offsetMin -= new Vector2(deltaSize.x * rt.pivot.x, deltaSize.y * rt.pivot.y);
+        rt.offsetMax += new Vector2(deltaSize.x * (1f - rt.pivot.x), deltaSize.y * (1f - rt.pivot.y));
+        Active(keyCode, script);
     }
 
     // UI 비활성화
