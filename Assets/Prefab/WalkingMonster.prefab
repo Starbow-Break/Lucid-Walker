@@ -4966,12 +4966,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 2138975838, guid: c7ab60cf0aa1048768057dbf5f2b8f04, type: 3}
+  m_Sprite: {fileID: -1412971657, guid: c7ab60cf0aa1048768057dbf5f2b8f04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.88000005, y: 1.1405293}
+  m_Size: {x: 0.88000005, y: 1.180548}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5015,16 +5015,23 @@ MonoBehaviour:
   groundChkFront: {fileID: 1581044763364605854}
   groundChkBack: {fileID: 1710749096492673563}
   chkDistance: 0.2
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 6208
+  WaterLayer:
+    serializedVersion: 2
+    m_Bits: 0
   detectionRange: 5
   moveSpeed: 2
   patrolDistance: 5
   platformDetectionDistance: 0.5
-  attackCooldown: 2
   attackCenter: {x: 0.5, y: 0}
   attackSize: {x: 0.3, y: 0.6}
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 6208
+  attackCooldown: 2
+  isGroundFront: 0
+  isGroundBack: 0
+  isInWater: 0
+  isPlatformInFront: 0
 --- !u!50 &8339932744030412234
 Rigidbody2D:
   serializedVersion: 4
@@ -5087,9 +5094,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.88000005, y: 1.1405293}
-    newSize: {x: 0.88000005, y: 1.1405293}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.88000005, y: 1.180548}
+    newSize: {x: 0.88000005, y: 1.180548}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
