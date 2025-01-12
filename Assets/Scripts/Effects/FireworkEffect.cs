@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FireworkEffect : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particleSystem; // 폭죽 파티클 시스템
+    [SerializeField] private ParticleSystem FireCrack; // 폭죽 파티클 시스템
     [SerializeField] private GameObject stageClearUI; // 스테이지 클리어 UI
     [SerializeField] private float targetAngle = 28.0f; // 최종 목표 Angle
     [SerializeField] private float angleChangeSpeed = 10.0f; // Angle 변경 속도
@@ -27,18 +27,18 @@ public class FireworkEffect : MonoBehaviour
     private void StartFireworkEffect()
     {
         // 파티클 재생
-        particleSystem.Play();
+        FireCrack.Play();
         isPlaying = true;
 
         // 시작 Angle을 0으로 설정
-        var shape = particleSystem.shape;
+        var shape = FireCrack.shape;
         shape.angle = 0f;
     }
 
     private void UpdateFireworkAngle()
     {
         // 현재 Shape 모듈 가져오기
-        var shape = particleSystem.shape;
+        var shape = FireCrack.shape;
 
         // 목표 Angle로 점진적으로 변경
         if (shape.angle < targetAngle)
