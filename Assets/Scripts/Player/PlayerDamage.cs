@@ -105,7 +105,7 @@ public class PlayerDamage : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(4f); // 2초 대기
 
         // Start 화면으로 전환
-        LevelManager.Instance.LoadScene("Start", "CircleWipe");
+        LevelManager.Instance.LoadScene("Start", "CrossFade");
     }
 
     private IEnumerator FadeInFailUI()

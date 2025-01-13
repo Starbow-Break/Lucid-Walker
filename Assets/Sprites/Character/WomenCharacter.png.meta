@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: WomenCharacter_0
+      rect:
+        serializedVersion: 2
+        x: 1821
+        y: 1360
+        width: 147
+        height: 148
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99a83a82dda64be2b9f7a351748e7d3
+      internalID: -1672893297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WomenCharacter_1
+      rect:
+        serializedVersion: 2
+        x: 1968
+        y: 1186
+        width: 165
+        height: 122
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a3c09612a1c45d5a122de3c1779763
+      internalID: -421260599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WomenCharacter_2
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 992
+        width: 204
+        height: 97
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8be02ecbeaf47ef895176b97522817
+      internalID: 856437931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WomenCharacter_3
+      rect:
+        serializedVersion: 2
+        x: 1517
+        y: 992
+        width: 236
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6228cb0a8b4564d1c99d42640e742362
+      internalID: -325443782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WomenCharacter_4
+      rect:
+        serializedVersion: 2
+        x: 1799
+        y: 991
+        width: 238
+        height: 23
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc11542f8ed6b42c1a1abb8885829ad1
+      internalID: -1525903058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WomenCharacter_5
+      rect:
+        serializedVersion: 2
+        x: 2053
+        y: 987
+        width: 84
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd282da084e14387aa08e0fbcdad616
+      internalID: 2019713530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +232,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WomenCharacter_0: -1672893297
+      WomenCharacter_1: -421260599
+      WomenCharacter_2: 856437931
+      WomenCharacter_3: -325443782
+      WomenCharacter_4: -1525903058
+      WomenCharacter_5: 2019713530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
