@@ -24,7 +24,6 @@ public class CircleWipe : SceneTransition
     }
 
     // 새 메서드: 같은 씬 내 전환 효과
-    // 새 메서드: 같은 씬 내 전환 효과
     public void PlayTransition(bool vertical, bool isEntering, float delay = 0.5f)
     {
         circle.gameObject.SetActive(true); // 전환 효과 시작 시 활성화

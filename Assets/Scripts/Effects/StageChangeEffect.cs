@@ -21,10 +21,10 @@ public class StageChangeEffect : MonoBehaviour
         tilemapOriginalColor = tilemap.material.color;
 
         // 시작 효과 실행
-        StartCoroutine(StartSceneEffect());
+        // StartCoroutine(StartSceneEffect());
     }
 
-    IEnumerator StartSceneEffect()
+    public IEnumerator StartSceneEffect()
     {
         float elapsed = 0f;
 

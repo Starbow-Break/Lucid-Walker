@@ -6,6 +6,10 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
 
     private Queue<DialogueLine> lines; // 주고받는 대화를 큐로 관리
+    private int dialogueStep = 0; // 현재 대화 단계 추적
+    public delegate void DialogueEvent(int step);
+    public event DialogueEvent OnDialogueStep; // 특정 단계에서 이벤트 트리거
+
     private bool isDialogueActive = false; // 대화 활성 상태 확인
 
     private void Awake()
@@ -38,6 +42,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         lines = new Queue<DialogueLine>(dialogueData.lines);
+        dialogueStep = 0; // 대화 단계 초기화
         isDialogueActive = true; // 대화 활성화
         DisplayNextLine();
     }
@@ -52,6 +57,10 @@ public class DialogueManager : MonoBehaviour
 
         DialogueLine line = lines.Dequeue();
         DialogueUI.Instance.UpdateDialogueText(line.characterName, line.characterImage, line.sentence);
+
+        // 대화 단계 이벤트 호출
+        OnDialogueStep?.Invoke(dialogueStep);
+        dialogueStep++;
     }
 
     public void EndDialogue()
@@ -59,9 +68,9 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = false; // 대화 비활성화
         DialogueUI.Instance.HideDialogueBox();
     }
+
     public bool IsDialogueFinished()
     {
         return !isDialogueActive; // 대화가 활성 상태가 아니면 끝난 것으로 간주
     }
-
 }
