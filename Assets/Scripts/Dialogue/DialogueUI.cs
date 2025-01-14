@@ -22,14 +22,22 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
-    public void UpdateDialogueText(string characterName, Sprite image, string sentence)
+    public void UpdateDialogueText(string characterName, Sprite image)
     {
         characterNameText.text = characterName;
         characterImage.sprite = image;
-        dialogueText.text = sentence;
         dialogueBox.SetActive(true);
     }
 
+    public void SetDialogueText(string text)
+    {
+        dialogueText.text = text;
+    }
+
+    public void AppendDialogueText(string text)
+    {
+        dialogueText.text += text;
+    }
     public void HideDialogueBox()
     {
         dialogueBox.SetActive(false);
