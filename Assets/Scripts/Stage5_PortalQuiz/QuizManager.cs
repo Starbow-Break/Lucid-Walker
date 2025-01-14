@@ -144,7 +144,7 @@ public class QuizManager : MonoBehaviour
     private IEnumerator CameraEffect()
     {
         yield return new WaitForSeconds(1f);
-        cameraFollow.TriggerShake();
+        // cameraFollow.TriggerShake();
         chandelierSmoke.SetActive(true);
         cameraFollow.SetDialogueFocus(focusPoint);
         yield return new WaitForSeconds(3f);

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Tilemaps;
 
 public class StageStartDialogueEvent : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class StageStartDialogueEvent : MonoBehaviour
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
     public float focusPointMoveSpeed = 2f; // 포커스 포인트 이동 속도
     public float fadeOutSpeed = 2f; // 페이드아웃 속도
-
+    public Tilemap tilemap;
     private SpriteRenderer focusPointSprite; // focusPoint의 SpriteRenderer 참조
 
     // 참조할 pc,rb
@@ -87,12 +88,21 @@ public class StageStartDialogueEvent : MonoBehaviour
             float initialSize = mainCamera.orthographicSize;
             float elapsedTime = 0f;
 
-            while (Mathf.Abs(mainCamera.orthographicSize - targetSize) > 0.01f)
+            while (elapsedTime < cameraLerpSpeed)
             {
-                elapsedTime += Time.deltaTime * cameraLerpSpeed;
+                elapsedTime += Time.deltaTime;
                 mainCamera.orthographicSize = Mathf.Lerp(initialSize, targetSize, elapsedTime / cameraLerpSpeed);
+
+                // 루프 중단 조건 추가 (안전장치)
+                if (Mathf.Abs(mainCamera.orthographicSize - targetSize) < 0.01f)
+                {
+                    mainCamera.orthographicSize = targetSize; // 강제로 목표 크기로 설정
+                    break;
+                }
+
                 yield return null;
             }
+
             // 최소 대기 시간 강제 적용
             float startTime = Time.time;
             while (Time.time - startTime < minDuration)
@@ -100,9 +110,10 @@ public class StageStartDialogueEvent : MonoBehaviour
                 yield return null;
             }
 
-            mainCamera.orthographicSize = targetSize;
+            mainCamera.orthographicSize = targetSize; // 목표 크기로 최종 설정
         }
     }
+
 
     private void HandleDialogueEvents(int step)
     {
@@ -155,8 +166,8 @@ public class StageStartDialogueEvent : MonoBehaviour
 
 
         Debug.Log("카메라 복구 실행전");
+        yield return LerpCameraSize(originalCameraSize, 0f);
         // 카메라 크기 복구
-        yield return LerpCameraSize(originalCameraSize, 1f);
         Debug.Log("카메라 복구 실행후");
 
         pc.isDialogueActive = false;
@@ -176,6 +187,7 @@ public class StageStartDialogueEvent : MonoBehaviour
 
         // 모든 작업이 완료된 후 GameObject 비활성화
         gameObject.SetActive(false);
+        tilemap.gameObject.SetActive(false);
 
 
     }
