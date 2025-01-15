@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MaskBoss : MonoBehaviour
 {
+    [SerializeField] Animator anim;
+
+    MaskBossStats stats;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SkillTest());
+        stats = GetComponent<MaskBossStats>();
     }
 
     // Update is called once per frame
@@ -17,9 +22,7 @@ public class MaskBoss : MonoBehaviour
     }
 
     IEnumerator SkillTest() {
-        while(true) {
-            GetComponent<LightSkill>().Cast();
-            yield return new WaitForSeconds(7.0f);
-        }
+        yield return new WaitForSeconds(5.0f);
+        anim.SetTrigger("skill_light");
     }
 }

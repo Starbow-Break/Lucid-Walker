@@ -9,11 +9,10 @@ public class BossStatsData : ScriptableObject
     // NORMAL : 우리가 평소에 생각하는 체력 (데미지를 받음으로서 감소)
     // TIME_ATTACK : 타임 어택 (시간이 지남에 따라 감소)
     [System.Serializable]
-    enum HealthType {
+    public enum HealthType {
         NORMAL, TIME_ATTACK
     }
 
-    [SerializeField] float hp;
-    [SerializeField] HealthType healthType;
-    [SerializeField] List<SkillData> skillDatas;
+    [SerializeField] public float hp;
+    [SerializeField] public HealthType healthType;
 }

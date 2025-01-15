@@ -7,5 +7,5 @@ using UnityEngine;
 public class SkillData : ScriptableObject
 {
     [SerializeField] string skillName;
-    [SerializeField] Skill skill;
+    [SerializeField] string animTrigger;
 }
