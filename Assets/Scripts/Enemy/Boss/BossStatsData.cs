@@ -13,6 +13,6 @@ public class BossStatsData : ScriptableObject
         NORMAL, TIME_ATTACK
     }
 
-    [SerializeField] public float hp;
+    [SerializeField] public int hp;
     [SerializeField] public HealthType healthType;
 }

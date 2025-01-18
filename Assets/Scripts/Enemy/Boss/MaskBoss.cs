@@ -18,11 +18,18 @@ public class MaskBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // 스킬 테스트를 위한 코드
+        {
+            if(Input.GetKeyDown(KeyCode.Alpha0)) {
+                StartCoroutine(LightSkill());
+            }
+        }
     }
 
-    IEnumerator SkillTest() {
-        yield return new WaitForSeconds(5.0f);
+    #region SKILL_COROUTINE
+    IEnumerator LightSkill() {
         anim.SetTrigger("skill_light");
+        yield return null;
     }
+    #endregion
 }

@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MaskBossStats : MonoBehaviour, IDamageable
 {
     [SerializeField] BossStatsData statsData;
+    [SerializeField] HealthBar healthBar;
 
-    float hp;
+    int maxHp;
+    int hp;
     Coroutine coroutine = null;
 
     void Start() {
-        hp = statsData.hp;
+        maxHp = statsData.hp;
+        hp = maxHp;
+        healthBar.SetValue(hp, maxHp);
         Debug.Log("Boss Hp : " + hp);
     }
 
@@ -24,6 +29,7 @@ public class MaskBossStats : MonoBehaviour, IDamageable
     public void TakeDamage(int damage, Transform attacker)
     {
         hp -= damage;
+        healthBar.SetValue(hp, maxHp);
 
         if(hp <= 0) {
             // 사망 또는 다음 페이즈로 이동
@@ -32,7 +38,7 @@ public class MaskBossStats : MonoBehaviour, IDamageable
 
     IEnumerator TimeAttackFlow() {
         while(hp > 0) {
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.01f);
             TakeDamage(1, transform);
             Debug.Log("Boss Hp : " + hp);
         }
