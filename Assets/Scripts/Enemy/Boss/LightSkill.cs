@@ -23,20 +23,13 @@ public class LightSkill : Skill
         for(int i = 0; i < count; i++) {
             List<int> lampIndex = GetRandomValues(0, lampGroup.LampCount, lampCount);
 
-            // 노란색 불빛으로 조명이 켜짐
-            foreach(int index in lampIndex) {
-                lampGroup.TurnOnYellowLight(index);
-            }
+            // 공격 전 대기
+            yield return AttackReady(lampIndex, attackDelay);
+            
+            // 공격
+            yield return Attack(lampIndex);
 
-            // 대기
-            yield return new WaitForSeconds(attackDelay);
-
-            // 붉은색 불빛으로 바꾸면서 공격
-            foreach(int index in lampIndex) {
-                lampGroup.TurnOnRedLight(index);
-            }
-
-            // 대기
+            // 공격 후 대기
             yield return new WaitForSeconds(turnOffTimeAfterAttack);
             
             // 조명 끄기
@@ -50,6 +43,32 @@ public class LightSkill : Skill
 
         // 조명 올리기
         yield return lampGroup.MoveUp();
+    }
+
+    // 공격 전 대기
+    IEnumerator AttackReady(List<int> lampIdxList, float time) {
+        // 노란색 불빛으로 조명이 켜짐
+        foreach(int index in lampIdxList) {
+            lampGroup.TurnOnYellowLight(index);
+        }
+
+        float currentTime = 0.0f;
+        while(currentTime < time) {
+            yield return null;
+            currentTime += Time.deltaTime;
+            foreach(int index in lampIdxList) {
+                lampGroup.GetLamp(index).SetAttackRangeProgress(currentTime / time);
+            }
+        }
+    }
+
+    // 공격
+    IEnumerator Attack(List<int> lampIdxList) {
+        // 붉은색 불빛으로 바꾸면서 공격
+        foreach(int index in lampIdxList) {
+            lampGroup.TurnOnRedLight(index);
+        }
+        yield return null;
     }
 
     // [min, max)범위에서 서로 다른 num개의 값을 선택

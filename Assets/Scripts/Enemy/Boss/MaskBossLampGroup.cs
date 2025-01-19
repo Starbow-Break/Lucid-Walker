@@ -42,6 +42,8 @@ public class MaskBossLampGroup : MonoBehaviour
         lamps[index].TurnOnRedLight();
     }
 
+    public MaskBossLamp GetLamp(int idx) => lamps[idx];
+
     IEnumerator Move(Vector3 start, Vector3 finish, float time) {
         float currentTime = 0.0f;
         while(currentTime < time) {

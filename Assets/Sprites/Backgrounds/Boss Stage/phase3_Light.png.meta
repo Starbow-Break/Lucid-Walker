@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eb743b073d5be40e0abce89ddc9aeb54
+guid: 867d991941ba3d14799b214f1976ce10
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: phase3_Light_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 736
+        width: 3000
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4658f2c0b95648549b1c5f3952db41ae
+      internalID: -1242375913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phase3_Light_1
+      rect:
+        serializedVersion: 2
+        x: 1915
+        y: 248
+        width: 1085
+        height: 373
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9def3c4f28ce78c43acfe8a0349f9f25
+      internalID: -851647653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phase3_Light_2
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 54
+        width: 41
+        height: 544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0104708a7b8f5c94fabbcc540c79ce0b
+      internalID: -1901476668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phase3_Light_3
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 139
+        width: 329
+        height: 378
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86cdf7f0e37b6243abbade03479c567
+      internalID: -1606005306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phase3_Light_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 378
+        width: 348
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62075925787d5904eb303e3118311df7
+      internalID: 959540846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +211,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      phase3_Light_0: -1242375913
+      phase3_Light_1: -851647653
+      phase3_Light_2: -1901476668
+      phase3_Light_3: -1606005306
+      phase3_Light_4: 959540846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

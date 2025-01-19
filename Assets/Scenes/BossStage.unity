@@ -3088,7 +3088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 729434902}
   m_Layer: 0
-  m_Name: Curtain
+  m_Name: Curtain Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3567,7 +3567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &821825238
 Transform:
   m_ObjectHideFlags: 0
@@ -4710,8 +4710,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1050, y: 70}
-  m_SizeDelta: {x: 1000, y: 50}
+  m_AnchoredPosition: {x: -1070, y: 80}
+  m_SizeDelta: {x: 1000, y: 70}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1104584410
 MonoBehaviour:
@@ -4982,7 +4982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1247186535}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Curtain Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5013,6 +5013,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1639893177}
     m_Modifications:
+    - target: {fileID: 3203126816094504721, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
+      propertyPath: m_Name
+      value: AttackRange Cover
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596668892645117560, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092431476838411304, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9eb24a8f48881174cb63eb6f69e32389, type: 2}
     - target: {fileID: 5897942706514652022, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.5
@@ -5057,6 +5069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp1
       objectReference: {fileID: 0}
+    - target: {fileID: 8851922398195644160, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b69a6a746dc49f3428cf10aa891544b7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

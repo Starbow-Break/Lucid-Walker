@@ -15,6 +15,7 @@ public class MaskBossLamp : MonoBehaviour
     [SerializeField] GameObject yellowLightObj;
     [SerializeField] Sprite redSprite;
     [SerializeField] GameObject redLightObj;
+    [SerializeField] AttackRange attackRange;
 
     LampStatus status = LampStatus.OFF;
     SpriteRenderer lampSR;
@@ -34,6 +35,10 @@ public class MaskBossLamp : MonoBehaviour
 
     public void TurnOnRedLight() {
         ChangeStatus(LampStatus.RED);
+    }
+
+    public void SetAttackRangeProgress(float value) {
+        attackRange.SetProgress(value);
     }
 
     void ChangeStatus(LampStatus status) {
