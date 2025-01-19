@@ -27,4 +27,21 @@ public class WaitForCoroutines : CustomYieldInstruction
             runner.StartCoroutine(WaitingCoroutine(coroutines[i]));
         }
     }
+
+    public WaitForCoroutines(MonoBehaviour runner, List<IEnumerator> coroutines)
+    {
+        // 코루틴이 종료될 때까지 대기
+        IEnumerator WaitingCoroutine(IEnumerator coroutine)
+        {
+            yield return coroutine;
+            _remainCount--;
+        }
+
+        // 인자로 들어온 모든 코루틴 실행
+        _remainCount = coroutines.Count;
+        for (var i = 0; i < _remainCount; i++)
+        {
+            runner.StartCoroutine(WaitingCoroutine(coroutines[i]));
+        }
+    }
 }
