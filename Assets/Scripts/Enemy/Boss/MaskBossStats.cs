@@ -40,7 +40,7 @@ public class MaskBossStats : MonoBehaviour, IDamageable
         while(hp > 0) {
             yield return new WaitForSeconds(0.01f);
             TakeDamage(1, transform);
-            Debug.Log("Boss Hp : " + hp);
+            //Debug.Log("Boss Hp : " + hp);
         }
     }
 }

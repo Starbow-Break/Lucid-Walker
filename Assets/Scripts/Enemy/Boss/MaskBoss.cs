@@ -20,16 +20,23 @@ public class MaskBoss : MonoBehaviour
     {
         // 스킬 테스트를 위한 코드
         {
-            if(Input.GetKeyDown(KeyCode.Alpha0)) {
-                StartCoroutine(LightSkill());
+            if(Input.GetKeyDown(KeyCode.Alpha1)) {
+                UseLightSkill();
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha2)) {
+                UseHouseSkill();
             }
         }
     }
 
-    #region SKILL_COROUTINE
-    IEnumerator LightSkill() {
+    #region SKILL
+    void UseLightSkill() {
         anim.SetTrigger("skill_light");
-        yield return null;
+    }
+
+    void UseHouseSkill() {
+        HouseSkill skill = GetComponent<HouseSkill>();
+        skill.Cast();
     }
     #endregion
 }
