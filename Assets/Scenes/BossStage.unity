@@ -10696,63 +10696,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &839652259
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376338334799963674, guid: b44f3526af5aed843a96676a3036a790, type: 3}
-      propertyPath: m_Name
-      value: BossWalkingMonster_5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b44f3526af5aed843a96676a3036a790, type: 3}
 --- !u!1 &849844253
 GameObject:
   m_ObjectHideFlags: 0
@@ -11933,63 +11876,6 @@ MonoBehaviour:
   hpText: {fileID: 813787797}
   minPosWeight: 0.04
   maxPosWeight: 0.7
---- !u!1001 &1113960152
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4166823203463633053, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376338334799963674, guid: 383426134536ef14dace63e678dc8915, type: 3}
-      propertyPath: m_Name
-      value: BossWalkingMonster_4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 383426134536ef14dace63e678dc8915, type: 3}
 --- !u!1001 &1118090127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17368,18 +17254,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1639893177}
     m_Modifications:
-    - target: {fileID: 3203126816094504721, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
-      propertyPath: m_Name
-      value: AttackRange Cover
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596668892645117560, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 5092431476838411304, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9eb24a8f48881174cb63eb6f69e32389, type: 2}
     - target: {fileID: 5897942706514652022, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.5
@@ -17424,10 +17298,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp1
       objectReference: {fileID: 0}
-    - target: {fileID: 8851922398195644160, guid: acc38d992709e4b5f95a140695a70e29, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b69a6a746dc49f3428cf10aa891544b7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21427,5 +21297,3 @@ SceneRoots:
   - {fileID: 1666663946}
   - {fileID: 849844255}
   - {fileID: 1796327513}
-  - {fileID: 1113960152}
-  - {fileID: 839652259}
