@@ -26,7 +26,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
 
     private Rigidbody2D rb;
     private Animator anim;
-    private bool isFacingRight = true; // 오른쪽을 보고 있는지 확인
+    public bool isFacingRight { get; private set; }= true; // 오른쪽을 보고 있는지 확인
     private float startPosX;           // 순찰을 시작한 위치
     private Transform detectedPlayer;  // 감지된 플레이어 참조
     private bool canAttack = true;     // 공격 가능 여부
@@ -161,7 +161,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         return playerInRange != null;
     }
 
-    public void PerformAttack()
+    public virtual void PerformAttack()
     {
         Vector2 boxCenter = (Vector2)transform.position + attackCenter * (isFacingRight ? 1 : -1);
 

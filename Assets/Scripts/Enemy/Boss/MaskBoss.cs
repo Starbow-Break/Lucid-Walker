@@ -35,6 +35,15 @@ public class MaskBoss : MonoBehaviour
     }
 
     void UseHouseSkill() {
+        CastHouseSkill();
+    }
+
+    void CastLightSkill() {
+        LightSkill skill = GetComponent<LightSkill>();
+        skill.Cast();
+    }
+
+    void CastHouseSkill() {
         HouseSkill skill = GetComponent<HouseSkill>();
         skill.Cast();
     }

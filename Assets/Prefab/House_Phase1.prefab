@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1041315827
+  m_SortingLayer: -2
   m_SortingOrder: 1
   m_Sprite: {fileID: -2073633373, guid: 45be3a32c8f164aed866d846e3d8c500, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -154,9 +154,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1041315827
+  m_SortingLayer: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: -93401616, guid: 45be3a32c8f164aed866d846e3d8c500, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -243,8 +243,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1041315827
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1509902674, guid: 45be3a32c8f164aed866d846e3d8c500, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -318,9 +318,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsters:
-  - {fileID: 7818774799368458898, guid: a3ec6664fb83b31459297f88117290ca, type: 3}
-  - {fileID: 2646279774673520244, guid: eae15572715b30346b32f29aeeff82ba, type: 3}
+  - {fileID: 4376338334799963674, guid: cd2d8946dc8b39c4ca63467d33488d6d, type: 3}
+  - {fileID: 4376338334799963674, guid: 7c53350c5882bd2499ce679731a929a5, type: 3}
+  - {fileID: 4376338334799963674, guid: bdf8fc0905f0ef04c8e0e707a7cbd8a3, type: 3}
+  - {fileID: 4376338334799963674, guid: 383426134536ef14dace63e678dc8915, type: 3}
+  - {fileID: 4376338334799963674, guid: b44f3526af5aed843a96676a3036a790, type: 3}
   spawnMonstersNum: 5
   gravity: 200
-  landingYPos: -5.03
+  landingYPos: -5.88
   spawnLength: 2.5
