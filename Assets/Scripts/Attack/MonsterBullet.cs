@@ -32,7 +32,7 @@ public class MonsterBullet : MonoBehaviour
     {
         if (!hasHit) {
             // Move the bullet based on its facing direction
-            rb.velocity = speed * transform.localScale.x * Vector3.right;
+            rb.velocity = speed * transform.localScale.x * (transform.rotation * Vector3.right);
         }
     }
 

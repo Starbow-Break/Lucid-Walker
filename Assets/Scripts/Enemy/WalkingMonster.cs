@@ -61,9 +61,14 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         if (!isInWater)
         {
             // 플랫폼 감지에 따라 방향 전환
-            if (!isGroundFront || !isGroundBack || isPlatformInFront)
-            {
-                Flip();
+            if(!isGroundFront && !isGroundBack) {
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+            }
+            else {
+                if(!isGroundFront || !isGroundBack || isPlatformInFront) {
+                    Flip();
+                }
+                rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
             }
         }
         else
@@ -75,13 +80,15 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
 
         // 플레이어가 감지되지 않으면 순찰
-        if (detectedPlayer == null)
-        {
-            Patrol();
-        }
-        else
-        {
-            ChasePlayer();
+        if (isGroundFront || isGroundBack) {
+            if (detectedPlayer == null)
+            {
+                Patrol();
+            }
+            else
+            {
+                ChasePlayer();
+            }
         }
     }
 
@@ -132,8 +139,6 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
 
         transform.Translate(direction * moveSpeed * Time.deltaTime);
-
-
 
         if ((detectedPlayer.position.x > transform.position.x && !isFacingRight) ||
             (detectedPlayer.position.x < transform.position.x && isFacingRight))
@@ -217,7 +222,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         anim.SetTrigger("Die");
     }
 
-    void Flip()
+    public void Flip()
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;

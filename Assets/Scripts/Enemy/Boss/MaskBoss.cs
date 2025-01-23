@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -23,8 +24,11 @@ public class MaskBoss : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Alpha1)) {
                 UseLightSkill();
             }
-            if(Input.GetKeyDown(KeyCode.Alpha2)) {
+            else if(Input.GetKeyDown(KeyCode.Alpha2)) {
                 UseHouseSkill();
+            }
+            else if(Input.GetKeyDown(KeyCode.Alpha3)) {
+                UseShootMaskMonstrSkill();
             }
         }
     }
@@ -38,6 +42,10 @@ public class MaskBoss : MonoBehaviour
         CastHouseSkill();
     }
 
+    void UseShootMaskMonstrSkill() {
+        CastShootMaskMonstrSkill();
+    }
+
     void CastLightSkill() {
         LightSkill skill = GetComponent<LightSkill>();
         skill.Cast();
@@ -45,6 +53,11 @@ public class MaskBoss : MonoBehaviour
 
     void CastHouseSkill() {
         HouseSkill skill = GetComponent<HouseSkill>();
+        skill.Cast();
+    }
+
+    void CastShootMaskMonstrSkill() {
+        ShootMaskMonstrSkill skill = GetComponent<ShootMaskMonstrSkill>();
         skill.Cast();
     }
     #endregion
