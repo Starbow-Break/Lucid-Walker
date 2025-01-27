@@ -5180,8 +5180,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   detectionRange: 5
-  moveSpeed: 2
-  patrolDistance: 5
+  moveSpeed: 2.7
+  patrolDistanceMin: 6
+  patrolDistanceMax: 9
   platformDetectionDistance: 0.5
   attackCenter: {x: 2.5, y: 0}
   attackSize: {x: 5, y: 0.6}

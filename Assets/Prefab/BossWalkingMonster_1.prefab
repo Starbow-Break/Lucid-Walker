@@ -5023,7 +5023,8 @@ MonoBehaviour:
     m_Bits: 0
   detectionRange: 5
   moveSpeed: 2
-  patrolDistance: 5
+  patrolDistanceMin: 3
+  patrolDistanceMax: 7
   platformDetectionDistance: 0.5
   attackCenter: {x: 0.5, y: 0}
   attackSize: {x: 0.3, y: 0.6}

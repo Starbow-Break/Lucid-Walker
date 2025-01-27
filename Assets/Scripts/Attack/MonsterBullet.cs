@@ -7,6 +7,7 @@ public class MonsterBullet : MonoBehaviour
 {
     [SerializeField] float speed = 10.0f; // Speed of the bullet
     [SerializeField] float lifeTime = 2.0f;
+    [SerializeField] ParticleSystem effect;
 
     private bool hasHit = false; // Whether the bullet has already hit a target
     Rigidbody2D rb;
@@ -19,6 +20,18 @@ public class MonsterBullet : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         if(transform.right.x < 0) {
             sr.flipY = !sr.flipY;
+        }
+
+        if(effect != null) {
+            ParticleSystem.VelocityOverLifetimeModule volm = effect.velocityOverLifetime;
+            ParticleSystem.ShapeModule sm = effect.shape;
+
+            volm.xMultiplier *= transform.localScale.x >= 0 ? 1 : -1;
+            sm.position = new(
+                sm.position.x * (transform.localScale.x >= 0 ? 1 : -1),
+                sm.position.y,
+                sm.position.z
+            );
         }
 
         Destroy(gameObject, lifeTime);
