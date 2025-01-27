@@ -15,12 +15,19 @@ public class ShootMaskMonstrSkill : Skill
             Vector2 start = new(Random.Range(-13.5f, 13.5f), 9.5f);
             Vector2 end = new(Random.Range(-13.5f, 13.5f), -5.5f);
 
-            StartCoroutine(AttackReady(start, end, attackDelay));
+            StartCoroutine(Attack(start, end, attackDelay));
 
             yield return new WaitForSeconds(interval);
         }
     }
 
+    // 공격
+    IEnumerator Attack(Vector3 start, Vector3 end, float attackDelay) {
+        yield return AttackReady(start, end, attackDelay);
+        SpawnBullet(start, end - start, 3.0f);
+    }
+
+    // 공격 준비
     IEnumerator AttackReady(Vector3 start, Vector3 end, float time) {
         Vector2 spawnPoint = (start + end) / 2;
         GameObject spawnedAttackRange = Instantiate(attackRangePrefab, spawnPoint, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2((end - start).y, (end - start).x) * 180.0f / Mathf.PI));
@@ -34,9 +41,13 @@ public class ShootMaskMonstrSkill : Skill
             attackRange.SetProgress(currentTime / time);
         }
 
-        GameObject bullet = Instantiate(bulletPrefab, start, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2((end - start).y, (end - start).x) * 180.0f / Mathf.PI));
+        Destroy(attackRange.gameObject);
+    }
+
+    // 총알 스폰
+    void SpawnBullet(Vector3 start, Vector3 direction, float time) {
+        GameObject bullet = Instantiate(bulletPrefab, start, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * 180.0f / Mathf.PI));
         bullet.transform.localScale = new(5, 5, 1);
         bullet.GetComponent<CircleCollider2D>().enabled = false;
-        Destroy(attackRange.gameObject);
     }
 }

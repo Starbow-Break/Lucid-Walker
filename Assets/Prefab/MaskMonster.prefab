@@ -10,11 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5374134010658169532}
   - component: {fileID: 8809566699898626538}
-  - component: {fileID: 6951980655375163107}
   - component: {fileID: 6720089487786584507}
-  - component: {fileID: 7619687701324131141}
-  - component: {fileID: 4157829998392534054}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Monster Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,27 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6951980655375163107
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262948907008806425}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3868a604143265439066e5f7a7763c3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6720089487786584507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,61 +101,6 @@ MonoBehaviour:
   func: 2
   floatingAmount: 0.1
   period: 4
---- !u!58 &7619687701324131141
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262948907008806425}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.00051116943, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.51462555
---- !u!114 &4157829998392534054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262948907008806425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1d4400e9713254cb8885f47215f3ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maskMonster: {fileID: 7263549955704129353}
-  attackRange:
-  - center: {x: 0.44, y: -0.11}
-    rotation: 17.2
-    size: {x: 0.71, y: 0.22}
-  - center: {x: 0.45, y: 0.05}
-    rotation: 18.58
-    size: {x: 1.1, y: 0.3}
 --- !u!1 &5884728014218695376
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +112,7 @@ GameObject:
   - component: {fileID: 3946252319753144992}
   - component: {fileID: 2871162501395816492}
   - component: {fileID: 1569547639414524112}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5030,10 +4951,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1071120318758592281}
+  - component: {fileID: 1517351761024729451}
+  - component: {fileID: 6049106715022080653}
   - component: {fileID: 7263549955704129353}
-  m_Layer: 0
+  - component: {fileID: 2127739628514185001}
+  m_Layer: 16
   m_Name: MaskMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5054,6 +4978,62 @@ Transform:
   - {fileID: 5374134010658169532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1517351761024729451
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446563250050748523}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!95 &6049106715022080653
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446563250050748523}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a3868a604143265439066e5f7a7763c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7263549955704129353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5067,12 +5047,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightStart: 1
-  anim: {fileID: 6951980655375163107}
+  anim: {fileID: 6049106715022080653}
   floating: {fileID: 6720089487786584507}
   moveDistance: 11.5
   moveSpeed: 1
   waitTime: 1.5
-  hp: 10
+  hp: 2
   attackCoolTime: 2
   attackDist: 1
   shadowParticle: {fileID: 2871162501395816492}
+--- !u!114 &2127739628514185001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446563250050748523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1d4400e9713254cb8885f47215f3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maskMonster: {fileID: 7263549955704129353}
+  attackRange:
+  - center: {x: 0.44, y: -0.11}
+    rotation: 17.2
+    size: {x: 0.71, y: 0.22}
+  - center: {x: 0.45, y: 0.05}
+    rotation: 18.58
+    size: {x: 1.1, y: 0.3}

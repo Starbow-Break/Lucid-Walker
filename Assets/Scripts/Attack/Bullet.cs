@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
         hasHit = true; // Set hit state to true
 
         // Check if the collided object implements IDamageable
-        if (collider.CompareTag("Enemy") || collider.CompareTag("Player"))
+        if (collider.CompareTag("Enemy"))
         {
             Debug.Log("Hit detected!");
             IDamageable damageable = collider.GetComponent<IDamageable>();

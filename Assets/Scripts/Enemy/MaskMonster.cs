@@ -15,7 +15,7 @@ public class MaskMonster : MonoBehaviour, IDamageable
     [SerializeField, Min(0.0f)] float moveDistance = 10.0f; // 이동 거리
     [SerializeField, Min(0.0f)] float moveSpeed = 1.0f; // 이동 속도
     [SerializeField, Min(0.0f)] float waitTime = 2.0f; // 정지 시간
-    [SerializeField, Min(0.0f)] float hp = 10.0f; // 체력
+    [SerializeField, Min(0.0f)] int hp = 2; // 체력
     [SerializeField, Min(0.0f)] float attackCoolTime = 1.0f; // 공격 쿨타임
     [SerializeField, Min(0.0f)] float attackDist = 1.0f; // 공격 범위
 
@@ -132,7 +132,12 @@ public class MaskMonster : MonoBehaviour, IDamageable
     void Die()
     {
         isDie = true;
-        anim.SetBool("die", true);
+        anim.SetTrigger("die");
+    }
+
+    // 파괴
+    void Destroy() {
+        Destroy(gameObject);
     }
 
     // 방향 전환
@@ -144,8 +149,8 @@ public class MaskMonster : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage, Transform attacker)
     {
-        hp -= 1.0f; // 체력 감소
-        if(hp <= 0.0f) { // 체력이 전부 깎이면 사망
+        hp -= damage; // 체력 감소
+        if(hp <= 0) { // 체력이 전부 깎이면 사망
             Die();
         }
     }
