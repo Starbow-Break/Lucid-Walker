@@ -1,38 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MonsterBullet : MonoBehaviour
 {
     [SerializeField] float speed = 10.0f; // Speed of the bullet
     [SerializeField] float lifeTime = 2.0f;
-    [SerializeField] ParticleSystem effect;
 
     private bool hasHit = false; // Whether the bullet has already hit a target
     Rigidbody2D rb;
+    SpriteRenderer sr;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        ParticleSystem.VelocityOverLifetimeModule volm = effect.velocityOverLifetime;
-        ParticleSystem.ShapeModule sm = effect.shape;
+        sr = GetComponent<SpriteRenderer>();
+        if(transform.right.x < 0) {
+            sr.flipY = !sr.flipY;
+        }
 
-        volm.xMultiplier *= transform.localScale.x;
-        sm.position = new(
-            sm.position.x * transform.localScale.x,
-            sm.position.y,
-            sm.position.z
-        );
-
-        Destroy(gameObject, lifeTime); // Destroy the bullet after 2 seconds by default
+        Destroy(gameObject, lifeTime);
     }
 
     void Update()
     {
         if (!hasHit) {
-            // Move the bullet based on its facing direction
-            rb.velocity = speed * transform.localScale.x * (transform.rotation * Vector3.right);
+            rb.velocity = speed * transform.right;
         }
     }
 
