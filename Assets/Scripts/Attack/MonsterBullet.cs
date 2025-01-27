@@ -27,7 +27,7 @@ public class MonsterBullet : MonoBehaviour
     void Update()
     {
         if (!hasHit) {
-            rb.velocity = speed * transform.right;
+            rb.velocity = (transform.localScale.x > 0 ? 1 : -1) * speed * transform.right;
         }
     }
 

@@ -16,7 +16,8 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     [Header("Movement and Detection")]
     [SerializeField] private float detectionRange = 2f;  // 플레이어 탐지 거리
     [SerializeField] private float moveSpeed = 2f;       // 이동 속도
-    [SerializeField] private float patrolDistance = 5f;  // 순찰 범위
+    [SerializeField] private float patrolDistanceMin = 3f;  // 최소 순찰 범위
+    [SerializeField] private float patrolDistanceMax = 7f;  // 최대 순찰 범위
     [SerializeField] private float platformDetectionDistance = 0.5f; // 플랫폼 감지 거리
 
     [Header("Attack")]
@@ -27,10 +28,11 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     private Rigidbody2D rb;
     private Animator anim;
     public bool isFacingRight { get; private set; } = true; // 오른쪽을 보고 있는지 확인
-    private float basePosX;          // 순찰 기준점
-    private Transform detectedPlayer;  // 감지된 플레이어 참조
-    private bool canAttack = true;     // 공격 가능 여부
-    private bool isDead = false;       // 몬스터가 죽었는지 확인
+    private float patrolDistance;       // 순찰 거리
+    private float basePosX;             // 순찰 기준점
+    private Transform detectedPlayer;   // 감지된 플레이어 참조
+    private bool canAttack = true;      // 공격 가능 여부
+    private bool isDead = false;        // 몬스터가 죽었는지 확인
 
     // Debugging Variables
     [Header("Debugging States")]
@@ -39,13 +41,13 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     [SerializeField] private bool isInWater;      // 물에 있는지 상태
     [SerializeField] private bool isPlatformInFront; // 앞쪽 플랫폼 상태
 
-    bool modifyBasePosFlag = true;
+    bool modifyPatrolStatsFlag = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        basePosX = transform.position.x;
+        ModifyPatrolStats();
     }
 
     void Update()
@@ -64,6 +66,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         {
             // 플랫폼 감지에 따라 방향 전환
             if(!isGroundFront && !isGroundBack) {
+                modifyPatrolStatsFlag = true;
                 rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
             }
             else {
@@ -112,9 +115,9 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     protected virtual void Patrol()
     {
         // basePosX의 갱신이 필요하다면 갱신
-        if(modifyBasePosFlag) {
-            basePosX = transform.position.x;
-            modifyBasePosFlag = false;
+        if(modifyPatrolStatsFlag) {
+            ModifyPatrolStats();
+            modifyPatrolStatsFlag = false;
         }
 
         if (isFacingRight)
@@ -135,10 +138,16 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
     }
 
+    void ModifyPatrolStats() {
+        patrolDistance = Random.Range(patrolDistanceMin, patrolDistanceMax);
+        basePosX = transform.position.x;
+        Debug.Log($"{name}'s patrol stat changed! => patrolDistance: {patrolDistance}, basePosX: {basePosX}");
+    }
+
     // 플레이어 추격
     void ChasePlayer()
     {
-        if(!modifyBasePosFlag) modifyBasePosFlag = true;
+        if(!modifyPatrolStatsFlag) modifyPatrolStatsFlag = true;
 
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, platformLayer);
 
