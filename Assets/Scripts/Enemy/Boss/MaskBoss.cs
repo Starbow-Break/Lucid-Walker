@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class MaskBoss : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    [SerializeField] float attackCoolDownMin = 10.0f;
+    [SerializeField] float attackCoolDownMax = 20.0f;
+
+    float coolDownRemain;
 
     MaskBossStats stats;
 
@@ -14,51 +14,45 @@ public class MaskBoss : MonoBehaviour
     void Start()
     {
         stats = GetComponent<MaskBossStats>();
+        coolDownRemain = Random.Range(attackCoolDownMin, attackCoolDownMax);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 스킬 테스트를 위한 코드
-        {
-            if(Input.GetKeyDown(KeyCode.Alpha1)) {
-                UseLightSkill();
-            }
-            else if(Input.GetKeyDown(KeyCode.Alpha2)) {
-                UseHouseSkill();
-            }
-            else if(Input.GetKeyDown(KeyCode.Alpha3)) {
-                UseShootMaskMonstrSkill();
-            }
+        if(coolDownRemain >= 0.0f) {
+            coolDownRemain -= Time.deltaTime;
         }
+        else {
+            UseSkill();
+            coolDownRemain = Random.Range(attackCoolDownMin, attackCoolDownMax);
+        }
+
+        // 스킬 테스트를 위한 코드
+        // {
+        //     if(Input.GetKeyDown(KeyCode.Alpha1)) {
+        //         UseLightSkill();
+        //     }
+        //     else if(Input.GetKeyDown(KeyCode.Alpha2)) {
+        //         UseHouseSkill();
+        //     }
+        //     else if(Input.GetKeyDown(KeyCode.Alpha3)) {
+        //         UseShootMaskMonsterSkill();
+        //     }
+        // }
     }
 
     #region SKILL
-    void UseLightSkill() {
-        anim.SetTrigger("skill_light");
+    void UseSkill() {
+        if(UseLightSkill()) return;
+        if(UseHouseSkill()) return;
+        if(UseShootMaskMonsterSkill()) return;
     }
 
-    void UseHouseSkill() {
-        CastHouseSkill();
-    }
+    bool UseLightSkill() => CastSkill(GetComponent<LightSkill>());
+    bool UseHouseSkill() => CastSkill(GetComponent<HouseSkill>());
+    bool UseShootMaskMonsterSkill() => CastSkill(GetComponent<ShootMaskMonsterSkill>());
 
-    void UseShootMaskMonstrSkill() {
-        CastShootMaskMonstrSkill();
-    }
-
-    void CastLightSkill() {
-        LightSkill skill = GetComponent<LightSkill>();
-        skill.Cast();
-    }
-
-    void CastHouseSkill() {
-        HouseSkill skill = GetComponent<HouseSkill>();
-        skill.Cast();
-    }
-
-    void CastShootMaskMonstrSkill() {
-        ShootMaskMonstrSkill skill = GetComponent<ShootMaskMonstrSkill>();
-        skill.Cast();
-    }
+    bool CastSkill(Skill skill) => skill.Cast();
     #endregion
 }

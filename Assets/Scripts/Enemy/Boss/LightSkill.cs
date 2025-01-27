@@ -9,6 +9,7 @@ public class LightSkill : Skill
         public List<int> pattern; // 조명 패턴
     }
 
+    [SerializeField] Animator casterAnimator; // 시전자의 Animator
     [SerializeField] MaskBossLampGroup lampGroup;
     [SerializeField, Min(1)] int count = 5; // 스킬 한번 당 조명이 켜지는 횟수
     [SerializeField] List<LightSkillPatternData> patternDatas; // 조명 패턴
@@ -17,6 +18,14 @@ public class LightSkill : Skill
     [SerializeField, Min(0.0f)] float interval = 1.0f; // 조명 패턴 간 시간 간격
 
     int patternIndex = 0;
+
+    protected override void Play() {
+        casterAnimator.SetTrigger("skill_light");
+    }
+
+    void StartSkillFlowCoroutine() {
+        StartCoroutine(SkillFlow());
+    }
 
     protected override IEnumerator SkillFlow()
     {
@@ -76,48 +85,5 @@ public class LightSkill : Skill
             lampGroup.TurnOnRedLight(index);
         }
         yield return null;
-    }
-
-    // [min, max)범위에서 서로 다른 num개의 값을 선택
-    List<int> GetRandomValues(int min, int max, int num) {
-        if(num < 0 || num > max-min) {
-            throw new System.ArgumentException("인자 값이 잘못되었습니다. num값은 0 이상 max-min 이하여야 합니다.");
-        }
-
-        bool[] check = new bool[max-min];
-
-        if(num <= (max-min)/2) {
-            int cnt = 0;
-            while(cnt < num) {
-                int value = Random.Range(0, max-min);
-                if(!check[value]) {
-                    check[value] = true;
-                    ++cnt;
-                }
-            }
-        }
-        else {
-            for(int i = 0; i < max-min; i++) {
-                check[i] = true;
-            }
-
-            int cnt = max-min;
-            while(cnt > num) {
-                int value = Random.Range(0, max-min);
-                if(!check[value]) {
-                    check[value] = false;
-                    --cnt;
-                }
-            }
-        }
-
-        List<int> ret = new();
-        for(int i = 0; i < max-min; i++) {
-            if(check[i]) {
-                ret.Add(min+i);
-            }
-        }
-
-        return ret;
     }
 }

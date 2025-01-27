@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootMaskMonstrSkill : Skill
+public class ShootMaskMonsterSkill : Skill
 {
     [SerializeField] GameObject attackRangePrefab;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField, Min(0.0f)] float attackDelay;
     [SerializeField, Min(0.0f)] float interval;
+
+    protected override void Play() {
+        StartCoroutine(SkillFlow());
+    }
 
     protected override IEnumerator SkillFlow()
     {
