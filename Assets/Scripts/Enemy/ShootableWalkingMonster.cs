@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootableWalkingMonster : WalkingMonster
+public class ShootableBossStageWalkingMonster : WalkingMonster
 {
     [Header("Shoot")]
     [SerializeField] GameObject bulletPrefab;

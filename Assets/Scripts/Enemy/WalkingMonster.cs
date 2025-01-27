@@ -26,8 +26,8 @@ public class WalkingMonster : MonoBehaviour, IDamageable
 
     private Rigidbody2D rb;
     private Animator anim;
-    public bool isFacingRight { get; private set; }= true; // 오른쪽을 보고 있는지 확인
-    private float startPosX;           // 순찰을 시작한 위치
+    public bool isFacingRight { get; private set; } = true; // 오른쪽을 보고 있는지 확인
+    private float basePosX;          // 순찰 기준점
     private Transform detectedPlayer;  // 감지된 플레이어 참조
     private bool canAttack = true;     // 공격 가능 여부
     private bool isDead = false;       // 몬스터가 죽었는지 확인
@@ -39,11 +39,13 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     [SerializeField] private bool isInWater;      // 물에 있는지 상태
     [SerializeField] private bool isPlatformInFront; // 앞쪽 플랫폼 상태
 
+    bool modifyBasePosFlag = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        startPosX = transform.position.x;
+        basePosX = transform.position.x;
     }
 
     void Update()
@@ -92,6 +94,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
     }
 
+    // 플레이어 감지
     void DetectPlayer()
     {
         Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, detectionRange, LayerMask.GetMask("Player"));
@@ -105,12 +108,19 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
     }
 
-    void Patrol()
+    // 순찰
+    protected virtual void Patrol()
     {
+        // basePosX의 갱신이 필요하다면 갱신
+        if(modifyBasePosFlag) {
+            basePosX = transform.position.x;
+            modifyBasePosFlag = false;
+        }
+
         if (isFacingRight)
         {
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
-            if (transform.position.x >= startPosX + patrolDistance)
+            if (transform.position.x >= basePosX + patrolDistance)
             {
                 Flip();
             }
@@ -118,16 +128,18 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         else
         {
             transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
-            if (transform.position.x <= startPosX - patrolDistance)
+            if (transform.position.x <= basePosX - patrolDistance)
             {
                 Flip();
             }
         }
-
     }
 
+    // 플레이어 추격
     void ChasePlayer()
     {
+        if(!modifyBasePosFlag) modifyBasePosFlag = true;
+
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, platformLayer);
 
         Vector2 direction = ((Vector2)detectedPlayer.position - (Vector2)transform.position).normalized;
@@ -153,6 +165,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
     }
 
+    // 플레이어가 공격 범위 내에 있는지 확인
     bool IsPlayerInAttackRange()
     {
         Vector2 boxCenter = (Vector2)transform.position + attackCenter * (isFacingRight ? 1 : -1);
@@ -166,6 +179,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         return playerInRange != null;
     }
 
+    // 공격
     public virtual void PerformAttack()
     {
         Vector2 boxCenter = (Vector2)transform.position + attackCenter * (isFacingRight ? 1 : -1);
@@ -189,6 +203,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
     }
 
+    // 공격 쿨타임
     IEnumerator AttackCooldown()
     {
         canAttack = false;
@@ -196,6 +211,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         canAttack = true;
     }
 
+    // 앞에 플랫폼이 있는지 확인
     bool IsPlatformInFront()
     {
         Vector2 rayDirection = isFacingRight ? Vector2.right : Vector2.left;
@@ -216,12 +232,14 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
     }
 
+    // 사망
     void Die()
     {
         isDead = true;
         anim.SetTrigger("Die");
     }
 
+    // 전환
     public void Flip()
     {
         isFacingRight = !isFacingRight;
