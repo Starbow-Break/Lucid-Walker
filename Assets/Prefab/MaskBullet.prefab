@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8023892363027949757}
   - component: {fileID: 6065258451841735818}
   - component: {fileID: 7983704291042617359}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: MaskBullet
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -144,7 +144,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 5991758675633260519}
   - component: {fileID: 1566805603531991931}
   - component: {fileID: 5609134679415722855}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

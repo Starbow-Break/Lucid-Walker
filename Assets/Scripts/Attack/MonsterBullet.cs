@@ -32,11 +32,11 @@ public class MonsterBullet : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        hasHit = true; // Set hit state to true
-
         // Check if the collided object implements IDamageable
         if (other.CompareTag("Player"))
         {
+            hasHit = true; // Set hit state to true
+            
             Debug.Log("Hit detected!");
             IDamageable damageable = other.GetComponent<IDamageable>();
             if (damageable != null)
@@ -44,8 +44,8 @@ public class MonsterBullet : MonoBehaviour
                 damageable.TakeDamage(1, transform); // Apply 1 damage
                 Debug.Log($"Bullet hit {other.name}");
             }
-        }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

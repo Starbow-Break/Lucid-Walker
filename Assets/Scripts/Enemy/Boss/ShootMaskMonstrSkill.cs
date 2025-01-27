@@ -47,6 +47,5 @@ public class ShootMaskMonstrSkill : Skill
     // 총알 스폰
     void SpawnBullet(Vector3 start, Vector3 direction, float time) {
         GameObject bullet = Instantiate(bulletPrefab, start, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * 180.0f / Mathf.PI));
-        bullet.GetComponent<CircleCollider2D>().enabled = false;
     }
 }
