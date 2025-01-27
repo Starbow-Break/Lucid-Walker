@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class LightSkill : Skill
 {   
+    [System.Serializable]
+    struct LightSkillPatternData {
+        public List<int> pattern; // 조명 패턴
+    }
+
     [SerializeField] MaskBossLampGroup lampGroup;
-    [SerializeField, Min(1)] int count = 5; // 조명이 켜지는 횟수
-    [SerializeField, Min(0)] int lampCount = 0; // 켜지는 조명의 갯수
+    [SerializeField, Min(1)] int count = 5; // 스킬 한번 당 조명이 켜지는 횟수
+    [SerializeField] List<LightSkillPatternData> patternDatas; // 조명 패턴
     [SerializeField, Min(0.0f)] float attackDelay = 2.0f; // 공격 딜레이
     [SerializeField, Min(0.0f)] float turnOffTimeAfterAttack = 2.0f; // 공격 이후 조명 끄기까지의 시간
     [SerializeField, Min(0.0f)] float interval = 1.0f; // 조명 패턴 간 시간 간격
 
-    private void OnValidate() {
-        lampCount = Mathf.Min(lampCount, lampGroup == null ? 0 : lampGroup.LampCount);  
-    }
+    int patternIndex = 0;
 
     protected override IEnumerator SkillFlow()
     {
+        if(patternDatas.Count == 0) {
+            throw new System.Exception("patternDatas에 최소 한개 이상의 원소가 있어야 합니다!");
+        }
+
         // 조명 내리기
         yield return lampGroup.MoveDown();
 
         for(int i = 0; i < count; i++) {
-            List<int> lampIndex = GetRandomValues(0, lampGroup.LampCount, lampCount);
-
             // 공격 전 대기
-            yield return AttackReady(lampIndex, attackDelay);
+            yield return AttackReady(patternDatas[patternIndex].pattern, attackDelay);
             
             // 공격
-            yield return Attack(lampIndex);
+            yield return Attack(patternDatas[patternIndex].pattern);
 
             // 공격 후 대기
             yield return new WaitForSeconds(turnOffTimeAfterAttack);
@@ -39,6 +44,8 @@ public class LightSkill : Skill
             if(i < count - 1) {
                 yield return new WaitForSeconds(interval);
             }
+
+            patternIndex = (patternIndex + 1) % patternDatas.Count;
         }
 
         // 조명 올리기

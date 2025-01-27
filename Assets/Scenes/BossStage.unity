@@ -3609,11 +3609,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4cdf17f58354831b8decf9e759d982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 0
   lampGroup: {fileID: 1639893178}
   count: 5
-  lampCount: 5
+  patternDatas:
+  - pattern: 0200000003000000060000000700000008000000
+  - pattern: 0000000001000000020000000800000009000000
+  - pattern: 0100000003000000050000000700000009000000
+  - pattern: 0000000002000000040000000600000008000000
+  - pattern: 0300000005000000060000000800000009000000
+  - pattern: 0000000001000000030000000400000006000000
+  - pattern: 0500000006000000070000000800000009000000
+  - pattern: 0000000001000000020000000300000004000000
+  - pattern: 0200000003000000060000000700000009000000
+  - pattern: 0000000001000000040000000500000008000000
   attackDelay: 2
-  turnOffTimeAfterAttack: 2
+  turnOffTimeAfterAttack: 1
   interval: 1
 --- !u!114 &485485772
 MonoBehaviour:
@@ -3641,6 +3652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44438349e963e0a4d9c10efc31726d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 0
   spawnHouse: {fileID: 3760989700067907197, guid: 88aa1d08b13a23f4caef49d3c15ea2bf, type: 3}
   spawnPoint: {fileID: 290899472}
 --- !u!114 &485485774
@@ -3655,6 +3667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6824d8468a794ae1adc41d82570ddfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 0
   attackRangePrefab: {fileID: 8450916574735907562, guid: 697cf7cb8b0754de3bd5900fae8e330b, type: 3}
   bulletPrefab: {fileID: 3689510200813313102, guid: 273904d3f7d8641d0b2d6ff71f5c2106, type: 3}
   attackDelay: 3
