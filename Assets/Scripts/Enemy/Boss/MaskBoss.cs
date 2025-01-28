@@ -3,11 +3,11 @@ using UnityEngine;
 public class MaskBoss : MonoBehaviour
 {
     [SerializeField] Animator anim;
-    [SerializeField, Min(0)] int maxSp = 4;
     [SerializeField] float coolDown = 10.0f;
 
     int turn;
     float coolDownRemain;
+    public bool battle { get; private set; }
 
     MaskBossStats stats;
 
@@ -15,7 +15,8 @@ public class MaskBoss : MonoBehaviour
     void Start()
     {
         turn = -1;
-        coolDownRemain = coolDown;
+        coolDownRemain = 0.0f;
+        battle = false;
 
         stats = GetComponent<MaskBossStats>();
 
@@ -26,7 +27,9 @@ public class MaskBoss : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(!battle) return;
+
         if(coolDownRemain >= 0.0f) {
             coolDownRemain -= Time.deltaTime;
         }
@@ -48,6 +51,10 @@ public class MaskBoss : MonoBehaviour
         //         UseShootMaskMonsterSkill();
         //     }
         // }
+    }
+
+    public void BattleStart() {
+        battle = true;
     }
 
     #region AI

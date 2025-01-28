@@ -14,8 +14,11 @@ public class MaskBossStats : MonoBehaviour, IDamageable
     int maxSp;
     public int sp { get; private set; }
     Coroutine coroutine = null;
+    MaskBoss owner;
 
     void Start() {
+        owner = GetComponent<MaskBoss>();
+
         maxHp = statsData.hp;
         hp = maxHp;
         maxSp = statsData.sp;
@@ -25,7 +28,7 @@ public class MaskBossStats : MonoBehaviour, IDamageable
     }
 
     void Update() {
-        if(coroutine == null && statsData.healthType == BossStatsData.HealthType.TIME_ATTACK) {
+        if(owner.battle && coroutine == null && statsData.healthType == BossStatsData.HealthType.TIME_ATTACK) {
             coroutine = StartCoroutine(TimeAttackFlow());
         }
     }
