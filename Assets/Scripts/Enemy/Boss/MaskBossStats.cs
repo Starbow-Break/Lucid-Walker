@@ -11,11 +11,15 @@ public class MaskBossStats : MonoBehaviour, IDamageable
 
     int maxHp;
     int hp;
+    int maxSp;
+    public int sp { get; private set; }
     Coroutine coroutine = null;
 
     void Start() {
         maxHp = statsData.hp;
         hp = maxHp;
+        maxSp = statsData.sp;
+        sp = maxSp;
         healthBar.SetValue(hp, maxHp);
         Debug.Log("Boss Hp : " + hp);
     }
@@ -35,6 +39,9 @@ public class MaskBossStats : MonoBehaviour, IDamageable
             // 사망 또는 다음 페이즈로 이동
         }
     }
+
+    public void SpendSp(int value) => sp -= value;
+    public void RecoverySp(int value) => sp += value;
 
     IEnumerator TimeAttackFlow() {
         while(hp > 0) {

@@ -8,7 +8,6 @@ public class MaskBoss : MonoBehaviour
 
     int turn;
     float coolDownRemain;
-    float sp = 0;
 
     MaskBossStats stats;
 
@@ -16,7 +15,6 @@ public class MaskBoss : MonoBehaviour
     void Start()
     {
         turn = -1;
-        sp = maxSp;
         coolDownRemain = coolDown;
 
         stats = GetComponent<MaskBossStats>();
@@ -33,7 +31,7 @@ public class MaskBoss : MonoBehaviour
             coolDownRemain -= Time.deltaTime;
         }
         else {
-            sp++;
+            stats.RecoverySp(1);
             int result = Think();
             UseSkill(result);
         }
@@ -55,13 +53,12 @@ public class MaskBoss : MonoBehaviour
     #region AI
     // 생각
     int Think() {
-        if(lightSkill.sp <= sp) {
+        if(lightSkill.sp <= stats.sp) {
             return 0;
         }
-        else {
-            turn = (turn + 1) % 2;
-            return turn + 1;
-        }
+
+        turn = (turn + 1) % 2;
+        return turn + 1;
     }
 
     // 스킬 사용
@@ -91,7 +88,7 @@ public class MaskBoss : MonoBehaviour
 
     // 스킬 시전
     void CastSkill(Skill skill) { 
-        sp -= skill.sp;
+        stats.SpendSp(skill.sp);
         coolDownRemain = coolDown;
         skill.Cast(); 
     }
