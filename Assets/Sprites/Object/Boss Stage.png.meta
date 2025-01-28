@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -223,13 +223,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_11
+      name: monster_a_walk_0
       rect:
         serializedVersion: 2
-        x: 6519
-        y: 3792
-        width: 96
-        height: 130
+        x: 6524
+        y: 3798
+        width: 85
+        height: 122
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,13 +244,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_12
+      name: monster_a_walk_1
       rect:
         serializedVersion: 2
-        x: 6649
-        y: 3792
-        width: 89
-        height: 133
+        x: 6653
+        y: 3798
+        width: 82
+        height: 122
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,13 +265,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_13
+      name: monster_a_walk_2
       rect:
         serializedVersion: 2
-        x: 6772
-        y: 3792
-        width: 96
-        height: 134
+        x: 6778
+        y: 3798
+        width: 86
+        height: 122
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,13 +286,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_14
+      name: monster_a_attack_0
       rect:
         serializedVersion: 2
-        x: 6898
-        y: 3789
-        width: 89
-        height: 148
+        x: 6902
+        y: 3797
+        width: 81
+        height: 135
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,13 +307,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_15
+      name: monster_a_attack_1
       rect:
         serializedVersion: 2
-        x: 6999
-        y: 3788
-        width: 103
-        height: 153
+        x: 7004
+        y: 3795
+        width: 92
+        height: 140
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,13 +328,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_17
+      name: monster_a_attack_2
       rect:
         serializedVersion: 2
-        x: 7110
-        y: 3788
-        width: 130
-        height: 157
+        x: 7115
+        y: 3794
+        width: 120
+        height: 145
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,13 +412,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_26
+      name: monster_a_die_0
       rect:
         serializedVersion: 2
-        x: 6515
-        y: 3647
-        width: 104
-        height: 138
+        x: 6518
+        y: 3653
+        width: 96
+        height: 127
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,13 +433,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_27
+      name: monster_a_die_1
       rect:
         serializedVersion: 2
-        x: 6638
-        y: 3643
-        width: 119
-        height: 142
+        x: 6641
+        y: 3649
+        width: 113
+        height: 132
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,13 +454,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_29
+      name: monster_a_die_2
       rect:
         serializedVersion: 2
-        x: 6787
-        y: 3637
-        width: 130
-        height: 148
+        x: 6792
+        y: 3643
+        width: 120
+        height: 138
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,13 +475,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_31
+      name: monster_a_die_3
       rect:
         serializedVersion: 2
-        x: 6939
-        y: 3636
-        width: 153
-        height: 115
+        x: 6945
+        y: 3641
+        width: 142
+        height: 106
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -559,13 +559,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_35
+      name: monster_b_walk_0
       rect:
         serializedVersion: 2
-        x: 6519
-        y: 3483
-        width: 96
-        height: 127
+        x: 6523
+        y: 3490
+        width: 87
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -580,13 +580,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_36
+      name: monster_b_walk_1
       rect:
         serializedVersion: 2
-        x: 6649
-        y: 3484
-        width: 89
-        height: 125
+        x: 6653
+        y: 3491
+        width: 82
+        height: 111
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -601,13 +601,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_37
+      name: monster_b_walk_2
       rect:
         serializedVersion: 2
-        x: 6772
-        y: 3483
-        width: 96
-        height: 127
+        x: 6778
+        y: 3490
+        width: 85
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -622,13 +622,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_38
+      name: monster_b_attack_0
       rect:
         serializedVersion: 2
-        x: 6898
-        y: 3483
-        width: 89
-        height: 134
+        x: 6902
+        y: 3489
+        width: 81
+        height: 123
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -643,13 +643,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_39
+      name: monster_b_attack_1
       rect:
         serializedVersion: 2
-        x: 6999
-        y: 3480
-        width: 103
-        height: 145
+        x: 7004
+        y: 3488
+        width: 91
+        height: 131
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -664,13 +664,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_40
+      name: monster_b_attack_2
       rect:
         serializedVersion: 2
-        x: 7110
-        y: 3480
-        width: 130
-        height: 152
+        x: 7116
+        y: 3489
+        width: 119
+        height: 137
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -685,13 +685,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_41
+      name: monster_b_die_0
       rect:
         serializedVersion: 2
-        x: 6515
-        y: 3342
-        width: 115
-        height: 126
+        x: 6520
+        y: 3346
+        width: 103
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -706,13 +706,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_42
+      name: monster_b_die_1
       rect:
         serializedVersion: 2
-        x: 6638
-        y: 3338
-        width: 119
-        height: 138
+        x: 6642
+        y: 3344
+        width: 110
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -727,13 +727,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_43
+      name: monster_b_die_2
       rect:
         serializedVersion: 2
-        x: 6777
-        y: 3330
-        width: 136
-        height: 149
+        x: 6793
+        y: 3336
+        width: 114
+        height: 138
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -748,13 +748,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_44
+      name: monster_b_die_3
       rect:
         serializedVersion: 2
-        x: 6939
-        y: 3330
-        width: 97
-        height: 86
+        x: 6944
+        y: 3336
+        width: 126
+        height: 118
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -764,27 +764,6 @@ TextureImporter:
       bones: []
       spriteID: d4a8e3d5d8e234811b025b83ec3b3a4e
       internalID: -604109137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss Stage_45
-      rect:
-        serializedVersion: 2
-        x: 7021
-        y: 3387
-        width: 56
-        height: 70
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ca439c849eee4bd4ba01d5d60264d3c
-      internalID: 551801667
       vertices: []
       indices: 
       edges: []
@@ -811,13 +790,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_50
+      name: monster_c_walk_0
       rect:
         serializedVersion: 2
-        x: 6519
-        y: 3197
-        width: 103
-        height: 122
+        x: 6524
+        y: 3205
+        width: 92
+        height: 109
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -832,13 +811,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_51
+      name: monster_c_walk_1
       rect:
         serializedVersion: 2
-        x: 6649
-        y: 3200
-        width: 108
-        height: 119
+        x: 6653
+        y: 3206
+        width: 100
+        height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -853,13 +832,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_52
+      name: monster_c_walk_2
       rect:
         serializedVersion: 2
-        x: 6772
-        y: 3200
-        width: 104
-        height: 118
+        x: 6779
+        y: 3206
+        width: 94
+        height: 108
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -874,13 +853,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_53
+      name: monster_c_attack_0
       rect:
         serializedVersion: 2
-        x: 6891
-        y: 3196
-        width: 96
-        height: 115
+        x: 6895
+        y: 3203
+        width: 89
+        height: 103
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -895,13 +874,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_54
+      name: monster_c_attack_1
       rect:
         serializedVersion: 2
-        x: 6996
-        y: 3196
-        width: 106
-        height: 119
+        x: 7000
+        y: 3202
+        width: 97
+        height: 110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -937,13 +916,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_56
+      name: monster_c_die_0
       rect:
         serializedVersion: 2
-        x: 6515
-        y: 3055
-        width: 104
-        height: 111
+        x: 6520
+        y: 3061
+        width: 96
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -958,13 +937,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_57
+      name: monster_c_die_1
       rect:
         serializedVersion: 2
-        x: 6638
-        y: 3051
-        width: 119
-        height: 112
+        x: 6642
+        y: 3058
+        width: 111
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -979,13 +958,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_59
+      name: monster_c_die_2
       rect:
         serializedVersion: 2
-        x: 6787
-        y: 3044
-        width: 126
-        height: 111
+        x: 6791
+        y: 3050
+        width: 118
+        height: 102
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1000,13 +979,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_61
+      name: monster_c_die_3
       rect:
         serializedVersion: 2
-        x: 6939
-        y: 3044
-        width: 145
-        height: 85
+        x: 6944
+        y: 3049
+        width: 137
+        height: 76
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1105,13 +1084,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_68
+      name: monster_d_walk_0
       rect:
         serializedVersion: 2
-        x: 6519
-        y: 2895
-        width: 104
-        height: 119
+        x: 6524
+        y: 2901
+        width: 95
+        height: 109
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1126,13 +1105,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_69
+      name: monster_d_walk_1
       rect:
         serializedVersion: 2
-        x: 6649
-        y: 2895
-        width: 95
-        height: 119
+        x: 6654
+        y: 2900
+        width: 87
+        height: 109
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1147,13 +1126,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_70
+      name: monster_d_walk_2
       rect:
         serializedVersion: 2
-        x: 6772
-        y: 2895
-        width: 103
-        height: 119
+        x: 6778
+        y: 2901
+        width: 95
+        height: 109
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1168,13 +1147,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_71
+      name: monster_d_attack_0
       rect:
         serializedVersion: 2
-        x: 6902
-        y: 2895
-        width: 104
-        height: 117
+        x: 6907
+        y: 2901
+        width: 96
+        height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1189,13 +1168,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_72
+      name: monster_d_attack_1
       rect:
         serializedVersion: 2
-        x: 7010
-        y: 2895
-        width: 104
-        height: 123
+        x: 7014
+        y: 2901
+        width: 98
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1210,13 +1189,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_73
+      name: monster_d_attack_2
       rect:
         serializedVersion: 2
-        x: 7118
-        y: 2891
-        width: 100
-        height: 142
+        x: 7122
+        y: 2897
+        width: 92
+        height: 132
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1231,13 +1210,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_74
+      name: monster_d_die_0
       rect:
         serializedVersion: 2
-        x: 6515
-        y: 2750
-        width: 106
-        height: 111
+        x: 6520
+        y: 2756
+        width: 96
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1252,13 +1231,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_75
+      name: monster_d_die_1
       rect:
         serializedVersion: 2
-        x: 6638
-        y: 2746
-        width: 122
-        height: 112
+        x: 6642
+        y: 2751
+        width: 114
+        height: 103
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1273,13 +1252,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_76
+      name: monster_d_die_2
       rect:
         serializedVersion: 2
-        x: 6787
-        y: 2739
-        width: 126
-        height: 111
+        x: 6792
+        y: 2745
+        width: 117
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1294,13 +1273,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_77
+      name: monster_d_die_3
       rect:
         serializedVersion: 2
-        x: 6939
-        y: 2738
-        width: 108
-        height: 86
+        x: 6943
+        y: 2744
+        width: 101
+        height: 76
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1315,15 +1294,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_78
+      name: breath_0
       rect:
         serializedVersion: 2
-        x: 7058
-        y: 2813
-        width: 34
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 7059
+        y: 2814
+        width: 32
+        height: 46
+      alignment: 9
+      pivot: {x: 1, y: 0.47}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1336,15 +1315,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_79
+      name: breath_1
       rect:
         serializedVersion: 2
-        x: 7115
-        y: 2798
-        width: 44
-        height: 78
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 7118
+        y: 2802
+        width: 39
+        height: 73
+      alignment: 9
+      pivot: {x: 0.99610627, y: 0.42637655}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1399,13 +1378,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_84
+      name: bullet
       rect:
         serializedVersion: 2
-        x: 7081
-        y: 2735
-        width: 66
-        height: 52
+        x: 7085
+        y: 2738
+        width: 43
+        height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1420,13 +1399,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_85
+      name: bullet_effect_0
       rect:
         serializedVersion: 2
-        x: 7136
-        y: 2768
-        width: 15
-        height: 15
+        x: 7139
+        y: 2771
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1441,13 +1420,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_86
+      name: bullet_effect_1
       rect:
         serializedVersion: 2
-        x: 7151
-        y: 2757
-        width: 19
-        height: 15
+        x: 7155
+        y: 2759
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1525,13 +1504,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_93
+      name: monster_e_walk_0
       rect:
         serializedVersion: 2
-        x: 6519
-        y: 2586
-        width: 111
-        height: 123
+        x: 6524
+        y: 2592
+        width: 103
+        height: 114
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1546,13 +1525,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_94
+      name: monster_e_walk_1
       rect:
         serializedVersion: 2
-        x: 6649
-        y: 2586
-        width: 96
-        height: 123
+        x: 6653
+        y: 2593
+        width: 89
+        height: 111
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1567,13 +1546,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_95
+      name: monster_e_walk_2
       rect:
         serializedVersion: 2
-        x: 6772
-        y: 2586
-        width: 111
-        height: 123
+        x: 6776
+        y: 2592
+        width: 105
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1588,13 +1567,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_96
+      name: monster_e_attack_0
       rect:
         serializedVersion: 2
-        x: 6902
-        y: 2583
-        width: 312
-        height: 142
+        x: 6907
+        y: 2593
+        width: 102
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1693,13 +1672,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_101
+      name: monster_e_die_0
       rect:
         serializedVersion: 2
-        x: 6515
-        y: 2444
-        width: 111
-        height: 116
+        x: 6519
+        y: 2451
+        width: 103
+        height: 104
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1714,13 +1693,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_102
+      name: monster_e_die_1
       rect:
         serializedVersion: 2
-        x: 6638
-        y: 2441
-        width: 119
-        height: 119
+        x: 6643
+        y: 2449
+        width: 110
+        height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1735,13 +1714,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_103
+      name: monster_e_die_2
       rect:
         serializedVersion: 2
-        x: 6787
-        y: 2437
-        width: 133
-        height: 119
+        x: 6792
+        y: 2442
+        width: 124
+        height: 110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1756,13 +1735,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss Stage_104
+      name: monster_e_die_3
       rect:
         serializedVersion: 2
-        x: 6939
-        y: 2433
-        width: 145
-        height: 119
+        x: 6944
+        y: 2440
+        width: 136
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1986,6 +1965,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: monster_e_attack_1
+      rect:
+        serializedVersion: 2
+        x: 7014
+        y: 2593
+        width: 103
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21ad5f818c5ff84aa94a71a5d9b8797
+      internalID: -1866258737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_e_attack_2
+      rect:
+        serializedVersion: 2
+        x: 7123
+        y: 2591
+        width: 87
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e923113d0888bee4cbc109bd98c479b3
+      internalID: 1031926339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monster_c_attack_2
+      rect:
+        serializedVersion: 2
+        x: 7115
+        y: 3202
+        width: 121
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4fbcf6298db5014dabdae21ec3ab1ef
+      internalID: -1901928659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet_effect_2
+      rect:
+        serializedVersion: 2
+        x: 7136
+        y: 2746
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d47a9ce8a9539a443a0e8fc0ce075b00
+      internalID: -1042122232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1997,90 +2060,43 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Boss Stage_101: 1842074395
-      Boss Stage_102: -797683729
-      Boss Stage_103: 975145177
-      Boss Stage_104: 2028682496
-      Boss Stage_11: -347987764
-      Boss Stage_12: 1223944412
-      Boss Stage_13: -1472552986
-      Boss Stage_14: 1041600777
-      Boss Stage_15: -293530143
       Boss Stage_16: -1700335874
-      Boss Stage_17: 1875924681
       Boss Stage_18: -890727244
       Boss Stage_19: -402875409
-      Boss Stage_2: -1105229836
       Boss Stage_20: 196720424
       Boss Stage_21: -1887329469
       Boss Stage_22: -2126699608
       Boss Stage_24: -991933188
       Boss Stage_25: -93401616
-      Boss Stage_26: -1785818701
-      Boss Stage_27: 1660766592
       Boss Stage_28: -467367698
-      Boss Stage_29: -1872100825
       Boss Stage_3: -28545286
       Boss Stage_30: 2045877075
-      Boss Stage_31: 1230117943
       Boss Stage_33: -882691144
       Boss Stage_34: 2049723933
-      Boss Stage_35: -527920804
-      Boss Stage_36: 1510893085
-      Boss Stage_37: 1008046262
-      Boss Stage_38: 555477747
-      Boss Stage_39: 1922902513
       Boss Stage_4: 471499493
-      Boss Stage_40: 1076345404
-      Boss Stage_41: 396526424
-      Boss Stage_42: 1975657116
-      Boss Stage_43: 1805830654
-      Boss Stage_44: -604109137
       Boss Stage_45: 551801667
       Boss Stage_46: 517546348
       Boss Stage_47: 670063371
       Boss Stage_48: -2099914104
       Boss Stage_5: -1192513171
-      Boss Stage_50: -1133795424
-      Boss Stage_51: 1785455221
-      Boss Stage_52: -712414141
-      Boss Stage_53: 1032730304
-      Boss Stage_54: -428600518
       Boss Stage_55: 735687827
-      Boss Stage_56: 413041053
-      Boss Stage_57: -369890565
       Boss Stage_58: -1506088681
-      Boss Stage_59: 476424556
       Boss Stage_6: -1407623912
       Boss Stage_60: -1156312454
-      Boss Stage_61: -1607836175
       Boss Stage_64: 401728597
       Boss Stage_67: -755318241
-      Boss Stage_68: -1151573800
-      Boss Stage_69: 1012553334
-      Boss Stage_70: 421966722
-      Boss Stage_71: -1907976938
-      Boss Stage_72: 767324178
-      Boss Stage_73: -2062212450
-      Boss Stage_74: 2005062445
-      Boss Stage_75: 685348964
-      Boss Stage_76: -2110192997
-      Boss Stage_77: -673749127
-      Boss Stage_78: -1093445285
-      Boss Stage_79: -1221106556
       Boss Stage_81: -981380440
       Boss Stage_82: 4753249
       Boss Stage_83: -1887424790
-      Boss Stage_84: -8817192
-      Boss Stage_85: 529479511
-      Boss Stage_86: 506918523
       Boss Stage_88: -1712533118
       Boss Stage_89: -2019940901
       Boss Stage_91: -1727913688
-      Boss Stage_93: -57922645
-      Boss Stage_94: 259809908
-      Boss Stage_95: -2052832853
-      Boss Stage_96: -146646677
+      breath_0: -1093445285
+      breath_1: -1221106556
+      bullet: -8817192
+      bullet_effect_0: 529479511
+      bullet_effect_1: 506918523
+      bullet_effect_2: -1042122232
       curtain_0: -771665853
       curtain_1: -72578099
       curtain_2: 1575444591
@@ -2103,6 +2119,56 @@ TextureImporter:
       light_off: 396822070
       light_red: 1168226946
       light_yellow: 1504676361
+      monster_a_attack_0: 1041600777
+      monster_a_attack_1: -293530143
+      monster_a_attack_2: 1875924681
+      monster_a_die_0: -1785818701
+      monster_a_die_1: 1660766592
+      monster_a_die_2: -1872100825
+      monster_a_die_3: 1230117943
+      monster_a_walk_0: -347987764
+      monster_a_walk_1: 1223944412
+      monster_a_walk_2: -1472552986
+      monster_b_attack_0: 555477747
+      monster_b_attack_1: 1922902513
+      monster_b_attack_2: 1076345404
+      monster_b_die_0: 396526424
+      monster_b_die_1: 1975657116
+      monster_b_die_2: 1805830654
+      monster_b_die_3: -604109137
+      monster_b_walk_0: -527920804
+      monster_b_walk_1: 1510893085
+      monster_b_walk_2: 1008046262
+      monster_c_attack_0: 1032730304
+      monster_c_attack_1: -428600518
+      monster_c_attack_2: -1105229836
+      monster_c_die_0: 413041053
+      monster_c_die_1: -369890565
+      monster_c_die_2: 476424556
+      monster_c_die_3: -1607836175
+      monster_c_walk_0: -1133795424
+      monster_c_walk_1: 1785455221
+      monster_c_walk_2: -712414141
+      monster_d_attack_0: -1907976938
+      monster_d_attack_1: 767324178
+      monster_d_attack_2: -2062212450
+      monster_d_die_0: 2005062445
+      monster_d_die_1: 685348964
+      monster_d_die_2: -2110192997
+      monster_d_die_3: -673749127
+      monster_d_walk_0: -1151573800
+      monster_d_walk_1: 1012553334
+      monster_d_walk_2: 421966722
+      monster_e_attack_0: -146646677
+      monster_e_attack_1: -1866258737
+      monster_e_attack_2: 1031926339
+      monster_e_die_0: 1842074395
+      monster_e_die_1: -797683729
+      monster_e_die_2: 975145177
+      monster_e_die_3: 2028682496
+      monster_e_walk_0: -57922645
+      monster_e_walk_1: 259809908
+      monster_e_walk_2: -2052832853
       seat_phase1: 462284011
       seat_phase2: -2040579586
       side_curtain_phase1: -308252497

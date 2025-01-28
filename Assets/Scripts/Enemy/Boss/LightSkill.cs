@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class LightSkill : Skill
 {   
+    [System.Serializable]
+    struct LightSkillPatternData {
+        public List<int> pattern; // 조명 패턴
+    }
+
+    [SerializeField] Animator casterAnimator; // 시전자의 Animator
     [SerializeField] MaskBossLampGroup lampGroup;
-    [SerializeField, Min(1)] int count = 5; // 조명이 켜지는 횟수
-    [SerializeField, Min(0)] int lampCount = 0; // 켜지는 조명의 갯수
+    [SerializeField, Min(1)] int count = 5; // 스킬 한번 당 조명이 켜지는 횟수
+    [SerializeField] List<LightSkillPatternData> patternDatas; // 조명 패턴
     [SerializeField, Min(0.0f)] float attackDelay = 2.0f; // 공격 딜레이
     [SerializeField, Min(0.0f)] float turnOffTimeAfterAttack = 2.0f; // 공격 이후 조명 끄기까지의 시간
     [SerializeField, Min(0.0f)] float interval = 1.0f; // 조명 패턴 간 시간 간격
 
-    private void OnValidate() {
-        lampCount = Mathf.Min(lampCount, lampGroup == null ? 0 : lampGroup.LampCount);  
-    }
+    int patternIndex = 0;
 
     protected override IEnumerator SkillFlow()
     {
+        if(patternDatas.Count == 0) {
+            throw new System.Exception("patternDatas에 최소 한개 이상의 원소가 있어야 합니다!");
+        }
+
+        casterAnimator.SetTrigger("skill_light");
+
+        yield return new WaitUntil(() => lampGroup.gameObject.activeSelf);
+
         // 조명 내리기
         yield return lampGroup.MoveDown();
 
         for(int i = 0; i < count; i++) {
-            List<int> lampIndex = GetRandomValues(0, lampGroup.LampCount, lampCount);
-
             // 공격 전 대기
-            yield return AttackReady(lampIndex, attackDelay);
+            yield return AttackReady(patternDatas[patternIndex].pattern, attackDelay);
             
             // 공격
-            yield return Attack(lampIndex);
+            yield return Attack(patternDatas[patternIndex].pattern);
 
             // 공격 후 대기
             yield return new WaitForSeconds(turnOffTimeAfterAttack);
@@ -39,10 +49,22 @@ public class LightSkill : Skill
             if(i < count - 1) {
                 yield return new WaitForSeconds(interval);
             }
+
+            patternIndex = (patternIndex + 1) % patternDatas.Count;
         }
 
         // 조명 올리기
         yield return lampGroup.MoveUp();
+
+        SetInActiveLampGroup();
+    }
+
+    void SetActiveLampGroup() {
+        lampGroup.gameObject.SetActive(true);
+    }
+
+    void SetInActiveLampGroup() {
+        lampGroup.gameObject.SetActive(false);
     }
 
     // 공격 전 대기
@@ -69,48 +91,5 @@ public class LightSkill : Skill
             lampGroup.TurnOnRedLight(index);
         }
         yield return null;
-    }
-
-    // [min, max)범위에서 서로 다른 num개의 값을 선택
-    List<int> GetRandomValues(int min, int max, int num) {
-        if(num < 0 || num > max-min) {
-            throw new System.ArgumentException("인자 값이 잘못되었습니다. num값은 0 이상 max-min 이하여야 합니다.");
-        }
-
-        bool[] check = new bool[max-min];
-
-        if(num <= (max-min)/2) {
-            int cnt = 0;
-            while(cnt < num) {
-                int value = Random.Range(0, max-min);
-                if(!check[value]) {
-                    check[value] = true;
-                    ++cnt;
-                }
-            }
-        }
-        else {
-            for(int i = 0; i < max-min; i++) {
-                check[i] = true;
-            }
-
-            int cnt = max-min;
-            while(cnt > num) {
-                int value = Random.Range(0, max-min);
-                if(!check[value]) {
-                    check[value] = false;
-                    --cnt;
-                }
-            }
-        }
-
-        List<int> ret = new();
-        for(int i = 0; i < max-min; i++) {
-            if(check[i]) {
-                ret.Add(min+i);
-            }
-        }
-
-        return ret;
     }
 }
