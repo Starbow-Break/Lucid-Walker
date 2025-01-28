@@ -19,19 +19,15 @@ public class LightSkill : Skill
 
     int patternIndex = 0;
 
-    protected override void Play() {
-        casterAnimator.SetTrigger("skill_light");
-    }
-
-    void StartSkillFlowCoroutine() {
-        StartCoroutine(SkillFlow());
-    }
-
     protected override IEnumerator SkillFlow()
     {
         if(patternDatas.Count == 0) {
             throw new System.Exception("patternDatas에 최소 한개 이상의 원소가 있어야 합니다!");
         }
+
+        casterAnimator.SetTrigger("skill_light");
+
+        yield return new WaitUntil(() => lampGroup.gameObject.activeSelf);
 
         // 조명 내리기
         yield return lampGroup.MoveDown();
@@ -59,6 +55,16 @@ public class LightSkill : Skill
 
         // 조명 올리기
         yield return lampGroup.MoveUp();
+
+        SetInActiveLampGroup();
+    }
+
+    void SetActiveLampGroup() {
+        lampGroup.gameObject.SetActive(true);
+    }
+
+    void SetInActiveLampGroup() {
+        lampGroup.gameObject.SetActive(false);
     }
 
     // 공격 전 대기

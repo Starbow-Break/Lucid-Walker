@@ -3,18 +3,27 @@ using UnityEngine;
 public class MaskBoss : MonoBehaviour
 {
     [SerializeField] Animator anim;
-    [SerializeField] float attackCoolDownMin = 10.0f;
-    [SerializeField] float attackCoolDownMax = 20.0f;
+    [SerializeField, Min(0)] int maxSp = 4;
+    [SerializeField] float coolDown = 10.0f;
 
+    int turn;
     float coolDownRemain;
+    float sp = 0;
 
     MaskBossStats stats;
 
     // Start is called before the first frame update
     void Start()
     {
+        turn = -1;
+        sp = maxSp;
+        coolDownRemain = coolDown;
+
         stats = GetComponent<MaskBossStats>();
-        coolDownRemain = Random.Range(attackCoolDownMin, attackCoolDownMax);
+
+        lightSkill = GetComponent<LightSkill>();
+        houseSkill = GetComponent<HouseSkill>();
+        shootMaskMonsterSkill = GetComponent<ShootMaskMonsterSkill>();
     }
 
     // Update is called once per frame
@@ -24,8 +33,9 @@ public class MaskBoss : MonoBehaviour
             coolDownRemain -= Time.deltaTime;
         }
         else {
-            UseSkill();
-            coolDownRemain = Random.Range(attackCoolDownMin, attackCoolDownMax);
+            sp++;
+            int result = Think();
+            UseSkill(result);
         }
 
         // 스킬 테스트를 위한 코드
@@ -42,17 +52,48 @@ public class MaskBoss : MonoBehaviour
         // }
     }
 
-    #region SKILL
-    void UseSkill() {
-        if(UseLightSkill()) return;
-        if(UseHouseSkill()) return;
-        if(UseShootMaskMonsterSkill()) return;
+    #region AI
+    // 생각
+    int Think() {
+        if(lightSkill.sp <= sp) {
+            return 0;
+        }
+        else {
+            turn = (turn + 1) % 2;
+            return turn + 1;
+        }
     }
 
-    bool UseLightSkill() => CastSkill(GetComponent<LightSkill>());
-    bool UseHouseSkill() => CastSkill(GetComponent<HouseSkill>());
-    bool UseShootMaskMonsterSkill() => CastSkill(GetComponent<ShootMaskMonsterSkill>());
+    // 스킬 사용
+    void UseSkill(int skillId) {
+        switch(skillId) {
+            case 0:
+            UseLightSkill();
+            break;
+            case 1:
+            UseHouseSkill();
+            break;
+            case 2:
+            UseShootMaskMonsterSkill();
+            break;
+        }
+    }
+    #endregion
 
-    bool CastSkill(Skill skill) => skill.Cast();
+    #region SKILL
+    LightSkill lightSkill;
+    HouseSkill houseSkill;
+    ShootMaskMonsterSkill shootMaskMonsterSkill;
+
+    void UseLightSkill() => CastSkill(lightSkill);
+    void UseHouseSkill() => CastSkill(houseSkill);
+    void UseShootMaskMonsterSkill() => CastSkill(shootMaskMonsterSkill);
+
+    // 스킬 시전
+    void CastSkill(Skill skill) { 
+        sp -= skill.sp;
+        coolDownRemain = coolDown;
+        skill.Cast(); 
+    }
     #endregion
 }

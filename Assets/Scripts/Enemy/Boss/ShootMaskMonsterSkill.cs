@@ -9,10 +9,6 @@ public class ShootMaskMonsterSkill : Skill
     [SerializeField, Min(0.0f)] float attackDelay;
     [SerializeField, Min(0.0f)] float interval;
 
-    protected override void Play() {
-        StartCoroutine(SkillFlow());
-    }
-
     protected override IEnumerator SkillFlow()
     {
         for(int i = 0; i < 5; i++) {
