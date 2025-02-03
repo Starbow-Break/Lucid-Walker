@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossStageManager : MonoBehaviour
 {
-    Coroutine coroutine = null;
     [Header("Player")]
     [SerializeField] PlayerController playerController;
 
@@ -16,18 +16,28 @@ public class BossStageManager : MonoBehaviour
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera theaterCamera;
 
+    [Header("Objects")]
+    [SerializeField] List<GameObject> phase1Objects;
+    [SerializeField] List<GameObject> phase2Objects;
+
     [Header("etc")]
     [SerializeField] Animator curtainAnim;
-    
+
+    MaterialPropertyBlock mpb;
 
     void Start() {
+        mpb = new MaterialPropertyBlock();
+
+        //PhaseChangeFrom1to2();
         Phase1Start();
     }
 
     public void Phase1Start() {
-        if(coroutine == null) {
-            coroutine = StartCoroutine(Phase1StartFlow());
-        }
+        StartCoroutine(Phase1StartFlow());
+    }
+
+    public void PhaseChangeFrom1to2() {
+        StartCoroutine(PhaseChangeFrom1to2Flow(5.0f));
     }
 
     IEnumerator Phase1StartFlow() {
@@ -63,5 +73,30 @@ public class BossStageManager : MonoBehaviour
         bossController.BattleStart();
         bossAnim.SetTrigger("battle_start");
         playerController.enabled = true;
+    }
+
+    IEnumerator PhaseChangeFrom1to2Flow(float time) {
+        float currentTime = 0.0f;
+
+        while(currentTime < time) {
+            yield return null;
+
+            Debug.Log(currentTime);
+            currentTime += Time.deltaTime;
+            float progress = currentTime / time;
+
+            foreach(GameObject obj in phase1Objects) {
+                if(obj.TryGetComponent<SpriteRenderer>(out var sr)) {
+                    mpb.SetFloat("_DissolveAmount", progress);
+                    sr.SetPropertyBlock(mpb);
+                }
+            }
+
+            foreach(GameObject obj in phase2Objects) {
+                obj.SetActive(true);
+            }
+        }
+
+        yield return null;
     }
 }
