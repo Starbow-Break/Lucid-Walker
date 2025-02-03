@@ -7,6 +7,7 @@ public class MonsterBullet : MonoBehaviour
 {
     [SerializeField] float speed = 10.0f; // Speed of the bullet
     [SerializeField] float lifeTime = 2.0f;
+    [SerializeField] bool destroyAfterHit = true;
     [SerializeField] ParticleSystem effect;
 
     private bool hasHit = false; // Whether the bullet has already hit a target
@@ -39,7 +40,7 @@ public class MonsterBullet : MonoBehaviour
 
     void Update()
     {
-        if (!hasHit) {
+        if (!destroyAfterHit || !hasHit) {
             rb.velocity = (transform.localScale.x > 0 ? 1 : -1) * speed * transform.right;
         }
     }
@@ -58,7 +59,9 @@ public class MonsterBullet : MonoBehaviour
                 Debug.Log($"Bullet hit {other.name}");
             }
 
-            Destroy(gameObject);
+            if(destroyAfterHit) {
+                Destroy(gameObject);
+            }
         }
     }
 }

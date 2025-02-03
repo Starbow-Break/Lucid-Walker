@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class BossStageManager : MonoBehaviour
@@ -11,6 +12,9 @@ public class BossStageManager : MonoBehaviour
     [Header("Boss")]
     [SerializeField] MaskBoss bossController;
     [SerializeField] Animator bossAnim;
+
+    [Header("Camera")]
+    [SerializeField] CinemachineVirtualCamera theaterCamera;
 
     [Header("etc")]
     [SerializeField] Animator curtainAnim;
@@ -34,15 +38,26 @@ public class BossStageManager : MonoBehaviour
         yield return new WaitUntil(() => curtainAnim.GetCurrentAnimatorStateInfo(0).IsName("Open"));
 
         // 살짝 대기
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.0f);  
+
+        // 카메라 줌 인
+        CameraController cameraController = theaterCamera.GetComponent<CameraController>();
+        cameraController.CameraZoom(Vector3.up * 6.0f, 5.2f, 2.5f);
+        yield return new WaitForSeconds(2.0f);
 
         // 보스가 인사
         bossAnim.SetTrigger("greet");
         yield return null;
         yield return new WaitWhile(() => bossAnim.GetCurrentAnimatorStateInfo(0).IsName("Greeting"));
 
-        // 잠시 대기 (이 사이에 대사나 추가 연출 추가 예정)
-        yield return new WaitForSeconds(3.0f);
+        // 잠시 대기
+        yield return new WaitForSeconds(1.0f);
+
+        /* TODO : 대사나 추가 연출 추가 예정 */
+
+        // 카메라 줌 아웃
+        cameraController.CameraZoom(Vector3.up * 4.6f, 8.35f, 2.5f);
+        yield return new WaitForSeconds(2.5f);
 
         // 보스전 시작
         bossController.BattleStart();
