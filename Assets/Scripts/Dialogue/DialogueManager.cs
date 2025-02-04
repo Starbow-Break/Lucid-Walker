@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using UnityEditor.Rendering;
-using System.Collections;
-
 using UnityEngine;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public event DialogueEvent OnDialogueStep; // 특정 단계에서 이벤트 트리거
 
     private bool isDialogueActive = false; // 대화 활성 상태 확인
+    private bool isPaused = false; // 대화 일시 중지 여부 확인
     private Coroutine displayLineCoroutine;
 
     private void Awake()
@@ -32,8 +31,8 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        // 대화가 활성 상태일 때만 클릭을 통해 다음 대사로 넘어감
-        if (isDialogueActive && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)))
+        // 대화가 활성 상태이고 일시 중지 상태가 아닐 때만 진행
+        if (isDialogueActive && !isPaused && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)))
         {
             DisplayNextLine();
         }
@@ -50,16 +49,20 @@ public class DialogueManager : MonoBehaviour
         lines = new Queue<DialogueLine>(dialogueData.lines);
         dialogueStep = 0; // 대화 단계 초기화
         isDialogueActive = true; // 대화 활성화
+        isPaused = false;  // 대화 시작 시 일시 중지 해제
         DisplayNextLine();
     }
 
     public void DisplayNextLine()
     {
+        if (isPaused) return; // 일시 중지 상태면 실행 안 함
+
         if (lines == null || lines.Count == 0 || DialogueUI.Instance == null)
         {
             EndDialogue(); // 대화가 끝나면 EndDialogue 호출
             return;
         }
+
         // 대기 중인 코루틴이 있다면 중단
         if (displayLineCoroutine != null)
         {
@@ -97,5 +100,17 @@ public class DialogueManager : MonoBehaviour
             DialogueUI.Instance.AppendDialogueText(letter.ToString());
             yield return new WaitForSeconds(typingSpeed);
         }
+    }
+
+    // 대화 일시 중지
+    public void PauseDialogue()
+    {
+        isPaused = true;
+    }
+
+    // 대화 재개
+    public void ResumeDialogue()
+    {
+        isPaused = false;
     }
 }

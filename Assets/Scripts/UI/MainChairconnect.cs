@@ -5,7 +5,10 @@ public class MainChairconnect : MonoBehaviour
 {
     public GameObject panel; // 활성화할 UI 패널
     public GameObject connectUI; // 활성화할 연결 UI 오브젝트
+    public GameObject chairUI; // 빛나는 의자 effect ui
+
     private Animator chairAnimator; // 의자 오브젝트의 Animator
+
 
     #region ONOFF Animators
     // Set all of these up in the inspector
@@ -50,6 +53,8 @@ public class MainChairconnect : MonoBehaviour
                     // 플레이어 비활성화
                     player.SetActive(false);
 
+                    chairUI.SetActive(false);
+
                     // 의자 애니메이션 실행
                     if (chairAnimator != null)
                     {
@@ -85,6 +90,7 @@ public class MainChairconnect : MonoBehaviour
 
                     // 플레이어 다시 활성화
                     player.SetActive(true);
+                    chairUI.SetActive(true);
 
                     // 의자 애니메이션 종료
                     if (chairAnimator != null)
