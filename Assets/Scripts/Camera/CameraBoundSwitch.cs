@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class CameraBoundSwitch : MonoBehaviour
 {
     public CinemachineVirtualCamera ActiveCamera;
     public PolygonCollider2D NewBoundingShape;
-    private Vector2 triggerPosition; // 트리거의 위치
+    public Transform TeleportDestination; // New teleport destination
+    public PlayerController Player; // Reference to the player object
+    public CircleWipe CircleWipeEffect; // Reference to CircleWipe for transitions
 
-    private bool isSwitching = false; // 중복 트리거 방지 플래그
-    private float switchCooldown = 0.2f; // 쿨다운 시간
+    private Vector2 triggerPosition; // Trigger position
+    private bool isSwitching = false; // Prevents duplicate triggers
+    private float switchCooldown = 0.2f; // Cooldown duration
 
     private void Start()
     {
-        // 현재 트리거 오브젝트의 위치 저장
+        // Store the current trigger object's position
         triggerPosition = transform.position;
     }
 
@@ -23,31 +27,48 @@ public class CameraBoundSwitch : MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if (other.CompareTag("Player"))
         {
-            // 플레이어의 X축 위치와 트리거 위치를 비교하여 방향 판별
             bool isPlayerMovingRight = player.transform.position.x > triggerPosition.x;
 
-            // 플레이어가 트리거를 올바른 방향으로 통과하는지 확인
             if ((!isPlayerMovingRight && player.IsFacingRight) || (isPlayerMovingRight && !player.IsFacingRight))
             {
-                SwitchCameraBound();
-                StartCoroutine(TriggerCooldown()); // 중복 방지용 쿨다운 시작
+                if (!isSwitching)
+                {
+                    bool vertical = false;
+                    bool isEntering = isPlayerMovingRight;
+
+                    CircleWipeEffect.PlayTransition(vertical, isEntering);
+
+                    StartCoroutine(TeleportWithEffect(isPlayerMovingRight));
+                }
             }
         }
     }
 
+    private IEnumerator TeleportWithEffect(bool isPlayerMovingRight)
+    {
+        isSwitching = true;
+
+        yield return new WaitForSeconds(1f);
+
+        // 텔레포트
+
+        Player.transform.position = TeleportDestination.position;
+
+        SwitchCameraBound();
+
+        StartCoroutine(TriggerCooldown());
+    }
+
     private IEnumerator TriggerCooldown()
     {
-        isSwitching = true; // 중복 방지 활성화
-        yield return new WaitForSeconds(switchCooldown); // 쿨다운 시간 대기
-        isSwitching = false; // 중복 방지 해제
+        yield return new WaitForSeconds(switchCooldown);
+        isSwitching = false;
     }
+
     public void SwitchCameraBound()
     {
         CinemachineConfiner2D _cinemachineConfinder = ActiveCamera.GetComponent<CinemachineConfiner2D>();
-
         _cinemachineConfinder.m_BoundingShape2D = NewBoundingShape;
-
         _cinemachineConfinder.InvalidateCache();
-
     }
 }

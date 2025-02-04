@@ -127,23 +127,36 @@ public class StageStartDialogueEvent : MonoBehaviour
                 focusPoint.GetComponent<Animator>().SetTrigger("Disappear");
 
                 break;
-            case 6: // 마지막 대사 이후
-                StartCoroutine(LerpCameraSize(cameraTargetSize, 1f));
-                // focus point 변경
-                Transform newFocusPoint = GameObject.Find("ChangingCurtain").transform; // 새로운 포커스 포인트
-                if (newFocusPoint != null)
-                {
-                    focusPoint = newFocusPoint;
-
-                    cameraFollow.SetDialogueFocus(focusPoint);
-
-                    StageChangeEffect stageEffect = focusPoint.GetComponent<StageChangeEffect>();
-                    StartCoroutine(stageEffect.StartSceneEffect());
-                }
+            case 6: // 마지막 대사 이후 4초간 대기
+                StartCoroutine(HandleFocusChangeWithDelay());
                 break;
         }
     }
 
+    private IEnumerator HandleFocusChangeWithDelay()
+    {
+        StartCoroutine(LerpCameraSize(cameraTargetSize, 1f));
+
+        // focus point 변경
+        Transform newFocusPoint = GameObject.Find("ChangingCurtain").transform;
+        if (newFocusPoint != null)
+        {
+            focusPoint = newFocusPoint;
+            cameraFollow.SetDialogueFocus(focusPoint);
+
+            StageChangeEffect stageEffect = focusPoint.GetComponent<StageChangeEffect>();
+            StartCoroutine(stageEffect.StartSceneEffect());
+        }
+
+        // 대화 일시 정지
+        DialogueManager.Instance.PauseDialogue();
+
+        // 4초 동안 대기
+        yield return new WaitForSeconds(4f);
+
+        // 대화 다시 진행
+        DialogueManager.Instance.ResumeDialogue();
+    }
     private IEnumerator HandlePostDialogue()
     {
 
