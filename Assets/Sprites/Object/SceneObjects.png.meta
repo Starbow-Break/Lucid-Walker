@@ -105,7 +105,7 @@ TextureImporter:
         width: 866
         height: 870
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -113,6 +113,468 @@ TextureImporter:
       bones: []
       spriteID: 4abe52473492d4633ad177befa5b5adb
       internalID: -2102084665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: window_frame
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1110
+        width: 419
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d94c88d26e9a5f4e89603e093d80e3e
+      internalID: 80233817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: night_1
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 1110
+        width: 419
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1044829029b89b742a4469461c1ce0a1
+      internalID: 828046780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: night_2
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 1110
+        width: 419
+        height: 608
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4a102766bfe9f45bdc35423f295ace
+      internalID: 460649060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: speaker_chain
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 1638
+        width: 30
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073d0385dee68b846b2e33ae2a94ac3d
+      internalID: 2031797345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: speaker_small
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 1565
+        width: 192
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e543e703cb201114c8d361defd1127f9
+      internalID: -1399896455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: speaker_large
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 1367
+        width: 218
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b40677f2c36ecdb47bd48cbac54bd3f5
+      internalID: 457354300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 869
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 408dcfb11512bb846be3d2525a49fd6b
+      internalID: 910185486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 870
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8ac62af800d4f40926046928bc9069
+      internalID: 1304178428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_2
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 870
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e27c48e2497ead4a8a6f036ce347622
+      internalID: 176397509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_group
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 19
+        width: 1124
+        height: 925
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3ff50002dff8524e974c78a9470e9ad
+      internalID: -1939561361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 634
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a30942c15d61c35429c8a16105448a1e
+      internalID: -776588283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_5
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 633
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6cac24d1a8432b47b43861c22ba5d4a
+      internalID: 1532426162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_6
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 633
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6080fd8845b42b04ab1d660a0b84f9d4
+      internalID: -345866632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_8
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 390
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 824de5feff266d842ac7d91e28eade81
+      internalID: 921232279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 394
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ae102747573804daf8fd4957244726
+      internalID: 1168340357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_10
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 394
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07dbcd6d52743fd4fb79ee76a097e9ae
+      internalID: -1777799716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_12
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 154
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 264063ffbbc79634f812e3f7d02cb4e5
+      internalID: -729883049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_frame
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 122
+        width: 197
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd4bfec8295968148bb3315674e2f4a3
+      internalID: -1992208842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_3
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 871
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbfcfbd46ba1d25468e882608955ca38
+      internalID: -110463108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_7
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 633
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e528f520301b494b90eec8858e9f363
+      internalID: 2021115787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_11
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 394
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cb03ab9af2d7664fa619bf90817ed78
+      internalID: 103579068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: poaster_13
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 157
+        width: 167
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b508dd0be927de4791acc591523c4dc
+      internalID: -1345098864
       vertices: []
       indices: 
       edges: []
@@ -129,6 +591,29 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       SceneObjects_0: -2102084665
+      SceneObjects_14: -2131747623
+      night_1: 828046780
+      night_2: 460649060
+      poaster_0: 910185486
+      poaster_1: 1304178428
+      poaster_10: -1777799716
+      poaster_11: 103579068
+      poaster_12: -729883049
+      poaster_13: -1345098864
+      poaster_2: 176397509
+      poaster_3: -110463108
+      poaster_4: -776588283
+      poaster_5: 1532426162
+      poaster_6: -345866632
+      poaster_7: 2021115787
+      poaster_8: 921232279
+      poaster_9: 1168340357
+      poaster_frame: -1992208842
+      poaster_group: -1939561361
+      speaker_chain: 2031797345
+      speaker_large: 457354300
+      speaker_small: -1399896455
+      window_frame: 80233817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
