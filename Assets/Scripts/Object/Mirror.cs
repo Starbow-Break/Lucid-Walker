@@ -44,7 +44,8 @@ public class Mirror : MonoBehaviour
     public void SetWarpTargetRenderer(Renderer targetRenderer, float dissolveAmount)
     {
         mpb.SetFloat("_DissolveAmount", dissolveAmount);
-        targetRenderer.material.SetFloat("_DissolveAmount", dissolveAmount);
+        targetRenderer.SetPropertyBlock(mpb);
+        // targetRenderer.material.SetFloat("_DissolveAmount", dissolveAmount);
     }
 
     // 거울상의 렌더러 속성 값 변경

@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 // 스킬 클래스
 public abstract class Skill : MonoBehaviour
@@ -13,10 +10,25 @@ public abstract class Skill : MonoBehaviour
         get { return _sp; }
     }
 
+    Coroutine coroutine;
+
     // 스킬 사용
     public void Cast() {
-        StartCoroutine(SkillFlow());
+        coroutine = StartCoroutine(SkillFlow());
     }
+
+    // 스킬 리셋 (public)
+    public void SkillReset() {
+        if(coroutine != null) {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+
+        DoReset();
+    }
+
+    // 스킬 리셋 (protected)
+    protected abstract void DoReset();
 
     // 스킬 동작 코루틴
     protected abstract IEnumerator SkillFlow();

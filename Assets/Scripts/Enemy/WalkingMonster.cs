@@ -32,7 +32,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     private float basePosX;             // 순찰 기준점
     private Transform detectedPlayer;   // 감지된 플레이어 참조
     private bool canAttack = true;      // 공격 가능 여부
-    private bool isDead = false;        // 몬스터가 죽었는지 확인
+    public bool isDead { get; private set; } = false;  // 몬스터가 죽었는지 확인
 
     // Debugging Variables
     [Header("Debugging States")]
@@ -242,7 +242,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     }
 
     // 사망
-    void Die()
+    public void Die()
     {
         isDead = true;
         anim.SetTrigger("Die");
