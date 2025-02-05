@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ShootMaskMonsterSkill : Skill
 {
@@ -9,8 +11,18 @@ public class ShootMaskMonsterSkill : Skill
     [SerializeField, Min(0.0f)] float attackDelay;
     [SerializeField, Min(0.0f)] float interval;
 
+    List<GameObject> spawnedAttackRange;
+    List<GameObject> spawnedBullet;
+
+    void Start() {
+        spawnedAttackRange = new List<GameObject>();
+        spawnedBullet = new List<GameObject>();
+    }
+
     protected override IEnumerator SkillFlow()
     {
+        spawnedBullet.Clear();
+
         for(int i = 0; i < 5; i++) {
             Vector2 start = new(Random.Range(-13.5f, 13.5f), 9.5f);
             Vector2 end = new(Random.Range(-13.5f, 13.5f), -5.5f);
@@ -19,6 +31,25 @@ public class ShootMaskMonsterSkill : Skill
 
             yield return new WaitForSeconds(interval);
         }
+    }
+
+    // 스킬 리셋 로직
+    protected override void DoReset() {
+        StopAllCoroutines();
+
+        foreach(GameObject bullet in spawnedBullet) {
+            if(bullet != null) {
+                Destroy(bullet);
+            }
+        }
+
+        foreach(GameObject attackRange in spawnedAttackRange) {
+            if(attackRange != null) {
+                Destroy(attackRange);
+            }
+        }
+
+        spawnedBullet.Clear();
     }
 
     // 공격
@@ -30,11 +61,12 @@ public class ShootMaskMonsterSkill : Skill
     // 공격 준비
     IEnumerator AttackReady(Vector3 start, Vector3 end, float time) {
         Vector2 spawnPoint = (start + end) / 2;
-        GameObject spawnedAttackRange = Instantiate(attackRangePrefab, spawnPoint, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2((end - start).y, (end - start).x) * 180.0f / Mathf.PI));
-        spawnedAttackRange.transform.localScale = new(40.0f, 3.0f, 1.0f);
+        GameObject attackRangeObj = Instantiate(attackRangePrefab, spawnPoint, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2((end - start).y, (end - start).x) * 180.0f / Mathf.PI));
+        spawnedAttackRange.Add(attackRangeObj);
+        attackRangeObj.transform.localScale = new(40.0f, 3.0f, 1.0f);
 
         float currentTime = 0.0f;
-        AttackRange attackRange = spawnedAttackRange.GetComponent<AttackRange>();
+        AttackRange attackRange = attackRangeObj.GetComponent<AttackRange>();
         while(attackRange != null && currentTime < time) {
             yield return null;
             currentTime += Time.deltaTime;
@@ -47,5 +79,6 @@ public class ShootMaskMonsterSkill : Skill
     // 총알 스폰
     void SpawnBullet(Vector3 start, Vector3 direction, float time) {
         GameObject bullet = Instantiate(bulletPrefab, start, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * 180.0f / Mathf.PI));
+        spawnedBullet.Add(bullet);
     }
 }

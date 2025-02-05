@@ -8,6 +8,7 @@ public class MaskBoss : MonoBehaviour
     int turn;
     float coolDownRemain;
     public bool battle { get; private set; }
+    bool isDead = false;
 
     MaskBossStats stats;
 
@@ -28,7 +29,8 @@ public class MaskBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(!battle) return;
+        // 싸우는 상태가 아니거나 사망 상태이면 아무 행동도 하지 않는다.
+        if(!battle || isDead) return;
 
         if(coolDownRemain >= 0.0f) {
             coolDownRemain -= Time.deltaTime;
@@ -55,6 +57,19 @@ public class MaskBoss : MonoBehaviour
 
     public void BattleStart() {
         battle = true;
+    }
+
+    public void Die() {
+        // 사망 상태 전환
+        isDead = true;
+
+        // 사망 애니메이션 재생
+        anim.SetTrigger("");
+
+        // 스킬 리셋
+        lightSkill.SkillReset();
+        houseSkill.SkillReset();
+        shootMaskMonsterSkill.SkillReset();
     }
 
     #region AI
