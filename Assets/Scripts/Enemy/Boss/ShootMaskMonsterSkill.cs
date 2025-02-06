@@ -24,7 +24,7 @@ public class ShootMaskMonsterSkill : Skill
         spawnedBullet.Clear();
 
         for(int i = 0; i < 5; i++) {
-            Vector2 start = new(Random.Range(-13.5f, 13.5f), 9.5f);
+            Vector2 start = new((1.0f - 2.0f * Random.Range(0, 2)) * 17.0f, Random.Range(0.0f, 6f));
             Vector2 end = new(Random.Range(-13.5f, 13.5f), -5.5f);
 
             StartCoroutine(Attack(start, end, attackDelay));
@@ -63,7 +63,7 @@ public class ShootMaskMonsterSkill : Skill
         Vector2 spawnPoint = (start + end) / 2;
         GameObject attackRangeObj = Instantiate(attackRangePrefab, spawnPoint, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2((end - start).y, (end - start).x) * 180.0f / Mathf.PI));
         spawnedAttackRange.Add(attackRangeObj);
-        attackRangeObj.transform.localScale = new(40.0f, 3.0f, 1.0f);
+        attackRangeObj.transform.localScale = new(60.0f, 1.2f, 1.0f);
 
         float currentTime = 0.0f;
         AttackRange attackRange = attackRangeObj.GetComponent<AttackRange>();

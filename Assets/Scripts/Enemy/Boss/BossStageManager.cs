@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Coffee.UIEffects;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossStageManager : MonoBehaviour
@@ -29,18 +28,14 @@ public class BossStageManager : MonoBehaviour
     MaterialPropertyBlock mpb;
     CameraController cameraController;
 
+    int phase;
+
     void Start() {
         mpb = new MaterialPropertyBlock();
         cameraController = theaterCamera.GetComponent<CameraController>();
+        phase = 1;
 
-        StartCoroutine(Test());
-    }
-
-    IEnumerator Test() {
-        yield return Phase1StartFlow();
-        yield return new WaitForSeconds(20.0f);
-        bossController[0].Die();
-        yield return PhaseChangeFrom1to2Flow();
+        StartCoroutine(Phase1StartFlow());
     }
 
     public void Phase1Start() {
@@ -97,19 +92,11 @@ public class BossStageManager : MonoBehaviour
         // 배경 전환 캔버스 활성화
         phase1to2TransitionCanvas.SetActive(true);
 
-        // 카메라 줌 인
-        cameraController.CameraZoom(Vector3.up * 6.0f, 5.2f, 2.5f);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.0f);
 
-        /*
         // 보스 애니메이션 재생
-        bossAnim.SetTrigger("");
-        yield return new WaitUntil(() => curtainAnim.GetCurrentAnimatorStateInfo(0).IsName("Open"));
-        */
-
-        // 카메라 줌 아웃
-        cameraController.CameraZoom(Vector3.up * 4.6f, 8.35f, 2.5f);
-        yield return new WaitForSeconds(2.5f);
+        Coroutine changeNextPhaseCo = StartCoroutine(ChangeNextPhase());
+        yield return new WaitForSeconds(1.5f);
 
         // 배경 전환
         const float transitionTime = 4.0f;
@@ -126,9 +113,21 @@ public class BossStageManager : MonoBehaviour
             obj.SetActive(true);
         }
 
+        yield return changeNextPhaseCo;
+
         // 보스전 시작 (페이즈 2)
         bossController[1].BattleStart();
         bossAnim[1].SetTrigger("battle_start");
         playerController.enabled = true;
+    }
+
+    IEnumerator ChangeNextPhase() {
+        bossAnim[phase - 1].SetTrigger("phase_finish");
+        yield return null;
+        yield return new WaitWhile(() => bossAnim[phase - 1].GetCurrentAnimatorStateInfo(0).IsName("Next_Phase"));
+
+        ++phase;
+        bossAnim[phase - 2].gameObject.SetActive(false);
+        bossAnim[phase - 1].gameObject.SetActive(true);
     }
 }

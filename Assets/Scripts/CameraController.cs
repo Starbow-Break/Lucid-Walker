@@ -35,9 +35,6 @@ public class CameraController : MonoBehaviour
         float startOrthoSize = virtualCamera.m_Lens.OrthographicSize;
         Vector3 startOffset = framingTransposer.m_TrackedObjectOffset;
 
-        float orthoVel = 2.0f * (orthoSize - startOrthoSize);
-        Vector3 offsetVel = 2.0f * (offset - startOffset);
-
         while(
             Mathf.Abs(orthoSize - virtualCamera.m_Lens.OrthographicSize) > epsilon
             || (offset - framingTransposer.m_TrackedObjectOffset).sqrMagnitude > Mathf.Pow(epsilon, 2.0f)

@@ -81,14 +81,7 @@ public class LightSkill : Skill
             lampGroup.TurnOnYellowLight(index);
         }
 
-        float currentTime = 0.0f;
-        while(currentTime < time) {
-            yield return null;
-            currentTime += Time.deltaTime;
-            foreach(int index in lampIdxList) {
-                lampGroup.GetLamp(index).SetAttackRangeProgress(currentTime / time);
-            }
-        }
+        yield return new WaitForSeconds(time);
     }
 
     // 공격

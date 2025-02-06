@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MaskBoss : MonoBehaviour
 {
+    [SerializeField] BossStageManager bossStageManager;
     [SerializeField] Animator anim;
     [SerializeField] float coolDown = 10.0f;
 
@@ -63,13 +64,13 @@ public class MaskBoss : MonoBehaviour
         // 사망 상태 전환
         isDead = true;
 
-        // 사망 애니메이션 재생
-        anim.SetTrigger("");
-
         // 스킬 리셋
         lightSkill.SkillReset();
         houseSkill.SkillReset();
         shootMaskMonsterSkill.SkillReset();
+
+        //페이즈 전환 처리
+        bossStageManager.PhaseChangeFrom1to2();
     }
 
     #region AI

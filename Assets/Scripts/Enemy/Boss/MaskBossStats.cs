@@ -39,7 +39,7 @@ public class MaskBossStats : MonoBehaviour, IDamageable
         healthBar.SetValue(hp, maxHp);
 
         if(hp <= 0) {
-            // 사망 또는 다음 페이즈로 이동
+            owner.Die();
         }
     }
 
