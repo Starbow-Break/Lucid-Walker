@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class CharacterSwitchManager : MonoBehaviour
 {
-    public PlayerController playerController; // PlayerController 참조
-    public FemaleCharacterController femaleCharacterController; // FemaleCharacterController 참조
-    public CameraFollow cameraFollow; // CameraFollow 참조
+    public PlayerController playerController; // 플레이어 컨트롤러 참조
+    public FemaleCharacterController femaleCharacterController; // 여성 캐릭터 컨트롤러 참조
+    public CameraFollow cameraFollow; // 카메라 추적
 
     public KeyCode switchKey = KeyCode.Tab; // 캐릭터 전환 키
 
@@ -18,44 +18,76 @@ public class CharacterSwitchManager : MonoBehaviour
 
     private void SwitchCharacter()
     {
-        // 활성화 상태 전환
         bool playerActive = playerController.isActive;
 
-        playerController.isActive = !playerActive;
-        femaleCharacterController.isActive = playerActive;
-
-        // 카메라 타겟 변경
-        if (playerController.isActive)
+        // 현재 활성화된 캐릭터를 비활성화
+        if (playerActive)
         {
-            cameraFollow.SetTarget(playerController.transform); // 플레이어를 카메라 타겟으로 설정
+            DisableCharacter(playerController);
+            EnableCharacter(femaleCharacterController);
+            cameraFollow.SetTarget(femaleCharacterController.transform);
         }
-        else if (femaleCharacterController.isActive)
+        else
         {
-            cameraFollow.SetTarget(femaleCharacterController.transform); // 여성 캐릭터를 카메라 타겟으로 설정
+            DisableCharacter(femaleCharacterController);
+            EnableCharacter(playerController);
+            cameraFollow.SetTarget(playerController.transform);
         }
     }
 
-    // 현재 활성화된 캐릭터의 Transform 반환
+    private void EnableCharacter(MonoBehaviour character)
+    {
+        if (character is PlayerController pc)
+        {
+            pc.SetToIdleState();
+            pc.isActive = true;
+            pc.enabled = true;
+            Rigidbody2D rb = pc.GetComponent<Rigidbody2D>();
+            rb.isKinematic = false; // 물리 효과 활성화
+        }
+        else if (character is FemaleCharacterController fc)
+        {
+            fc.SetToIdleState();
+            fc.isActive = true;
+            fc.enabled = true;
+            Rigidbody2D rb = fc.GetComponent<Rigidbody2D>();
+            rb.isKinematic = false; // 물리 효과 활성화
+
+        }
+    }
+
+    private void DisableCharacter(MonoBehaviour character)
+    {
+        if (character is PlayerController pc)
+        {
+            pc.isActive = false;
+            pc.enabled = false;
+            Rigidbody2D rb = pc.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero; // 속도 초기화
+            rb.isKinematic = true; // 물리 효과 비활성화
+        }
+        else if (character is FemaleCharacterController fc)
+        {
+            fc.isActive = false;
+            fc.enabled = false;
+            Rigidbody2D rb = fc.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero; // 속도 초기화
+            rb.isKinematic = true; // 물리 효과 비활성화
+        }
+    }
+
     public Transform GetActiveCharacter()
     {
-        if (playerController.isActive)
-            return playerController.transform;
-        else
-            return femaleCharacterController.transform;
+        return playerController.isActive ? playerController.transform : femaleCharacterController.transform;
     }
 
-    // 현재 비활성화된 캐릭터의 Transform 반환
     public Transform GetInactiveCharacter()
     {
-        if (!playerController.isActive)
-            return playerController.transform;
-        else
-            return femaleCharacterController.transform;
+        return !playerController.isActive ? playerController.transform : femaleCharacterController.transform;
     }
 
-    // 비활성화된 캐릭터의 인덱스 반환
     public int GetInactiveCharacterIndex()
     {
-        return playerController.isActive ? 1 : 0; // 1: 여성 캐릭터, 0: 플레이어
+        return playerController.isActive ? 1 : 0;
     }
 }

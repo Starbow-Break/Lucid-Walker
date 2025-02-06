@@ -252,7 +252,7 @@ public class FemaleCharacterController : MonoBehaviour
     }
 
 
-    private void SetToIdleState()
+    public void SetToIdleState()
     {
         rb.velocity = Vector2.zero; // 이동 중지
         anim.SetBool("walk", false);
