@@ -5020,10 +5020,11 @@ MonoBehaviour:
     m_Bits: 6208
   WaterLayer:
     serializedVersion: 2
-    m_Bits: 0
-  detectionRange: 5
+    m_Bits: 16
+  detectionRange: 2
   moveSpeed: 2
-  patrolDistance: 5
+  patrolDistanceMin: 3
+  patrolDistanceMax: 7
   platformDetectionDistance: 0.5
   attackCenter: {x: 0.5, y: 0}
   attackSize: {x: 0.3, y: 0.6}
@@ -5091,7 +5092,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5714874}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -5102,7 +5103,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88000005, y: 1.1405293}
+  m_Size: {x: 0.88000005, y: 1.1912804}
   m_EdgeRadius: 0
 --- !u!1 &6106674412392649739
 GameObject:

@@ -12,6 +12,11 @@ public class SlidingTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerController player = other.GetComponent<PlayerController>();
+        if (player == null)
+        {
+            return;
+        }
+        player.SetSlidingState(true);
         if (player != null)
         {
             // 슬라이드 시작: Z 회전을 25도로 설정
@@ -31,6 +36,11 @@ public class SlidingTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         PlayerController player = other.GetComponent<PlayerController>();
+        if (player == null)
+        {
+            return;
+        }
+        player.SetSlidingState(false);
         if (player != null)
         {
             // 슬라이드 종료: Z 회전 복구

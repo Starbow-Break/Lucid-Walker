@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool IsJumping { get; private set; }
     public bool IsWallJumping { get; private set; }
     public bool IsSliding { get; private set; }
+    public bool sliding = false;
 
     //Jump
     private bool _isJumpCut;
@@ -238,9 +239,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // anim.SetBool("isSwim", false); // Exit swim animation state
-            // float rotationSpeed = 5f; // Adjust rotation speed here
-            // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
+            if (!sliding)
+            {
+                anim.SetBool("isSwim", false); // Exit swim animation state
+                float rotationSpeed = 5f; // Adjust rotation speed here
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
+            }
         }
         #endregion
 
@@ -670,6 +674,11 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool("zipline", value);
     }
+    public void SetSlidingState(bool value)
+    {
+        sliding = value;
+    }
+
 
     #region CHECK METHODS
     public void CheckDirectionToFace(bool isMovingRight)

@@ -65,12 +65,15 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         if (!isInWater)
         {
             // 플랫폼 감지에 따라 방향 전환
-            if(!isGroundFront && !isGroundBack) {
+            if (!isGroundFront && !isGroundBack)
+            {
                 modifyPatrolStatsFlag = true;
                 rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
             }
-            else {
-                if(!isGroundFront || !isGroundBack || isPlatformInFront) {
+            else
+            {
+                if (!isGroundFront || !isGroundBack || isPlatformInFront)
+                {
                     Flip();
                 }
                 rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
@@ -78,14 +81,19 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
         else
         {
-            if (isPlatformInFront)
+            if (detectedPlayer == null)
             {
-                Flip();
+                Patrol();
+            }
+            else
+            {
+                ChasePlayer();
             }
         }
 
         // 플레이어가 감지되지 않으면 순찰
-        if (isGroundFront || isGroundBack) {
+        if (isGroundFront || isGroundBack)
+        {
             if (detectedPlayer == null)
             {
                 Patrol();
@@ -115,7 +123,8 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     protected virtual void Patrol()
     {
         // basePosX의 갱신이 필요하다면 갱신
-        if(modifyPatrolStatsFlag) {
+        if (modifyPatrolStatsFlag)
+        {
             ModifyPatrolStats();
             modifyPatrolStatsFlag = false;
         }
@@ -138,7 +147,8 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         }
     }
 
-    void ModifyPatrolStats() {
+    void ModifyPatrolStats()
+    {
         patrolDistance = Random.Range(patrolDistanceMin, patrolDistanceMax);
         basePosX = transform.position.x;
         Debug.Log($"{name}'s patrol stat changed! => patrolDistance: {patrolDistance}, basePosX: {basePosX}");
@@ -147,7 +157,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     // 플레이어 추격
     void ChasePlayer()
     {
-        if(!modifyPatrolStatsFlag) modifyPatrolStatsFlag = true;
+        if (!modifyPatrolStatsFlag) modifyPatrolStatsFlag = true;
 
         bool ground_front = Physics2D.Raycast(groundChkFront.position, Vector2.down, chkDistance, platformLayer);
 
