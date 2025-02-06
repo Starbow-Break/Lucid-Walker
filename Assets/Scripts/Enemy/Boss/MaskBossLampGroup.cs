@@ -10,6 +10,8 @@ public class MaskBossLampGroup : MonoBehaviour
     Vector3 initPosition;
     Vector3 downPosition;
 
+    Coroutine coroutine;
+
     void Start() {
         initPosition = transform.position;
         downPosition = initPosition + moveDistance * Vector3.down;
@@ -17,12 +19,23 @@ public class MaskBossLampGroup : MonoBehaviour
 
     public int LampCount => lamps.Count;
 
-    public IEnumerator MoveDown() {
-        yield return Move(initPosition, downPosition, 1.5f);
+    public void Stop() {
+        if(coroutine != null) {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+
+        // 조명 전부 끄고 초기 위치로 돌리기
+        TurnOffAllLamps();
+        transform.position = initPosition;
     }
 
-    public IEnumerator MoveUp() {
-        yield return Move(downPosition, initPosition, 1.5f);
+    public void MoveDown(float time) {
+        coroutine = StartCoroutine(Move(initPosition, downPosition, time));
+    }
+
+    public void MoveUp(float time) {
+        coroutine = StartCoroutine(Move(downPosition, initPosition, time));
     }
 
     // 모든 조명 끄기
@@ -51,5 +64,8 @@ public class MaskBossLampGroup : MonoBehaviour
             currentTime += Time.deltaTime;
             transform.position = Vector3.Lerp(start, finish, Mathf.Clamp01(currentTime / time));
         }
+
+        coroutine = null;
+        yield return null;
     }
 }

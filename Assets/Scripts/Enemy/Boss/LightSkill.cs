@@ -30,7 +30,8 @@ public class LightSkill : Skill
         yield return new WaitUntil(() => lampGroup.gameObject.activeSelf);
 
         // 조명 내리기
-        yield return lampGroup.MoveDown();
+        lampGroup.MoveDown(1.5f);
+        yield return new WaitForSeconds(1.5f);
 
         for(int i = 0; i < count; i++) {
             // 공격 전 대기
@@ -54,9 +55,15 @@ public class LightSkill : Skill
         }
 
         // 조명 올리기
-        yield return lampGroup.MoveUp();
+        lampGroup.MoveUp(1.5f);
+        yield return new WaitForSeconds(1.5f);
 
         SetInActiveLampGroup();
+    }
+
+    // 스킬 리셋 로직
+    protected override void DoReset() {
+        lampGroup.Stop();
     }
 
     void SetActiveLampGroup() {

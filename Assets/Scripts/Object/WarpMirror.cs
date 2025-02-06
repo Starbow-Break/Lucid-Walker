@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class WarpMirror : Warp
 {
-    RenderTexture rt;
-    MaterialPropertyBlock mpb;
     Mirror mirror; // 거울
     float animTime = 2.0f;
 
