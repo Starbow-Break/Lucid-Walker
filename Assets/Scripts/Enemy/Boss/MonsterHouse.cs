@@ -13,12 +13,11 @@ public class MonsterHouse : MonoBehaviour
     [SerializeField] Vector2 spawnRangeCenter; // 스폰 범위 중심
     [SerializeField] Vector2 spawnRangeSize; // 스폰 범위 크기
 
+    HouseSkill spawner;
     Rigidbody2D rb;
     Animator anim;
     bool isReady;
     bool isDoorOpen;
-
-    List<GameObject> spawnedMonsters;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +26,6 @@ public class MonsterHouse : MonoBehaviour
         anim = GetComponent<Animator>();
         isReady = false;
         isDoorOpen = false;
-        spawnedMonsters = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -58,19 +56,6 @@ public class MonsterHouse : MonoBehaviour
 
     // 문이 완전히 열리면 몬스터 소환
     public void SpawnMonsters() {
-        // 스폰된 몬스터 목록 정리
-        List<GameObject> temp = new();
-        foreach(GameObject monster in spawnedMonsters) {
-            if(monster != null) {
-                WalkingMonster walkingMonster = monster.GetComponent<WalkingMonster>();
-                if(!walkingMonster.isDead) {
-                    temp.Add(monster);
-                }
-            }
-        }
-
-        spawnedMonsters = temp;
-
         // 몬스터 소환
         for(int i = 0; i < spawnMonstersNum; i++) {
             // 몬스터 소환
@@ -79,7 +64,7 @@ public class MonsterHouse : MonoBehaviour
                 = (spawnRangeCenter.x + Random.Range(-spawnRangeSize.x / 2, spawnRangeSize.x / 2)) * Vector3.right
                     + (spawnRangeCenter.y + Random.Range(-spawnRangeSize.y / 2, spawnRangeSize.y / 2)) * Vector3.up;
             GameObject monster = Instantiate(monsters[mIdx], spawnPosition, Quaternion.identity);
-            spawnedMonsters.Add(monster);
+            spawner.AddSpawnedMonster(monster);
             
             // 랜덤 방향으로 튀어오르기
             Rigidbody2D rb = monster.GetComponent<Rigidbody2D>();
@@ -96,18 +81,8 @@ public class MonsterHouse : MonoBehaviour
         }
     }
 
-    // 스폰된 모든 몬스터 사망
-    public void DeadAllSpawnedMonster() {
-        foreach(GameObject monster in spawnedMonsters) {
-            if(!monster.IsDestroyed()) {
-                WalkingMonster walkingMonster = monster.GetComponent<WalkingMonster>();
-                if(!walkingMonster.isDead) {
-                    walkingMonster.Die();
-                }
-            }
-        }
-
-        spawnedMonsters.Clear();
+    public void SetSpawner(HouseSkill houseSkill) {
+        spawner = houseSkill;
     }
 
     private void OnDrawGizmos() {

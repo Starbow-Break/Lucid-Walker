@@ -25,7 +25,7 @@ public class LightSkill : Skill
             throw new System.Exception("patternDatas에 최소 한개 이상의 원소가 있어야 합니다!");
         }
 
-        casterAnimator.SetTrigger("skill_light");
+        casterAnimator.SetTrigger("light");
 
         yield return new WaitUntil(() => lampGroup.gameObject.activeSelf);
 

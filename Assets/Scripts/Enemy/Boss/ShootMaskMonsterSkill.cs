@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class ShootMaskMonsterSkill : Skill
 {
+    [SerializeField] Animator casterAnimator;
+    [SerializeField, Min(1)] int spawnCount = 5;
     [SerializeField] GameObject attackRangePrefab;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField, Min(0.0f)] float attackDelay;
@@ -14,16 +16,25 @@ public class ShootMaskMonsterSkill : Skill
     List<GameObject> spawnedAttackRange;
     List<GameObject> spawnedBullet;
 
+    bool spawningBullet;
+
     void Start() {
         spawnedAttackRange = new List<GameObject>();
         spawnedBullet = new List<GameObject>();
+        spawningBullet = false;
     }
 
     protected override IEnumerator SkillFlow()
     {
         spawnedBullet.Clear();
+        spawningBullet = false;
 
-        for(int i = 0; i < 5; i++) {
+        casterAnimator.SetTrigger("whistle");
+
+        yield return new WaitUntil(() => spawningBullet);
+        yield return new WaitForSeconds(1.5f);
+
+        for(int i = 0; i < spawnCount; i++) {
             Vector2 start = new((1.0f - 2.0f * Random.Range(0, 2)) * 17.0f, Random.Range(0.0f, 6f));
             Vector2 end = new(Random.Range(-13.5f, 13.5f), -5.5f);
 
@@ -50,6 +61,11 @@ public class ShootMaskMonsterSkill : Skill
         }
 
         spawnedBullet.Clear();
+    }
+
+    // 스폰 시작을 알림
+    public void StartSpawn() {
+        spawningBullet = true;
     }
 
     // 공격

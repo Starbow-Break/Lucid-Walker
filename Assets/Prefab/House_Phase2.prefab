@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: -3050371054271086552}
   - component: {fileID: 3760989700067907197}
   m_Layer: 0
-  m_Name: House_Phase1
+  m_Name: House_Phase2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: -1041315827
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1509902674, guid: 45be3a32c8f164aed866d846e3d8c500, type: 3}
+  m_Sprite: {fileID: 1615750988, guid: 45be3a32c8f164aed866d846e3d8c500, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -321,7 +321,9 @@ MonoBehaviour:
   - {fileID: 4376338334799963674, guid: cd2d8946dc8b39c4ca63467d33488d6d, type: 3}
   - {fileID: 4376338334799963674, guid: 7c53350c5882bd2499ce679731a929a5, type: 3}
   - {fileID: 4376338334799963674, guid: bdf8fc0905f0ef04c8e0e707a7cbd8a3, type: 3}
-  spawnMonstersNum: 3
+  - {fileID: 4376338334799963674, guid: 383426134536ef14dace63e678dc8915, type: 3}
+  - {fileID: 4376338334799963674, guid: b44f3526af5aed843a96676a3036a790, type: 3}
+  spawnMonstersNum: 5
   gravity: 200
   landingYPos: -4.57
   spawnRangeCenter: {x: 0, y: 0}
