@@ -75,7 +75,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float movableChkDistance; // 체크 거리
     bool needUpdateMovableAnim = false; // 애니메이션 업데이트 필요 여부
     float anim_movable_mess_weight = 0.0f; // movable_mess 값
+
+
     #endregion
+
+    public bool isOnRope = false;
 
     private void Awake()
     {
@@ -499,6 +503,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJumpInput()
     {
+        if (isOnRope) return;
         LastPressedJumpTime = Data.jumpInputBufferTime;
     }
 
@@ -674,6 +679,8 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool("zipline", value);
     }
+
+
     public void SetSlidingState(bool value)
     {
         sliding = value;

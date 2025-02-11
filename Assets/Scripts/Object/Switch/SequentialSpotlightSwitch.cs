@@ -16,9 +16,11 @@ public class SequentialSpotlightSwitch : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player")) {
+        if (other.gameObject.CompareTag("Player"))
+        {
             sequentialSpotlightGroup.Switch();
-            if(isBroken && !sequentialSpotlightGroup.isOn) {
+            if (isBroken && !sequentialSpotlightGroup.isOn)
+            {
                 anim.SetTrigger("broken");
             }
             anim.SetBool("isOn", sequentialSpotlightGroup.isOn);

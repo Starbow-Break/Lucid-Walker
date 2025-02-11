@@ -10,6 +10,20 @@ public class FemaleCharacterController : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D capsuleCollider;
+
+    private SpriteRenderer sr;
+
+    [Header("2.5D Switch Layers")]
+
+    [SerializeField] private string frontLayerName = "PlayerFront";
+    [SerializeField] private string backLayerName = "PlayerBack";
+    [SerializeField] private int frontSortingOrder = 10;
+    [SerializeField] private int backSortingOrder = 5;
+
+    // [레이캐스트 방식] 뒤 플랫폼 확인용
+    [SerializeField] private float backPlatformCheckDistance = 3f;  // 뒤 플랫폼 감지 거리
+    [SerializeField] private LayerMask backPlatformLayerMask;
+
     public LayerMask p_Layer;
     public LayerMask w_Layer;
     public LayerMask water_Layer;
@@ -46,13 +60,23 @@ public class FemaleCharacterController : MonoBehaviour
     //Size of groundCheck depends on the size of your character generally you want them slightly small than width (for ground) and height (for the wall check)
     [SerializeField] private Vector2 _groundCheckSize = new Vector2(0.49f, 0.03f);
     #endregion
+    private bool recentlySwitchedToBack = false;
+    private float backLayerCooldown = 0.3f;
+    private float backLayerTimer = 0f;
 
     public bool isDialogueActive = false; // 대화 중 상태 플래그 추가
+
+    [Header("Jump Cooldown")]
+    public float jumpCooldown = 0.5f; // 점프 후 쿨타임 (초)
+    private float jumpCooldownTimer = 0f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        sr = GetComponent<SpriteRenderer>();
+
     }
 
     private void Start()
@@ -71,6 +95,11 @@ public class FemaleCharacterController : MonoBehaviour
             SetToIdleState();
             return; // 입력 및 동작 처리 중지
         }
+
+        // 쿨타임 타이머 업데이트
+        if (jumpCooldownTimer > 0)
+            jumpCooldownTimer -= Time.deltaTime;
+
         #region TIMERS
         LastOnGroundTime -= Time.deltaTime;
         LastOnWallTime -= Time.deltaTime;
@@ -136,6 +165,30 @@ public class FemaleCharacterController : MonoBehaviour
         }
         #endregion
 
+        #region 점프 도중에도 뒤 플랫폼 감지 (플랫폼 백 체크)
+        if (!isGround && IsJumping) // 공중에 있을 때도 뒤 플랫폼 확인
+        {
+            Vector2 checkOrigin = transform.position;
+            float checkDistance = backPlatformCheckDistance;
+
+            // 캐릭터가 바라보는 방향과 반대 방향 + 아래쪽으로 Raycast
+            Vector2 checkDir = (IsFacingRight ? Vector2.left : Vector2.right) + Vector2.down;
+
+            // Raycast 실행 (뒤 플랫폼이 있는지 확인)
+            RaycastHit2D hit = Physics2D.Raycast(checkOrigin, checkDir, checkDistance, backPlatformLayerMask);
+
+            if (hit.collider != null)
+            {
+                // 감지되면 PlayerBack으로 변경
+                gameObject.layer = LayerMask.NameToLayer(backLayerName);
+                sr.sortingOrder = backSortingOrder;
+                Debug.Log("점프 중 뒤 플랫폼 감지됨! PlayerBack으로 변경");
+
+                recentlySwitchedToBack = true;
+                backLayerTimer = backLayerCooldown;
+            }
+        }
+        #endregion
 
         #region 애니메이션 상태 업데이트
         if (isGround) // 땅에 있을 때만 걷기, 달리기, 멈춤 상태 업데이트
@@ -157,6 +210,51 @@ public class FemaleCharacterController : MonoBehaviour
         #endregion
 
 
+        #region [레이캐스트 방식 추가]
+        // 땅에 서 있으면서 "위 방향 + 스페이스" = 뒤 플랫폼 점프 시도
+        if (isGround && Input.GetKeyDown(KeyCode.Space))
+        {
+            // 1) 뒤쪽(캐릭터가 바라보는 반대 방향)으로 Raycast
+            Vector2 checkOrigin = transform.position;
+            float checkDistance = backPlatformCheckDistance;
+
+            // 기존: "캐릭터가 보고 있는 방향의 반대쪽"
+            Vector2 checkDir = IsFacingRight ? Vector2.left : Vector2.right;
+
+            // 2) 경사가 있는 경우 대각선 방향도 체크
+            Vector2 diagonalCheckDir = (IsFacingRight ? Vector2.left : Vector2.right) + Vector2.down;
+
+            // 3) 실제 Raycast 검사 (수평 + 대각선)
+            RaycastHit2D hitHorizontal = Physics2D.Raycast(checkOrigin, checkDir, checkDistance, backPlatformLayerMask);
+            RaycastHit2D hitDiagonal = Physics2D.Raycast(checkOrigin, diagonalCheckDir, checkDistance, backPlatformLayerMask);
+
+            if (hitHorizontal.collider != null || hitDiagonal.collider != null)
+            {
+                // 뒤 플랫폼 감지됨 → 레이어 전환 + 점프
+                gameObject.layer = LayerMask.NameToLayer(backLayerName);
+                sr.sortingOrder = backSortingOrder;
+                Debug.Log("뒤 플랫폼 감지됨! 점프");
+
+                recentlySwitchedToBack = true;
+                backLayerTimer = backLayerCooldown;
+
+                // 점프
+                OnJumpInput();
+            }
+            else
+            {
+                // 2') 뒤 플랫폼이 근처에 없다면 → 그냥 일반 점프
+                OnJumpInput();
+            }
+        }
+
+        // // 그 외 점프 (예: 아무 입력 없이 Space만 눌렀을 때)
+        // else if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     OnJumpInput();
+        // }
+        #endregion
+
         #region JUMP CHECKS
         if (IsJumping && rb.velocity.y < 0)
         {
@@ -167,7 +265,6 @@ public class FemaleCharacterController : MonoBehaviour
 
         }
 
-
         if (LastOnGroundTime > 0 && !IsJumping)
         {
             _isJumpCut = false;
@@ -175,7 +272,6 @@ public class FemaleCharacterController : MonoBehaviour
             _isJumpFalling = false;
 
         }
-
 
         //Jump
         if (CanJump() && LastPressedJumpTime > 0)
@@ -224,10 +320,47 @@ public class FemaleCharacterController : MonoBehaviour
         }
         #endregion
 
+        if (recentlySwitchedToBack)
+        {
+            backLayerTimer -= Time.deltaTime;
+            if (backLayerTimer <= 0f)
+            {
+                recentlySwitchedToBack = false;
+            }
+        }
+
+        TrySwitchBackToFrontIfPlatformFound();
 
 
     }
 
+    private void TrySwitchBackToFrontIfPlatformFound()
+    {
+        // 1) 아직 쿨타임 중이면 아예 검사 안 함
+        if (recentlySwitchedToBack)
+            return;
+
+        // 1) 현재 레이어가 PlayerBack인지 확인
+        if (gameObject.layer == LayerMask.NameToLayer(backLayerName))
+        {
+            // 2) 아래 방향에 앞 플랫폼이 있는지 OverlapBox로 확인
+            //    (p_Layer 대신 "PlatformFront" 마스크를 직접 구해서)
+            Collider2D frontHit = Physics2D.OverlapBox(
+                _groundCheckPoint.position,
+                _groundCheckSize,
+                0f,
+                LayerMask.GetMask("PlatformFront")
+            );
+
+            if (frontHit != null)
+            {
+                // 3) 발견되면 → PlayerFront로 복귀
+                gameObject.layer = LayerMask.NameToLayer(frontLayerName);
+                sr.sortingOrder = frontSortingOrder;
+                Debug.Log("앞 플랫폼 발견 → PlayerFront로 전환");
+            }
+        }
+    }
     private void FixedUpdate()
     {
         if (!isActive) return; // 비활성화 상태일 때 물리 처리 금지
@@ -370,6 +503,8 @@ public class FemaleCharacterController : MonoBehaviour
         LastPressedJumpTime = 0;
         LastOnGroundTime = 0;
 
+        jumpCooldownTimer = jumpCooldown;
+
         #region Perform Jump
         //We increase the force applied if we are falling
         //This means we'll always feel like we jump the same amount 
@@ -390,7 +525,7 @@ public class FemaleCharacterController : MonoBehaviour
 
     private bool CanJump()
     {
-        return LastOnGroundTime > 0 && !IsJumping;
+        return LastOnGroundTime > 0 && !IsJumping && jumpCooldownTimer <= 0;
     }
 
     private bool CanJumpCut()
