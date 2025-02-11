@@ -69,10 +69,15 @@ public class MonsterHouse : MonoBehaviour
             // 랜덤 방향으로 튀어오르기
             Rigidbody2D rb = monster.GetComponent<Rigidbody2D>();
             if(rb != null) {
-                float xForce = Random.Range(-5.0f, 5.0f);
-                float yForce = Random.Range(3.0f, 5.0f);
+                float xForce = Random.Range(
+                    Mathf.Max(-6.0f, 12.0f / spawnMonstersNum * i - 7.0f), 
+                    Mathf.Min(6.0f, 12.0f / spawnMonstersNum * (i + 1) - 5.0f)
+                );
+                float yForce = Random.Range(2.0f, 4.0f);
                 rb.AddForce(xForce * Vector2.right + yForce * Vector2.up, ForceMode2D.Impulse);
                 
+                Debug.Log("xForce : " + xForce + ", yForce : " + yForce);
+
                 WalkingMonster walkingMonster = monster.GetComponent<WalkingMonster>();
                 if(walkingMonster != null && xForce >= 0 != walkingMonster.isFacingRight) {
                     walkingMonster.Flip();
