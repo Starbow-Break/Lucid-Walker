@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ShootMaskMonsterSkill : Skill
 {
@@ -35,8 +33,22 @@ public class ShootMaskMonsterSkill : Skill
         yield return new WaitForSeconds(1.5f);
 
         for(int i = 0; i < spawnCount; i++) {
-            Vector2 start = new((1.0f - 2.0f * Random.Range(0, 2)) * 17.0f, Random.Range(0.0f, 6f));
             Vector2 end = new(Random.Range(-13.5f, 13.5f), -5.5f);
+            Vector2 start = Vector2.zero;
+
+            Vector2[] startPositions = new Vector2[2];
+            startPositions[0] = new(-17.0f, Random.Range(2.0f, 6.0f));
+            startPositions[1] = new(17.0f, Random.Range(2.0f, 6.0f));
+
+            if(end.x < -3.0f) {
+                start = startPositions[1];
+            }
+            else if(end.x > 3.0f) {
+                start = startPositions[0];
+            }
+            else {
+                start = startPositions[Random.Range(0, 2)];
+            }
 
             StartCoroutine(Attack(start, end, attackDelay));
 
@@ -71,7 +83,7 @@ public class ShootMaskMonsterSkill : Skill
     // 공격
     IEnumerator Attack(Vector3 start, Vector3 end, float attackDelay) {
         yield return AttackReady(start, end, attackDelay);
-        SpawnBullet(start, end - start, 3.0f);
+        SpawnBullet(start, end - start);
     }
 
     // 공격 준비
@@ -93,7 +105,7 @@ public class ShootMaskMonsterSkill : Skill
     }
 
     // 총알 스폰
-    void SpawnBullet(Vector3 start, Vector3 direction, float time) {
+    void SpawnBullet(Vector3 start, Vector3 direction) {
         GameObject bullet = Instantiate(bulletPrefab, start, Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(direction.y, direction.x) * 180.0f / Mathf.PI));
         spawnedBullet.Add(bullet);
     }
