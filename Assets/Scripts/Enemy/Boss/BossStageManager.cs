@@ -148,13 +148,14 @@ public class BossStageManager : MonoBehaviour
         yield return new WaitWhile(() => bossAnim[1].GetCurrentAnimatorStateInfo(0).IsName("Next_Phase"));
 
         phase2To3TransitionCanvas.SetActive(true);
-        yield return null;
-        bossController[1].gameObject.SetActive(false);
         yield return new WaitForSeconds(2.0f);
 
-        // TODO : 플레이어를 페이즈 3 맵으로 순간이동
+        // 플레이어를 페이즈 3 맵으로 순간이동
         playerController.transform.position = phase3SpawnPoints.position;
         cameraSwitcher.CameraSwitch("Phase3 Ready Cam");
+
+        // 이전 페이즈 보스 비활성화 
+        bossController[1].gameObject.SetActive(false);
 
         // 배경 전환
         const float transitionTime = 4.0f;

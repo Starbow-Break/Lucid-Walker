@@ -244,27 +244,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Whistle_14
-      rect:
-        serializedVersion: 2
-        x: 2202
-        y: 549
-        width: 6
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e544bf311f5f48adbea8b68c6a2c25a
-      internalID: 682290175
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: whistle_hand_0
       rect:
         serializedVersion: 2
@@ -391,15 +370,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Whistle_21
+      name: spike_phase1
       rect:
         serializedVersion: 2
-        x: 2521
-        y: 2
-        width: 307
-        height: 275
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2525
+        y: 209
+        width: 300
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -418,7 +397,7 @@ TextureImporter:
         x: 2853
         y: 2
         width: 307
-        height: 275
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -453,6 +432,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spike_phase2
+      rect:
+        serializedVersion: 2
+        x: 2857
+        y: 209
+        width: 300
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e74f78296674a1981ec8a870168a89
+      internalID: 1703184909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -470,12 +470,13 @@ TextureImporter:
       Boss_Whistle_14: 682290175
       Boss_Whistle_19: 1815843816
       Boss_Whistle_20: 888007644
-      Boss_Whistle_21: 458028554
       Boss_Whistle_22: -507452193
       Boss_Whistle_3: -1735416066
       Boss_Whistle_6: 247856946
       Boss_Whistle_7: -1321546868
       Boss_Whistle_8: -1036606018
+      spike_phase1: 458028554
+      spike_phase2: 1703184909
       whistle_body_0: -491955942
       whistle_body_1: -759411809
       whistle_body_2: 1452190011

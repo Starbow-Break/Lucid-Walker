@@ -11,6 +11,7 @@ public class LightSkill : Skill
 
     [SerializeField] Animator casterAnimator; // 시전자의 Animator
     [SerializeField] MaskBossLampGroup lampGroup;
+    [SerializeField] List<GameObject> theaterTiles; 
     [SerializeField, Min(1)] int count = 5; // 스킬 한번 당 조명이 켜지는 횟수
     [SerializeField] List<LightSkillPatternData> patternDatas; // 조명 패턴
     [SerializeField, Min(0.0f)] float attackDelay = 2.0f; // 공격 딜레이
@@ -89,6 +90,13 @@ public class LightSkill : Skill
         // 붉은색 불빛으로 바꾸면서 공격
         foreach(int index in lampIdxList) {
             lampGroup.TurnOnRedLight(index);
+
+            Animator tileAnim = theaterTiles[index].GetComponent<Animator>();
+            if(tileAnim != null) {
+                tileAnim.speed = 1 / turnOffTimeAfterAttack;
+                tileAnim.SetTrigger("attack");
+            }
+            
         }
         yield return null;
     }
