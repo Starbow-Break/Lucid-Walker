@@ -9,7 +9,7 @@ public class LightSwitchOn : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Case"))
         {
             sequentialSpotlightGroup.Switch();
             sequentialSpotlightGroup.isOn = true; // 플레이어가 밟으면 켜짐
@@ -19,7 +19,7 @@ public class LightSwitchOn : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Case"))
         {
             sequentialSpotlightGroup.Switch();
             sequentialSpotlightGroup.isOn = false; // 플레이어가 떠나면 꺼짐

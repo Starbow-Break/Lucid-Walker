@@ -8,6 +8,9 @@ public class CharacterSwitchManager : MonoBehaviour
 
     public KeyCode switchKey = KeyCode.Tab; // 캐릭터 전환 키
 
+    public GameObject femaleOnlyRoute; // 인스펙터에서 넣어둔다.
+
+
     private void Update()
     {
         if (Input.GetKeyDown(switchKey))
@@ -23,15 +26,25 @@ public class CharacterSwitchManager : MonoBehaviour
         // 현재 활성화된 캐릭터를 비활성화
         if (playerActive)
         {
+            playerController.SetToIdleState();
             DisableCharacter(playerController);
+
             EnableCharacter(femaleCharacterController);
             cameraFollow.SetTarget(femaleCharacterController.transform);
+
+            // **여주만 볼 수 있는 길 활성화**
+            femaleOnlyRoute.SetActive(true);
         }
         else
         {
+            femaleCharacterController.SetToIdleState();
             DisableCharacter(femaleCharacterController);
+
             EnableCharacter(playerController);
             cameraFollow.SetTarget(playerController.transform);
+
+            // **여주 전용 길 비활성화**
+            femaleOnlyRoute.SetActive(false);
         }
     }
 
@@ -39,7 +52,7 @@ public class CharacterSwitchManager : MonoBehaviour
     {
         if (character is PlayerController pc)
         {
-            pc.SetToIdleState();
+            // pc.SetToIdleState();
             pc.isActive = true;
             pc.enabled = true;
             Rigidbody2D rb = pc.GetComponent<Rigidbody2D>();
@@ -47,7 +60,7 @@ public class CharacterSwitchManager : MonoBehaviour
         }
         else if (character is FemaleCharacterController fc)
         {
-            fc.SetToIdleState();
+            // fc.SetToIdleState();
             fc.isActive = true;
             fc.enabled = true;
             Rigidbody2D rb = fc.GetComponent<Rigidbody2D>();
