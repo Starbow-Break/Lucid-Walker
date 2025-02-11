@@ -79,7 +79,7 @@ public class MonsterHouse : MonoBehaviour
                 Debug.Log("xForce : " + xForce + ", yForce : " + yForce);
 
                 WalkingMonster walkingMonster = monster.GetComponent<WalkingMonster>();
-                if(walkingMonster != null && xForce >= 0 != walkingMonster.isFacingRight) {
+                if(walkingMonster != null && (xForce >= 0) != walkingMonster.isFacingRight) {
                     walkingMonster.Flip();
                 }
             }
