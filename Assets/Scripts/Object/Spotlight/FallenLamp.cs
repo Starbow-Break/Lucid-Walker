@@ -12,18 +12,18 @@ public class FallenLamp : MonoBehaviour
     [SerializeField] Vector2 offset = Vector2.zero; // 오프셋
     [SerializeField] GameObject effect; // 효과
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        SpawnSpike();
+    private void OnCollisionEnter2D(Collision2D other) {
+        Vector2 pos = other.contacts[0].point;
+        pos = new(pos.x, Mathf.Round(pos.y));
+        SpawnSpike(pos);
     }
 
-    void SpawnSpike() {
-        Vector2 spawnPoint = new(transform.position.x, Mathf.Round(transform.position.y));
-        
+    void SpawnSpike(Vector2 position) {
         // 충돌 위치에 가시 및 연기 생성
-        GameObject spawnedEffect = Instantiate(effect, spawnPoint + offset, Quaternion.identity);
+        GameObject spawnedEffect = Instantiate(effect, position + offset, Quaternion.identity);
         spawnedEffect.transform.localScale *= scaleMultiplier;
 
-        Instantiate(spike, spawnPoint, Quaternion.identity);
+        Instantiate(spike, position, Quaternion.identity);
 
         // 조명 제거
         Destroy(gameObject);

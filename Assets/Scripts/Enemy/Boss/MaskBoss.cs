@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MaskBoss : MonoBehaviour
 {
+    [SerializeField] BossStageManager bossStageManager;
     [SerializeField] Animator anim;
     [SerializeField] float coolDown = 10.0f;
 
@@ -37,22 +38,10 @@ public class MaskBoss : MonoBehaviour
         }
         else {
             stats.RecoverySp(1);
-            int result = Think();
-            UseSkill(result);
+            int think = Think();
+            Debug.Log("Think : " + think);
+            UseSkill(think);
         }
-
-        // 스킬 테스트를 위한 코드
-        // {
-        //     if(Input.GetKeyDown(KeyCode.Alpha1)) {
-        //         UseLightSkill();
-        //     }
-        //     else if(Input.GetKeyDown(KeyCode.Alpha2)) {
-        //         UseHouseSkill();
-        //     }
-        //     else if(Input.GetKeyDown(KeyCode.Alpha3)) {
-        //         UseShootMaskMonsterSkill();
-        //     }
-        // }
     }
 
     public void BattleStart() {
@@ -60,16 +49,18 @@ public class MaskBoss : MonoBehaviour
     }
 
     public void Die() {
+        Debug.Log("Die");
+        
         // 사망 상태 전환
         isDead = true;
-
-        // 사망 애니메이션 재생
-        anim.SetTrigger("");
 
         // 스킬 리셋
         lightSkill.SkillReset();
         houseSkill.SkillReset();
         shootMaskMonsterSkill.SkillReset();
+
+        //페이즈 전환 처리
+        bossStageManager.StartNextPhase();
     }
 
     #region AI
@@ -112,7 +103,7 @@ public class MaskBoss : MonoBehaviour
     void CastSkill(Skill skill) { 
         stats.SpendSp(skill.sp);
         coolDownRemain = coolDown;
-        skill.Cast(); 
+        skill.Cast();
     }
     #endregion
 }

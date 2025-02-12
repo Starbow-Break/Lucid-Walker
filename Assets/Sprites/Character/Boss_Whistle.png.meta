@@ -1,0 +1,496 @@
+fileFormatVersion: 2
+guid: 27d1756e083ef7e4fbeaa80564a1e080
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: whistle_body_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 578
+        width: 825
+        height: 533
+      alignment: 9
+      pivot: {x: 0.497, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29854481e2b574975aaef8b6709e55f3
+      internalID: -491955942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_body_1
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 570
+        width: 799
+        height: 533
+      alignment: 9
+      pivot: {x: 0.514, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e34faf932abaa440dbfe3ff0a66492ce
+      internalID: -759411809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_body_2
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 570
+        width: 751
+        height: 533
+      alignment: 9
+      pivot: {x: 0.547, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073906a3a3a4643aba15da18e26ba1ed
+      internalID: 1452190011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_effect_note_0
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 981
+        width: 77
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca3288f0396164cd9933b96a5d5d12b4
+      internalID: -2124080921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_effect_note_2
+      rect:
+        serializedVersion: 2
+        x: 2924
+        y: 979
+        width: 77
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b3fabb6aa1d4be6a339006380535fd
+      internalID: 362618773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_effect_note_1
+      rect:
+        serializedVersion: 2
+        x: 2847
+        y: 842
+        width: 128
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb1e0dc0fd0249c7916d9abfa9a7137
+      internalID: -1580729830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_body_4
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 15
+        width: 752
+        height: 533
+      alignment: 9
+      pivot: {x: 0.545, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96de68aad9d20468194c050bbb337286
+      internalID: -28717346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_hand_0
+      rect:
+        serializedVersion: 2
+        x: 2493
+        y: 533
+        width: 310
+        height: 292
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8c460d5ae12544d58dcc31d3c26e32e
+      internalID: -530873348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_hand_1
+      rect:
+        serializedVersion: 2
+        x: 2813
+        y: 537
+        width: 312
+        height: 283
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2de1dd9c77e7143d7b6dd8efcd9077cd
+      internalID: 1426668394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_body_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 8
+        width: 753
+        height: 533
+      alignment: 9
+      pivot: {x: 0.545, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23884038f50ed4c9d81d6c18f2ff8f9b
+      internalID: 398190595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_body_5
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 6
+        width: 753
+        height: 533
+      alignment: 9
+      pivot: {x: 0.545, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bed28bc2d41f4b19b634171c279a499
+      internalID: -1462650399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Whistle_19
+      rect:
+        serializedVersion: 2
+        x: 2524
+        y: 279
+        width: 302
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c08d681901af4d2a858bcf05792b6ab
+      internalID: 1815843816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Whistle_20
+      rect:
+        serializedVersion: 2
+        x: 2855
+        y: 279
+        width: 304
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8bfeeb8837464e9999808c95b5fb8ae
+      internalID: 888007644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_phase1
+      rect:
+        serializedVersion: 2
+        x: 2525
+        y: 209
+        width: 300
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f421e164edd514486bbc623f9c5fa409
+      internalID: 458028554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Whistle_22
+      rect:
+        serializedVersion: 2
+        x: 2853
+        y: 2
+        width: 307
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 325adbc4ff67145eba867aa7806172a4
+      internalID: -507452193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whistle_effect
+      rect:
+        serializedVersion: 2
+        x: 2597
+        y: 831
+        width: 217
+        height: 220
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e531022c85174cc5bc3d2f088c18e01
+      internalID: 2079947297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spike_phase2
+      rect:
+        serializedVersion: 2
+        x: 2857
+        y: 209
+        width: 300
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e74f78296674a1981ec8a870168a89
+      internalID: 1703184909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Boss_Whistle_10: -625280339
+      Boss_Whistle_11: 1199757943
+      Boss_Whistle_12: -572005154
+      Boss_Whistle_14: 682290175
+      Boss_Whistle_19: 1815843816
+      Boss_Whistle_20: 888007644
+      Boss_Whistle_22: -507452193
+      Boss_Whistle_3: -1735416066
+      Boss_Whistle_6: 247856946
+      Boss_Whistle_7: -1321546868
+      Boss_Whistle_8: -1036606018
+      spike_phase1: 458028554
+      spike_phase2: 1703184909
+      whistle_body_0: -491955942
+      whistle_body_1: -759411809
+      whistle_body_2: 1452190011
+      whistle_body_3: 398190595
+      whistle_body_4: -28717346
+      whistle_body_5: -1462650399
+      whistle_effect: 2079947297
+      whistle_effect_note_0: -2124080921
+      whistle_effect_note_1: -1580729830
+      whistle_effect_note_2: 362618773
+      whistle_hand_0: -530873348
+      whistle_hand_1: 1426668394
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
