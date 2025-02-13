@@ -145,7 +145,8 @@ public class BossStageManager : MonoBehaviour
 
         bossAnim[1].SetTrigger("phase_finish");
         yield return null;
-        yield return new WaitWhile(() => bossAnim[1].GetCurrentAnimatorStateInfo(0).IsName("Next_Phase"));
+        float animLength = bossAnim[1].GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animLength * 0.99f);
 
         phase2To3TransitionCanvas.SetActive(true);
         yield return new WaitForSeconds(2.0f);
