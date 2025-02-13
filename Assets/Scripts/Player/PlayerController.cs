@@ -601,6 +601,9 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+        // Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+        // transform.rotation = Quaternion.Euler(rotator);
+
 
         IsFacingRight = !IsFacingRight;
     }
