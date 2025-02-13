@@ -1256,7 +1256,6 @@ GameObject:
   m_Component:
   - component: {fileID: 174743684}
   - component: {fileID: 174743683}
-  - component: {fileID: 174743685}
   m_Layer: 0
   m_Name: Phase1 and 2 Cam
   m_TagString: Untagged
@@ -1319,18 +1318,6 @@ Transform:
   - {fileID: 1125947581}
   m_Father: {fileID: 126093958}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &174743685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174743682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b707d487fb98e5d40b8a7fa736ddb7ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &185616396
 GameObject:
   m_ObjectHideFlags: 0
@@ -8392,7 +8379,6 @@ GameObject:
   m_Component:
   - component: {fileID: 820334817}
   - component: {fileID: 820334818}
-  - component: {fileID: 820334819}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -8436,7 +8422,6 @@ MonoBehaviour:
   - {fileID: 485485770}
   - {fileID: 1546518521}
   - {fileID: 0}
-  theaterCamera: {fileID: 174743683}
   phase1Objects:
   - {fileID: 1895767099}
   - {fileID: 1970073717}
@@ -8455,25 +8440,13 @@ MonoBehaviour:
   phase1To2Effect: {fileID: 2043972806}
   phase2To3TransitionCanvas: {fileID: 740751569}
   phase2To3Effect: {fileID: 1305984540}
-  curtainAnim: {fileID: 1209214339}
-  phase3SpawnPoints: {fileID: 1888256665}
---- !u!114 &820334819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820334816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881f2f2ec631c4890a669254dc88829f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   cameras:
   - {fileID: 174743683}
   - {fileID: 1395992923}
   - {fileID: 329367391}
   - {fileID: 172870687}
+  curtainAnim: {fileID: 1209214339}
+  phase3SpawnPoints: {fileID: 1888256665}
 --- !u!1 &821825237
 GameObject:
   m_ObjectHideFlags: 0
@@ -14826,7 +14799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775292234362051508, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3941208028432973102, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: failUI
@@ -24126,6 +24099,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1909819013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1909819015}
+  - component: {fileID: 1909819016}
+  m_Layer: 0
+  m_Name: Camera Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1909819015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909819013}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1909819016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909819013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b7dbe341ed74459a301050a51d5f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1912964716
 GameObject:
   m_ObjectHideFlags: 0
@@ -25228,6 +25245,7 @@ SceneRoots:
   - {fileID: 820334817}
   - {fileID: 2145451759}
   - {fileID: 126093958}
+  - {fileID: 1909819015}
   - {fileID: 1732733908}
   - {fileID: 1903310876}
   - {fileID: 1895767101}
