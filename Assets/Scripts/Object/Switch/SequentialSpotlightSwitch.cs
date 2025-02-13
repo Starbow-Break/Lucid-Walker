@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SequentialSpotlightSwitch : MonoBehaviour
 {
@@ -9,7 +10,14 @@ public class SequentialSpotlightSwitch : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] bool isBroken;
 
+    BoxCollider2D switchCollider;
+
     void Awake()
+    {
+        switchCollider = GetComponent<BoxCollider2D>();
+    }
+
+    void Start()
     {
         anim.SetBool("isOn", sequentialSpotlightGroup.isOn);
     }
@@ -21,6 +29,7 @@ public class SequentialSpotlightSwitch : MonoBehaviour
             sequentialSpotlightGroup.Switch();
             if (isBroken && !sequentialSpotlightGroup.isOn)
             {
+                switchCollider.enabled = false;
                 anim.SetTrigger("broken");
             }
             anim.SetBool("isOn", sequentialSpotlightGroup.isOn);
