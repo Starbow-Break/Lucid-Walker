@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class CameraManager : MonoBehaviour
 {
@@ -25,6 +26,19 @@ public class CameraManager : MonoBehaviour
                 cam.Priority = 0;
             }
         }
+    }
+    public static void SwitchCamera(string cameraName)
+    {
+        foreach(CinemachineVirtualCamera camera in cameras)
+        {
+            if(camera.name == cameraName)
+            {
+                SwitchCamera(camera);
+                return;
+            }
+        }
+
+        Debug.LogError("카메라를 찾을 수 없습니다.");
     }
     public static void Register(CinemachineVirtualCamera camera)
     {

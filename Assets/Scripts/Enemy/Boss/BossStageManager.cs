@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Coffee.UIEffects;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossStageManager : MonoBehaviour
@@ -13,9 +14,6 @@ public class BossStageManager : MonoBehaviour
     [SerializeField] List<MaskBoss> bossController;
     [SerializeField] List<Animator> bossAnim;
 
-    [Header("Camera")]
-    [SerializeField] CinemachineVirtualCamera theaterCamera;
-
     [Header("Objects")]
     [SerializeField] List<GameObject> phase1Objects;
     [SerializeField] List<GameObject> phase2Objects;
@@ -26,21 +24,35 @@ public class BossStageManager : MonoBehaviour
     [SerializeField] GameObject phase2To3TransitionCanvas;
     [SerializeField] UIEffect phase2To3Effect;
 
+    [Header("Cameras")]
+    [SerializeField] List<CinemachineVirtualCamera> cameras;
+
     [Header("etc")]
     [SerializeField] Animator curtainAnim;
     [SerializeField] Transform phase3SpawnPoints;
 
+    public static BossStageManager instance;
     MaterialPropertyBlock mpb;
-    CameraController cameraController;
-    CinemachineCameraSwitcher cameraSwitcher;
 
     int phase;
 
+    void Awake()
+    {
+        if(instance == null) {
+            instance = this;
+        }
+        else {
+            Destroy(this);
+        }
+    }
+
     void Start() {
         mpb = new MaterialPropertyBlock();
-        cameraController = theaterCamera.GetComponent<CameraController>();
-        cameraSwitcher = GetComponent<CinemachineCameraSwitcher>();
         phase = 0;
+
+        foreach(CinemachineVirtualCamera camera in cameras) {
+            CameraManager.Register(camera);
+        }
 
         StartNextPhase();
     }
@@ -72,7 +84,7 @@ public class BossStageManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);  
 
         // 카메라 줌 인
-        cameraController.CameraZoom(Vector3.up * 6.0f, 5.2f, 2.5f);
+        CameraManager.SwitchCamera("Focusing Boss Cam");
         yield return new WaitForSeconds(2.5f);
 
         // 보스가 인사
@@ -86,7 +98,7 @@ public class BossStageManager : MonoBehaviour
         /* TODO : 대사나 추가 연출 추가 예정 */
 
         // 카메라 줌 아웃
-        cameraController.CameraZoom(Vector3.up * 4.6f, 8.35f, 2.5f);
+        CameraManager.SwitchCamera("Phase1 and 2 Cam");
         yield return new WaitForSeconds(2.5f);
 
         // 보스전 시작 (페이즈 1)
@@ -153,7 +165,7 @@ public class BossStageManager : MonoBehaviour
 
         // 플레이어를 페이즈 3 맵으로 순간이동
         playerController.transform.position = phase3SpawnPoints.position;
-        cameraSwitcher.CameraSwitch("Phase3 Ready Cam");
+        CameraManager.SwitchCamera("Phase3 Ready Cam");
 
         // 이전 페이즈 보스 비활성화 
         bossController[1].gameObject.SetActive(false);
