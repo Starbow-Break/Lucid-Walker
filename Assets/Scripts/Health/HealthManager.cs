@@ -36,10 +36,6 @@ public class HealthManager : MonoBehaviour
         if (failUI != null)
             failUI.SetActive(false);
     }
-
-    /// <summary>
-    /// 공유 체력에 데미지를 적용합니다.
-    /// </summary>
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -54,7 +50,6 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator HandleDeath()
     {
-        // 사망 애니메이션이나 효과 처리 (예시)
         yield return new WaitForSeconds(1.5f);
 
         if (failUI != null)
