@@ -5022,7 +5022,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   detectionRange: 5
-  moveSpeed: 3
+  moveSpeedMin: 1.4
+  moveSpeedMax: 1.8
   patrolDistanceMin: 4.5
   patrolDistanceMax: 9
   platformDetectionDistance: 0.5
@@ -5059,7 +5060,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 5
+  m_Constraints: 4
 --- !u!61 &1605038614309148187
 BoxCollider2D:
   m_ObjectHideFlags: 0
