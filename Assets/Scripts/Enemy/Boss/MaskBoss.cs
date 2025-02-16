@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MaskBoss : MonoBehaviour
 {
-    [SerializeField] BossStageManager bossStageManager;
-    [SerializeField] Animator anim;
     [SerializeField] float coolDown = 10.0f;
 
     int turn;
@@ -60,7 +58,7 @@ public class MaskBoss : MonoBehaviour
         shootMaskMonsterSkill.SkillReset();
 
         //페이즈 전환 처리
-        bossStageManager.StartNextPhase();
+        BossStageManager.instance.StartNextPhase();
     }
 
     #region AI

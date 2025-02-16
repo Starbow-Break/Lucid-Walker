@@ -9,7 +9,6 @@ public class LightSkill : Skill
         public List<int> pattern; // 조명 패턴
     }
 
-    [SerializeField] Animator casterAnimator; // 시전자의 Animator
     [SerializeField] MaskBossLampGroup lampGroup;
     [SerializeField] List<GameObject> theaterTiles; 
     [SerializeField, Min(1)] int count = 5; // 스킬 한번 당 조명이 켜지는 횟수
@@ -19,6 +18,11 @@ public class LightSkill : Skill
     [SerializeField, Min(0.0f)] float interval = 1.0f; // 조명 패턴 간 시간 간격
 
     int patternIndex = 0;
+    Animator casterAnimator; // 시전자의 Animator
+
+    void Start() {
+        casterAnimator = GetComponent<Animator>();
+    }   
 
     protected override IEnumerator SkillFlow()
     {

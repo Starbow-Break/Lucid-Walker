@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ShootMaskMonsterSkill : Skill
 {
-    [SerializeField] Animator casterAnimator;
     [SerializeField] MaskMonsterSpawner spawner;
 
     bool spawnBulletFlag;
+    Animator casterAnimator;
 
     void Start() {
         spawnBulletFlag = false;
+        casterAnimator = GetComponent<Animator>();
     }
 
     protected override IEnumerator SkillFlow()

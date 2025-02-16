@@ -18,7 +18,9 @@ public class MaskBossStats : MonoBehaviour, IDamageable
 
     void Start() {
         owner = GetComponent<MaskBoss>();
+    }
 
+    void OnEnable() {
         maxHp = statsData.hp;
         hp = maxHp;
         maxSp = statsData.sp;
