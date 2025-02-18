@@ -40,7 +40,7 @@ public class HouseSkill : Skill
 
         if(spawnedHouse != null) {
             DieAllSpawnedMonster();
-            Destroy(spawnedHouse);
+            Destroy(spawnedHouse.gameObject);
             spawnedHouse = null;
         }
     }
