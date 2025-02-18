@@ -4477,9 +4477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe4ab301dc496f4bad562757ddf56fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossStageManager: {fileID: 820334818}
-  anim: {fileID: 485485770}
-  coolDown: 9
 --- !u!95 &485485770
 Animator:
   serializedVersion: 5
@@ -4513,8 +4510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4cdf17f58354831b8decf9e759d982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sp: 4
-  casterAnimator: {fileID: 485485770}
+  coolTime: 20
   lampGroup: {fileID: 1639893178}
   theaterTiles:
   - {fileID: 1309189727}
@@ -4527,7 +4523,7 @@ MonoBehaviour:
   - {fileID: 807897270}
   - {fileID: 941342655}
   - {fileID: 46333107}
-  count: 5
+  count: 3
   patternDatas:
   - pattern: 0000000002000000040000000600000008000000
   - pattern: 0100000003000000050000000700000009000000
@@ -4564,7 +4560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44438349e963e0a4d9c10efc31726d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sp: 0
+  coolTime: 5
   spawnHouse: {fileID: 3760989700067907197, guid: 88aa1d08b13a23f4caef49d3c15ea2bf, type: 3}
   spawnPoint: {fileID: 290899472}
 --- !u!114 &485485774
@@ -4579,8 +4575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6824d8468a794ae1adc41d82570ddfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sp: 0
-  casterAnimator: {fileID: 485485770}
+  coolTime: 5
   spawner: {fileID: 76169150}
 --- !u!1001 &493950047
 PrefabInstance:
@@ -22000,8 +21995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6824d8468a794ae1adc41d82570ddfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sp: 0
-  casterAnimator: {fileID: 1546518521}
+  coolTime: 5
   spawner: {fileID: 76169150}
 --- !u!114 &1546518523
 MonoBehaviour:
@@ -22015,7 +22009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44438349e963e0a4d9c10efc31726d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sp: 0
+  coolTime: 5
   spawnHouse: {fileID: 3760989700067907197, guid: 189f1bf69bba548408fa103cd58e40e5, type: 3}
   spawnPoint: {fileID: 290899472}
 --- !u!114 &1546518524
@@ -22030,8 +22024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4cdf17f58354831b8decf9e759d982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sp: 4
-  casterAnimator: {fileID: 1546518521}
+  coolTime: 25
   lampGroup: {fileID: 1639893178}
   theaterTiles:
   - {fileID: 1064518564}
@@ -22085,9 +22078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe4ab301dc496f4bad562757ddf56fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossStageManager: {fileID: 820334818}
-  anim: {fileID: 1546518521}
-  coolDown: 7
 --- !u!1001 &1547904726
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class BossStageManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null) {
+        if (instance != this) {
             Destroy(gameObject);
         }
     }

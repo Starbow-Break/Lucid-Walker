@@ -34,8 +34,11 @@ public class HealthBar : MonoBehaviour
             hpText.enabled = true;
         }
         else {
-            StopCoroutine(blinkCoroutine);
-            blinkCoroutine = null;
+            if(blinkCoroutine != null) {
+                StopCoroutine(blinkCoroutine);
+                blinkCoroutine = null;
+            }
+            
             hpText.enabled = false;
         }
 

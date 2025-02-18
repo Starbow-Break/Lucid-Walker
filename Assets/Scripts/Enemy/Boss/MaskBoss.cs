@@ -1,11 +1,10 @@
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class MaskBoss : MonoBehaviour
 {
-    [SerializeField] float coolDown = 10.0f;
-
-    int turn;
-    float coolDownRemain;
+    float attackCoolDownRemain = 0.0f;
     public bool battle { get; private set; }
     bool isDead = false;
 
@@ -14,8 +13,6 @@ public class MaskBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        turn = -1;
-        coolDownRemain = 0.0f;
         battle = false;
 
         stats = GetComponent<MaskBossStats>();
@@ -31,14 +28,11 @@ public class MaskBoss : MonoBehaviour
         // 싸우는 상태가 아니거나 사망 상태이면 아무 행동도 하지 않는다.
         if(!battle || isDead) return;
 
-        if(coolDownRemain >= 0.0f) {
-            coolDownRemain -= Time.deltaTime;
-        }
-        else {
-            stats.RecoverySp(1);
-            int think = Think();
-            Debug.Log("Think : " + think);
-            UseSkill(think);
+        attackCoolDownRemain -= Time.deltaTime;
+
+        if(attackCoolDownRemain <= 0.0f) {
+            attackCoolDownRemain = stats.attackBatTime;
+            Think();
         }
     }
 
@@ -53,38 +47,40 @@ public class MaskBoss : MonoBehaviour
         isDead = true;
 
         // 스킬 리셋
-        lightSkill.SkillReset();
-        houseSkill.SkillReset();
-        shootMaskMonsterSkill.SkillReset();
+        lightSkill.ResetSkill();
+        houseSkill.ResetSkill();
+        shootMaskMonsterSkill.ResetSkill();
 
         //페이즈 전환 처리
         BossStageManager.instance.StartNextPhase();
     }
 
     #region AI
+    // 스킬의 우선순위가 높은 순서대로 정렬된 리스트
+    LinkedList<int> skillProrityList = new LinkedList<int>(new List<int>{0, 1, 2});
+    
     // 생각
-    int Think() {
-        if(lightSkill.sp <= stats.sp) {
-            return 0;
-        }
+    void Think() {
+        LinkedListNode<int> node = skillProrityList.First;
 
-        turn = (turn + 1) % 2;
-        return turn + 1;
+        while(node != null) {
+            if(TryCastSkill(node.Value)) {
+                skillProrityList.Remove(node);
+                skillProrityList.AddLast(node);
+                break;
+            }
+            node = node.Next;
+        }
     }
 
-    // 스킬 사용
-    void UseSkill(int skillId) {
-        switch(skillId) {
-            case 0:
-            UseLightSkill();
-            break;
-            case 1:
-            UseHouseSkill();
-            break;
-            case 2:
-            UseShootMaskMonsterSkill();
-            break;
+    // 스킬 사용 시도, 스킬 시전 여부를 반환
+    bool TryCastSkill(int skillId) {
+        Skill skill = GetSkillWithId(skillId);
+        if(skill.isReady) {
+            skill.Cast();
+            return true;
         }
+        return false;
     }
     #endregion
 
@@ -93,15 +89,15 @@ public class MaskBoss : MonoBehaviour
     HouseSkill houseSkill;
     ShootMaskMonsterSkill shootMaskMonsterSkill;
 
-    void UseLightSkill() => CastSkill(lightSkill);
-    void UseHouseSkill() => CastSkill(houseSkill);
-    void UseShootMaskMonsterSkill() => CastSkill(shootMaskMonsterSkill);
-
-    // 스킬 시전
-    void CastSkill(Skill skill) { 
-        stats.SpendSp(skill.sp);
-        coolDownRemain = coolDown;
-        skill.Cast();
+    // 스킬 아이디로부터 스킬 획득
+    Skill GetSkillWithId(int skillId) {
+        return skillId switch
+        {
+            0 => lightSkill,
+            1 => houseSkill,
+            2 => shootMaskMonsterSkill,
+            _ => null,
+        };
     }
     #endregion
 }

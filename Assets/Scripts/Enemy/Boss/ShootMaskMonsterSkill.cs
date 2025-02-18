@@ -25,8 +25,9 @@ public class ShootMaskMonsterSkill : Skill
         spawnBulletFlag = false;
     }
 
-    // 스킬 리셋 로직
-    protected override void DoReset() {
+    // 스킬 리셋
+    public override void ResetSkill() {
+        base.ResetSkill();
         spawner.StopSpawnAndReset();
     }
 

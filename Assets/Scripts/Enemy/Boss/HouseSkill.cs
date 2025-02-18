@@ -35,7 +35,9 @@ public class HouseSkill : Skill
         yield return null;
     }
 
-    protected override void DoReset() {
+    public override void ResetSkill() {
+        base.ResetSkill();
+
         if(spawnedHouse != null) {
             DieAllSpawnedMonster();
             Destroy(spawnedHouse);

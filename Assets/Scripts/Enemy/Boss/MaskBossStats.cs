@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MaskBossStats : MonoBehaviour, IDamageable
 {
@@ -11,10 +8,12 @@ public class MaskBossStats : MonoBehaviour, IDamageable
 
     int maxHp;
     int hp;
-    int maxSp;
-    public int sp { get; private set; }
     Coroutine coroutine = null;
     MaskBoss owner;
+
+    public float attackBatTime {
+        get { return statsData.attackBatTime; }
+    }
 
     void Start() {
         owner = GetComponent<MaskBoss>();
@@ -23,30 +22,28 @@ public class MaskBossStats : MonoBehaviour, IDamageable
     void OnEnable() {
         maxHp = statsData.hp;
         hp = maxHp;
-        maxSp = statsData.sp;
-        sp = maxSp;
-        healthBar.SetValue(hp, maxHp);
-        Debug.Log("Boss Hp : " + hp);
     }
 
     void Update() {
         if(owner.battle && coroutine == null && statsData.healthType == BossStatsData.HealthType.TIME_ATTACK) {
             coroutine = StartCoroutine(TimeAttackFlow());
         }
+
+        UpdateUI();
     }
 
     public void TakeDamage(int damage, Transform attacker)
     {
         hp -= damage;
-        healthBar.SetValue(hp, maxHp);
 
         if(hp <= 0) {
             owner.Die();
         }
     }
 
-    public void SpendSp(int value) => sp -= value;
-    public void RecoverySp(int value) => sp += value;
+    void UpdateUI() {
+        healthBar.SetValue(hp, maxHp);
+    }
 
     IEnumerator TimeAttackFlow() {
         while(hp > 0) {

@@ -12,6 +12,7 @@ public class MaskMonsterSpawner : MonoBehaviour
 
     List<AttackRange> spawnedAttackRange = new();
     List<MonsterBullet> spawnedBullets = new();
+    [SerializeField] Transform targetTransform;
 
     public void SpawnMonsters() {
         StartCoroutine(SpawnMonstersFlow());

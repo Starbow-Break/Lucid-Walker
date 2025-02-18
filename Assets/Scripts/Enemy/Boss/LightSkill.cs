@@ -67,7 +67,8 @@ public class LightSkill : Skill
     }
 
     // 스킬 리셋 로직
-    protected override void DoReset() {
+    public override void ResetSkill() {
+        base.ResetSkill();
         lampGroup.Stop();
     }
 
