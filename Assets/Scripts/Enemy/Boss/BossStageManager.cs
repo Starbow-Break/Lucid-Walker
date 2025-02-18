@@ -31,18 +31,25 @@ public class BossStageManager : MonoBehaviour
     [SerializeField] Animator curtainAnim;
     [SerializeField] Transform phase3SpawnPoints;
 
-    public static BossStageManager instance;
+    public static BossStageManager instance {
+        get {
+            if (m_instance == null) {
+                m_instance = FindObjectOfType<BossStageManager>();
+            }
+
+            return m_instance;
+        }
+    }
+    private static BossStageManager m_instance;
+
     MaterialPropertyBlock mpb;
 
     int phase;
 
     void Awake()
     {
-        if(instance == null) {
-            instance = this;
-        }
-        else {
-            Destroy(this);
+        if (instance != this) {
+            Destroy(gameObject);
         }
     }
 

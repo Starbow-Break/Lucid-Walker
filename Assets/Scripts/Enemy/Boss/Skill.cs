@@ -4,32 +4,34 @@ using UnityEngine;
 // 스킬 클래스
 public abstract class Skill : MonoBehaviour
 {
-    // 스킬을 사용하는데 필요한 SP
-    [SerializeField, Min(0)] int _sp = 0;
-    public int sp {
-        get { return _sp; }
+    // 스킬 쿨타임
+    [SerializeField, Min(0.0f)] float coolDown = 0.0f;
+
+    float coolDownRemain = 0.0f;
+    
+    // 스킬 준비 상태
+    public bool isReady {
+        get { return coolDownRemain <= 0.0f; }
     }
 
-    Coroutine coroutine;
+    protected virtual void Update() {
+        coolDownRemain -= Time.deltaTime;
+    }
 
     // 스킬 사용
     public void Cast() {
-        coroutine = StartCoroutine(SkillFlow());
-    }
-
-    // 스킬 리셋 (public)
-    public void SkillReset() {
-        if(coroutine != null) {
-            StopCoroutine(coroutine);
-            coroutine = null;
+        if (isReady) {
+            coolDownRemain = coolDown;
+            StartCoroutine(SkillFlow());
         }
-
-        DoReset();
     }
 
-    // 스킬 리셋 (protected)
-    protected abstract void DoReset();
+    // 스킬 리셋
+    public virtual void ResetSkill() {
+        StopAllCoroutines();
+        coolDownRemain = 0.0f;
+    }
 
-    // 스킬 동작 코루틴
+    // 실제 스킬 동작 부분
     protected abstract IEnumerator SkillFlow();
 }

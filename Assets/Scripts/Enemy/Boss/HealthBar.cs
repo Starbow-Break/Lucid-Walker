@@ -26,25 +26,26 @@ public class HealthBar : MonoBehaviour
         hpText.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetValue(int hp, int maxHp) {
         slider.value = 1.0f * hp / maxHp;
 
-        if(blinkCoroutine == null && slider.value <= 0.2f) {
-            blinkCoroutine = StartCoroutine(Blink());
+        if(slider.value <= 0.2f) {
+            blinkCoroutine ??= StartCoroutine(Blink());
             hpText.enabled = true;
+        }
+        else {
+            if(blinkCoroutine != null) {
+                StopCoroutine(blinkCoroutine);
+                blinkCoroutine = null;
+            }
+            
+            hpText.enabled = false;
         }
 
         if(hpText.enabled) {
             hpText.text = hp.ToString();
 
             float barWidth = GetComponent<RectTransform>().rect.width;
-            float textWidth = hpText.rectTransform.rect.width;
             hpText.rectTransform.localPosition = new(
                 barWidth * (maxPosWeight - minPosWeight) * slider.value / 0.2f + minPosWeight * barWidth,
                 hpText.rectTransform.localPosition.y,
@@ -55,7 +56,7 @@ public class HealthBar : MonoBehaviour
 
     IEnumerator Blink() {
         float time = 0.0f;
-        while(0.0f < slider.value && slider.value <= 0.2f) {
+        if (0.0f < slider.value && slider.value <= 0.2f) {
             yield return null;
             time += Time.deltaTime;
             time %= 1.0f;
