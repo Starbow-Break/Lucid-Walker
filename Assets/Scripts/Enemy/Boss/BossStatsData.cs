@@ -13,7 +13,7 @@ public class BossStatsData : ScriptableObject
         NORMAL, TIME_ATTACK
     }
 
-    public int hp;
-    public HealthType healthType;
-    public int sp;
+    public int hp; // 체력
+    public HealthType healthType; // 체력 타입
+    public float attackBatTime; // 공격 시간 간격
 }

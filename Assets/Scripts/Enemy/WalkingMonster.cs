@@ -15,7 +15,8 @@ public class WalkingMonster : MonoBehaviour, IDamageable
 
     [Header("Movement and Detection")]
     [SerializeField] private float detectionRange = 2f;  // 플레이어 탐지 거리
-    [SerializeField] private float moveSpeed = 2f;       // 이동 속도
+    [SerializeField] private float moveSpeedMin = 2f;       // 최소 이동 속도
+    [SerializeField] private float moveSpeedMax = 2f;       // 최대 이동 속도
     [SerializeField] private float patrolDistanceMin = 3f;  // 최소 순찰 범위
     [SerializeField] private float patrolDistanceMax = 7f;  // 최대 순찰 범위
     [SerializeField] private float platformDetectionDistance = 0.5f; // 플랫폼 감지 거리
@@ -28,6 +29,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     private Rigidbody2D rb;
     private Animator anim;
     public bool isFacingRight { get; private set; } = true; // 오른쪽을 보고 있는지 확인
+    private float moveSpeed;            // 이동 속도
     private float patrolDistance;       // 순찰 거리
     private float basePosX;             // 순찰 기준점
     private Transform detectedPlayer;   // 감지된 플레이어 참조
@@ -42,7 +44,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     [SerializeField] private bool isPlatformInFront; // 앞쪽 플랫폼 상태
 
     bool modifyPatrolStatsFlag = false;
-
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -150,6 +152,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     void ModifyPatrolStats()
     {
         patrolDistance = Random.Range(patrolDistanceMin, patrolDistanceMax);
+        moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
         basePosX = transform.position.x;
         Debug.Log($"{name}'s patrol stat changed! => patrolDistance: {patrolDistance}, basePosX: {basePosX}");
     }
