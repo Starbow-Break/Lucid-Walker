@@ -56,7 +56,7 @@ public class PlayerDamage : MonoBehaviour, IDamageable
         while (elapsedTime < knockbackDuration)
         {
             // 예시: 간단한 넉백 (공격자 방향에 따라 실제 계산 수정 가능)
-            transform.Translate(Vector2.left * 2 * Time.deltaTime);
+            transform.Translate(Vector2.left * 4 * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
