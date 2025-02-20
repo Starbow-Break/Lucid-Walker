@@ -1,12 +1,12 @@
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CharacterSwitchManager : MonoBehaviour
 {
     public PlayerController playerController; // 플레이어 컨트롤러 참조
     public FemaleCharacterController femaleCharacterController; // 여성 캐릭터 컨트롤러 참조
-    // public CameraFollow cameraFollow; // 카메라 추적
 
     [Header("Virtual Cameras")]
     public CinemachineVirtualCamera targetcam; // TargetGroup 카메라
@@ -15,13 +15,21 @@ public class CharacterSwitchManager : MonoBehaviour
     public KeyCode switchKey = KeyCode.Tab; // 캐릭터 전환 키
 
     public GameObject femaleOnlyRoute; // 인스펙터에서 넣어둔다.
+    public GameObject cutoutMask; // 여주 주변을 보이게 할 Mask
+    public GameObject GlowingRoute;
 
-
+    private TilemapRenderer femaleRouteTilemapRenderer; // TilemapRenderer를 가져올 변수
 
     [Header("Settings")]
     public float thresholdDistance = 10f;  // 둘의 거리가 이 값을 초과하면 VCam2로 전환
 
-
+    private void Start()
+    {
+        if (femaleOnlyRoute != null)
+        {
+            femaleRouteTilemapRenderer = femaleOnlyRoute.GetComponent<TilemapRenderer>();
+        }
+    }
 
     private void Update()
     {
@@ -43,7 +51,6 @@ public class CharacterSwitchManager : MonoBehaviour
             targetcam.Priority = 20;
             virtualCamera.Priority = 10;
         }
-
     }
 
     private void SwitchCharacter()
@@ -60,7 +67,8 @@ public class CharacterSwitchManager : MonoBehaviour
             virtualCamera.Follow = femaleCharacterController.transform;
 
             // **여주만 볼 수 있는 길 활성화**
-            StartCoroutine(ActivateFemaleOnlyRouteWithDelay(true, 0.3f));
+            GlowingRoute.SetActive(true);
+            SetMaskInteraction(false);
         }
         else
         {
@@ -71,20 +79,34 @@ public class CharacterSwitchManager : MonoBehaviour
             virtualCamera.Follow = playerController.transform;
 
             // **여주 전용 길 비활성화**
-            femaleOnlyRoute.SetActive(false);
+            // femaleOnlyRoute.SetActive(false);
+            SetMaskInteraction(true);
+            GlowingRoute.SetActive(false);
         }
     }
 
-    private IEnumerator ActivateFemaleOnlyRouteWithDelay(bool active, float delay)
+    // private IEnumerator ActivateFemaleOnlyRouteWithDelay(bool active, float delay)
+    // {
+    //     yield return new WaitForSeconds(delay);
+    //     GlowingRoute.SetActive(active);
+    // }
+
+    private void SetMaskInteraction(bool enableMask)
     {
-        yield return new WaitForSeconds(delay);
-        femaleOnlyRoute.SetActive(active);
+        if (femaleRouteTilemapRenderer != null)
+        {
+            femaleRouteTilemapRenderer.maskInteraction = enableMask
+                ? SpriteMaskInteraction.VisibleInsideMask
+                : SpriteMaskInteraction.None;
+        }
     }
+
+
+
     private void EnableCharacter(MonoBehaviour character)
     {
         if (character is PlayerController pc)
         {
-            // pc.SetToIdleState();
             pc.isActive = true;
             pc.enabled = true;
             Rigidbody2D rb = pc.GetComponent<Rigidbody2D>();
@@ -92,12 +114,10 @@ public class CharacterSwitchManager : MonoBehaviour
         }
         else if (character is FemaleCharacterController fc)
         {
-            // fc.SetToIdleState();
             fc.isActive = true;
             fc.enabled = true;
             Rigidbody2D rb = fc.GetComponent<Rigidbody2D>();
             rb.isKinematic = false; // 물리 효과 활성화
-
         }
     }
 
