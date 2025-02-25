@@ -30,6 +30,7 @@ public class BossStageManager : MonoBehaviour
     [Header("etc")]
     [SerializeField] Animator curtainAnim;
     [SerializeField] Transform phase3SpawnPoints;
+    [SerializeField] BossShadow bossShadow;
 
     public static BossStageManager instance {
         get {
@@ -61,26 +62,16 @@ public class BossStageManager : MonoBehaviour
             CameraManager.Register(camera);
         }
 
-        StartNextPhase();
+        Phase1Start();
     }
 
-    public void StartNextPhase() {
-        ++phase;
-        switch(phase) {
-            case 1:
-                StartCoroutine(Phase1Start());
-                break;
-            case 2:
-                StartCoroutine(Phase2Start());
-                break;
-            case 3:
-                StartCoroutine(Phase3Start());
-                break;
-        }
-    }
+    public void Phase1Start() => StartCoroutine(Phase1StartFlow());
+    public void Phase2Start() => StartCoroutine(Phase2StartFlow());
+    public void Phase3Start() => StartCoroutine(Phase3StartFlow());
+    public void TransitionPhase3() => StartCoroutine(TransitionPhase3Flow());
 
     // 1페이즈 시작
-    IEnumerator Phase1Start() {
+    IEnumerator Phase1StartFlow() {
         // 플레이어 조작 방지
         playerController.enabled = false;
 
@@ -115,8 +106,8 @@ public class BossStageManager : MonoBehaviour
     }
 
     // 2페이즈 시작
-    IEnumerator Phase2Start() {
-        // 플레이어 조작 방지
+    IEnumerator Phase2StartFlow() {
+        // 플레이어 컨트롤 방지
         playerController.enabled = false;
 
         // 페이즈 1 오브젝트들 비활성화
@@ -158,8 +149,8 @@ public class BossStageManager : MonoBehaviour
     }
 
     // 3페이즈 시작
-    IEnumerator Phase3Start() {
-        // 플레이어 컨트롤러 비활성화
+    IEnumerator TransitionPhase3Flow() {
+        // 플레이어 컨트롤 방지
         playerController.enabled = false;
 
         bossAnim[1].SetTrigger("phase_finish");
@@ -185,6 +176,23 @@ public class BossStageManager : MonoBehaviour
         }
 
         // 플레이어 컨트롤러 활성화
+        playerController.enabled = true;
+    }
+
+    // 3페이즈 시작
+    IEnumerator Phase3StartFlow() {
+        // 플레이어 컨트롤 방지
+        playerController.enabled = false;
+
+        // 뒤 쪽에 보스 그림자 이동
+        bossShadow.Move(3.0f);
+        yield return new WaitForSeconds(3.0f);
+
+        // TODO : 보스가 위에서 착지 함
+
+        // TODO : 배틀 시작
+
+        // 플레이어 컨트롤 재개
         playerController.enabled = true;
     }
 

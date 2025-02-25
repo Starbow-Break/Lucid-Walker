@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MaskBoss : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MaskBoss : MonoBehaviour
     bool isDead = false;
 
     MaskBossStats stats;
+
+    public UnityEvent dieEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +55,7 @@ public class MaskBoss : MonoBehaviour
         shootMaskMonsterSkill.ResetSkill();
 
         //페이즈 전환 처리
-        BossStageManager.instance.StartNextPhase();
+        dieEvent.Invoke();
     }
 
     #region AI
