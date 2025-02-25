@@ -12,6 +12,7 @@ public class BossStageManager : MonoBehaviour
 
     [Header("Boss")]
     [SerializeField] List<MaskBoss> bossController;
+    [SerializeField] GameObject phase3Temp;
     [SerializeField] List<Animator> bossAnim;
 
     [Header("Objects")]
@@ -43,10 +44,6 @@ public class BossStageManager : MonoBehaviour
     }
     private static BossStageManager m_instance;
 
-    MaterialPropertyBlock mpb;
-
-    int phase;
-
     void Awake()
     {
         if (instance != this) {
@@ -55,9 +52,6 @@ public class BossStageManager : MonoBehaviour
     }
 
     void Start() {
-        mpb = new MaterialPropertyBlock();
-        phase = 0;
-
         foreach(CinemachineVirtualCamera camera in cameras) {
             CameraManager.Register(camera);
         }
@@ -163,7 +157,7 @@ public class BossStageManager : MonoBehaviour
 
         // 플레이어를 페이즈 3 맵으로 순간이동
         playerController.transform.position = phase3SpawnPoints.position;
-        CameraManager.SwitchCamera("Phase3 Ready Cam");
+        CameraManager.SwitchCamera("Phase3 Cam");
 
         // 이전 페이즈 보스 비활성화 
         bossController[1].gameObject.SetActive(false);
@@ -184,11 +178,14 @@ public class BossStageManager : MonoBehaviour
         // 플레이어 컨트롤 방지
         playerController.enabled = false;
 
+        yield return new WaitForSeconds(1.0f);
+
         // 뒤 쪽에 보스 그림자 이동
         bossShadow.Move(3.0f);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(4.5f);
 
         // TODO : 보스가 위에서 착지 함
+        phase3Temp.SetActive(true);
 
         // TODO : 배틀 시작
 
