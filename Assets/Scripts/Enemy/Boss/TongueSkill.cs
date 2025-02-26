@@ -19,7 +19,7 @@ public class TongueSkill : Skill
         yield return new WaitForSeconds(0.1f);
 
         for(int i = 1; i <= count + 1; i++) {
-            Vector3 targetBodyPosition = i <= count ? new(0.0f, -2f + i, 0.0f) : new(0, 1, 0);
+            Vector3 targetBodyPosition = i <= count ? new(0.0f, -3f + i, 0.0f) : new(0, 1, 0);
 
             while(maskBoss.bodyLocalPosition != targetBodyPosition) {
                 Vector3 distance = targetBodyPosition - maskBoss.bodyLocalPosition;
