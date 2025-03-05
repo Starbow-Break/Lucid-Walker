@@ -18,6 +18,10 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        // 활성 상태가 아니라면 입력 처리하지 않음
+        if (!GetComponent<PlayerController>().isActive) // 또는 FemaleCharacterController의 경우
+            return;
+
         if (curtime <= 0)
         {
             if (Input.GetKey(KeyCode.X))

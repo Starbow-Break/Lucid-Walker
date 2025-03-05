@@ -26,7 +26,7 @@ public class FemaleCharacterController : MonoBehaviour
 
     public LayerMask p_Layer;
     public LayerMask w_Layer;
-    public LayerMask water_Layer;
+    // public LayerMask water_Layer;
     public bool IsFacingRight { get; private set; }
     public bool isRunning { get; private set; }
     public bool IsJumping { get; private set; }
@@ -48,8 +48,11 @@ public class FemaleCharacterController : MonoBehaviour
     public float LastPressedJumpTime { get; private set; }
     // public float LastPressedDashTime { get; private set; }
     #endregion
-
+    bool isCrouching;
+    bool isCrouchWalking;
     public bool isGround;
+
+    [SerializeField] Transform wallChkUp; // wall 위에 있는지 체크하는 위치
 
     public float chkDistance;
 
@@ -63,12 +66,22 @@ public class FemaleCharacterController : MonoBehaviour
     private bool recentlySwitchedToBack = false;
     private float backLayerCooldown = 0.3f;
     private float backLayerTimer = 0f;
-
+    private Vector2 originalColliderSize;
+    private Vector2 targetCrouchSize = new Vector2(0.92f, 0.8f); // 목표 crouch size
+    private float crouchTransitionSpeed = 5f; // 크기 변환 속도
+    public float crouchWalkSpeed = 2f;
     public bool isDialogueActive = false; // 대화 중 상태 플래그 추가
 
     [Header("Jump Cooldown")]
     public float jumpCooldown = 0.5f; // 점프 후 쿨타임 (초)
     private float jumpCooldownTimer = 0f;
+
+    #region Movable
+    [SerializeField] Transform movableChk; // movable 체크하는 위치
+    [SerializeField] float movableChkDistance; // 체크 거리
+    bool needUpdateMovableAnim = false; // 애니메이션 업데이트 필요 여부
+    float anim_movable_mess_weight = 0.0f; // movable_mess 값
+    #endregion
 
     private void Awake()
     {
@@ -84,6 +97,7 @@ public class FemaleCharacterController : MonoBehaviour
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
         capsuleCollider = GetComponent<CapsuleCollider2D>(); // CapsuleCollider2D 컴포넌트 가져오기
+        originalColliderSize = capsuleCollider.size; // 원래 size 값 저장
 
     }
 
@@ -164,6 +178,8 @@ public class FemaleCharacterController : MonoBehaviour
             LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
         }
         #endregion
+
+        bool wall_up = Physics2D.Raycast(wallChkUp.position, Vector2.up, chkDistance, w_Layer);
 
         #region 점프 도중에도 뒤 플랫폼 감지 (플랫폼 백 체크)
         if (!isGround && IsJumping) // 공중에 있을 때도 뒤 플랫폼 확인
@@ -254,6 +270,36 @@ public class FemaleCharacterController : MonoBehaviour
         //     OnJumpInput();
         // }
         #endregion
+
+        isCrouching = Input.GetKey(KeyCode.DownArrow);  // 아래 방향키로 crouch 상태
+        isCrouchWalking = isCrouching && Mathf.Abs(_moveInput.x) > 0.1f;         // 옆으로 이동 중에 아래키를 누르면 즉시 crouchWalking으로 전환
+
+        anim.SetBool("isCrouching", isCrouching); // crouching 애니메이션
+        anim.SetBool("isCrouchWalking", isCrouchWalking); // crouchWalk 애니메이션
+
+        // CapsuleCollider2D의 size 조정
+        if (isCrouching || isCrouchWalking)
+        {
+            capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, targetCrouchSize, Time.deltaTime * crouchTransitionSpeed);
+            Physics2D.SyncTransforms(); // 즉시 Physics 업데이트
+        }
+        else if (!isCrouching)
+        {
+
+            if (!wall_up)
+            {
+                // 머리 위에 공간이 있으면 Collider 크기 복구
+                capsuleCollider.size = Vector2.Lerp(capsuleCollider.size, originalColliderSize, Time.deltaTime * crouchTransitionSpeed * 2);
+                Physics2D.SyncTransforms(); // 즉시 Physics 업데이트
+            }
+            else
+            {
+                // 공간이 없으면 crouching 상태 유지
+                isCrouching = true;
+                anim.SetBool("isCrouching", true); // 애니메이션 유지
+            }
+        }
+
 
         #region JUMP CHECKS
         if (IsJumping && rb.velocity.y < 0)
@@ -360,6 +406,14 @@ public class FemaleCharacterController : MonoBehaviour
                 Debug.Log("앞 플랫폼 발견 → PlayerFront로 전환");
             }
         }
+
+        #region MOVABLE_ANIMATION
+        if (needUpdateMovableAnim)
+        {
+            anim.SetFloat("movable_mess", anim_movable_mess_weight);
+            needUpdateMovableAnim = false;
+        }
+        #endregion
     }
     private void FixedUpdate()
     {
@@ -371,6 +425,38 @@ public class FemaleCharacterController : MonoBehaviour
             // 캐릭터의 이동 속도 계산 (걷기와 달리기 구분)
             float moveSpeed = isRunning ? Data.runMaxSpeed : Data.runMaxSpeed * 0.5f; // Shift 누르면 달리기 속도
             Vector2 velocity = new(_moveInput.x * moveSpeed, rb.velocity.y);
+            if (isGround && Mathf.Abs(velocity.x) > 0.01f)
+            {
+                LayerMask movableLayer = LayerMask.GetMask("Movable");
+                RaycastHit2D movableHit = Physics2D.Raycast(movableChk.position, IsFacingRight ? Vector2.right : Vector2.left, movableChkDistance, movableLayer);
+
+                if (movableHit.collider != null)
+                {
+                    // 물체를 밀고 있을 때 애니메이션 상태 업데이트
+                    float new_movable_mess = Mathf.Max(0.0f, 1 - Mathf.Abs(rb.velocity.x / velocity.x));
+                    if (new_movable_mess != anim_movable_mess_weight)
+                    {
+                        anim_movable_mess_weight = new_movable_mess;
+                        needUpdateMovableAnim = true;
+                    }
+                }
+                else
+                {
+                    if (anim_movable_mess_weight != 0.0f)
+                    {
+                        anim_movable_mess_weight = 0.0f;
+                        needUpdateMovableAnim = true;
+                    }
+                }
+            }
+            else
+            {
+                if (anim_movable_mess_weight != 0.0f)
+                {
+                    anim_movable_mess_weight = 0.0f;
+                    needUpdateMovableAnim = true;
+                }
+            }
 
             // 실제 이동 속도 적용
             rb.velocity = velocity;
@@ -381,6 +467,12 @@ public class FemaleCharacterController : MonoBehaviour
             Run(Data.wallJumpRunLerp);
         else
             Run(1);
+
+        // crouchWalk 속도 적용
+        if (isCrouchWalking)
+        {
+            rb.velocity = new Vector2(_moveInput.x * crouchWalkSpeed, rb.velocity.y);
+        }
 
     }
 

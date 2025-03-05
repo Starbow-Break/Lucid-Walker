@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines; // 주고받는 대화를 큐로 관리
     private int dialogueStep = 0; // 현재 대화 단계 추적
     public delegate void DialogueEvent(int step);
+    public delegate void DialogueFinishedEvent();
+    public event DialogueFinishedEvent OnDialogueFinished;
     public event DialogueEvent OnDialogueStep; // 특정 단계에서 이벤트 트리거
 
     private bool isDialogueActive = false; // 대화 활성 상태 확인
@@ -83,6 +85,9 @@ public class DialogueManager : MonoBehaviour
     {
         isDialogueActive = false; // 대화 비활성화
         DialogueUI.Instance.HideDialogueBox();
+
+        // 대화 종료 이벤트 호출
+        OnDialogueFinished?.Invoke();
     }
 
     public bool IsDialogueFinished()

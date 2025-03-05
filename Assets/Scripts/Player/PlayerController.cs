@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     public bool isOnRope = false;
+    private float _fallSpeedYDampingChangeThreshold;
 
     private void Awake()
     {
@@ -92,6 +93,8 @@ public class PlayerController : MonoBehaviour
         IsFacingRight = true;
         capsuleCollider = GetComponent<CapsuleCollider2D>(); // CapsuleCollider2D 컴포넌트 가져오기
         originalColliderSize = capsuleCollider.size; // 원래 size 값 저장
+
+        _fallSpeedYDampingChangeThreshold = CameraManager.instance._fallSpeedYDampingChangeThreshold;
     }
 
     private void Update()
@@ -404,6 +407,20 @@ public class PlayerController : MonoBehaviour
 
         // isWall = Physics2D.Raycast(wallChk.position, IsFacingRight ? Vector2.right : Vector2.left, wallchkDistance, w_Layer);
         anim.SetBool("isSliding", IsSliding);
+
+        if (rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+
+        if (rb.velocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpedFromPlayerFalling = false;
+
+            CameraManager.instance.LerpYDamping(false);
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -601,6 +618,9 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+        // Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+        // transform.rotation = Quaternion.Euler(rotator);
+
 
         IsFacingRight = !IsFacingRight;
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class ClueUIButton : MonoBehaviour
 {
     [SerializeField] private GameObject panel; // 클릭 시 활성화할 패널
-    [SerializeField] private PortalCurtain portalCurtain; // PortalCurtain 스크립트 참조
+    // [SerializeField] private PortalCurtain portalCurtain; // PortalCurtain 스크립트 참조
 
     void Update()
     {
@@ -19,11 +19,11 @@ public class ClueUIButton : MonoBehaviour
                     panel.SetActive(true); // 패널 활성화
                 }
 
-                // PortalCurtain의 함수 호출
-                if (portalCurtain != null)
-                {
-                    portalCurtain.ActivateCurtain(); // PortalCurtain에서 처리 로직 실행
-                }
+                // // PortalCurtain의 함수 호출
+                // if (portalCurtain != null)
+                // {
+                //     portalCurtain.ActivateCurtain(); // PortalCurtain에서 처리 로직 실행
+                // }
             }
         }
     }
