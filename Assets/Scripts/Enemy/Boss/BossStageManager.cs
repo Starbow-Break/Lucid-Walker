@@ -31,6 +31,8 @@ public class BossStageManager : MonoBehaviour
     [Header("etc")]
     [SerializeField] Animator curtainAnim;
     [SerializeField] Transform phase3SpawnPoints;
+    [SerializeField] Transform bossBattleFocusPoint;
+    [SerializeField] GameObject areaWall;
     [SerializeField] BossShadow bossShadow;
     [SerializeField] List<Collider2D> phase3Colliders;
 
@@ -179,6 +181,11 @@ public class BossStageManager : MonoBehaviour
     IEnumerator Phase3StartFlow() {
         // 플레이어 컨트롤 방지
         playerController.enabled = false;
+        
+        // 카메라 초점 이동 및 Area Wall 이동
+        CameraManager.ActiveCamera.Follow = bossBattleFocusPoint;
+        areaWall.SetActive(true);
+        areaWall.transform.position = bossBattleFocusPoint.position;
 
         // 3페이즈에서 맵 이동 및 이벤트 콜리전 비활성화
         foreach(Collider2D collider in phase3Colliders) {

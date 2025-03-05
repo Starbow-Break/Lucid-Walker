@@ -18,7 +18,7 @@ public class CameraShake : MonoBehaviour
 
     float shakeTime;
 
-    public void ShakeActiveCamera(float intensity, float time) {
+    public void ShakeActiveCamera(float intensity, float time = float.PositiveInfinity) {
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = 
             CameraManager.ActiveCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         
