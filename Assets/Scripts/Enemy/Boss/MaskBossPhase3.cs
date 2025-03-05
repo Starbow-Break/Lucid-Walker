@@ -21,6 +21,7 @@ public class MaskBossPhase3 : MonoBehaviour
 
     Rigidbody2D rb;
     TongueSkill tongueSkill;
+    ThreatSkill threatSkill;
     Animator anim;
     Coroutine idleCoroutine;
 
@@ -28,6 +29,7 @@ public class MaskBossPhase3 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         tongueSkill = GetComponent<TongueSkill>();
+        threatSkill = GetComponent<ThreatSkill>();
         anim = GetComponent<Animator>();
 
         gameObject.SetActive(false);
@@ -53,6 +55,9 @@ public class MaskBossPhase3 : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1)) {
             tongueSkill.Cast();
         }
+        if(Input.GetKeyDown(KeyCode.Alpha2)) {
+            threatSkill.Cast();
+        }
     }
 
     // body를 dir만큼 움직인다,
@@ -70,10 +75,8 @@ public class MaskBossPhase3 : MonoBehaviour
             body.localPosition = Vector3.Lerp(0.7f * Vector3.up, 1.0f * Vector3.up, Mathf.Cos(currentTime / period * 2.0f * Mathf.PI) / 2 + 0.5f);
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Platform")) {
-            CameraShake.instance.ShakeActiveCamera(5f, 0.1f);
-        }
+
+    void Shake() {
+        CameraShake.instance.ShakeActiveCamera(5.0f, 0.1f);
     }
 }
