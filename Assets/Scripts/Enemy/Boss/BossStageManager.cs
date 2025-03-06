@@ -32,7 +32,6 @@ public class BossStageManager : MonoBehaviour
     [SerializeField] Animator curtainAnim;
     [SerializeField] Transform phase3SpawnPoints;
     [SerializeField] Transform bossBattleFocusPoint;
-    [SerializeField] GameObject areaWall;
     [SerializeField] BossShadow bossShadow;
     [SerializeField] List<Collider2D> phase3Colliders;
 
@@ -61,6 +60,8 @@ public class BossStageManager : MonoBehaviour
 
         // Phase1Start();
         CameraManager.SwitchCamera("Spike Frame Phase Cam");
+        
+        bossShadow.gameObject.SetActive(false);
     }
 
     public void Phase1Start() => StartCoroutine(Phase1StartFlow());
@@ -184,8 +185,6 @@ public class BossStageManager : MonoBehaviour
         
         // 카메라 초점 이동 및 Area Wall 이동
         CameraManager.ActiveCamera.Follow = bossBattleFocusPoint;
-        areaWall.SetActive(true);
-        areaWall.transform.position = bossBattleFocusPoint.position;
 
         // 3페이즈에서 맵 이동 및 이벤트 콜리전 비활성화
         foreach(Collider2D collider in phase3Colliders) {
@@ -195,8 +194,11 @@ public class BossStageManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         // 뒤 쪽에 보스 그림자 이동
+        bossShadow.gameObject.SetActive(true);
         bossShadow.Move(2.5f);
         yield return new WaitForSeconds(3.5f);
+        
+        bossShadow.gameObject.SetActive(false);
 
         // TODO : 보스가 위에서 착지 함
         phase3Temp.SetActive(true);
