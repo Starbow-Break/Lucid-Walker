@@ -60,7 +60,7 @@ public class BossStageManager : MonoBehaviour
         }
 
         // Phase1Start();
-        CameraManager.SwitchCamera("Phase3 Cam");
+        CameraManager.SwitchCamera("Spike Frame Phase Cam");
     }
 
     public void Phase1Start() => StartCoroutine(Phase1StartFlow());
@@ -161,7 +161,7 @@ public class BossStageManager : MonoBehaviour
 
         // 플레이어를 페이즈 3 맵으로 순간이동
         playerController.transform.position = phase3SpawnPoints.position;
-        CameraManager.SwitchCamera("Phase3 Cam");
+        CameraManager.SwitchCamera("Spike Frame Phase Cam");
 
         // 이전 페이즈 보스 비활성화 
         bossController[1].gameObject.SetActive(false);
