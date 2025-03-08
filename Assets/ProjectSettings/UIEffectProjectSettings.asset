@@ -68,6 +68,8 @@ ShaderVariantCollection:
         passType: 0
       - keywords: SAMPLING_BLUR_FAST
         passType: 0
+      - keywords: SAMPLING_BLUR_FAST TRANSITION_COLOR_REPLACE TRANSITION_MELT
+        passType: 0
       - keywords: SAMPLING_BLUR_FAST TRANSITION_FADE
         passType: 0
       - keywords: SAMPLING_BLUR_MEDIUM

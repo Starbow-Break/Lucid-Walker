@@ -12,6 +12,7 @@ public class BossStageManager : MonoBehaviour
 
     [Header("Boss")]
     [SerializeField] List<MaskBoss> bossController;
+    [SerializeField] GameObject phase3Temp;
     [SerializeField] List<Animator> bossAnim;
 
     [Header("Objects")]
@@ -30,6 +31,10 @@ public class BossStageManager : MonoBehaviour
     [Header("etc")]
     [SerializeField] Animator curtainAnim;
     [SerializeField] Transform phase3SpawnPoints;
+    [SerializeField] Transform bossBattleFocusPoint;
+    [SerializeField] GameObject areaWall;
+    [SerializeField] BossShadow bossShadow;
+    [SerializeField] List<Collider2D> phase3Colliders;
 
     public static BossStageManager instance {
         get {
@@ -42,10 +47,6 @@ public class BossStageManager : MonoBehaviour
     }
     private static BossStageManager m_instance;
 
-    MaterialPropertyBlock mpb;
-
-    int phase;
-
     void Awake()
     {
         if (instance != this) {
@@ -54,33 +55,21 @@ public class BossStageManager : MonoBehaviour
     }
 
     void Start() {
-        mpb = new MaterialPropertyBlock();
-        phase = 0;
-
         foreach(CinemachineVirtualCamera camera in cameras) {
             CameraManager.Register(camera);
         }
 
-        StartNextPhase();
+        // Phase1Start();
+        CameraManager.SwitchCamera("Phase3 Cam");
     }
 
-    public void StartNextPhase() {
-        ++phase;
-        switch(phase) {
-            case 1:
-                StartCoroutine(Phase1Start());
-                break;
-            case 2:
-                StartCoroutine(Phase2Start());
-                break;
-            case 3:
-                StartCoroutine(Phase3Start());
-                break;
-        }
-    }
+    public void Phase1Start() => StartCoroutine(Phase1StartFlow());
+    public void Phase2Start() => StartCoroutine(Phase2StartFlow());
+    public void Phase3Start() => StartCoroutine(Phase3StartFlow());
+    public void TransitionPhase3() => StartCoroutine(TransitionPhase3Flow());
 
     // 1페이즈 시작
-    IEnumerator Phase1Start() {
+    IEnumerator Phase1StartFlow() {
         // 플레이어 조작 방지
         playerController.enabled = false;
 
@@ -115,8 +104,8 @@ public class BossStageManager : MonoBehaviour
     }
 
     // 2페이즈 시작
-    IEnumerator Phase2Start() {
-        // 플레이어 조작 방지
+    IEnumerator Phase2StartFlow() {
+        // 플레이어 컨트롤 방지
         playerController.enabled = false;
 
         // 페이즈 1 오브젝트들 비활성화
@@ -158,8 +147,8 @@ public class BossStageManager : MonoBehaviour
     }
 
     // 3페이즈 시작
-    IEnumerator Phase3Start() {
-        // 플레이어 컨트롤러 비활성화
+    IEnumerator TransitionPhase3Flow() {
+        // 플레이어 컨트롤 방지
         playerController.enabled = false;
 
         bossAnim[1].SetTrigger("phase_finish");
@@ -172,7 +161,7 @@ public class BossStageManager : MonoBehaviour
 
         // 플레이어를 페이즈 3 맵으로 순간이동
         playerController.transform.position = phase3SpawnPoints.position;
-        CameraManager.SwitchCamera("Phase3 Ready Cam");
+        CameraManager.SwitchCamera("Phase3 Cam");
 
         // 이전 페이즈 보스 비활성화 
         bossController[1].gameObject.SetActive(false);
@@ -185,6 +174,36 @@ public class BossStageManager : MonoBehaviour
         }
 
         // 플레이어 컨트롤러 활성화
+        playerController.enabled = true;
+    }
+
+    // 3페이즈 시작
+    IEnumerator Phase3StartFlow() {
+        // 플레이어 컨트롤 방지
+        playerController.enabled = false;
+        
+        // 카메라 초점 이동 및 Area Wall 이동
+        CameraManager.ActiveCamera.Follow = bossBattleFocusPoint;
+        areaWall.SetActive(true);
+        areaWall.transform.position = bossBattleFocusPoint.position;
+
+        // 3페이즈에서 맵 이동 및 이벤트 콜리전 비활성화
+        foreach(Collider2D collider in phase3Colliders) {
+            collider.gameObject.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        // 뒤 쪽에 보스 그림자 이동
+        bossShadow.Move(2.5f);
+        yield return new WaitForSeconds(3.5f);
+
+        // TODO : 보스가 위에서 착지 함
+        phase3Temp.SetActive(true);
+
+        // TODO : 배틀 시작
+
+        // 플레이어 컨트롤 재개
         playerController.enabled = true;
     }
 
