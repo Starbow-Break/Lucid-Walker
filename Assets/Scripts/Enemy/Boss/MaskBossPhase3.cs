@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -78,5 +80,14 @@ public class MaskBossPhase3 : MonoBehaviour
 
     void Shake() {
         CameraShake.instance.ShakeActiveCamera(5.0f, 0.1f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Platform"))
+        {
+            Shake();
+            rb.isKinematic = true;
+        }
     }
 }
