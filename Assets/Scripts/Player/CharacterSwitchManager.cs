@@ -15,10 +15,11 @@ public class CharacterSwitchManager : MonoBehaviour
     public KeyCode switchKey = KeyCode.Tab; // 캐릭터 전환 키
 
     public GameObject femaleOnlyRoute; // 인스펙터에서 넣어둔다.
-    public GameObject cutoutMask; // 여주 주변을 보이게 할 Mask
     public GameObject GlowingRoute;
 
     private TilemapRenderer femaleRouteTilemapRenderer; // TilemapRenderer를 가져올 변수
+    private TilemapCollider2D femaleRouteCollider; // 타일맵 콜라이더 변수 추가
+
 
     [Header("Settings")]
     public float thresholdDistance = 10f;  // 둘의 거리가 이 값을 초과하면 VCam2로 전환
@@ -28,6 +29,7 @@ public class CharacterSwitchManager : MonoBehaviour
         if (femaleOnlyRoute != null)
         {
             femaleRouteTilemapRenderer = femaleOnlyRoute.GetComponent<TilemapRenderer>();
+            femaleRouteCollider = femaleOnlyRoute.GetComponent<TilemapCollider2D>(); // 콜라이더 가져오기
         }
     }
 
@@ -80,6 +82,7 @@ public class CharacterSwitchManager : MonoBehaviour
 
             // **여주 전용 길 비활성화**
             // femaleOnlyRoute.SetActive(false);
+            // femaleOnlyRoute.GetComponent<>
             SetMaskInteraction(true);
             GlowingRoute.SetActive(false);
         }
@@ -99,8 +102,12 @@ public class CharacterSwitchManager : MonoBehaviour
                 ? SpriteMaskInteraction.VisibleInsideMask
                 : SpriteMaskInteraction.None;
         }
-    }
 
+        if (femaleRouteCollider != null)
+        {
+            femaleRouteCollider.enabled = !enableMask;
+        }
+    }
 
 
     private void EnableCharacter(MonoBehaviour character)
