@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class MaskBossPhase3 : MonoBehaviour
@@ -12,7 +8,12 @@ public class MaskBossPhase3 : MonoBehaviour
     [SerializeField] Transform frontHand;
     [SerializeField] Transform backHand;
 
+    [Header("Camera Shake")]
+    [SerializeField] float shakeIntensity = 5.0f;
+    [SerializeField] float shakeTime = 0.1f;
+
     [SerializeField] private List<Transform> groundCheckTransforms;
+    [SerializeField] private Transform filpPivot;
 
     private Vector3 landingFrontArmSolverPosition;
     private Vector3 landingBackArmSolverPosition;
@@ -25,15 +26,14 @@ public class MaskBossPhase3 : MonoBehaviour
 
     Rigidbody2D rb;
     TongueSkill tongueSkill;
-    ThreatSkill threatSkill;
+    HandAttackSkill handAttackSkill;
     Animator anim;
-    Coroutine idleCoroutine;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
 
         tongueSkill = GetComponent<TongueSkill>();
-        threatSkill = GetComponent<ThreatSkill>();
+        handAttackSkill = GetComponent<HandAttackSkill>();
         anim = GetComponent<Animator>();
 
         isGround = false;
@@ -50,11 +50,7 @@ public class MaskBossPhase3 : MonoBehaviour
             tongueSkill.Cast();
         }
         if(Input.GetKeyDown(KeyCode.Alpha2)) {
-            threatSkill.Cast();
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            TriggerJump();
+            handAttackSkill.Cast();
         }
         
         anim.SetBool("ground", isGround);
@@ -73,6 +69,14 @@ public class MaskBossPhase3 : MonoBehaviour
         body.localPosition += dir;
     }
 
+    public void Flip() {
+        filpPivot.transform.localScale = new (
+            filpPivot.transform.localScale.x * -1,
+            filpPivot.transform.localScale.y,
+            filpPivot.transform.localScale.z
+        );
+    }
+
     public void TriggerJump()
     {
         anim.SetTrigger("jump");
@@ -80,7 +84,7 @@ public class MaskBossPhase3 : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddForce(Vector2.up * 60.0f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * 100.0f, ForceMode2D.Impulse);
         isGround = false;
     }
 
@@ -101,8 +105,8 @@ public class MaskBossPhase3 : MonoBehaviour
         return result;
     }
     
-    private void Shake() {
-        CameraShake.instance.ShakeActiveCamera(5.0f, 0.1f);
+    public void Shake() {
+        CameraShake.instance.ShakeActiveCamera(shakeIntensity, shakeTime);
     }
 
     private void OnDrawGizmos()
