@@ -12,8 +12,11 @@ public class SpikeSwitch : MonoBehaviour
     public float moveOffset = 0.5f;
     public float moveDuration = 0.2f;
 
+    // 추가: 수평 이동 여부 플래그 (false면 기본적으로 위/아래 이동)
+    public bool horizontalMovement = false;
+
     private Vector3 originalSpikePosition; // 스파이크의 원래 위치
-    private Vector3 targetSpikePosition;   // 스파이크가 올라갔을 때의 위치
+    private Vector3 targetSpikePosition;   // 스파이크가 움직였을 때의 목표 위치
 
     // 명확한 변수 명칭: 그룹 카메라와 스파이크 집중 카메라
     public CinemachineVirtualCamera groupVCam;
@@ -31,15 +34,19 @@ public class SpikeSwitch : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        brain = Camera.main.GetComponent<CinemachineBrain>();
+        if (Camera.main != null)
+            brain = Camera.main.GetComponent<CinemachineBrain>();
 
         if (spike != null)
         {
             originalSpikePosition = spike.transform.position;
-            targetSpikePosition = originalSpikePosition + new Vector3(0, moveOffset, 0);
+            // horizontalMovement 플래그에 따라 목표 위치 계산 (수평 또는 수직)
+            targetSpikePosition = horizontalMovement ?
+                originalSpikePosition + new Vector3(moveOffset, 0, 0) :
+                originalSpikePosition + new Vector3(0, moveOffset, 0);
         }
 
-        // 초기 상태: 그룹 카메라 활성화, 집중 카메라는 낮은 우선순위
+        // 초기 상태: vCam이 할당된 경우에만 우선순위 설정
         if (groupVCam != null)
             groupVCam.Priority = normalPriority;
         if (focusVCam != null)
@@ -72,7 +79,7 @@ public class SpikeSwitch : MonoBehaviour
             bool newState = !anim.GetBool("On");
             anim.SetBool("On", newState);
 
-            // 스파이크 위치 이동 (켜지면 위로, 꺼지면 원래 위치로)
+            // 스파이크 위치 이동 (켜지면 목표 위치로, 꺼지면 원래 위치로)
             if (newState)
             {
                 StartCoroutine(MoveSpike(spike.transform.position, targetSpikePosition, moveDuration));
@@ -82,9 +89,12 @@ public class SpikeSwitch : MonoBehaviour
                 StartCoroutine(MoveSpike(spike.transform.position, originalSpikePosition, moveDuration));
             }
 
-            // 스파이크 집중 카메라로 전환 후, 1초 뒤에 그룹 카메라로 복귀
-            FocusOnTarget();
-            StartCoroutine(RevertToGroupAfterDelay(1f));
+            // vCam이 하나라도 할당된 경우에만 카메라 전환 로직 실행
+            if (groupVCam != null || focusVCam != null)
+            {
+                FocusOnTarget();
+                StartCoroutine(RevertToGroupAfterDelay(1f));
+            }
         }
     }
 

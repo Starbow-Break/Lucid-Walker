@@ -13,6 +13,8 @@ TagManager:
   - Case
   - Rope
   - SpikeFrame
+  - Breakable
+  - Spike
   layers:
   - Default
   - TransparentFX
@@ -39,7 +41,7 @@ TagManager:
   - PlayerFront
   - Object
   - BrokenTile
-  - 
+  - BrokenTileSprite
   - 
   - 
   - 
