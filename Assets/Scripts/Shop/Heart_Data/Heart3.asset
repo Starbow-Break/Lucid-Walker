@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7009f111eab94a099302e039075c017, type: 3}
+  m_Name: Heart3
+  m_EditorClassIdentifier: 
+  itemName: "\uD558\uD2B8 3"
+  itemDescription: "\uCCB4\uB825\uC774 \uD55C \uCE78 \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  price: 0
+  itemType: 0
+  upgradeID: HeartUpgrade3
+  leftPanelInactiveSprite: {fileID: -1332293097, guid: 5db0fc3829c974b0c88f2cd9a4277857, type: 3}
+  leftPanelActiveSprite: {fileID: 30356817, guid: 5db0fc3829c974b0c88f2cd9a4277857, type: 3}
+  leftPanelLockedSprite: {fileID: -1332293097, guid: 5db0fc3829c974b0c88f2cd9a4277857, type: 3}
+  rightPanelInactiveSprite: {fileID: -1573358457, guid: 5db0fc3829c974b0c88f2cd9a4277857, type: 3}
+  rightPanelActiveSprite: {fileID: -346885273, guid: 5db0fc3829c974b0c88f2cd9a4277857, type: 3}

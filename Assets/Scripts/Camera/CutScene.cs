@@ -21,6 +21,10 @@ public class CutScene : MonoBehaviour
     public CharacterSwitchManager characterSwitch;
     public GameObject femaleCharacter;
 
+    [Header("Post-Animation Settings")]
+    [Tooltip("애니메이션이 끝난 후 활성화할 게임오브젝트")]
+    public GameObject objectToActivateAfterAnimation;
+
     private bool cutsceneStarted = false;
     private CinemachineBasicMultiChannelPerlin cameraShake;
     private bool hasDialogueEnded = false;
@@ -93,15 +97,24 @@ public class CutScene : MonoBehaviour
         }
     }
 
+    // 애니메이션이 끝날 때까지 대기한 후, 대화 종료 및 후처리 실행
     private IEnumerator WaitForAnimationAndFinishDialogue(Animator animator)
     {
         if (animator != null)
         {
+            // 애니메이션이 끝날 때까지 대기 (normalizedTime이 1이 될 때까지)
             while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
             {
                 yield return null;
             }
         }
+        animator.gameObject.SetActive(false);
+        // 애니메이션 종료 후 특정 게임오브젝트 활성화
+        if (objectToActivateAfterAnimation != null)
+        {
+            objectToActivateAfterAnimation.SetActive(true);
+        }
+
         hasDialogueEnded = true;
         HandleDialogueFinished();
     }
