@@ -11,7 +11,7 @@ public class CircleWipe : SceneTransition
     public override IEnumerator AnimateTransitionIn()
     {
         // 원을 화면 밖 왼쪽에 배치
-        circle.rectTransform.anchoredPosition = new Vector2(-1000f, 0f);
+        circle.rectTransform.anchoredPosition = new Vector2(-1100f, 0f);
         var tweener = circle.rectTransform.DOAnchorPosX(0f, 1f); // 중앙으로 이동
 
         yield return tweener.WaitForCompletion();
@@ -37,13 +37,13 @@ public class CircleWipe : SceneTransition
             tweener.onComplete += () =>
             {
                 Debug.Log("중앙 이동 완료, 딜레이 시작!");
-                StartCoroutine(DelayedMoveVertical(-1000f, 1f, delay)); // 딜레이 후 다시 이동
+                StartCoroutine(DelayedMoveVertical(-1100f, 1f, delay)); // 딜레이 후 다시 이동
             };
         }
         else
         {
             // 수평 이동 (좌에서 우 또는 우에서 좌)
-            circle.rectTransform.anchoredPosition = isEntering ? new Vector2(-1000f, 0f) : new Vector2(1000f, 0f);
+            circle.rectTransform.anchoredPosition = isEntering ? new Vector2(-1100f, 0f) : new Vector2(1000f, 0f);
             var tweener = circle.rectTransform.DOAnchorPosX(0f, 1f); // 중앙으로 이동
 
             tweener.onComplete += () =>

@@ -7,9 +7,9 @@ public class DestructionZoneTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("[DestructionZoneTrigger] Player entered destruction zone.");
+            Debug.Log("[DestructionZoneTrigger] Enemy entered destruction zone.");
 
             // 리스트에 있는 모든 DestructionSourceHandler 실행
             foreach (var handler in destructionHandlers)
