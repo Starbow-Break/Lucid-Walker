@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+    private static CameraShake m_instance;
     public static CameraShake instance {
         get {
             if (m_instance == null) {
@@ -14,7 +15,6 @@ public class CameraShake : MonoBehaviour
             return m_instance;
         }
     }
-    private static CameraShake m_instance;
 
     float shakeTime;
 

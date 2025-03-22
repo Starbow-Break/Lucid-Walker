@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Phase3_Jump
+  m_Name: Phase3_Landing
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 6.89, z: 0}
+        value: {x: 0, y: 8.26, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -29,7 +29,16 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.083333336
-        value: {x: 0, y: 8.26, z: 0}
+        value: {x: 0, y: 7.17, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.25
+        value: {x: 0, y: 8.18, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -65,7 +74,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.083333336
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -103,6 +112,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -117,7 +135,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 6.89
+        value: 8.26
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -126,7 +144,16 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.083333336
-        value: 8.26
+        value: 7.17
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25
+        value: 8.18
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -163,6 +190,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -176,7 +212,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: Jump
+    functionName: Shake
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
