@@ -1594,7 +1594,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 755326134}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &161014493
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1688,7 +1688,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1313418371}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &163984899
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1854,7 +1854,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1325707681}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &188159737
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3778,7 +3778,7 @@ GameObject:
   - component: {fileID: 231762471}
   m_Layer: 24
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5058,7 +5058,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1918311943}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &258889470
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14008,7 +14008,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 2040005006}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &360206032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14102,7 +14102,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 560421489}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &382076993
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14237,7 +14237,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 2070971899}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &386817170
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14398,7 +14398,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 344555368}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &398302794
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14746,7 +14746,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1723408566}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &419303705
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14840,7 +14840,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1729589128}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &420596175
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15068,7 +15068,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1428618034}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &445571035
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15269,7 +15269,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 2005240436}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &451992781
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20318,7 +20318,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1519436039}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &546587119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21019,7 +21019,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 970004705}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &681901597
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22010,7 +22010,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 2125600769}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &758520672
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22432,7 +22432,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 917163867}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &792300594
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29361,7 +29361,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1206359456}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &984335330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29570,7 +29570,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 128432174}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1025466908
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29627,8 +29627,8 @@ GameObject:
   - component: {fileID: 1035899096}
   - component: {fileID: 1035899101}
   - component: {fileID: 1035899100}
-  - component: {fileID: 1035899099}
   - component: {fileID: 1035899098}
+  - component: {fileID: 1035899099}
   - component: {fileID: 1035899103}
   - component: {fileID: 1035899097}
   - component: {fileID: 1035899102}
@@ -29669,6 +29669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f19f5e84bf31743a61375ddd6a2712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 16779264
   body: {fileID: 156323490}
   frontHand: {fileID: 849377097}
   backHand: {fileID: 1058206185}
@@ -29826,6 +29829,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coolDown: 0
   count: 5
+  bodyMin: 5.67
+  bodyMax: 8.34
+  bodyVelocity: 2
 --- !u!50 &1035899103
 Rigidbody2D:
   serializedVersion: 4
@@ -29866,6 +29872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 0
+  punchSpawner: {fileID: 1746196897}
 --- !u!1001 &1036487140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29982,7 +29989,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 797391327}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1041803644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30761,7 +30768,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 415935408}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1100947984
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38380,7 +38387,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 707558260}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1434351558
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39260,7 +39267,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1958855516}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1540358074
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40255,7 +40262,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 503385540}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1611216500
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40513,7 +40520,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1695376151}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1642583106
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43277,7 +43284,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 752135506}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1708807551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43889,6 +43896,53 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 445730145}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1746196896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746196898}
+  - component: {fileID: 1746196897}
+  m_Layer: 0
+  m_Name: Punch Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1746196897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746196896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a401bfb9096e7438fc27efa0ff59a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 3
+  interval: 4
+  punchPrefab: {fileID: 2777511933904669409, guid: f99e43593cf19204b8c8f6891ec67216, type: 3}
+--- !u!4 &1746196898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746196896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 144.71982, y: -31.471663, z: -0.17812794}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755830162
 GameObject:
@@ -50955,7 +51009,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 897878480}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1853767386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51508,7 +51562,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1048370147}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1883587049
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52237,7 +52291,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1647881668}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1927083302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52331,7 +52385,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 1477885254}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1928201507
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52425,7 +52479,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 4236398}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &1944047757
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54650,7 +54704,7 @@ MonoBehaviour:
   destructionHandlers:
   - {fileID: 257568055}
   targetTags:
-  - Player
+  - BossHand
 --- !u!61 &2141070372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -54994,6 +55048,7 @@ SceneRoots:
   - {fileID: 1888256665}
   - {fileID: 1731095568}
   - {fileID: 67170274}
+  - {fileID: 1746196898}
   - {fileID: 849844255}
   - {fileID: 1698201892}
   - {fileID: 1991206460}

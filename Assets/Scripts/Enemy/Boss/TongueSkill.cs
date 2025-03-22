@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class TongueSkill : Skill
 {
     [SerializeField, Min(0)] int count = 3;     // 공격 횟수
+    [SerializeField] float bodyMin;
+    [SerializeField] float bodyMax;
+    [SerializeField] float bodyVelocity = 2.0f;
 
     MaskBossPhase3 maskBoss;
     Animator casterAnimator;
@@ -16,22 +20,19 @@ public class TongueSkill : Skill
 
     protected override IEnumerator SkillFlow() {
         casterAnimator.SetBool("tongue_ready", true);
-        yield return new WaitForSeconds(0.1f);
+        casterAnimator.SetFloat("tongue_position", BlendValue(maskBoss.bodyLocalPosition.y));
 
-        for(int i = 1; i <= count + 1; i++) {
-            Vector3 targetBodyPosition = i <= count ? new(0.0f, -3f + i, 0.0f) : new(0, 1, 0);
+        float currentValue = casterAnimator.GetFloat("tongue_position");
+        for(int i = 0; i < count; i++) {
+            float targetValue = 1.0f * i / (count - 1);
+            float valueVelocity = (targetValue > currentValue ? bodyVelocity : -bodyVelocity) / (bodyMax - bodyMin);
+            Predicate<float> check = valueVelocity > 0 ? (v) => v > 0 : (v) => v < 0;
 
-            while(maskBoss.bodyLocalPosition != targetBodyPosition) {
-                Vector3 distance = targetBodyPosition - maskBoss.bodyLocalPosition;
-                Debug.Log(distance);
+            Debug.Log("What?");
 
-                if(distance.magnitude <= 2f * Time.deltaTime) {
-                    maskBoss.MoveBody(distance);
-                }
-                else {
-                    maskBoss.MoveBody(2f * Time.deltaTime * distance.normalized);
-                }
-
+            while(check(targetValue - currentValue)) {
+                currentValue += valueVelocity * Time.deltaTime;
+                casterAnimator.SetFloat("tongue_position", currentValue);
                 yield return null;
             }
 
@@ -42,5 +43,10 @@ public class TongueSkill : Skill
         }
 
         casterAnimator.SetBool("tongue_ready", false);
+    }
+
+    float BlendValue(float bodyPos)
+    {
+        return (bodyPos - bodyMin) / (bodyMax - bodyMin);
     }
 }

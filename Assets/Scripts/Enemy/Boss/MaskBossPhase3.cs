@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class MaskBossPhase3 : MonoBehaviour
 {
+    [SerializeField] LayerMask groundLayer;
+
     [Header("Bones")]
     [SerializeField] Transform body;
     [SerializeField] Transform frontHand;
@@ -14,9 +17,6 @@ public class MaskBossPhase3 : MonoBehaviour
 
     [SerializeField] private List<Transform> groundCheckTransforms;
     [SerializeField] private Transform filpPivot;
-
-    private Vector3 landingFrontArmSolverPosition;
-    private Vector3 landingBackArmSolverPosition;
 
     public bool isGround;
 
@@ -58,8 +58,9 @@ public class MaskBossPhase3 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isGround && rb.velocity.y < 0.0f && CheckGround())
+        if (!isGround && rb.velocity.y <= 0.0f && CheckGround())
         {
+            Shake();
             isGround = true;
         }
     }
@@ -84,7 +85,8 @@ public class MaskBossPhase3 : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddForce(Vector2.up * 100.0f, ForceMode2D.Impulse);
+        rb.velocity = Vector3.zero;
+        rb.AddForce(Vector2.up * 70.0f, ForceMode2D.Impulse);
         isGround = false;
     }
 
@@ -94,14 +96,14 @@ public class MaskBossPhase3 : MonoBehaviour
         
         foreach (Transform groundCheckTransform in groundCheckTransforms)
         {
-            if (!Physics2D.Raycast(groundCheckTransform.position, Vector2.down, 0.2f, LayerMask.GetMask("Platform")))
+            if (!Physics2D.Raycast(groundCheckTransform.position, Vector2.down, 0.3f, groundLayer))
             {
+                Debug.Log("?");
                 result = false;
                 break;
             }
         }
     
-        Debug.Log(result);
         return result;
     }
     
@@ -114,7 +116,7 @@ public class MaskBossPhase3 : MonoBehaviour
         Gizmos.color = Color.red;
         foreach (Transform groundCheckTransform in groundCheckTransforms)
         {
-            Gizmos.DrawRay(groundCheckTransform.position, Vector2.down * 0.2f);
+            Gizmos.DrawRay(groundCheckTransform.position, Vector2.down * 0.3f);
         }
     }
 }

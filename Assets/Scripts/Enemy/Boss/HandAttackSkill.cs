@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HandAttackSkill : Skill
 {
+    [SerializeField] PunchSpawner punchSpawner;
     MaskBossPhase3 maskBoss;
     Rigidbody2D maskBossRigidBody;
 
@@ -22,11 +23,8 @@ public class HandAttackSkill : Skill
         maskBossRigidBody.velocity = Vector2.zero;
         maskBossRigidBody.gravityScale = 0.0f;
 
-        // TODO : 손으로 내려찍기
-        for(int i = 0; i < 3; i++) {
-            maskBoss.Shake();
-            yield return new WaitForSeconds(1.0f);
-        }
+        punchSpawner.SpawnPunch();
+        yield return new WaitForSeconds(15.0f);
 
         maskBoss.Flip();
         maskBossRigidBody.gravityScale = gravityScale;
