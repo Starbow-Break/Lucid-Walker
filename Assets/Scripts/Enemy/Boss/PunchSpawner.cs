@@ -17,7 +17,7 @@ public class PunchSpawner : MonoBehaviour
     private IEnumerator SpawnSequence()
     {
         for(int i = 0; i < count; i++) {
-            Instantiate(punchPrefab, new Vector3(140f, -25f, 0f), Quaternion.identity);
+            Instantiate(punchPrefab, new Vector3(137f + i * 3f, -25f, 0f), Quaternion.identity);
             yield return new WaitForSeconds(interval);
         }
     }
