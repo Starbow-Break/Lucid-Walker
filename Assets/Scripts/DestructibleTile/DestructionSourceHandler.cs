@@ -5,18 +5,19 @@ using UnityEngine.Tilemaps;
 
 public class DestructionSourceHandler : MonoBehaviour
 {
-    public int updateTimer;
-    public int maxTime;
-    public Vector2 offset;
-    [SerializeField] private Vector2Int defaultRadius;
+    public int updateTimer; // 타이머
+    public int maxTime; // 최대 시간 (터지는 시간)
+    public Vector2 offset; // 타일 공간 기준 offset
+    [SerializeField] private Vector2Int defaultRadius; // 기본 반경
     [SerializeField] private Tilemap destructibleTileMap;
     [SerializeField] private GameObject tileSplitterPrefab;
 
-    private List<Vector3Int> tilesToBreak = new List<Vector3Int>();
+    private List<Vector3Int> tilesToBreak = new List<Vector3Int>(); // 부서질 타일들
     private bool isTriggered = false;
 
     private void Start()
     {
+        // 타일맵이 추가되어있지 않다면 씬에서 직접 찾아서 추가
         if (destructibleTileMap == null)
             destructibleTileMap = GameObject.Find("DestructibleTileMap").GetComponent<Tilemap>();
     }
@@ -103,7 +104,7 @@ public class DestructionSourceHandler : MonoBehaviour
             impactRadius = defaultRadius;
 
         List<Vector3Int> allTiles = new List<Vector3Int>();
-        // rightDirection은 그대로 사용 (방향 계산에 필요)
+        // direction을 기준으로 오른쪽 방향
         Vector3 rightDirection = Quaternion.Euler(0, 0, -90f) * direction;
         // impactPosition을 월드 좌표에서 셀 좌표로 변환 후, 오프셋을 적용하여 시작 셀을 계산
         Vector3Int startPosition = AdjustStartPosition(impactPosition, rightDirection, direction);
@@ -200,6 +201,7 @@ public class DestructionSourceHandler : MonoBehaviour
     }
 
     // 월드 좌표에 offset을 적용한 후, 셀 좌표로 변환하여 인접 타일을 확인
+    // 인접 타일을 확인하여 폭발 방향을 계산
     private Vector2 GetDirectionFromImpactPosition(Vector2 impactPosition)
     {
         Vector2 direction = Vector2.zero;
