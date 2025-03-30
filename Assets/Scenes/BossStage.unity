@@ -315,9 +315,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5372,9 +5392,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5582,9 +5622,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -19566,9 +19626,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -20442,9 +20522,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -20735,9 +20835,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -20910,7 +21030,7 @@ Transform:
   m_GameObject: {fileID: 662195442}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 120.8, y: -44.83, z: -10}
+  m_LocalPosition: {x: 118.44, y: -44.74, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21422,9 +21542,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -21675,9 +21815,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -22179,9 +22339,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -28360,9 +28540,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -28444,9 +28644,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -29930,9 +30150,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -30407,9 +30647,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -30905,11 +31165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 120.8
+      value: 118.44
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -44.83
+      value: -44.74
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31843,9 +32103,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -32194,9 +32474,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -37929,9 +38229,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -38069,9 +38389,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -38170,9 +38510,37 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: offset.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: offset.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -38750,9 +39118,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -38818,9 +39206,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -38886,9 +39294,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -39208,9 +39636,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -39821,9 +40269,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -40021,9 +40489,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -50767,9 +51255,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -51780,9 +52288,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -52232,9 +52760,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -53017,9 +53565,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -53726,9 +54294,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -53794,9 +54382,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -54031,9 +54639,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: recovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: respawnDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
       propertyPath: destructibleTileMap
       value: 
       objectReference: {fileID: 231762475}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: maxSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057123566626021664, guid: 4ce1572119cd243e9a954eba4d803cbe, type: 3}
+      propertyPath: minSpawnTimeAfterDestruction
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

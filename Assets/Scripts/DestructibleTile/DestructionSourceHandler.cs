@@ -5,20 +5,37 @@ using UnityEngine.Tilemaps;
 
 public class DestructionSourceHandler : MonoBehaviour
 {
-    public int updateTimer;
-    public int maxTime;
-    public Vector2 offset;
-    [SerializeField] private Vector2Int defaultRadius;
+    public int updateTimer; // 타이머
+    public int maxTime; // 최대 시간 (터지는 시간)
+    public Vector2 offset; // 타일 공간 기준 offset
+    [SerializeField] private Vector2Int defaultRadius; // 기본 반경
     [SerializeField] private Tilemap destructibleTileMap;
     [SerializeField] private GameObject tileSplitterPrefab;
 
-    private List<Vector3Int> tilesToBreak = new List<Vector3Int>();
+    [Header("ReSpawn Option")]
+    [SerializeField] private bool respawn = false; // 타일 회복 여부
+    [SerializeField] private float minSpawnTimeAfterDestruction = 5f; // 파괴 후 회복 시간 최솟값
+    [SerializeField] private float maxSpawnTimeAfterDestruction = 10f; // 파괴 후 회복 시간 최댓값
+    [SerializeField] private float respawnDuration = 3f; // 회복된 타일의 이동 시간
+
+    private List<Vector3Int> tilesToBreak = new List<Vector3Int>(); // 부서질 타일들
+    private List<TileBase> destructTileBases = new List<TileBase>();
+    private List<Vector3Int> destructTilePos = new List<Vector3Int>();
+    private List<DestructionVisualHandler> spawnedVisualHandler = new List<DestructionVisualHandler>();
+    private List<Color> destructTilecolor = new List<Color>();
+    
     private bool isTriggered = false;
+    private bool isRespawning = false;
+    private int originalUpdateTime;
+    private int originalMaxTime;
+    private float recoveryRemainTime = 0.0f;    // 타일 회복까지 남은 시간
 
     private void Start()
     {
+        // 타일맵이 추가되어있지 않다면 씬에서 직접 찾아서 추가
         if (destructibleTileMap == null)
             destructibleTileMap = GameObject.Find("DestructibleTileMap").GetComponent<Tilemap>();
+
     }
 
     public void TriggerDestruction()
@@ -39,7 +56,7 @@ public class DestructionSourceHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isTriggered || tilesToBreak.Count == 0) return;
+        if (!isTriggered) return;
 
         if (tilesToBreak.Count > 0)
         {
@@ -73,6 +90,10 @@ public class DestructionSourceHandler : MonoBehaviour
                             convertedTiles.Add(handler);
 
                             // 타일 제거
+                            destructTileBases.Add(destructibleTileMap.GetTile(cellPos));
+                            destructTilePos.Add(cellPos);
+                            spawnedVisualHandler.Add(handler);
+                            destructTilecolor.Add(destructibleTileMap.GetColor(cellPos));
                             destructibleTileMap.SetTile(cellPos, null);
                             tilesToRemoveFromList.Add(cellPos);
                         }
@@ -92,8 +113,26 @@ public class DestructionSourceHandler : MonoBehaviour
         }
         else
         {
-            ObjectPooler.Instance.ReturnPooledObject(this.gameObject);
+            // ObjectPooler.Instance.ReturnPooledObject(this.gameObject);
             // Destroy(gameObject);
+
+            if (respawn)
+            {
+                if (isRespawning)
+                {
+                    Debug.Log(recoveryRemainTime);
+                    recoveryRemainTime -= Time.deltaTime;
+                    if(recoveryRemainTime <= 0.0f)
+                    {
+                        RespawnTiles();
+                    }
+                }
+                else
+                {
+                    isRespawning = true;
+                    recoveryRemainTime = Random.Range(minSpawnTimeAfterDestruction, maxSpawnTimeAfterDestruction);
+                }
+            }
         }
     }
 
@@ -103,7 +142,7 @@ public class DestructionSourceHandler : MonoBehaviour
             impactRadius = defaultRadius;
 
         List<Vector3Int> allTiles = new List<Vector3Int>();
-        // rightDirection은 그대로 사용 (방향 계산에 필요)
+        // direction을 기준으로 오른쪽 방향
         Vector3 rightDirection = Quaternion.Euler(0, 0, -90f) * direction;
         // impactPosition을 월드 좌표에서 셀 좌표로 변환 후, 오프셋을 적용하여 시작 셀을 계산
         Vector3Int startPosition = AdjustStartPosition(impactPosition, rightDirection, direction);
@@ -200,6 +239,7 @@ public class DestructionSourceHandler : MonoBehaviour
     }
 
     // 월드 좌표에 offset을 적용한 후, 셀 좌표로 변환하여 인접 타일을 확인
+    // 인접 타일을 확인하여 폭발 방향을 계산
     private Vector2 GetDirectionFromImpactPosition(Vector2 impactPosition)
     {
         Vector2 direction = Vector2.zero;
@@ -218,5 +258,62 @@ public class DestructionSourceHandler : MonoBehaviour
 
         Debug.Log($"[GetDirectionFromImpactPosition] Resulting direction: {direction}");
         return direction;
+    }
+
+    private void RespawnTiles()
+    {
+        StartCoroutine(RespawnTilesSequence());
+    }
+
+    private IEnumerator RespawnTilesSequence()
+    {
+        for(int i = 0; i < destructTileBases.Count; i++)
+        {
+            destructibleTileMap.SetTile(destructTilePos[i], destructTileBases[i]);
+            ObjectPooler.Instance.ReturnPooledObject(spawnedVisualHandler[i].gameObject);
+        }
+
+        yield return ChangeTileColor();
+
+        destructTileBases.Clear();
+        destructTilePos.Clear();
+        spawnedVisualHandler.Clear();
+        destructTilecolor.Clear();
+
+        isTriggered = false;
+        isRespawning = false;
+        updateTimer = originalUpdateTime;
+        maxTime = originalMaxTime;
+    }
+
+    private IEnumerator ChangeTileColor()
+    {
+        float currentTime = 0.0f;
+        while(currentTime < respawnDuration)
+        {
+            currentTime += Time.deltaTime;
+            for(int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
+            {
+                destructibleTileMap.SetTileFlags(destructTilePos[i], TileFlags.None);
+                
+                destructibleTileMap.SetColor(
+                    destructTilePos[i], 
+                    new Color(
+                        destructTilecolor[i].r,
+                        destructTilecolor[i].g,
+                        destructTilecolor[i].b,
+                        destructTilecolor[i].a * (currentTime / respawnDuration)
+                    )
+                );
+                Debug.Log(destructTilecolor[i].a * (currentTime / respawnDuration));
+                Debug.Log(destructibleTileMap.GetColor(destructTilePos[i]));
+            }
+            yield return null;
+        }
+
+        for(int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
+        {
+            destructibleTileMap.SetColor(destructTilePos[i], destructTilecolor[i]);
+        }
     }
 }

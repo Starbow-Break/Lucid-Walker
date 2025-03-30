@@ -98,7 +98,6 @@ public class MaskBossPhase3 : MonoBehaviour
         {
             if (!Physics2D.Raycast(groundCheckTransform.position, Vector2.down, 0.3f, groundLayer))
             {
-                Debug.Log("?");
                 result = false;
                 break;
             }
