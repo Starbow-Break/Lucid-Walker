@@ -1,58 +1,68 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ShopItemSlot : MonoBehaviour
 {
-    [SerializeField] private Image icon;                   // 슬롯에 표시될 아이콘 이미지
-    [SerializeField] private GameObject lockOverlay;         // 잠금 상태 오버레이
-    [SerializeField] private Button button;                  // 슬롯 클릭 버튼
-    [SerializeField] private Image activeGlowImage;     // 활성화된 슬롯 뒤에 표시할 빛나는 이미지
+    [SerializeField] private Image icon;
+    [SerializeField] private GameObject lockOverlay;
+    [SerializeField] private Button button;
+    [SerializeField] private Image activeGlowImage;
 
     private ItemData itemData;
     private ShopUI shopUI;
 
-    // Initialize()는 인스펙터에 ShopUI를 수동으로 할당할 필요 없이 호출 시 전달받습니다.
     public void Initialize(ItemData data, ShopUI shopUI)
     {
         this.itemData = data;
         this.shopUI = shopUI;
-        UpdateIcon();
-        UpdateLockState();
+        UpdateSlotState();   // 슬롯 상태 한 번 갱신
         button.onClick.AddListener(OnClickItem);
     }
 
-    // 왼쪽 슬롯에 표시할 아이콘을 구매 및 잠금 상태에 따라 설정
-    public void UpdateIcon()
+    /// <summary>
+    /// 슬롯 상태를 갱신하는 통합 메서드
+    /// 잠금 여부, 구매 여부, 아이콘, 버튼, 오버레이 등을 전부 여기서 처리
+    /// </summary>
+    public void UpdateSlotState()
     {
         GameData gameData = shopUI.GetGameData();
         bool isPurchased = gameData.purchasedUpgradeIDs.Contains(itemData.upgradeID);
-        bool isLocked = false;
 
-        if (itemData.itemType == ItemType.HeartUpgrade)
-        {
-            if (itemData.upgradeID.Equals("HeartUpgrade1"))
-                isLocked = false;
-            else if (itemData.upgradeID.Equals("HeartUpgrade2"))
-                isLocked = !gameData.purchasedUpgradeIDs.Contains("HeartUpgrade1");
-            else if (itemData.upgradeID.Equals("HeartUpgrade3"))
-                isLocked = !gameData.purchasedUpgradeIDs.Contains("HeartUpgrade2");
-        }
+        // 1) 잠금 여부 계산
+        bool isLocked = CheckIsLocked(itemData, gameData);
 
+        // 2) 아이콘 설정
         if (isLocked)
+        {
             icon.sprite = itemData.leftPanelLockedSprite;
+            activeGlowImage.gameObject.SetActive(false);
+        }
         else if (isPurchased)
         {
             icon.sprite = itemData.leftPanelActiveSprite;
             activeGlowImage.gameObject.SetActive(true);
         }
         else
+        {
             icon.sprite = itemData.leftPanelInactiveSprite;
+            activeGlowImage.gameObject.SetActive(false);
+        }
+
+        // 3) 오버레이와 버튼 상태
+        lockOverlay.SetActive(isLocked);
+        button.interactable = !isLocked;
     }
 
-    public void UpdateLockState()
+    /// <summary>
+    /// 업그레이드ID(또는 itemType)에 따른 잠금 여부를 계산하는 메서드
+    /// </summary>
+    private bool CheckIsLocked(ItemData itemData, GameData gameData)
     {
-        GameData gameData = shopUI.GetGameData();
+        // 기본값
         bool isLocked = false;
+
+        // (1) 하트 업그레이드 예시
         if (itemData.itemType == ItemType.HeartUpgrade)
         {
             if (itemData.upgradeID.Equals("HeartUpgrade1"))
@@ -63,12 +73,30 @@ public class ShopItemSlot : MonoBehaviour
                 isLocked = !gameData.purchasedUpgradeIDs.Contains("HeartUpgrade2");
         }
 
-        lockOverlay.SetActive(isLocked);
-        button.interactable = !isLocked;
-        UpdateIcon();
+        // (2) 에너지 업그레이드 예시
+        if (itemData.upgradeID.Equals("EnergyAmount1"))
+        {
+            isLocked = false;
+        }
+        else if (itemData.upgradeID.Equals("EnergyRegen1"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("EnergyAmount1");
+        }
+        else if (itemData.upgradeID.Equals("EnergyAmount2"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("EnergyAmount1");
+        }
+        else if (itemData.upgradeID.Equals("EnergyRegen2"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("EnergyRegen1");
+        }
+        else if (itemData.upgradeID.Equals("EnergyAmount3"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("EnergyAmount2");
+        }
 
+        return isLocked;
     }
-
 
     private void OnClickItem()
     {

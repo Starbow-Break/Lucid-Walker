@@ -110,11 +110,11 @@ public class ShopUI : MonoBehaviour
         buyButton.interactable = !isPurchased && !isLocked;
 
         // 상세 패널 업데이트 후, 모든 슬롯의 활성 상태 갱신 (activeGlowImage 업데이트)
-        ShopItemSlot[] slots = FindObjectsOfType<ShopItemSlot>();
-        foreach (ShopItemSlot slot in slots)
-        {
-            slot.UpdateLockState();
-        }
+        // ShopItemSlot[] slots = FindObjectsOfType<ShopItemSlot>();
+        // foreach (ShopItemSlot slot in slots)
+        // {
+        //     slot.UpdateLockState();
+        // }
     }
 
     // 구매 버튼 클릭 시 호출
@@ -127,15 +127,16 @@ public class ShopUI : MonoBehaviour
     // 구매 후 UI 갱신: 모든 슬롯과 상세 패널 업데이트
     public void UpdateUIAfterPurchase()
     {
-        // 전체 씬에서 ShopItemSlot 컴포넌트를 모두 찾음
         ShopItemSlot[] slots = FindObjectsOfType<ShopItemSlot>();
         foreach (ShopItemSlot slot in slots)
         {
-            slot.UpdateLockState();
+            slot.UpdateSlotState();  // 통합 메서드 호출
         }
+
         if (currentSelectedItem != null)
         {
             ShowItemDetail(currentSelectedItem);
         }
     }
+
 }

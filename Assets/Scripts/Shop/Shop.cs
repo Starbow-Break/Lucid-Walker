@@ -7,7 +7,6 @@ public class Shop : MonoBehaviour
     private PlayerStats playerStats;
     private ShopUI shopUI;
 
-
     private void Awake()
     {
         playerStats = FindObjectOfType<PlayerStats>();
@@ -18,32 +17,69 @@ public class Shop : MonoBehaviour
     {
         GameData gameData = DataPersistenceManager.instance.GetCurrentGameData();
 
+        // 골드 충분한지 체크
         if (gameData.gold >= itemData.price)
         {
+            // 골드 차감
             gameData.gold -= itemData.price;
 
+            // 아직 구매하지 않은 아이템이면 purchasedUpgradeIDs에 추가
             if (!gameData.purchasedUpgradeIDs.Contains(itemData.upgradeID))
             {
                 gameData.purchasedUpgradeIDs.Add(itemData.upgradeID);
 
-                // 만약 구매한 아이템이 HeartUpgrade이면 heartCount 증가
-                if (itemData.itemType == ItemType.HeartUpgrade)
+                switch (itemData.itemType)
                 {
-                    gameData.heartCount += 1;
+                    case ItemType.HeartUpgrade:
+                        // 하트 업그레이드
+                        gameData.heartCount += 1;
 
-                    // PlayerStats에도 하트 증가 처리가 필요하면
-                    if (playerStats != null)
-                    {
-                        playerStats.IncreaseMaxHearts(1);
-                    }
+                        if (playerStats != null)
+                        {
+                            playerStats.IncreaseMaxHearts(1);
+                        }
+                        break;
+
+                    case ItemType.EnergyAmountUpgrade:
+                        // 에너지 최대치 업그레이드 (예: +20)
+                        if (playerStats != null)
+                        {
+                            playerStats.IncreaseMaxEnergy(20f);
+                        }
+                        // GameData에도 동기화
+                        gameData.maxEnergy += 20f;
+                        gameData.currentEnergy = gameData.maxEnergy;
+                        break;
+
+                    case ItemType.EnergyRegenUpgrade:
+                        // 에너지 회복률 업그레이드 (예: +2)
+                        if (playerStats != null)
+                        {
+                            playerStats.IncreaseEnergyRegenRate(2f);
+                        }
+                        gameData.energyRegenRate += 2f;
+                        break;
+
+                    case ItemType.AttackUpgrade:
+                        // 공격력 업그레이드 로직 (예: playerStats.AttackPower += 5f 등)
+                        // GameData에도 반영할 수 있음
+                        Debug.Log("공격력 업그레이드 적용 (예시)");
+                        break;
+
+                    case ItemType.LuckUpgrade:
+                        // 행운 업그레이드 로직 (예: playerStats.Luck += 1f 등)
+                        Debug.Log("행운 업그레이드 적용 (예시)");
+                        break;
                 }
             }
 
+            // 구매 내용 세이브
             DataPersistenceManager.instance.SaveGame();
 
             Debug.Log("구매 완료: " + itemData.itemName);
             Debug.Log("구매된 업그레이드: " + string.Join(", ", gameData.purchasedUpgradeIDs));
 
+            // UI 갱신
             if (shopUI != null)
             {
                 shopUI.UpdateUIAfterPurchase();
@@ -54,5 +90,4 @@ public class Shop : MonoBehaviour
             Debug.Log("골드 부족!");
         }
     }
-
 }
