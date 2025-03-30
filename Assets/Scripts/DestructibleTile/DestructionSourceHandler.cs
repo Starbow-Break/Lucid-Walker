@@ -12,14 +12,30 @@ public class DestructionSourceHandler : MonoBehaviour
     [SerializeField] private Tilemap destructibleTileMap;
     [SerializeField] private GameObject tileSplitterPrefab;
 
+    [Header("ReSpawn Option")]
+    [SerializeField] private bool respawn = false; // 타일 회복 여부
+    [SerializeField] private float minSpawnTimeAfterDestruction = 5f; // 파괴 후 회복 시간 최솟값
+    [SerializeField] private float maxSpawnTimeAfterDestruction = 10f; // 파괴 후 회복 시간 최댓값
+    [SerializeField] private float respawnDuration = 3f; // 회복된 타일의 이동 시간
+
     private List<Vector3Int> tilesToBreak = new List<Vector3Int>(); // 부서질 타일들
+    private List<TileBase> destructTileBases = new List<TileBase>();
+    private List<Vector3Int> destructTilePos = new List<Vector3Int>();
+    private List<DestructionVisualHandler> spawnedVisualHandler = new List<DestructionVisualHandler>();
+    private List<Color> destructTilecolor = new List<Color>();
+    
     private bool isTriggered = false;
+    private bool isRespawning = false;
+    private int originalUpdateTime;
+    private int originalMaxTime;
+    private float recoveryRemainTime = 0.0f;    // 타일 회복까지 남은 시간
 
     private void Start()
     {
         // 타일맵이 추가되어있지 않다면 씬에서 직접 찾아서 추가
         if (destructibleTileMap == null)
             destructibleTileMap = GameObject.Find("DestructibleTileMap").GetComponent<Tilemap>();
+
     }
 
     public void TriggerDestruction()
@@ -40,7 +56,7 @@ public class DestructionSourceHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isTriggered || tilesToBreak.Count == 0) return;
+        if (!isTriggered) return;
 
         if (tilesToBreak.Count > 0)
         {
@@ -74,6 +90,10 @@ public class DestructionSourceHandler : MonoBehaviour
                             convertedTiles.Add(handler);
 
                             // 타일 제거
+                            destructTileBases.Add(destructibleTileMap.GetTile(cellPos));
+                            destructTilePos.Add(cellPos);
+                            spawnedVisualHandler.Add(handler);
+                            destructTilecolor.Add(destructibleTileMap.GetColor(cellPos));
                             destructibleTileMap.SetTile(cellPos, null);
                             tilesToRemoveFromList.Add(cellPos);
                         }
@@ -93,8 +113,26 @@ public class DestructionSourceHandler : MonoBehaviour
         }
         else
         {
-            ObjectPooler.Instance.ReturnPooledObject(this.gameObject);
+            // ObjectPooler.Instance.ReturnPooledObject(this.gameObject);
             // Destroy(gameObject);
+
+            if (respawn)
+            {
+                if (isRespawning)
+                {
+                    Debug.Log(recoveryRemainTime);
+                    recoveryRemainTime -= Time.deltaTime;
+                    if(recoveryRemainTime <= 0.0f)
+                    {
+                        RespawnTiles();
+                    }
+                }
+                else
+                {
+                    isRespawning = true;
+                    recoveryRemainTime = Random.Range(minSpawnTimeAfterDestruction, maxSpawnTimeAfterDestruction);
+                }
+            }
         }
     }
 
@@ -220,5 +258,62 @@ public class DestructionSourceHandler : MonoBehaviour
 
         Debug.Log($"[GetDirectionFromImpactPosition] Resulting direction: {direction}");
         return direction;
+    }
+
+    private void RespawnTiles()
+    {
+        StartCoroutine(RespawnTilesSequence());
+    }
+
+    private IEnumerator RespawnTilesSequence()
+    {
+        for(int i = 0; i < destructTileBases.Count; i++)
+        {
+            destructibleTileMap.SetTile(destructTilePos[i], destructTileBases[i]);
+            ObjectPooler.Instance.ReturnPooledObject(spawnedVisualHandler[i].gameObject);
+        }
+
+        yield return ChangeTileColor();
+
+        destructTileBases.Clear();
+        destructTilePos.Clear();
+        spawnedVisualHandler.Clear();
+        destructTilecolor.Clear();
+
+        isTriggered = false;
+        isRespawning = false;
+        updateTimer = originalUpdateTime;
+        maxTime = originalMaxTime;
+    }
+
+    private IEnumerator ChangeTileColor()
+    {
+        float currentTime = 0.0f;
+        while(currentTime < respawnDuration)
+        {
+            currentTime += Time.deltaTime;
+            for(int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
+            {
+                destructibleTileMap.SetTileFlags(destructTilePos[i], TileFlags.None);
+                
+                destructibleTileMap.SetColor(
+                    destructTilePos[i], 
+                    new Color(
+                        destructTilecolor[i].r,
+                        destructTilecolor[i].g,
+                        destructTilecolor[i].b,
+                        destructTilecolor[i].a * (currentTime / respawnDuration)
+                    )
+                );
+                Debug.Log(destructTilecolor[i].a * (currentTime / respawnDuration));
+                Debug.Log(destructibleTileMap.GetColor(destructTilePos[i]));
+            }
+            yield return null;
+        }
+
+        for(int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
+        {
+            destructibleTileMap.SetColor(destructTilePos[i], destructTilecolor[i]);
+        }
     }
 }
