@@ -1024,7 +1024,7 @@ Transform:
   m_GameObject: {fileID: 23767120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 171.57166, y: 8.391371, z: 29.329283}
+  m_LocalPosition: {x: 172.85165, y: 8.391371, z: 29.329283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3849,7 +3849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11494,6 +11494,7 @@ GameObject:
   - component: {fileID: 460649171}
   - component: {fileID: 460649173}
   - component: {fileID: 460649172}
+  - component: {fileID: 460649174}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -11571,6 +11572,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &460649174
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460649170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 5
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &467851913
 GameObject:
   m_ObjectHideFlags: 0
@@ -13680,7 +13698,7 @@ Transform:
   m_GameObject: {fileID: 587204451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 188.44, y: 4.81, z: -1.0206739}
+  m_LocalPosition: {x: 189.72, y: 4.81, z: -1.0206739}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13743,8 +13761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e4b81ef4c244c47acf5511c9f543e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1608730409}
   cutsceneCamera: {fileID: 23767122}
   originalCamera: {fileID: 910858734}
+  resetPoint: {fileID: 587204452}
   bossHandAnimator: {fileID: 1417406241}
   walkingMonsterAnimator: {fileID: 816363135}
   useAnimatorStateCheck: 0
@@ -13753,6 +13773,7 @@ MonoBehaviour:
   characterSwitch: {fileID: 41659526}
   femaleCharacter: {fileID: 787233608}
   objectToActivateAfterAnimation: {fileID: 301381555}
+  circleWipe: {fileID: 1440735244}
 --- !u!1 &587539489
 GameObject:
   m_ObjectHideFlags: 0
@@ -18946,6 +18967,10 @@ PrefabInstance:
     - target: {fileID: 240109417702354519, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: moveSpeed
@@ -45038,6 +45063,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: moveSpeed
       value: 6
       objectReference: {fileID: 0}
@@ -53152,6 +53181,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: moveSpeed
       value: 6
       objectReference: {fileID: 0}
@@ -54808,7 +54841,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -255026385, guid: 76fba3dbe308c462d9d0b7c05dc9c790, type: 3}
+  m_Sprite: {fileID: -481365218, guid: dd464f1e5fe5c41f5a4f80bc2efd6039, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -61672,6 +61705,50 @@ PolygonCollider2D:
       - {x: 1.3622186, y: -5.7033944}
       - {x: 1.3047479, y: -5.5769587}
   m_UseDelaunayMesh: 0
+--- !u!1 &1241893316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241893318}
+  - component: {fileID: 1241893317}
+  m_Layer: 0
+  m_Name: Camera Shake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1241893317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241893316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb32a2be4cacd16408469067adf5beab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1241893318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241893316}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1245601701
 GameObject:
   m_ObjectHideFlags: 0
@@ -61795,6 +61872,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2871873908492090137, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
@@ -66855,8 +66936,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1288515040}
   - component: {fileID: 1288515039}
-  - component: {fileID: 1288515038}
   - component: {fileID: 1288515037}
+  - component: {fileID: 1288515041}
   m_Layer: 23
   m_Name: BigSpike (3)
   m_TagString: Breakable
@@ -67028,18 +67109,6 @@ PolygonCollider2D:
       - {x: 0.13, y: -4.205}
       - {x: 0.22, y: -3.5349998}
   m_UseDelaunayMesh: 0
---- !u!114 &1288515038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288515036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760e0bf29e58d7140a15e538cd3b65ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1288515039
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67107,6 +67176,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1288515041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288515036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760e0bf29e58d7140a15e538cd3b65ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1288956387
 GameObject:
   m_ObjectHideFlags: 0
@@ -69891,6 +69972,10 @@ PrefabInstance:
     - target: {fileID: 240109417702354519, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: moveSpeed
@@ -74864,6 +74949,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: moveSpeed
       value: 6
       objectReference: {fileID: 0}
@@ -75104,6 +75193,7 @@ GameObject:
   - component: {fileID: 1473490458}
   - component: {fileID: 1473490460}
   - component: {fileID: 1473490459}
+  - component: {fileID: 1473490461}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -75181,6 +75271,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1473490461
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473490457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 5
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1483272317
 GameObject:
   m_ObjectHideFlags: 0
@@ -81804,6 +81911,10 @@ PrefabInstance:
     - target: {fileID: 240109417702354519, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: moveSpeed
@@ -139027,6 +139138,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317007760197615970, guid: 5c0679374f32a49c1aa8b7b30356faf9, type: 3}
       propertyPath: moveSpeed
       value: 6
       objectReference: {fileID: 0}
@@ -139183,3 +139298,4 @@ SceneRoots:
   - {fileID: 75088042}
   - {fileID: 764732457}
   - {fileID: 841238257}
+  - {fileID: 1241893318}

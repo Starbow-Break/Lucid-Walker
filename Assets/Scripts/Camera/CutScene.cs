@@ -4,9 +4,13 @@ using Cinemachine;
 
 public class CutScene : MonoBehaviour
 {
+    public GameObject player;
     [Header("Camera Settings")]
     public CinemachineVirtualCamera cutsceneCamera;
     public CinemachineVirtualCamera originalCamera;
+    [Header("Reset Settings")]
+    // 플레이어를 복구할 고정 위치
+    public Transform resetPoint;
 
     [Header("Animation Settings")]
     public Animator bossHandAnimator;
@@ -25,6 +29,8 @@ public class CutScene : MonoBehaviour
     [Tooltip("애니메이션이 끝난 후 활성화할 게임오브젝트")]
     public GameObject objectToActivateAfterAnimation;
 
+    // 새로 추가: CircleWipe 전환 효과 참조
+    public CircleWipe circleWipe;
     private bool cutsceneStarted = false;
     private CinemachineBasicMultiChannelPerlin cameraShake;
     private bool hasDialogueEnded = false;
@@ -46,6 +52,71 @@ public class CutScene : MonoBehaviour
         }
     }
 
+    // 컷씬 재시작 및 플레이어 복구 함수 (Coroutine으로 변경)
+    public IEnumerator ResetAndStartCutscene()
+    {
+
+        if (circleWipe != null)
+        {
+            yield return StartCoroutine(circleWipe.AnimateTransitionIn());
+        }
+
+        if (player != null && resetPoint != null)
+        {
+            player.transform.position = resetPoint.position;
+        }
+
+        ChargingMonster[] monsters = FindObjectsOfType<ChargingMonster>();
+        foreach (ChargingMonster monster in monsters)
+        {
+            monster.ResetMonsterState();
+            monster.gameObject.SetActive(false);
+        }
+
+        cutsceneStarted = true;
+        StartCoroutine(StartCutScene());
+
+        if (circleWipe != null)
+        {
+            yield return StartCoroutine(circleWipe.AnimateTransitionOut());
+        }
+    }
+
+    private void HandleDialogueEvents(int step)
+    {
+        switch (step)
+        {
+            case 1:
+                // 필요시 카메라 흔들기 등 추가
+                // StartCameraShake();
+                break;
+            case 2:
+                if (bossHandAnimator != null)
+                {
+                    bossHandAnimator.SetTrigger("Carry");
+                    StartCoroutine(HideFemaleCharacterAfterDelay(0.9f));
+                }
+                break;
+            case 3:
+                ExecuteCase3();
+                break;
+        }
+    }
+
+
+    private void ExecuteCase3()
+    {
+        // StartCameraShake();
+        Debug.Log("캐이스 3");
+        if (walkingMonsterAnimator != null)
+        {
+            walkingMonsterAnimator.gameObject.SetActive(true);
+            StartCoroutine(WaitForAnimationAndFinishDialogue(walkingMonsterAnimator));
+        }
+        // StopCameraShake();
+    }
+
+
     private IEnumerator StartCutScene()
     {
         if (ballonCanvas != null)
@@ -61,32 +132,6 @@ public class CutScene : MonoBehaviour
         DialogueManager.Instance.StartDialogue(cutsceneDialogue);
     }
 
-    private void HandleDialogueEvents(int step)
-    {
-        switch (step)
-        {
-            case 1:
-                StartCameraShake();
-                break;
-            case 2:
-                if (bossHandAnimator != null)
-                {
-                    bossHandAnimator.SetTrigger("Carry");
-                    StartCoroutine(HideFemaleCharacterAfterDelay(0.9f));
-                }
-                break;
-            case 3:
-                StartCameraShake();
-                Debug.Log("캐이스 3");
-                if (walkingMonsterAnimator != null)
-                {
-                    walkingMonsterAnimator.gameObject.SetActive(true);
-                    StartCoroutine(WaitForAnimationAndFinishDialogue(walkingMonsterAnimator));
-                }
-                StopCameraShake();
-                break;
-        }
-    }
 
     private IEnumerator HideFemaleCharacterAfterDelay(float delay)
     {
@@ -129,21 +174,13 @@ public class CutScene : MonoBehaviour
         }
     }
 
-    private void StartCameraShake()
-    {
-        if (cameraShake != null)
-        {
-            cameraShake.m_AmplitudeGain = 2f;
-            cameraShake.m_FrequencyGain = 2f;
-        }
-    }
-
-    private void StopCameraShake()
-    {
-        if (cameraShake != null)
-        {
-            cameraShake.m_AmplitudeGain = 0f;
-            cameraShake.m_FrequencyGain = 0f;
-        }
-    }
+    // private void StartCameraShake()
+    // {
+    //     // 예: 강도 2, 지속시간 2초로 카메라 흔들기
+    //     CameraShake.instance.ShakeActiveCamera(2f, 2f);
+    // }
+    // private void StopCameraShake()
+    // {
+    //     CameraShake.instance.StopShakeActiveCamera();
+    // }
 }
