@@ -6,13 +6,17 @@ public class HealthManager : MonoBehaviour
 {
     public static HealthManager Instance { get; private set; }
 
-    public int maxHealth = 3;
+    // maxHealth와 currentHealth를 직접 설정하지 않고, PlayerStats에서 가져옵니다.
+    [HideInInspector]
+    public int maxHealth;
     [HideInInspector]
     public int currentHealth;
 
     [SerializeField] private HealthUI healthUI;      // 하트 UI를 관리하는 스크립트
     [SerializeField] private GameObject failUI;        // 사망 시 표시할 UI
     [SerializeField] private Animator failUIAnimator;  // Fail UI의 Animator
+
+    private PlayerStats playerStats;
 
     private void Awake()
     {
@@ -30,12 +34,25 @@ public class HealthManager : MonoBehaviour
 
     private void Start()
     {
+        // PlayerStats를 찾아서 maxHealth 값을 할당
+        playerStats = FindObjectOfType<PlayerStats>();
+        if (playerStats != null)
+        {
+            maxHealth = playerStats.GetMaxHearts();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerStats를 찾을 수 없습니다. 기본값 3을 사용합니다.");
+            maxHealth = 3;
+        }
+
         currentHealth = maxHealth;
         healthUI.InitializeHealthUI(maxHealth);
         healthUI.UpdateHealthUI(currentHealth);
         if (failUI != null)
             failUI.SetActive(false);
     }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;

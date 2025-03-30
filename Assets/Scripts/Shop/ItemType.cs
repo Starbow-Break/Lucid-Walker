@@ -1,7 +1,8 @@
 public enum ItemType
 {
     HeartUpgrade,
-    EnergyUpgrade,
+    EnergyAmountUpgrade,
+    EnergyRegenUpgrade,
     AttackUpgrade,
     LuckUpgrade,
 }

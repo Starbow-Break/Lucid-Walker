@@ -45,6 +45,9 @@ public class ChargingMonster : MonoBehaviour
 
     void MoveForward()
     {
+        // 오브젝트의 로컬 스케일에 따라 방향 결정 (양수: 오른쪽, 음수: 왼쪽)
+        float direction = transform.localScale.x > 0 ? 1f : -1f;
+
         Vector2 origin = groundCheck != null ? (Vector2)groundCheck.position : (Vector2)transform.position;
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
 
@@ -52,20 +55,19 @@ public class ChargingMonster : MonoBehaviour
         {
             // 경사면의 법선 벡터 가져오기
             Vector2 groundNormal = hit.normal;
-
-            // 접선 벡터 (경사면을 따라가는 방향)
+            // 접선 벡터 계산 (경사면을 따라가는 방향)
             Vector2 tangent = new Vector2(groundNormal.y, -groundNormal.x);
-            Vector2 moveDirection = isFacingRight ? tangent : -tangent;
-
-            // 이동 방향을 보정하여 velocity 적용
+            // 로컬 스케일의 방향을 곱하여 이동 방향 결정
+            Vector2 moveDirection = direction > 0 ? tangent : -tangent;
             rb.velocity = moveDirection.normalized * moveSpeed;
         }
         else
         {
-            // 경사면이 아닐 경우 기본적인 이동 유지
-            rb.velocity = new Vector2(isFacingRight ? moveSpeed : -moveSpeed, rb.velocity.y);
+            // 경사면이 아닌 경우, 로컬 스케일 기반으로 기본 이동 적용
+            rb.velocity = new Vector2(direction * moveSpeed, rb.velocity.y);
         }
     }
+
 
     void AlignVisual()
     {
@@ -90,11 +92,11 @@ public class ChargingMonster : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.CompareTag("Player"))
         {
-            IDamageable damageable = collision.GetComponent<IDamageable>();
+            IDamageable damageable = other.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(damage, transform);

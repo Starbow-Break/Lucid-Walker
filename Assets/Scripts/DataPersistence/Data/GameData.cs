@@ -48,6 +48,12 @@ public class GameData
     // 구매된 업그레이드의 ID를 저장하는 리스트
     public List<string> purchasedUpgradeIDs;
 
+    public float maxEnergy;
+    public float currentEnergy;
+    public float energyRegenRate;
+    public float energyDrainRate;
+    public float attackDamage;
+    public int luck;
     public GameData()
     {
         // 튜토리얼 데이터 초기화
@@ -64,6 +70,13 @@ public class GameData
 
         // 리스트 초기화
         purchasedUpgradeIDs = new List<string>();
+        maxEnergy = 100f;
+        currentEnergy = 100f;
+        energyRegenRate = 5f;
+        energyDrainRate = 10f;
+
+        attackDamage = 10f;  // 기본 공격력
+        luck = 0;            // 기본 행운 
     }
 
     // 특정 에피소드 데이터를 반환 (없는 경우 null)

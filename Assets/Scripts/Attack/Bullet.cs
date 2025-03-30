@@ -4,57 +4,59 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Animator anim;
-    public float speed = 10f; // Speed of the bullet
-    public float distance = 1f; // Raycast distance
-    public LayerMask isLayer; // Layer to check collisions
+    public float speed = 10f;         // 총알 속도
+    public float distance = 1f;       // Raycast 거리
+    public LayerMask isLayer;         // 충돌 레이어
 
-    private bool hasHit = false; // Whether the bullet has already hit a target
+    // 총알의 공격력 (일반 총알은 1, 큰 총알은 2 이상의 값으로 Inspector에서 설정)
+    public int damage = 1;
+
+    private bool hasHit = false;      // 충돌 여부
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        Invoke("DestroyBullet", 2f); // Destroy the bullet after 2 seconds by default
+        Invoke("DestroyBullet", 2f);  // 2초 후 파괴
     }
 
     void Update()
     {
-        if (hasHit) return; // Stop moving if already hit
+        if (hasHit) return;  // 충돌 후에는 이동 멈춤
 
-        // Check for collision using Raycast
+        // Raycast로 충돌 체크
         RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.right * transform.localScale.x, distance, isLayer);
         if (ray.collider != null)
         {
-            anim.SetTrigger("Hit"); // Play hit animation
-            HandleHit(ray.collider); // Handle the hit logic
+            anim.SetTrigger("Hit"); // 히트 애니메이션 실행
+            HandleHit(ray.collider); // 충돌 처리
         }
 
-        // Move the bullet based on its facing direction
+        // 플레이어 방향에 따라 총알 이동
         transform.Translate(Vector3.right * transform.localScale.x * speed * Time.deltaTime);
     }
 
     void HandleHit(Collider2D collider)
     {
-        hasHit = true; // Set hit state to true
+        hasHit = true;
 
-        // Check if the collided object implements IDamageable
+        // 적 태그인 경우 데미지 적용
         if (collider.CompareTag("Enemy"))
         {
-            Debug.Log("Hit detected!");
             IDamageable damageable = collider.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.TakeDamage(1, transform); // Apply 1 damage
-                Debug.Log($"Bullet hit {collider.name}");
+                damageable.TakeDamage(damage, transform); // damage 값을 사용
+                Debug.Log($"Bullet hit {collider.name} for {damage} damage.");
             }
         }
 
-        // Destroy the bullet after the hit animation
+        // 애니메이션 길이에 따라 총알 파괴 지연
         float animLength = anim.GetCurrentAnimatorStateInfo(0).length;
-        Invoke("DestroyBullet", animLength / 2); // Delay destruction for animation
+        Invoke("DestroyBullet", animLength / 2);
     }
 
     void DestroyBullet()
     {
-        Destroy(gameObject); // Destroy the bullet object
+        Destroy(gameObject);
     }
 }

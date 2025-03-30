@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public bool isActive = true; // 활성화 상태 플래그
 
     public PlayerData Data;
+    private PlayerStats playerStats;
+    private bool isConsumingEnergy = false;
+
     Rigidbody2D rb;
     Animator anim;
     CapsuleCollider2D capsuleCollider;
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        playerStats = transform.GetComponentInChildren<PlayerStats>();
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
         capsuleCollider = GetComponent<CapsuleCollider2D>(); // CapsuleCollider2D 컴포넌트 가져오기
@@ -124,11 +128,18 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            isRunning = true; // 달리기 상태를 활성화
+            // 달리기 시도
+            // 에너지가 0보다 큰 경우에만 달리기 시작
+            if (playerStats != null && playerStats.GetCurrentEnergy() > 0f)
+            {
+                isRunning = true;
+                isConsumingEnergy = true;
+            }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isRunning = false; // 달리기 상태를 비활성화
+            isConsumingEnergy = false;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -405,20 +416,22 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
+        HandleEnergyLogic();
+
         // isWall = Physics2D.Raycast(wallChk.position, IsFacingRight ? Vector2.right : Vector2.left, wallchkDistance, w_Layer);
         anim.SetBool("isSliding", IsSliding);
 
-        if (rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
-        {
-            CameraManager.instance.LerpYDamping(true);
-        }
+        // if (rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        // {
+        //     CameraManager.instance.LerpYDamping(true);
+        // }
 
-        if (rb.velocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
-        {
-            CameraManager.instance.LerpedFromPlayerFalling = false;
+        // if (rb.velocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        // {
+        //     CameraManager.instance.LerpedFromPlayerFalling = false;
 
-            CameraManager.instance.LerpYDamping(false);
-        }
+        //     CameraManager.instance.LerpYDamping(false);
+        // }
 
 
     }
@@ -502,6 +515,50 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(_moveInput.x * crouchWalkSpeed, rb.velocity.y);
         }
+    }
+    /// <summary>
+    /// 에너지(기력) 소모/회복 로직
+    /// </summary>
+    private void HandleEnergyLogic()
+    {
+        if (playerStats == null) return; // playerStats를 찾지 못했다면 처리 X
+
+        float currentEnergy = playerStats.GetCurrentEnergy();
+        float maxEnergy = playerStats.GetMaxEnergy();
+        float drainRate = playerStats.GetEnergyDrainRate();
+        float regenRate = playerStats.GetEnergyRegenRate();
+
+        bool isSwimmingActive = isInWater
+                                    && (Mathf.Abs(_moveInput.x) > 0.1f || Mathf.Abs(_moveInput.y) > 0.1f);
+
+
+        // 1) 달리는 중이거나 2) 실제로 수영을 "움직이며" 하고 있는 경우 => 에너지 소모
+        if ((isConsumingEnergy && isRunning) || isSwimmingActive)
+        {
+            currentEnergy -= drainRate * Time.deltaTime;
+
+            // 0 이하가 되면 더 이상 달릴 수 없도록 처리
+            // (수영도 마찬가지로 "기력이 0이면 더 이상 움직이지 못하게" 하고 싶다면
+            //  여기서 추가 처리 가능)
+            if (currentEnergy <= 0f)
+            {
+                currentEnergy = 0f;
+                isRunning = false;
+                isConsumingEnergy = false;
+            }
+        }
+        else
+        {
+            // 달리지도 않고, 수영도 적극적으로 안 하면 에너지 회복
+            if (currentEnergy < maxEnergy)
+            {
+                currentEnergy += regenRate * Time.deltaTime;
+                if (currentEnergy > maxEnergy)
+                    currentEnergy = maxEnergy;
+            }
+        }
+
+        playerStats.SetCurrentEnergy(currentEnergy);
     }
 
     public void SetToIdleState()
