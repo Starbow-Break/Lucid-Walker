@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class ChargingMonster : MonoBehaviour
 {
+
     private Collider2D hitboxCollider; // 데미지용 트리거
     private Collider2D bodyCollider;   // 물리 충돌 감지용
 
     [Header("Monster Settings")]
     public float moveSpeed = 3f;
-    public int damage = 2;
+    public int damage = 1;
     private bool isFacingRight = true;
 
     [Header("Slope Alignment Settings")]
@@ -21,12 +22,19 @@ public class ChargingMonster : MonoBehaviour
     [SerializeField] private Vector2 attackSize = new Vector2(0.5f, 0.6f);
     [Header("Visual Settings")]
     [SerializeField] private Transform spriteTransform;      // 몬스터의 시각적 표현(자식 오브젝트)
-
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private Animator animator;
     private Rigidbody2D rb;
     private Collider2D col;
 
     void Start()
+
     {
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+        animator = GetComponent<Animator>();
+
         rb = GetComponent<Rigidbody2D>();
 
         Collider2D[] colliders = GetComponents<Collider2D>();
@@ -101,9 +109,30 @@ public class ChargingMonster : MonoBehaviour
             {
                 damageable.TakeDamage(damage, transform);
             }
+
+            // 플레이어가 몬스터와 충돌하면 컷씬을 재시작하도록 호출
+            CutScene cutscene = FindObjectOfType<CutScene>();
+            if (cutscene != null)
+            {
+                StartCoroutine(cutscene.ResetAndStartCutscene());
+            }
         }
     }
 
+
+    // 몬스터 상태 리셋 함수
+    public void ResetMonsterState()
+    {
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        gameObject.SetActive(false);
+        // Animator 파라미터도 초기화할 수 있음
+        if (animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

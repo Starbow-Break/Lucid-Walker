@@ -33,10 +33,11 @@ public class CameraManager : MonoBehaviour
         }
         for (int i = 0; i < _allVirtualCameras.Length; i++)
         {
+            // Register(_allVirtualCameras[i]);  // 등록을 통해 cameras 리스트에 추가
             if (_allVirtualCameras[i].enabled)
             {
                 _currentCamera = _allVirtualCameras[i];
-
+                // ActiveCamera = _currentCamera;  // 활성 카메라로 설정
                 _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
             }
         }
