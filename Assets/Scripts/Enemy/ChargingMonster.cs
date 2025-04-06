@@ -67,7 +67,9 @@ public class ChargingMonster : MonoBehaviour
             Vector2 tangent = new Vector2(groundNormal.y, -groundNormal.x);
             // 로컬 스케일의 방향을 곱하여 이동 방향 결정
             Vector2 moveDirection = direction > 0 ? tangent : -tangent;
+            moveDirection = new Vector2(moveDirection.x, Mathf.Min(moveDirection.y, 0f)); // 위로 튀는 거 방지
             rb.velocity = moveDirection.normalized * moveSpeed;
+
         }
         else
         {
@@ -110,14 +112,20 @@ public class ChargingMonster : MonoBehaviour
                 damageable.TakeDamage(damage, transform);
             }
 
-            // 플레이어가 몬스터와 충돌하면 컷씬을 재시작하도록 호출
             CutScene cutscene = FindObjectOfType<CutScene>();
             if (cutscene != null)
             {
                 StartCoroutine(cutscene.ResetAndStartCutscene());
             }
         }
+        else if (other.CompareTag("Breakable"))
+        {
+            // 카메라 흔들기
+            Debug.Log("흔들림");
+            CameraShake.instance.ShakeActiveCamera(5f, 1f); // 원하는 세기로 설정
+        }
     }
+
 
 
     // 몬스터 상태 리셋 함수

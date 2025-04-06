@@ -46,12 +46,16 @@ public class CharacterSwitchManager : MonoBehaviour
         {
             targetcam.Priority = 10; // 예) 낮춤
             virtualCamera.Priority = 20; // 예) 높임
+
+            CameraManager.ActiveCamera = virtualCamera;
         }
         else
         {
             // 다시 가까워지면 VCam1 우선
             targetcam.Priority = 20;
             virtualCamera.Priority = 10;
+
+            CameraManager.ActiveCamera = targetcam;
         }
     }
 

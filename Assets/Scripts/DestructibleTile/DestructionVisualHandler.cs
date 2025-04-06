@@ -15,6 +15,8 @@ public class DestructionVisualHandler : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject parentPrefab;
     [SerializeField] private List<Sprite> spriteMasks;
+    public List<Sprite> SpriteMasks { get => spriteMasks; set => spriteMasks = value; }
+
 
     private void Start()
     {

@@ -146,7 +146,10 @@ public class SpikeSwitch : MonoBehaviour
     private void FocusOnTarget()
     {
         if (focusVCam != null)
+        {
             focusVCam.Priority = focusPriority; // 예: 40
+            CameraManager.ActiveCamera = focusVCam;
+        }
         if (groupVCam != null)
             groupVCam.Priority = normalPriority; // 예: 10
     }
@@ -159,6 +162,9 @@ public class SpikeSwitch : MonoBehaviour
         if (focusVCam != null)
             focusVCam.Priority = normalPriority - 1; // 예: 9
         if (groupVCam != null)
-            groupVCam.Priority = normalPriority;     // 예: 10
+        {
+            groupVCam.Priority = normalPriority;
+            CameraManager.ActiveCamera = groupVCam;
+        }
     }
 }

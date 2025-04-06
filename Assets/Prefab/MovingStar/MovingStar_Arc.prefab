@@ -180,10 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa8c7a8bb5515c4a9033c78ad6b4e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0.07
+  lineWidth: 0.07
   line: {fileID: 9117902177120273872}
-  startPoint: {fileID: 2324184195690186239}
-  endPoint: {fileID: 714477029591841685}
   vertices: 8
   center: {x: -4.61, y: 7.23}
   radius: 7.7
@@ -311,11 +309,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 643548220295780734, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
   m_PrefabInstance: {fileID: 849964655788250749}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &714477029591841685 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 153680163175542248, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
-  m_PrefabInstance: {fileID: 849964655788250749}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2477211229629376535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -381,11 +374,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
---- !u!1 &2324184195690186239 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 153680163175542248, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
-  m_PrefabInstance: {fileID: 2477211229629376535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3066535521820504425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 643548220295780734, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
