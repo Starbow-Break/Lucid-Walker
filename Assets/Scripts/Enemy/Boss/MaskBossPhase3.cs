@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class MaskBossPhase3 : MonoBehaviour
@@ -27,6 +26,7 @@ public class MaskBossPhase3 : MonoBehaviour
     Rigidbody2D rb;
     TongueSkill tongueSkill;
     HandAttackSkill handAttackSkill;
+    SpitSkill spitSkill;
     Animator anim;
 
     void Start() {
@@ -34,6 +34,7 @@ public class MaskBossPhase3 : MonoBehaviour
 
         tongueSkill = GetComponent<TongueSkill>();
         handAttackSkill = GetComponent<HandAttackSkill>();
+        spitSkill = GetComponent<SpitSkill>();
         anim = GetComponent<Animator>();
 
         isGround = false;
@@ -51,6 +52,9 @@ public class MaskBossPhase3 : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Alpha2)) {
             handAttackSkill.Cast();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3)) {
+            spitSkill.Cast();
         }
         
         anim.SetBool("ground", isGround);
