@@ -31,18 +31,31 @@ public class CameraManager : MonoBehaviour
         {
             instance = this;
         }
-        for (int i = 0; i < _allVirtualCameras.Length; i++)
+        if (_allVirtualCameras.Length > 0)
         {
-            // Register(_allVirtualCameras[i]);  // 등록을 통해 cameras 리스트에 추가
-            if (_allVirtualCameras[i].enabled)
-            {
-                _currentCamera = _allVirtualCameras[i];
-                // ActiveCamera = _currentCamera;  // 활성 카메라로 설정
-                _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-            }
+            ActiveCamera = _allVirtualCameras[0];
+            RegisterAll(_allVirtualCameras);
+
+            var framing = GetFramingTransposer(ActiveCamera);
+            if (framing != null)
+                _normYPanAmount = framing.m_YDamping;
         }
-        _normYPanAmount = _framingTransposer.m_YDamping;
+
     }
+
+    // FramingTransposer 동적 접근
+    private CinemachineFramingTransposer GetFramingTransposer(CinemachineVirtualCamera cam)
+    {
+        return cam?.GetCinemachineComponent<CinemachineFramingTransposer>();
+    }
+
+    // 흔들림용 Perlin 동적 접근
+    private CinemachineBasicMultiChannelPerlin GetPerlin(CinemachineVirtualCamera cam)
+    {
+        return cam?.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
+
+
     public void LerpYDamping(bool isPlayerFalling)
     {
         _lerpYPanCoroutine = StartCoroutine(LerpYAction(isPlayerFalling));
@@ -81,6 +94,8 @@ public class CameraManager : MonoBehaviour
     {
         return camera == ActiveCamera;
     }
+
+
     public static void SwitchCamera(CinemachineVirtualCamera newCamera)
     {
         newCamera.Priority = 10;
@@ -115,5 +130,11 @@ public class CameraManager : MonoBehaviour
     public static void Unregister(CinemachineVirtualCamera camera)
     {
         cameras.Remove(camera);
+    }
+
+    public static void RegisterAll(CinemachineVirtualCamera[] camList)
+    {
+        foreach (var cam in camList)
+            Register(cam);
     }
 }

@@ -34,6 +34,8 @@ public class CutScene : MonoBehaviour
     private bool cutsceneStarted = false;
     private CinemachineBasicMultiChannelPerlin cameraShake;
     private bool hasDialogueEnded = false;
+    private Rigidbody2D rb = null;      // Rigidbody2D 변수 선언
+
 
     private void Start()
     {
@@ -74,7 +76,7 @@ public class CutScene : MonoBehaviour
         }
 
         cutsceneStarted = true;
-        StartCoroutine(StartCutScene());
+        StartCoroutine(StartCutScene(skipToStep: 3));  // <- skipToStep 추가
 
         if (circleWipe != null)
         {
@@ -117,19 +119,38 @@ public class CutScene : MonoBehaviour
     }
 
 
-    private IEnumerator StartCutScene()
+    private IEnumerator StartCutScene(int skipToStep = 0)
     {
         if (ballonCanvas != null)
             ballonCanvas.SetActive(false);
         if (characterSwitch != null)
             characterSwitch.enabled = false;
 
+        PlayerController controller = player.GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            controller.enabled = false;
+            controller.SetToIdleState();
+            rb = player.GetComponent<Rigidbody2D>();
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            rb.Sleep();
+        }
+
         cutsceneCamera.Priority = 50;
         originalCamera.Priority = 10;
 
         yield return new WaitForSeconds(0.5f);
 
-        DialogueManager.Instance.StartDialogue(cutsceneDialogue);
+        if (skipToStep > 0)
+        {
+            // 대사를 건너뛰고 특정 단계부터 바로 실행
+            ExecuteCase3();  // case 3 실행
+        }
+        else
+        {
+            DialogueManager.Instance.StartDialogue(cutsceneDialogue);
+        }
     }
 
 
@@ -166,13 +187,40 @@ public class CutScene : MonoBehaviour
 
     private void HandleDialogueFinished()
     {
-        if (hasDialogueEnded)
+        // 무조건 카메라 복귀
+        cutsceneCamera.Priority = 10;
+        originalCamera.Priority = 50;
+        Debug.Log("대화 종료 후 원래 가상 카메라로 복귀 완료");
+
+        // 몬스터 애니메이션이 아직 끝나지 않았다면 조작 복구하지 않음
+        if (IsMonsterAnimating())
         {
-            cutsceneCamera.Priority = 10;
-            originalCamera.Priority = 50;
-            Debug.Log("대화 종료 후 원래 가상 카메라로 복귀 완료");
+            Debug.Log("아직 몬스터 애니메이션 중 - 조작 복구 보류");
+            return;
         }
+
+        // 이제 진짜 조작 복구
+        PlayerController controller = player.GetComponent<PlayerController>();
+        if (controller != null)
+        {
+            controller.enabled = true;
+            rb = player.GetComponent<Rigidbody2D>();
+            rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
+        }
+
+        hasDialogueEnded = false;
     }
+
+
+    private bool IsMonsterAnimating()
+    {
+        return walkingMonsterAnimator != null &&
+               walkingMonsterAnimator.gameObject.activeInHierarchy &&
+               walkingMonsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f;
+    }
+
+
 
     // private void StartCameraShake()
     // {

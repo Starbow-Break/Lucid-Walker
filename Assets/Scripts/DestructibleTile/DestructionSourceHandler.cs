@@ -23,7 +23,7 @@ public class DestructionSourceHandler : MonoBehaviour
     private List<Vector3Int> destructTilePos = new List<Vector3Int>();
     private List<DestructionVisualHandler> spawnedVisualHandler = new List<DestructionVisualHandler>();
     private List<Color> destructTilecolor = new List<Color>();
-    
+
     private bool isTriggered = false;
     private bool isRespawning = false;
     private int originalUpdateTime;
@@ -77,8 +77,6 @@ public class DestructionSourceHandler : MonoBehaviour
                     {
                         if (!tilesToRemoveFromList.Contains(cellPos))
                         {
-                            Debug.Log($"[FixedUpdate] Destroying tile at cell: {cellPos}");
-
                             // 셀 좌표를 월드 좌표로 변환하여 오브젝트 생성
                             Vector3 worldPos = destructibleTileMap.CellToWorld(cellPos);
                             GameObject newTile = ObjectPooler.Instance.GetPooledObject(tileSplitterPrefab, worldPos, Quaternion.identity);
@@ -122,7 +120,7 @@ public class DestructionSourceHandler : MonoBehaviour
                 {
                     Debug.Log(recoveryRemainTime);
                     recoveryRemainTime -= Time.deltaTime;
-                    if(recoveryRemainTime <= 0.0f)
+                    if (recoveryRemainTime <= 0.0f)
                     {
                         RespawnTiles();
                     }
@@ -146,7 +144,6 @@ public class DestructionSourceHandler : MonoBehaviour
         Vector3 rightDirection = Quaternion.Euler(0, 0, -90f) * direction;
         // impactPosition을 월드 좌표에서 셀 좌표로 변환 후, 오프셋을 적용하여 시작 셀을 계산
         Vector3Int startPosition = AdjustStartPosition(impactPosition, rightDirection, direction);
-        Debug.Log($"[GetAffectedTiles] Start Cell: {startPosition}");
 
         if (destructibleTileMap.GetTile(startPosition))
         {
@@ -245,7 +242,6 @@ public class DestructionSourceHandler : MonoBehaviour
         Vector2 direction = Vector2.zero;
         Vector3 impactPosWithOffset = impactPosition + offset;
         Vector3Int cellPosition = destructibleTileMap.WorldToCell(impactPosWithOffset);
-        Debug.Log($"[GetDirectionFromImpactPosition] Checking cell: {cellPosition}");
 
         if (destructibleTileMap.GetTile(cellPosition + Vector3Int.right))
             direction.x = 1;
@@ -256,7 +252,6 @@ public class DestructionSourceHandler : MonoBehaviour
         else if (destructibleTileMap.GetTile(cellPosition + Vector3Int.down * 2))
             direction.y = -1;
 
-        Debug.Log($"[GetDirectionFromImpactPosition] Resulting direction: {direction}");
         return direction;
     }
 
@@ -267,7 +262,7 @@ public class DestructionSourceHandler : MonoBehaviour
 
     private IEnumerator RespawnTilesSequence()
     {
-        for(int i = 0; i < destructTileBases.Count; i++)
+        for (int i = 0; i < destructTileBases.Count; i++)
         {
             destructibleTileMap.SetTile(destructTilePos[i], destructTileBases[i]);
             ObjectPooler.Instance.ReturnPooledObject(spawnedVisualHandler[i].gameObject);
@@ -289,15 +284,15 @@ public class DestructionSourceHandler : MonoBehaviour
     private IEnumerator ChangeTileColor()
     {
         float currentTime = 0.0f;
-        while(currentTime < respawnDuration)
+        while (currentTime < respawnDuration)
         {
             currentTime += Time.deltaTime;
-            for(int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
+            for (int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
             {
                 destructibleTileMap.SetTileFlags(destructTilePos[i], TileFlags.None);
-                
+
                 destructibleTileMap.SetColor(
-                    destructTilePos[i], 
+                    destructTilePos[i],
                     new Color(
                         destructTilecolor[i].r,
                         destructTilecolor[i].g,
@@ -305,13 +300,12 @@ public class DestructionSourceHandler : MonoBehaviour
                         destructTilecolor[i].a * (currentTime / respawnDuration)
                     )
                 );
-                Debug.Log(destructTilecolor[i].a * (currentTime / respawnDuration));
-                Debug.Log(destructibleTileMap.GetColor(destructTilePos[i]));
+
             }
             yield return null;
         }
 
-        for(int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
+        for (int i = 0; i < Mathf.Min(destructTilePos.Count, destructTilecolor.Count); i++)
         {
             destructibleTileMap.SetColor(destructTilePos[i], destructTilecolor[i]);
         }

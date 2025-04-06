@@ -732,24 +732,30 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region OTHER MOVEMENT METHODS
+    // private void Slide()
+    // {
+    //     //We remove the remaining upwards Impulse to prevent upwards sliding
+    //     if (rb.velocity.y > 0)
+    //     {
+    //         rb.AddForce(-rb.velocity.y * Vector2.up, ForceMode2D.Impulse);
+    //     }
+
+    //     //Works the same as the Run but only in the y-axis
+    //     //THis seems to work fine, buit maybe you'll find a better way to implement a slide into this system
+    //     float speedDif = Data.slideSpeed - rb.velocity.y;
+    //     float movement = speedDif * Data.slideAccel;
+    //     //So, we clamp the movement here to prevent any over corrections (these aren't noticeable in the Run)
+    //     //The force applied can't be greater than the (negative) speedDifference * by how many times a second FixedUpdate() is called. For more info research how force are applied to rigidbodies.
+    //     movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));
+
+    //     rb.AddForce(movement * Vector2.up);
+    // }
     private void Slide()
     {
-        //We remove the remaining upwards Impulse to prevent upwards sliding
-        if (rb.velocity.y > 0)
-        {
-            rb.AddForce(-rb.velocity.y * Vector2.up, ForceMode2D.Impulse);
-        }
-
-        //Works the same as the Run but only in the y-axis
-        //THis seems to work fine, buit maybe you'll find a better way to implement a slide into this system
-        float speedDif = Data.slideSpeed - rb.velocity.y;
-        float movement = speedDif * Data.slideAccel;
-        //So, we clamp the movement here to prevent any over corrections (these aren't noticeable in the Run)
-        //The force applied can't be greater than the (negative) speedDifference * by how many times a second FixedUpdate() is called. For more info research how force are applied to rigidbodies.
-        movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));
-
-        rb.AddForce(movement * Vector2.up);
+        float targetSpeed = -Mathf.Abs(Data.slideSpeed); // 항상 음수로
+        rb.velocity = new Vector2(rb.velocity.x, targetSpeed);
     }
+
     #endregion
 
     public void SetZiplineAnim(bool value)

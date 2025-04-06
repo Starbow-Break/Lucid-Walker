@@ -273,10 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874e1c309eb507940a923831f53ad44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0.07
+  lineWidth: 0.07
   line: {fileID: 4817943075713996780}
-  startPoint: {fileID: 6209815673044563675}
-  endPoint: {fileID: 1305792414628087719}
   vertices: 39
   positionOffset: {x: -5.57, y: -0.09}
   wavelength: 6.03
@@ -467,11 +465,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
---- !u!1 &1305792414628087719 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 153680163175542248, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
-  m_PrefabInstance: {fileID: 1170619257446509135}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1788131024878973745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 643548220295780734, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
@@ -542,11 +535,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
---- !u!1 &6209815673044563675 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 153680163175542248, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
-  m_PrefabInstance: {fileID: 6056296135707024179}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6692945588070367821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 643548220295780734, guid: 2553665c045d9d0499e32c5dcf4a6074, type: 3}
