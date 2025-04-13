@@ -38,8 +38,9 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();
         DataPersistenceManager.instance.NewGame();
+        DataPersistenceManager.instance.SaveGame();
 
-        SceneManager.LoadSceneAsync("Main");
+        SceneManager.LoadSceneAsync("NewsTutorial");
     }
     public void OnContinueGameClicked()
     {
