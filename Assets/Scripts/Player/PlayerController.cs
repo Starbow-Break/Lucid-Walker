@@ -699,6 +699,7 @@ public class PlayerController : MonoBehaviour
             force -= rb.velocity.y;
 
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        SoundManager.Instance.PlayJump();
         #endregion
     }
 
@@ -805,6 +806,27 @@ public class PlayerController : MonoBehaviour
             return true;
         else
             return false;
+    }
+    #endregion
+
+    #region Music Effects
+    // 애니메이션 이벤트로 호출할 함수
+    public void Footstep()
+    {
+        if (!isGround) return;
+
+        if (isInWater)
+        {
+            SoundManager.Instance.PlaySwim(); // 수영 중 발소리 (필요하면)
+        }
+        else if (isRunning)
+        {
+            SoundManager.Instance.PlayRun(); // 달리기 발소리
+        }
+        else
+        {
+            SoundManager.Instance.PlayWalk(); // 걷기 발소리
+        }
     }
     #endregion
 
