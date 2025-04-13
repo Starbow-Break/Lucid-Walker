@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Stage6_BlendSetting
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: 'CenterPlayerFollowCAM '
-    m_To: GroupFollowCAM
+  - m_From: GroupFollowCAM
+    m_To: 'CenterPlayerFollowCAM '
     m_Blend:
-      m_Style: 6
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
@@ -24,10 +24,10 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: GroupFollowCAM
-    m_To: 'CenterPlayerFollowCAM '
+  - m_From: 'CenterPlayerFollowCAM '
+    m_To: GroupFollowCAM
     m_Blend:
-      m_Style: 6
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
