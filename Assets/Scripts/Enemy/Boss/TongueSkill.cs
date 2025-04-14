@@ -1,16 +1,25 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TongueSkill : Skill
 {
-    [SerializeField, Min(0)] int count = 3;     // 공격 횟수
-    [SerializeField] float bodyMin;
-    [SerializeField] float bodyMax;
-    [SerializeField] float bodyVelocity = 2.0f;
+    public readonly float BodyMin = 4.2f;
+    public readonly float BodyMax = 8.34f;
 
-    MaskBossPhase3 maskBoss;
-    Animator casterAnimator;
+    public struct TongueSkillData
+    {
+        public float interval;
+        public List<float> normalizeValues;
+    }
+
+    [SerializeField, Min(0)] int count = 3;     // 공격 횟수
+    [SerializeField] float bodyNormalizeVelocity = 2.0f;    // 정규화 기준 속도
+    [SerializeField] List<TongueSkillData> patternDatas;
+
+    private MaskBossPhase3 maskBoss;
+    private Animator casterAnimator;
 
     void Start()
     {
@@ -20,12 +29,14 @@ public class TongueSkill : Skill
 
     protected override IEnumerator SkillFlow() {
         casterAnimator.SetBool("tongue_ready", true);
-        casterAnimator.SetFloat("tongue_position", BlendValue(maskBoss.bodyLocalPosition.y));
+
+        float initValue = (maskBoss.bodyLocalPosition.y - BodyMin) / (BodyMax - BodyMin);
+        casterAnimator.SetFloat("tongue_position", initValue);
 
         float currentValue = casterAnimator.GetFloat("tongue_position");
-        for(int i = 0; i < count; i++) {
-            float targetValue = 1.0f * i / (count - 1);
-            float valueVelocity = (targetValue > currentValue ? bodyVelocity : -bodyVelocity) / (bodyMax - bodyMin);
+        var data = patternDatas[UnityEngine.Random.Range(0, patternDatas.Count)];
+        foreach(float targetValue in data.normalizeValues) {
+            float valueVelocity = targetValue > currentValue ? bodyNormalizeVelocity : -bodyNormalizeVelocity;
             Predicate<float> check = valueVelocity > 0 ? (v) => v > 0 : (v) => v < 0;
 
             Debug.Log("What?");
@@ -36,17 +47,10 @@ public class TongueSkill : Skill
                 yield return null;
             }
 
-            if(i <= count) {
-                casterAnimator.SetTrigger("tongue");
-                yield return new WaitForSeconds(0.5f);
-            }
+            casterAnimator.SetTrigger("tongue");
+            yield return new WaitForSeconds(data.interval);
         }
 
         casterAnimator.SetBool("tongue_ready", false);
-    }
-
-    float BlendValue(float bodyPos)
-    {
-        return (bodyPos - bodyMin) / (bodyMax - bodyMin);
     }
 }

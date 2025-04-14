@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BossPunch : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BossPunch : MonoBehaviour
     [Header("Camera Shake")]
     [SerializeField] float shakeIntensity = 5.0f;
     [SerializeField] float shakeTime = 0.1f;
+
+    public UnityAction OnDestroyed;
 
     Animator anim;
     float startY;
@@ -48,6 +51,7 @@ public class BossPunch : MonoBehaviour
         yield return FinishSequence();
 
         // 종료
+        OnDestroyed?.Invoke();
         Destroy(gameObject);
     }
 

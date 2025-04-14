@@ -24,7 +24,8 @@ public class HandAttackSkill : Skill
         maskBossRigidBody.gravityScale = 0.0f;
 
         punchSpawner.SpawnPunch();
-        yield return new WaitForSeconds(15.0f);
+        yield return null;
+        yield return new WaitWhile(() => punchSpawner.isSpawning || punchSpawner.spawnedPunch > 0);
 
         maskBoss.Flip();
         maskBossRigidBody.gravityScale = gravityScale;
