@@ -41,12 +41,7 @@ public class PunchSpawner : MonoBehaviour
 
         // 순서 섞기
         int shuffleCount = Random.Range(orderShuffleMin, orderShuffleMax + 1);
-        for(int i = 0; i < shuffleCount; i++)
-        {
-            int a = Random.Range(0, order.Count);
-            int b = Random.Range(0, order.Count);
-            (order[a], order[b]) = (order[b], order[a]);
-        }
+        ListShuffler.Shuffle(order, shuffleCount);
 
         var wfs = new WaitForSeconds(data.interval);
 
