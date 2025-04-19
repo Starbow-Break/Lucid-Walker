@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class BossPunch : MonoBehaviour
 {
+    [SerializeField] float readyMoveDistance = 5.0f;
+    [SerializeField] float readyDuration = 1.0f;
+
     [SerializeField] float punchSpeed = 10.0f;
     [SerializeField] float liftSpeed = 3.0f;
 
@@ -33,6 +36,7 @@ public class BossPunch : MonoBehaviour
     IEnumerator AttackSequence()
     {
         // 위치 이동
+        yield return ReadySequence();
 
         // 주먹 쥐기
         anim.SetTrigger("make_fist");
@@ -53,6 +57,17 @@ public class BossPunch : MonoBehaviour
         // 종료
         OnDestroyed?.Invoke();
         Destroy(gameObject);
+    }
+
+    IEnumerator ReadySequence()
+    {
+        float currentTime = 0.0f;
+        while(currentTime < readyDuration) {
+            float deltaTime = Time.deltaTime;
+            currentTime += deltaTime;
+            transform.Translate(readyMoveDistance / readyDuration * deltaTime * Vector2.down);
+            yield return null;
+        }
     }
 
     IEnumerator PunchSequence()

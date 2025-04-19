@@ -3,8 +3,9 @@ using UnityEngine;
 public class BulletSpawner : MonoBehaviour
 {
     [SerializeField] SmallMaskBullet bullet;
-    [SerializeField] Vector2 spawnAreaMin;
-    [SerializeField] Vector2 spawnAreaMax;
+    [SerializeField] BulletSpawnerTargetArea targetArea;
+
+
 
     public void Spawn(int spawnCount = 10)
     {
@@ -13,10 +14,7 @@ public class BulletSpawner : MonoBehaviour
             float dist; // 거리
             float dir;  // 방향
 
-            targetPosition = new(
-                Random.Range(spawnAreaMin.x, spawnAreaMax.x),
-                Random.Range(spawnAreaMin.y, spawnAreaMax.y)
-            );
+            targetPosition = targetArea.GetRandomPosition();
 
             float diff = targetPosition.x - transform.position.x;
             dist = Mathf.Abs(diff);
@@ -39,13 +37,5 @@ public class BulletSpawner : MonoBehaviour
             SmallMaskBullet spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             spawnedBullet.SetVelocity(shotVelocity);
         }
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(0.5f, 0, 0.5f);
-        Vector2 areaCenter = (spawnAreaMin + spawnAreaMax) / 2;
-        Vector2 areaSize = spawnAreaMax - spawnAreaMin;
-        Gizmos.DrawWireCube(areaCenter, areaSize);
     }
 }

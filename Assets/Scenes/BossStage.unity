@@ -792,6 +792,7 @@ Transform:
   m_Children:
   - {fileID: 1035899096}
   - {fileID: 1746196898}
+  - {fileID: 445370537}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &76169149
@@ -15112,6 +15113,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438118644}
   m_CullTransparentMesh: 1
+--- !u!1 &445370536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445370537}
+  - component: {fileID: 445370538}
+  m_Layer: 0
+  m_Name: BulletSpawner Target Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &445370537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445370536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -6.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 67170274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445370538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445370536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0519082b0781f6844badc256605fd54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coordinate: 0
+  left: 15
+  right: 5
+  up: 0.2
+  down: 0.2
 --- !u!1 &445571032
 GameObject:
   m_ObjectHideFlags: 0
@@ -21062,7 +21112,7 @@ Transform:
   m_GameObject: {fileID: 662195442}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 119.6, y: -42.7, z: -10}
+  m_LocalPosition: {x: 132.45, y: -41.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21800,8 +21850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: -372545082936621061, guid: 3550fd3bb51e644bbb59b00d02214df9, type: 3}
-  spawnAreaMin: {x: 123.7, y: -46.7}
-  spawnAreaMax: {x: 153.25, y: -46.3}
+  targetArea: {fileID: 445370538}
 --- !u!1 &729434901
 GameObject:
   m_ObjectHideFlags: 0
@@ -31318,11 +31367,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 119.6
+      value: 132.45
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -42.7
+      value: -41.3
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44655,7 +44704,7 @@ Transform:
   m_GameObject: {fileID: 1746196896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
