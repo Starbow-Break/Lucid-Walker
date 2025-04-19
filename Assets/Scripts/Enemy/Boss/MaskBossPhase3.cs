@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class MaskBossPhase3 : MonoBehaviour
+public class MaskBossPhase3 : MaskBoss
 {
     [SerializeField] LayerMask groundLayer;
 
@@ -16,7 +17,7 @@ public class MaskBossPhase3 : MonoBehaviour
 
     [SerializeField] private List<Transform> groundCheckTransforms;
     [SerializeField] private Transform filpPivot;
-
+    
     public bool isGround;
 
     public Vector3 bodyLocalPosition {
@@ -24,21 +25,25 @@ public class MaskBossPhase3 : MonoBehaviour
     }
 
     Rigidbody2D rb;
-    TongueSkill tongueSkill;
-    HandAttackSkill handAttackSkill;
-    SpitSkill spitSkill;
     Animator anim;
 
-    void Start() {
+    private void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<MaskBossStats>();
 
         tongueSkill = GetComponent<TongueSkill>();
         handAttackSkill = GetComponent<HandAttackSkill>();
         spitSkill = GetComponent<SpitSkill>();
         anim = GetComponent<Animator>();
+    }
+
+    protected override void Start() {
+        base.Start();
 
         isGround = false;
         gameObject.SetActive(false);
+        attackCoolDownRemain = stats.attackBatTime;
     } 
 
     void Update()
@@ -47,14 +52,24 @@ public class MaskBossPhase3 : MonoBehaviour
         frontHand.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.down);
         backHand.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.down);
     
-        if(Input.GetKeyDown(KeyCode.Alpha1)) {
-            tongueSkill.Cast();
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2)) {
-            handAttackSkill.Cast();
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3)) {
-            spitSkill.Cast();
+        // if(Input.GetKeyDown(KeyCode.Alpha1)) {
+        //     tongueSkill.Cast();
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha2)) {
+        //     handAttackSkill.Cast();
+        // }
+        // if(Input.GetKeyDown(KeyCode.Alpha3)) {
+        //     spitSkill.Cast();
+        // }
+
+        // 싸우는 상태가 아니거나 사망 상태이면 아무 행동도 하지 않는다.
+        if(!battle || isDead) return;
+
+        attackCoolDownRemain -= Time.deltaTime;
+
+        if(attackCoolDownRemain <= 0.0f) {
+            attackCoolDownRemain = stats.attackBatTime;
+            Think();
         }
         
         anim.SetBool("ground", isGround);
@@ -66,8 +81,57 @@ public class MaskBossPhase3 : MonoBehaviour
         {
             Shake();
             isGround = true;
+            if(!battle) {
+                BattleStart();
+            }
         }
     }
+
+    #region AI
+    // 스킬의 우선순위가 높은 순서대로 정렬된 리스트
+    LinkedList<int> skillProrityList = new LinkedList<int>(new List<int>{0, 1, 2});
+    
+    // 생각
+    void Think() {
+        LinkedListNode<int> node = skillProrityList.First;
+
+        while(node != null) {
+            if(TryCastSkill(node.Value)) {
+                skillProrityList.Remove(node);
+                skillProrityList.AddLast(node);
+                break;
+            }
+            node = node.Next;
+        }
+    }
+
+    // 스킬 사용 시도, 스킬 시전 여부를 반환
+    bool TryCastSkill(int skillId) {
+        Skill skill = GetSkillWithId(skillId);
+        if(skill.isReady) {
+            skill.Cast();
+            return true;
+        }
+        return false;
+    }
+    #endregion
+
+    #region SKILL
+    TongueSkill tongueSkill;
+    HandAttackSkill handAttackSkill;
+    SpitSkill spitSkill;
+
+    // 스킬 아이디로부터 스킬 획득
+    Skill GetSkillWithId(int skillId) {
+        return skillId switch
+        {
+            0 => handAttackSkill,
+            1 => tongueSkill,
+            2 => spitSkill,
+            _ => null,
+        };
+    }
+    #endregion
 
     // body를 dir만큼 움직인다,
     public void MoveBody(Vector3 dir) {
