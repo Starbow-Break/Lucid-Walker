@@ -1,16 +1,35 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TongueSkill : Skill
 {
-    [SerializeField, Min(0)] int count = 3;     // 공격 횟수
-    [SerializeField] float bodyMin;
-    [SerializeField] float bodyMax;
-    [SerializeField] float bodyVelocity = 2.0f;
+    public readonly float BodyMin = 4.2f;
+    public readonly float BodyMax = 8.34f;
 
-    MaskBossPhase3 maskBoss;
-    Animator casterAnimator;
+    [Serializable]
+    public struct SerializableTuple<T, U>
+    {
+        public T Item1;
+        public U Item2;
+    }
+
+    [Serializable]
+    public struct TongueSkillData
+    {
+        public float interval;
+        public List<SerializableTuple<float, float>> normalizeValueRanges;
+    }
+
+    [SerializeField] float bodyNormalizeVelocity = 2.0f;    // 정규화 기준 속도
+    [SerializeField] List<TongueSkillData> patternDatas;
+    [SerializeField] int orderShuffleMin;
+    [SerializeField] int orderShuffleMax;
+
+    private MaskBossPhase3 maskBoss;
+    private Animator casterAnimator;
 
     void Start()
     {
@@ -20,15 +39,27 @@ public class TongueSkill : Skill
 
     protected override IEnumerator SkillFlow() {
         casterAnimator.SetBool("tongue_ready", true);
-        casterAnimator.SetFloat("tongue_position", BlendValue(maskBoss.bodyLocalPosition.y));
+
+        float initValue = (maskBoss.bodyLocalPosition.y - BodyMin) / (BodyMax - BodyMin);
+        casterAnimator.SetFloat("tongue_position", initValue);
 
         float currentValue = casterAnimator.GetFloat("tongue_position");
-        for(int i = 0; i < count; i++) {
-            float targetValue = 1.0f * i / (count - 1);
-            float valueVelocity = (targetValue > currentValue ? bodyVelocity : -bodyVelocity) / (bodyMax - bodyMin);
-            Predicate<float> check = valueVelocity > 0 ? (v) => v > 0 : (v) => v < 0;
+        var data = patternDatas[Random.Range(0, patternDatas.Count)];
 
-            Debug.Log("What?");
+        List<float> order = new();
+        foreach(var valueRange in data.normalizeValueRanges)
+        {
+            order.Add(Random.Range(valueRange.Item1, valueRange.Item2));
+        }
+
+        int shuffleCount = Random.Range(orderShuffleMin, orderShuffleMax + 1);
+        ListShuffler.Shuffle(order, shuffleCount);
+        order.Add(initValue);
+
+        for(int i = 0; i < order.Count; i++) {
+            float targetValue = order[i];
+            float valueVelocity = targetValue > currentValue ? bodyNormalizeVelocity : -bodyNormalizeVelocity;
+            Predicate<float> check = valueVelocity > 0 ? (v) => v > 0 : (v) => v < 0;
 
             while(check(targetValue - currentValue)) {
                 currentValue += valueVelocity * Time.deltaTime;
@@ -36,17 +67,13 @@ public class TongueSkill : Skill
                 yield return null;
             }
 
-            if(i <= count) {
+            if(i != order.Count - 1)
+            {
                 casterAnimator.SetTrigger("tongue");
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(data.interval);
             }
         }
 
         casterAnimator.SetBool("tongue_ready", false);
-    }
-
-    float BlendValue(float bodyPos)
-    {
-        return (bodyPos - bodyMin) / (bodyMax - bodyMin);
     }
 }

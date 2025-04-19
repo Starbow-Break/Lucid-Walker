@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44dab2db5050d2549968d36037f509bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readyMoveDistance: 3
+  readyDuration: 0.4
   punchSpeed: 50
   liftSpeed: 20
   shakeIntensity: 5
