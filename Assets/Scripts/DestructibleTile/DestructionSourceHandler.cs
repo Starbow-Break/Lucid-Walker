@@ -118,7 +118,6 @@ public class DestructionSourceHandler : MonoBehaviour
             {
                 if (isRespawning)
                 {
-                    Debug.Log(recoveryRemainTime);
                     recoveryRemainTime -= Time.deltaTime;
                     if (recoveryRemainTime <= 0.0f)
                     {
@@ -265,7 +264,7 @@ public class DestructionSourceHandler : MonoBehaviour
         for (int i = 0; i < destructTileBases.Count; i++)
         {
             destructibleTileMap.SetTile(destructTilePos[i], destructTileBases[i]);
-            ObjectPooler.Instance.ReturnPooledObject(spawnedVisualHandler[i].gameObject);
+            // ObjectPooler.Instance.ReturnPooledObject(spawnedVisualHandler[i].gameObject);
         }
 
         yield return ChangeTileColor();
