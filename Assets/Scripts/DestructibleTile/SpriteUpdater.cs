@@ -6,6 +6,7 @@ public static class SpriteUpdater
 {
     public static void UpdateSpiteObject(GameObject parent, List<GameObject> newGO, List<Sprite> sprites, Sprite tileSprite, PhysicsMaterial2D physicsMaterial)
     {
+        Debug.Log($"{parent} {newGO} {sprites} {tileSprite} {physicsMaterial}");
         for (int i = 0; i < newGO.Count; i++)
         {
             newGO[i].GetComponent<Rigidbody2D>().sharedMaterial = physicsMaterial;

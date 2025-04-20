@@ -5,13 +5,20 @@ using UnityEngine;
 
 public class SmallMaskBullet : MonoBehaviour
 {
+    [SerializeField] float lifeTime = 10.0f;
+
     Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    
+
+    private void OnEnable()
+    {
+        Destroy(gameObject, lifeTime);
+    }
+
     public void SetVelocity(Vector2 newVelocity)
     {
         rb.velocity = newVelocity;
