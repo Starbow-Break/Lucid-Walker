@@ -39,6 +39,7 @@ public class GameData
 {
     // 튜토리얼 진행 데이터
     public TutorialData tutorialData;
+    public Dictionary<int, bool> episodeCutscenePlayed;
     // 에피소드 진행 데이터 
     public List<EpisodeData> episodesData;
     // 플레이어의 현재 하트 개수 (스탯 기본 하트 :3)
@@ -59,10 +60,9 @@ public class GameData
         // 튜토리얼 데이터 초기화
         tutorialData = new TutorialData();
 
-        // 에피소드 데이터 리스트 초기화
-        episodesData = new List<EpisodeData>();
         // 기본 에피소드 1 추가 (튜토리얼과는 별도, 에피소드 1은 스테이지 1~6와 보스로 총 7단계라고 가정)
-        episodesData.Add(new EpisodeData(1, 7));
+        episodesData = new List<EpisodeData> { new EpisodeData(1, 7) };
+        episodeCutscenePlayed = new Dictionary<int, bool>();
 
         // 기본 하트 개수 설정 (예: 3)
         heartCount = 3;
@@ -92,5 +92,18 @@ public class GameData
         {
             episodesData.Add(new EpisodeData(episodeNumber, totalStages));
         }
+    }
+
+    public bool HasCutscenePlayed(int episodeNumber)
+    {
+        return episodeCutscenePlayed.ContainsKey(episodeNumber) && episodeCutscenePlayed[episodeNumber];
+    }
+
+    public void SetCutscenePlayed(int episodeNumber)
+    {
+        if (episodeCutscenePlayed.ContainsKey(episodeNumber))
+            episodeCutscenePlayed[episodeNumber] = true;
+        else
+            episodeCutscenePlayed.Add(episodeNumber, true);
     }
 }

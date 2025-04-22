@@ -1,52 +1,107 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
 
     [Header("Audio Sources")]
-    public AudioSource sfxSource; // 효과음 전용 오디오 소스
+    public AudioSource sfxSource;          // 효과음 전용
+    public AudioSource backgroundMusic;    // 배경음 전용
 
-    [Header("Audio Clips")]
+    [Header("Audio Clips - SFX")]
     public AudioClip walkSound;
     public AudioClip runSound;
     public AudioClip jumpSound;
     public AudioClip landSound;
     public AudioClip swimSound;
 
+    [Header("Audio Clips - BGM")]
+    public AudioClip mainTheme;
+    public AudioClip stage6Theme;
+
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 씬 넘어가도 안 사라지게
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "Stage6")
+        {
+            PlayBackgroundMusic(stage6Theme);
+        }
+        if (currentScene == "Main")
+        {
+            PlayBackgroundMusic(mainTheme);
+        }
+
     }
 
+
+    // --------- SFX ----------
     public void PlaySFX(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip);
+        if (clip != null)
+            sfxSource.PlayOneShot(clip);
     }
 
-    public void PlayWalk()
+    public void PlayWalk() => PlaySFX(walkSound);
+    public void PlayRun() => PlaySFX(runSound);
+    public void PlayJump() => PlaySFX(jumpSound);
+    public void PlayLand() => PlaySFX(landSound);
+    public void PlaySwim() => PlaySFX(swimSound);
+
+    // --------- BGM ----------
+    public void PlayBackgroundMusic(AudioClip clip, bool loop = true)
     {
-        PlaySFX(walkSound);
+        if (clip == null) return;
+        if (backgroundMusic.clip == clip && backgroundMusic.isPlaying) return;
+
+        backgroundMusic.clip = clip;
+        backgroundMusic.loop = loop;
+        backgroundMusic.Play();
     }
 
-    public void PlayRun()
+    public void StopBackgroundMusic()
     {
-        PlaySFX(runSound);
+        backgroundMusic.Stop();
     }
 
-    public void PlayJump()
+    public void SetBackgroundMusicVolume(float volume)
     {
-        PlaySFX(jumpSound);
+        backgroundMusic.volume = Mathf.Clamp01(volume);
     }
 
-    public void PlayLand()
+    public void FadeOutBackgroundMusic(float duration)
     {
-        PlaySFX(landSound);
+        StartCoroutine(FadeOutBGM(duration));
     }
 
-    public void PlaySwim()
+    private IEnumerator FadeOutBGM(float duration)
     {
-        PlaySFX(swimSound);
+        float startVolume = backgroundMusic.volume;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            backgroundMusic.volume = Mathf.Lerp(startVolume, 0f, t / duration);
+            yield return null;
+        }
+
+        backgroundMusic.Stop();
+        backgroundMusic.volume = startVolume; // 원래대로 돌려놓기
     }
 }
