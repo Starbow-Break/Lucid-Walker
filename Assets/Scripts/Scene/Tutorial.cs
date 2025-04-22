@@ -35,24 +35,25 @@ public class Tutorial : MonoBehaviour
 
     private IEnumerator TutorialSequence()
     {
-        // 1. Volume 켜기
+        // 1. 카메라 전환
+
+        CameraManager.SwitchCamera(bgCamera);
+        // 2. volume 변환
         if (volume != null)
             yield return StartCoroutine(FadeInVolume());
 
-        // 2. 카메라 전환
-        yield return new WaitForSeconds(cameraSwitchDelay);
-        CameraManager.SwitchCamera(bgCamera);
+        // yield return new WaitForSeconds(cameraSwitchDelay);
 
         // 3. TurnOff 애니메이션 트리거
-        BGanim.SetTrigger("TurnOff");
 
         // 4. 4.5초 후 원래 카메라로 전환
         yield return new WaitForSeconds(4.5f);
-        CameraManager.SwitchCamera(originalCamera);
+        // CameraManager.SwitchCamera(originalCamera);
 
         // 5. 볼륨 꺼지기 (애니메이션 15초 기준, 10.5초 후니까)
         yield return new WaitForSeconds(10.5f - 4.5f);
         // yield return StartCoroutine(FadeOutVolumeAfterDelay());
+        BGanim.SetTrigger("TurnOff");
 
         // 6. 클릭 대기 상태 진입
         canProceed = true;

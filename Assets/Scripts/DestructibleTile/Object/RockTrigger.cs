@@ -10,8 +10,6 @@ public class RockTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             rock.SetActive(true);
-
-            gameObject.SetActive(false);
         }
     }
 }

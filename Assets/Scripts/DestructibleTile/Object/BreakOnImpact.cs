@@ -58,6 +58,5 @@ public class BreakOnImpact : MonoBehaviour
         }
 
         yield return new WaitForSeconds(maxLifetime);
-        Destroy(gameObject);
     }
 }
