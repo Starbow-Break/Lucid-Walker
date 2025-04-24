@@ -20,6 +20,13 @@ public class CameraBoundSwitch : MonoBehaviour
     {
         // Store the current trigger object's position
         triggerPosition = transform.position;
+        if (CircleWipeEffect == null)
+        {
+            CircleWipeEffect = LevelManager.Circle;
+            if (CircleWipeEffect == null)
+                Debug.LogError("CircleWipeEffect를 찾을 수 없습니다!");
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

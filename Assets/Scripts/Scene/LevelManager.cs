@@ -10,24 +10,29 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance;
     public Slider progressBar;
     public GameObject transitionsContainer;
+    [Header("전환 효과 직접 접근용")]
+    public CircleWipe circleWipe;
     private SceneTransition[] transitions;
+    public static CircleWipe Circle => Instance?.circleWipe;
+
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // 중복 방지
         }
     }
 
     private void Start()
     {
         transitions = transitionsContainer.GetComponentsInChildren<SceneTransition>();
+        if (circleWipe == null)
+            circleWipe = transitionsContainer.GetComponentInChildren<CircleWipe>();
     }
 
     public void LoadScene(string sceneName, string transitionName)
@@ -59,4 +64,6 @@ public class LevelManager : MonoBehaviour
         yield return transition.AnimateTransitionOut();
 
     }
+
+
 }

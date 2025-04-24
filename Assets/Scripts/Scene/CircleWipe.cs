@@ -6,6 +6,10 @@ using DG.Tweening;
 
 public class CircleWipe : SceneTransition
 {
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     public Image circle;
 
     public override IEnumerator AnimateTransitionIn()
@@ -43,7 +47,7 @@ public class CircleWipe : SceneTransition
         else
         {
             // 수평 이동 (좌에서 우 또는 우에서 좌)
-            circle.rectTransform.anchoredPosition = isEntering ? new Vector2(-1100f, 0f) : new Vector2(1000f, 0f);
+            circle.rectTransform.anchoredPosition = isEntering ? new Vector2(0f, 0f) : new Vector2(1000f, 0f);
             var tweener = circle.rectTransform.DOAnchorPosX(0f, 1f); // 중앙으로 이동
 
             tweener.onComplete += () =>
