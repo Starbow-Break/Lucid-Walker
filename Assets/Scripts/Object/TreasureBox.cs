@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TreasureBox : MonoBehaviour
 {

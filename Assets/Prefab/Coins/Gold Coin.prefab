@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 4434786713400757217}
   - component: {fileID: 1481771606586403066}
   - component: {fileID: 3608888032356332148}
+  - component: {fileID: 3195050718306097835}
+  - component: {fileID: 6340767720129108257}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Gold Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1893362110, guid: 2a82d5df7af6b476b901b5f94b9a65b8, type: 3}
+  m_Sprite: {fileID: -1814968070, guid: 5721cbcaadb46bf488dbce41bd3ca27b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,3 +185,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4979c8e5543c747bcddd102c5e70bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 100
+--- !u!114 &3195050718306097835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818774799368458898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 8a0fb4a1784e7164a8e1d5249fb3a6e0, type: 3}
+--- !u!114 &6340767720129108257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818774799368458898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 0.009161512
+  m_labelHash: 1.3971405e-28
+  m_SpriteKey: 0
+  m_SpriteHash: 163368403
