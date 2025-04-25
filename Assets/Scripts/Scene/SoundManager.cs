@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
+using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour
 {
@@ -19,8 +19,15 @@ public class SoundManager : MonoBehaviour
     public AudioClip swimSound;
 
     [Header("Audio Clips - BGM")]
-    public AudioClip mainTheme;
-    public AudioClip stage6Theme;
+    [SerializeField] private List<SceneBGMEntry> sceneBGMs;
+
+    [System.Serializable]
+    public class SceneBGMEntry
+    {
+        public string sceneName;
+        public AudioClip bgmClip;
+    }
+
 
     private void Awake()
     {
@@ -34,27 +41,14 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
-    {
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        if (currentScene == "Stage6")
-        {
-            PlayBackgroundMusic(stage6Theme);
-        }
-        if (currentScene == "Main")
-        {
-            PlayBackgroundMusic(mainTheme);
-        }
-
-    }
 
 
     // --------- SFX ----------
     public void PlaySFX(AudioClip clip)
     {
-        if (clip != null)
-            sfxSource.PlayOneShot(clip);
+        if (clip == null || sfxSource == null) return;
+
+        sfxSource.PlayOneShot(clip);
     }
 
     public void PlayWalk() => PlaySFX(walkSound);
@@ -104,4 +98,34 @@ public class SoundManager : MonoBehaviour
         backgroundMusic.Stop();
         backgroundMusic.volume = startVolume; // 원래대로 돌려놓기
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string sceneName = scene.name;
+
+        foreach (var entry in sceneBGMs)
+        {
+            if (entry.sceneName == sceneName)
+            {
+                if (entry.bgmClip == null)
+                    StopBackgroundMusic();
+                else
+                    PlayBackgroundMusic(entry.bgmClip);
+
+                break;
+            }
+        }
+    }
+
+
 }

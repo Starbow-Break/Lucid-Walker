@@ -8,6 +8,7 @@ public class StageClearDoor : MonoBehaviour
     [SerializeField] Key key; // 열쇠
     [SerializeField] Transform keyHole; // 열쇠 구멍
     [SerializeField] KeyGuide keyGuide;
+    [SerializeField] private int stageNumber;
 
     Animator anim;
     GameObject interactingPlayer = null;
@@ -57,7 +58,7 @@ public class StageClearDoor : MonoBehaviour
     }
 
     IEnumerator DoorOpenFlow()
-    {   
+    {
         keyGuide.InActive();
 
         // ItemFollowBag에서 해당 열쇠 분리
@@ -81,7 +82,8 @@ public class StageClearDoor : MonoBehaviour
             yield return null;
         }
 
-        if(interactingPlayer) {
+        if (interactingPlayer)
+        {
             keyGuide.Active(KeyCode.Z, "들어가기", enterUiSize);
         }
     }
@@ -93,22 +95,53 @@ public class StageClearDoor : MonoBehaviour
         // UI 활성화
         stageClearUI.SetActive(true);
 
+        var data = DataPersistenceManager.instance.GetCurrentGameData();
+
+        // 에피소드 데이터 저장
+        int currentEpisode = 1;
+        foreach (var episode in data.episodesData)
+        {
+            if (episode.GetStageProgress(stageNumber) != null)
+            {
+                currentEpisode = episode.episodeNumber;
+                break;
+            }
+        }
+
+        data.lastPlayedEpisode = currentEpisode;
+
+        var ep = data.GetEpisodeData(currentEpisode);
+        var sp = ep.GetStageProgress(stageNumber);
+        sp.isCleared = true;
+        // sp.gotTreasure = true;
+
+        // currentStage 업데이트도 가능
+        if (ep.currentStage < stageNumber)
+            ep.currentStage = stageNumber + 1;
+
+        data.returnFromStage = true;
+        Debug.Log($"✅ 저장 전 returnFromStage = {data.returnFromStage}");
+
+        DataPersistenceManager.instance.SaveGame();
+        PlayerPrefs.Save();
+        yield return null;
+
         // 2초 대기 (클리어 메시지 표시 시간)
         yield return new WaitForSeconds(5f);
 
         // 씬 전환
-        LevelManager.Instance.LoadScene("Start", "CircleWipe");
+        LevelManager.Instance.LoadScene("Main", "CircleWipe");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if(!isOpen)
+            if (!isOpen)
             {
                 interactingPlayer = other.gameObject;
                 ItemFollowBag bag = other.GetComponent<ItemFollowBag>();
-                if(bag != null & bag.HasItem(key))
+                if (bag != null & bag.HasItem(key))
                 {
                     keyGuide.Active(KeyCode.Z, "열기", openUiSize);
                 }

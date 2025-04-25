@@ -101,6 +101,10 @@ public class GameData
     public List<CutscenePlayRecord> cutscenePlayRecords;
     // 에피소드 진행 데이터 
     public List<EpisodeData> episodesData;
+    public int lastPlayedEpisode = 1;
+    public bool returnFromStage = false;
+    public bool stageFailed = false;
+
     // 플레이어의 현재 하트 개수 (스탯 기본 하트 :3)
     public int heartCount;
     public int gold;
