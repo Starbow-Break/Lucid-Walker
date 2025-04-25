@@ -35,7 +35,11 @@ public class StageIcon : MonoBehaviour
             basePlateImage.sprite = sp.gotTreasure ? clearedWithTreasureSprite : clearedNoTreasureSprite;
             cartoonBookIcon.SetActive(sp.hasCartoonScene);
         }
+        if (lightEffect != null)
+        {
+            lightEffect.SetActive(isCurrent);
 
-        lightEffect.SetActive(isCurrent);
+        }
+
     }
 }

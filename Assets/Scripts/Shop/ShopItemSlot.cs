@@ -94,6 +94,35 @@ public class ShopItemSlot : MonoBehaviour
         {
             isLocked = !gameData.purchasedUpgradeIDs.Contains("EnergyAmount2");
         }
+        // (3) 공격력 업그레이드
+        if (itemData.upgradeID.Equals("AttackUpgrade1"))
+        {
+            isLocked = false;
+        }
+        else if (itemData.upgradeID.Equals("AttackUpgrade2"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("AttackUpgrade1");
+        }
+        else if (itemData.upgradeID.Equals("AttackUpgrade3"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("AttackUpgrade2");
+        }
+
+        // (4) 행운 업그레이드
+        if (itemData.upgradeID.Equals("LuckUpgrade1"))
+        {
+            isLocked = false;
+        }
+        else if (itemData.upgradeID.Equals("LuckUpgrade2"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("LuckUpgrade1");
+        }
+        else if (itemData.upgradeID.Equals("LuckUpgrade3"))
+        {
+            isLocked = !gameData.purchasedUpgradeIDs.Contains("LuckUpgrade2");
+        }
+
+
 
         return isLocked;
     }
