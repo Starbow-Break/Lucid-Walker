@@ -15,6 +15,8 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private HealthUI healthUI;      // 하트 UI를 관리하는 스크립트
     [SerializeField] private GameObject failUI;        // 사망 시 표시할 UI
     [SerializeField] private Animator failUIAnimator;  // Fail UI의 Animator
+    [SerializeField] private int stageNumber;
+
 
     private PlayerStats playerStats;
 
@@ -75,10 +77,40 @@ public class HealthManager : MonoBehaviour
             failUIAnimator.SetTrigger("Bounce");
             yield return StartCoroutine(FadeInFailUI());
         }
+        var data = DataPersistenceManager.instance.GetCurrentGameData();
 
-        yield return new WaitForSeconds(4f);
+        // 에피소드 데이터 저장
+        int currentEpisode = 1;
+        foreach (var episode in data.episodesData)
+        {
+            if (episode.GetStageProgress(stageNumber) != null)
+            {
+                currentEpisode = episode.episodeNumber;
+                break;
+            }
+        }
+
+        data.lastPlayedEpisode = currentEpisode;
+
+        var ep = data.GetEpisodeData(currentEpisode);
+        var sp = ep.GetStageProgress(stageNumber);
+        sp.isCleared = true;
+        // sp.gotTreasure = true;
+
+        // currentStage 업데이트도 가능
+        if (ep.currentStage < stageNumber)
+            ep.currentStage = stageNumber + 1;
+
+        data.returnFromStage = true;
+        Debug.Log($"✅ 저장 전 returnFromStage = {data.returnFromStage}");
+
+        DataPersistenceManager.instance.SaveGame();
+        PlayerPrefs.Save();
+        yield return null;
+
+        yield return new WaitForSeconds(3f);
         // 예시: 시작 씬으로 전환 (LevelManager에 따라 변경)
-        LevelManager.Instance.LoadScene("Start", "CrossFade");
+        LevelManager.Instance.LoadScene("Main", "CrossFade");
     }
 
     private IEnumerator FadeInFailUI()
