@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Coffee.UIEffects;
 
 public class StageSelectManager : MonoBehaviour, IDataPersistence
 {
@@ -8,6 +10,14 @@ public class StageSelectManager : MonoBehaviour, IDataPersistence
     public List<StageIcon> stageIcons; // STAGE1 ~ STAGE7 UI
     public Transform character; // 지금 선택된 캐릭터 오브젝트
     [SerializeField] private float moveDuration = 0.5f;
+
+    // [SerializeField] private Image stageInImage;
+    // [SerializeField] private Sprite normalStageSprite;
+    // [SerializeField] private Sprite bossStageSprite;
+    [SerializeField] private float spriteFadeDuration = 0.3f;
+    private Coroutine transitionRateCoroutine;
+    [SerializeField] private UIEffect stageInEffect;
+
 
     private Coroutine moveCoroutine;
 
@@ -139,7 +149,45 @@ public class StageSelectManager : MonoBehaviour, IDataPersistence
         Vector3 stagePos = stageIcons[index].transform.position;
         stagePos.y += 0.5f;
         moveCoroutine = StartCoroutine(SmoothMove(character, stagePos, moveDuration));
+
     }
+
+    private void UpdateStageInUI(int stageNumber)
+    {
+        if (stageInEffect == null) return;
+
+        float targetRate = (stageNumber == 7) ? 0f : 1f;
+
+        if (!Mathf.Approximately(stageInEffect.transitionRate, targetRate))
+        {
+            // 이전 코루틴이 돌고 있다면 멈추기
+            if (transitionRateCoroutine != null)
+                StopCoroutine(transitionRateCoroutine);
+
+            // 새로운 코루틴 시작
+            transitionRateCoroutine = StartCoroutine(AnimateTransitionRate(stageInEffect, targetRate, spriteFadeDuration));
+        }
+    }
+
+    private IEnumerator AnimateTransitionRate(UIEffect effect, float target, float duration)
+    {
+        float start = effect.transitionRate;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            effect.transitionRate = Mathf.Lerp(start, target, t);
+            yield return null;
+        }
+
+        effect.transitionRate = target;
+    }
+
+
+
+
 
     private IEnumerator SmoothMove(Transform target, Vector3 destination, float duration)
     {
@@ -156,6 +204,7 @@ public class StageSelectManager : MonoBehaviour, IDataPersistence
         target.position = destination;
 
         UpdateAllStageIcons();
+        UpdateStageInUI(currentStageIndex + 1);
 
     }
 

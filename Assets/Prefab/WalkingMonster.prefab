@@ -5011,7 +5011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  damage: 2
+  damage: 1
   groundChkFront: {fileID: 1581044763364605854}
   groundChkBack: {fileID: 1710749096492673563}
   chkDistance: 0.2
@@ -5022,7 +5022,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   detectionRange: 2
-  moveSpeed: 2
+  moveSpeedMin: 2
+  moveSpeedMax: 2
   patrolDistanceMin: 3
   patrolDistanceMax: 7
   platformDetectionDistance: 0.5
