@@ -23,6 +23,12 @@ public class MainChairconnect : MonoBehaviour
     #endregion
 
     private bool isInteracting = false; // 상호작용 상태 체크
+    [SerializeField] private bool skipInteractionOnReturn = false;
+
+    [SerializeField] private GameObject player;
+    [SerializeField] private RuntimeAnimatorController sittingController; // 플레이어 앉은 애니메이터
+    [SerializeField] private Transform chairPosition;
+    [SerializeField] private GameObject ep1panel;
 
     private void Start()
     {
@@ -32,6 +38,7 @@ public class MainChairconnect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         // Player 태그를 가진 오브젝트와 충돌 시 처리
         if (other.CompareTag("Player"))
         {
@@ -92,6 +99,15 @@ public class MainChairconnect : MonoBehaviour
                     player.SetActive(true);
                     chairUI.SetActive(true);
 
+
+                    var data = DataPersistenceManager.instance.GetCurrentGameData();
+                    if (data.returnFromStage)
+                    {
+                        player.GetComponent<PlayerController>().CheckDirectionToFace(true);
+                        data.returnFromStage = false;
+                        DataPersistenceManager.instance.SaveGame();
+                    }
+
                     // 의자 애니메이션 종료
                     if (chairAnimator != null)
                     {
@@ -124,6 +140,50 @@ public class MainChairconnect : MonoBehaviour
             yield return null; // 매 프레임 대기
         }
     }
+    public void StartAutoSequence()
+    {
+        StartCoroutine(AutoSequenceCoroutine());
+    }
+    private IEnumerator AutoSequenceCoroutine()
+    {
+        isInteracting = true;
+
+        if (player != null)
+        {
+            player.transform.position = chairPosition.position;
+            player.SetActive(false);
+            Debug.Log($"▶ StartAutoSequence() 호출됨, player active: {player.activeSelf}");
+        }
+
+        if (chairUI != null)
+            chairUI.SetActive(false);
+
+        yield return null; // ✅ 한 프레임 기다려 Animator 초기화 시간 확보
+
+        if (chairAnimator != null)
+            chairAnimator.SetBool("Connect", true);
+
+        if (panel != null)
+            panel.SetActive(true);
+
+        televisionAnimator.SetBool("On", true);
+        televisionAnimator2.SetBool("On", true);
+        smalltv1_Animator.SetBool("On", true);
+        smalltv2_Animator.SetBool("On", true);
+        smalltv3_Animator.SetBool("On", true);
+        smalltv4_Animator.SetBool("On", true);
+        smalltv5_Animator.SetBool("On", true);
+
+        if (connectUI != null)
+        {
+            connectUI.SetActive(true);
+            StartCoroutine(DisableConnectUI());
+        }
+        ep1panel.SetActive(true);
+        StartCoroutine(WaitForKeyPress(player));
+
+    }
+
 
     private IEnumerator DisableConnectUI()
     {

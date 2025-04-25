@@ -27,6 +27,16 @@ public static class GameBootstrapper
             }
         }
 
-        Debug.Log("📌 Game Managers Initialized");
+        // SoundManager 생성
+        if (SoundManager.Instance == null)
+        {
+            GameObject smPrefab = Resources.Load<GameObject>("SoundManager");
+            if (smPrefab != null)
+            {
+                GameObject go = Object.Instantiate(smPrefab);
+                Object.DontDestroyOnLoad(go);
+            }
+        }
+
     }
 }

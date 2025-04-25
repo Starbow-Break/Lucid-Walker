@@ -21,10 +21,16 @@ public class TimelineController : MonoBehaviour, IDataPersistence
     public GameObject womancharacterSprite;
     public GameObject dome;
 
+    private bool wasReturnedFromStage = false;
+
+
 
     public void LoadData(GameData data)
     {
         shouldPlayCutscene = !data.HasCutscenePlayed(currentEpisode);
+        wasReturnedFromStage = data.returnFromStage;
+        Debug.Log($"📥 LoadData(): returnFromStage = {data.returnFromStage}");
+
     }
 
     public void SaveData(ref GameData data)
@@ -34,6 +40,7 @@ public class TimelineController : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+
         if (shouldPlayCutscene)
         {
             ep1Timeline.gameObject.SetActive(true);
@@ -45,9 +52,9 @@ public class TimelineController : MonoBehaviour, IDataPersistence
         {
             ep1Timeline.gameObject.SetActive(false);
             ep1TimelineDummyPlayer.SetActive(false);
-            actualPlayer.SetActive(true);
 
             OnEp1CutsceneEnd();
+
         }
     }
 
@@ -55,11 +62,19 @@ public class TimelineController : MonoBehaviour, IDataPersistence
     {
         var data = DataPersistenceManager.instance.GetCurrentGameData();
         data.SetCutscenePlayed(currentEpisode);
+
+        if (!wasReturnedFromStage && actualPlayer != null && !actualPlayer.activeSelf)
+        {
+            Debug.Log("안돌아간 경우에만 플레이어 활성화");
+            actualPlayer.SetActive(true);
+            actualPlayer.GetComponent<PlayerController>().CheckDirectionToFace(true);
+        }
+
+        data.returnFromStage = false;
         DataPersistenceManager.instance.SaveGame();
 
         ep1TimelineDummyPlayer.SetActive(false);
-        actualPlayer.SetActive(true);
-        actualPlayer.GetComponent<PlayerController>().CheckDirectionToFace(true);
+
         if (mainCamera != null && mainConfinerShape != null)
         {
             var confiner = mainCamera.GetComponent<CinemachineConfiner2D>();
