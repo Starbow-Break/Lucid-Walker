@@ -85,10 +85,13 @@ public class PlayerController : MonoBehaviour
     public bool isOnRope = false;
     private float _fallSpeedYDampingChangeThreshold;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+
     }
     private void Start()
     {

@@ -24,6 +24,11 @@ public class SinkIntoTile : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isSinking)
         {
+
+            if (PlayerStats.Instance != null)
+            {
+                PlayerStats.Instance.IsSinking = true;
+            }
             // 플레이어의 SpriteRenderer를 가져오기
             SpriteRenderer playerSprite = other.GetComponent<SpriteRenderer>();
 
@@ -45,11 +50,11 @@ public class SinkIntoTile : MonoBehaviour
                 Debug.LogWarning("Player Animator reference is not set!");
             }
 
-            StartCoroutine(SinkAndTeleport(other.transform)); // 플레이어 천천히 가라앉고 텔레포트
+            StartCoroutine(SinkAndTeleport(other.transform, PlayerStats.Instance));
         }
     }
 
-    private IEnumerator SinkAndTeleport(Transform player)
+    private IEnumerator SinkAndTeleport(Transform player, PlayerStats playerStats)
     {
         isSinking = true; // 중복 실행 방지
         Vector3 originalPosition = player.position;
@@ -105,5 +110,10 @@ public class SinkIntoTile : MonoBehaviour
 
         // 가라앉기 종료
         isSinking = false;
+
+        if (playerStats != null)
+        {
+            playerStats.IsSinking = false;
+        }
     }
 }

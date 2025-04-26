@@ -82,7 +82,14 @@ public class Shop : MonoBehaviour
             // UI 갱신
             if (shopUI != null)
             {
+                // 현재 선택된 아이템을 저장
+                ItemData currentItem = itemData;
+
+                // UI 갱신
                 shopUI.UpdateUIAfterPurchase();
+
+                // 같은 아이템을 다시 선택하여 상세 패널 갱신
+                shopUI.ShowItemDetail(currentItem);
             }
         }
         else

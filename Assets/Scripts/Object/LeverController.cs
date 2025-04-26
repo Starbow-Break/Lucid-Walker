@@ -62,6 +62,7 @@ public class LeverController : MonoBehaviour
         // 공유된 WaterController를 사용해 물 높이 증가 호출 (레버 파티클도 전달)
         if (waterController != null)
         {
+
             waterController.IncreaseWaterLevel(waterIncreaseAmount, leverParticle);
         }
 

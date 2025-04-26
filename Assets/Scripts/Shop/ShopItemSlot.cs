@@ -24,35 +24,66 @@ public class ShopItemSlot : MonoBehaviour
     /// 슬롯 상태를 갱신하는 통합 메서드
     /// 잠금 여부, 구매 여부, 아이콘, 버튼, 오버레이 등을 전부 여기서 처리
     /// </summary>
+    /// 
+
     public void UpdateSlotState()
     {
         GameData gameData = shopUI.GetGameData();
         bool isPurchased = gameData.purchasedUpgradeIDs.Contains(itemData.upgradeID);
-
-        // 1) 잠금 여부 계산
         bool isLocked = CheckIsLocked(itemData, gameData);
 
-        // 2) 아이콘 설정
         if (isLocked)
         {
             icon.sprite = itemData.leftPanelLockedSprite;
             activeGlowImage.gameObject.SetActive(false);
         }
-        else if (isPurchased)
-        {
-            icon.sprite = itemData.leftPanelActiveSprite;
-            activeGlowImage.gameObject.SetActive(true);
-        }
         else
         {
-            icon.sprite = itemData.leftPanelInactiveSprite;
-            activeGlowImage.gameObject.SetActive(false);
+            if (isPurchased)
+            {
+                icon.sprite = itemData.leftPanelActiveSprite;
+                activeGlowImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                icon.sprite = itemData.leftPanelInactiveSprite;
+                activeGlowImage.gameObject.SetActive(false);
+            }
         }
 
-        // 3) 오버레이와 버튼 상태
         lockOverlay.SetActive(isLocked);
         button.interactable = !isLocked;
     }
+
+    // public void UpdateSlotState()
+    // {
+    //     GameData gameData = shopUI.GetGameData();
+    //     bool isPurchased = gameData.purchasedUpgradeIDs.Contains(itemData.upgradeID);
+
+    //     // 1) 잠금 여부 계산
+    //     bool isLocked = CheckIsLocked(itemData, gameData);
+
+    //     // 2) 아이콘 설정
+    //     if (isLocked)
+    //     {
+    //         icon.sprite = itemData.leftPanelLockedSprite;
+    //         activeGlowImage.gameObject.SetActive(false);
+    //     }
+    //     else if (isPurchased)
+    //     {
+    //         icon.sprite = itemData.leftPanelActiveSprite;
+    //         activeGlowImage.gameObject.SetActive(true);
+    //     }
+    //     else
+    //     {
+    //         icon.sprite = itemData.leftPanelInactiveSprite;
+    //         activeGlowImage.gameObject.SetActive(false);
+    //     }
+
+    //     // 3) 오버레이와 버튼 상태
+    //     lockOverlay.SetActive(isLocked);
+    //     button.interactable = !isLocked;
+    // }
 
     /// <summary>
     /// 업그레이드ID(또는 itemType)에 따른 잠금 여부를 계산하는 메서드

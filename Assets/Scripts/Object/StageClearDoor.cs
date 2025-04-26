@@ -90,6 +90,8 @@ public class StageClearDoor : MonoBehaviour
 
     IEnumerator StageClearSequence()
     {
+
+        interactingPlayer = null;
         keyGuide.InActive();
 
         // UI 활성화
@@ -141,7 +143,7 @@ public class StageClearDoor : MonoBehaviour
             {
                 interactingPlayer = other.gameObject;
                 ItemFollowBag bag = other.GetComponent<ItemFollowBag>();
-                if (bag != null & bag.HasItem(key))
+                if (bag != null && bag.HasItem(key))
                 {
                     keyGuide.Active(KeyCode.Z, "열기", openUiSize);
                 }

@@ -44,7 +44,7 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     [SerializeField] private bool isPlatformInFront; // 앞쪽 플랫폼 상태
 
     bool modifyPatrolStatsFlag = false;
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -61,6 +61,12 @@ public class WalkingMonster : MonoBehaviour, IDamageable
         isPlatformInFront = IsPlatformInFront();
 
         if (isDead) return; // 죽었으면 로직 실행 중지
+
+        if (isInWater)
+        {
+            Die();
+            return;
+        }
 
         DetectPlayer(); // 플레이어 감지
 
@@ -257,9 +263,30 @@ public class WalkingMonster : MonoBehaviour, IDamageable
     // 사망
     public void Die()
     {
+        if (isDead) return;
+
         isDead = true;
+        rb.velocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
         anim.SetTrigger("Die");
+        StartCoroutine(WaitUntilDieAnimEnds());
+
     }
+
+    private IEnumerator WaitUntilDieAnimEnds()
+    {
+        // Die 스테이트로 전환될 때까지 잠깐 대기
+        while (!anim.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+            yield return null;
+
+        // 애니메이션이 끝날 때까지(=normalizedTime ≥ 1) 대기
+        while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            yield return null;
+
+        Destroy(gameObject);
+    }
+
 
     // 전환
     public void Flip()

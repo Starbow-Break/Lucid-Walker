@@ -23,10 +23,10 @@ public class MainChairconnect : MonoBehaviour
     #endregion
 
     private bool isInteracting = false; // 상호작용 상태 체크
+    private bool fromstage = false;
     [SerializeField] private bool skipInteractionOnReturn = false;
 
     [SerializeField] private GameObject player;
-    [SerializeField] private RuntimeAnimatorController sittingController; // 플레이어 앉은 애니메이터
     [SerializeField] private Transform chairPosition;
     [SerializeField] private GameObject ep1panel;
 
@@ -101,9 +101,11 @@ public class MainChairconnect : MonoBehaviour
 
 
                     var data = DataPersistenceManager.instance.GetCurrentGameData();
-                    if (data.returnFromStage)
+                    if (fromstage)
                     {
-                        player.GetComponent<PlayerController>().CheckDirectionToFace(true);
+                        Debug.Log("리턴");
+                        // WaitForKeyPress() 의 상호작용 종료 블록
+                        player.transform.localScale = new Vector3(0.72f, player.transform.localScale.y, 0.72f); // 항상 오른쪽 보기
                         data.returnFromStage = false;
                         DataPersistenceManager.instance.SaveGame();
                     }
@@ -147,6 +149,7 @@ public class MainChairconnect : MonoBehaviour
     private IEnumerator AutoSequenceCoroutine()
     {
         isInteracting = true;
+        fromstage = true;
 
         if (player != null)
         {

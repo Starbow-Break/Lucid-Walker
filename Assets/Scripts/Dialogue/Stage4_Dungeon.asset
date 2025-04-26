@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696e935404f7a422499adfdf326416bc, type: 3}
+  m_Name: Stage4_Dungeon
+  m_EditorClassIdentifier: 
+  dialogueID: Stage4_Dungeon
+  lines:
+  - characterName: "\uB808\uBE44\uB098"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\uB8E8\uC2DC\uB4DC\uC6CC\uCEE4\uB2D8... \uB4DC\uB514\uC5B4 \uC624\uC168\uAD70\uC694!"
+  - characterName: "\uB8E8\uC2DC\uB4DC\uC6CC\uCEE4"
+    characterImage: {fileID: 1137789122, guid: 49e77f1fd45a140f7a2799ab07a7d877, type: 3}
+    sentence: "\uC5B4..! \uC5EC\uAE34 \uB300\uCCB4 \uC5B4\uB514\uC8E0?"
+  - characterName: "\uB808\uBE44\uB098"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\uC5EC\uAE34 \uBBA4\uC9C0\uCEEC\uC7A5\uC774\uC5D0\uC694. \uD2F0\uCF13\uC744
+      \uCC3E\uC544\uC57C \uACF5\uC5F0\uC774 \uC2DC\uC791\uB420 \uC218 \uC788\uC5B4\uC694. "
+  - characterName: "\uB808\uBE44\uB098"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\uC815\uD574\uC9C4 \uC2DC\uAC04\uC774 \uB2E4\uAC00\uC624\uACE0 \uC788\uC5B4\uC694..."
+  - characterName: "\uB8E8\uC2DC\uB4DC\uC6CC\uCEE4"
+    characterImage: {fileID: 1137789122, guid: 49e77f1fd45a140f7a2799ab07a7d877, type: 3}
+    sentence: "\uD2F0\uCF13\uC774\uC694?"
+  - characterName: "\uB808\uBE44\uB098"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\uB124, \uD2F0\uCF13\uC774 3\uC7A5\uC774 \uBD80\uC871\uD574\uC694..
+      \uD2F0\uCF13\uC744 \uCC3E\uC544\uC8FC\uC138\uC694..! "
+  - characterName: "\uB808\uBE44\uB098"
+    characterImage: {fileID: -1877058977, guid: 15602bd50c6674801ab32d720e8bfa67, type: 3}
+    sentence: "\uC804 2\uCE35\uC5D0\uC11C \uAE30\uB2E4\uB9AC\uACE0 \uC788\uC744\uAC8C\uC694"

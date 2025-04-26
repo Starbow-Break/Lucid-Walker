@@ -11,9 +11,20 @@ public class PlayerStats : MonoBehaviour, IDataPersistence
     [SerializeField] private float currentEnergy = 100f;   // 현재 기력
     [SerializeField] private float energyRegenRate = 5f;   // 초당 기력 회복량
     [SerializeField] private float energyDrainRate = 10f;  // 달릴 때/ 수영 초당 소모량
+    public static PlayerStats Instance { get; private set; }
+    public bool IsSinking { get; set; }
 
-
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // IDataPersistence 구현
     public void LoadData(GameData data)
     {

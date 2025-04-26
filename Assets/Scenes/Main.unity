@@ -7431,7 +7431,6 @@ MonoBehaviour:
   smalltv5_Animator: {fileID: 755363055}
   skipInteractionOnReturn: 0
   player: {fileID: 2102245757}
-  sittingController: {fileID: 0}
   chairPosition: {fileID: 711737747}
   ep1panel: {fileID: 1437162076}
 --- !u!1 &737140196
@@ -16080,7 +16079,6 @@ GameObject:
   - component: {fileID: 1542107215}
   - component: {fileID: 1542107214}
   - component: {fileID: 1542107217}
-  - component: {fileID: 1542107216}
   - component: {fileID: 1542107218}
   m_Layer: 5
   m_Name: Cartoon1
@@ -16127,7 +16125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9647059}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16152,50 +16150,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542107212}
   m_CullTransparentMesh: 1
---- !u!114 &1542107216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542107212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90ac5d06c7b714c29a6b7b3b80e443a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CullingMask: 15
-  m_Direction: 1
-  m_Curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_Delay: 0
-  m_Duration: 3
-  m_Interval: 0
-  m_RestartOnEnable: 1
-  m_WrapMode: 0
-  m_UpdateMode: 0
 --- !u!114 &1542107217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16217,7 +16171,7 @@ MonoBehaviour:
   m_SamplingFilter: 0
   m_SamplingIntensity: 0.5
   m_TransitionFilter: 3
-  m_TransitionRate: 0
+  m_TransitionRate: 1
   m_TransitionReverse: 0
   m_TransitionTex: {fileID: 2800000, guid: b438fd66429e341d690c1ad9fba13fae, type: 3}
   m_TransitionTexScale: {x: 1, y: 1}
@@ -16261,6 +16215,9 @@ MonoBehaviour:
   - {fileID: 1535321465}
   - {fileID: 915351186}
   delayBetweenPanels: 3.5
+  transitionDuration: 0.8
+  waitAfterTransition: 0.4
+  uiEffect: {fileID: 1542107217}
 --- !u!1 &1563629583
 GameObject:
   m_ObjectHideFlags: 0
