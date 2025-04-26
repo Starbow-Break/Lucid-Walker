@@ -16,8 +16,22 @@ public class MoviePortal : MonoBehaviour
     private Coroutine currentCameraCoroutine;   // 카메라 크기 변경 코루틴 참조
 
     public List<GameObject> monstersToActivate; // 포탈 통과 시 활성화할 몬스터 리스트
+    public bool hasClikcedClue = false;
+    private SpriteRenderer sp;
+    [SerializeField] Sprite changesp;
 
+    private void Awake()
+    {
+        sp = GetComponent<SpriteRenderer>();
+    }
 
+    private void Start()
+    {
+        if (changesp == null)
+        {
+            hasClikcedClue = true;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어가 포탈에 들어왔을 때
@@ -40,7 +54,7 @@ public class MoviePortal : MonoBehaviour
 
     private IEnumerator WaitForKeyPress(Collider2D player)
     {
-        while (isPlayerInPortal)
+        while (isPlayerInPortal && hasClikcedClue)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -48,6 +62,24 @@ public class MoviePortal : MonoBehaviour
                 yield break; // 코루틴 종료
             }
             yield return null; // 다음 프레임까지 대기
+        }
+    }
+
+    public void OnClueClicked()
+    {
+        hasClikcedClue = true;
+        ChangeToOpenDoor();
+    }
+    private void ChangeToOpenDoor()
+    {
+        if (hasClikcedClue)
+        {
+            // 포탈이 열리는 애니메이션이나 상태를 설정
+            if (sp != null)
+            {
+                sp.sprite = changesp;
+            }
+
         }
     }
 

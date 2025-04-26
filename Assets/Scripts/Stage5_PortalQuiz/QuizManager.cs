@@ -31,6 +31,7 @@ public class QuizManager : MonoBehaviour
     public float cameraLerpSpeed = 2f; // 카메라 크기 변경 속도
     private int count = 0;
     public GameObject chandelierSmoke;
+    public GameObject StageSucessDoor;
 
 
     private void Start()
@@ -151,6 +152,7 @@ public class QuizManager : MonoBehaviour
         chandelier.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         brokenChandelier.SetActive(true);
+        StageSucessDoor.SetActive(true);
         yield return new WaitForSeconds(5f);
         cameraFollow.ClearDialogueFocus();
     }

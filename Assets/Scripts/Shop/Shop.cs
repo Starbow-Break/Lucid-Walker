@@ -4,97 +4,91 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    private PlayerStats playerStats;
-    private ShopUI shopUI;
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private ShopUI shopUI;  // Inspector에서 연결
 
     private void Awake()
     {
-        playerStats = FindObjectOfType<PlayerStats>();
-        shopUI = FindObjectOfType<ShopUI>();
+        if (shopUI == null)
+        {
+            Debug.LogError("ShopUI가 인스펙터에서 연결되지 않았습니다. 연결해주세요.");
+        }
     }
 
-    public void BuyItem(ItemData itemData)
+    public void BuyItem(ItemData item)
     {
-        GameData gameData = DataPersistenceManager.instance.GetCurrentGameData();
+        var data = DataPersistenceManager.instance.GetCurrentGameData();
 
-        // 골드 충분한지 체크
-        if (gameData.gold >= itemData.price)
-        {
-            // 골드 차감
-            gameData.gold -= itemData.price;
-
-            // 아직 구매하지 않은 아이템이면 purchasedUpgradeIDs에 추가
-            if (!gameData.purchasedUpgradeIDs.Contains(itemData.upgradeID))
-            {
-                gameData.purchasedUpgradeIDs.Add(itemData.upgradeID);
-
-                switch (itemData.itemType)
-                {
-                    case ItemType.HeartUpgrade:
-                        // 하트 업그레이드
-                        gameData.heartCount += 1;
-
-                        if (playerStats != null)
-                        {
-                            playerStats.IncreaseMaxHearts(1);
-                        }
-                        break;
-
-                    case ItemType.EnergyAmountUpgrade:
-                        // 에너지 최대치 업그레이드 (예: +20)
-                        if (playerStats != null)
-                        {
-                            playerStats.IncreaseMaxEnergy(20f);
-                        }
-                        // GameData에도 동기화
-                        gameData.maxEnergy += 20f;
-                        gameData.currentEnergy = gameData.maxEnergy;
-                        break;
-
-                    case ItemType.EnergyRegenUpgrade:
-                        // 에너지 회복률 업그레이드 (예: +2)
-                        if (playerStats != null)
-                        {
-                            playerStats.IncreaseEnergyRegenRate(2f);
-                        }
-                        gameData.energyRegenRate += 2f;
-                        break;
-
-                    case ItemType.AttackUpgrade:
-                        // 공격력 업그레이드 로직 (예: playerStats.AttackPower += 5f 등)
-                        // GameData에도 반영할 수 있음
-                        Debug.Log("공격력 업그레이드 적용 (예시)");
-                        break;
-
-                    case ItemType.LuckUpgrade:
-                        // 행운 업그레이드 로직 (예: playerStats.Luck += 1f 등)
-                        Debug.Log("행운 업그레이드 적용 (예시)");
-                        break;
-                }
-            }
-
-            // 구매 내용 세이브
-            DataPersistenceManager.instance.SaveGame();
-
-            Debug.Log("구매 완료: " + itemData.itemName);
-            Debug.Log("구매된 업그레이드: " + string.Join(", ", gameData.purchasedUpgradeIDs));
-
-            // UI 갱신
-            if (shopUI != null)
-            {
-                // 현재 선택된 아이템을 저장
-                ItemData currentItem = itemData;
-
-                // UI 갱신
-                shopUI.UpdateUIAfterPurchase();
-
-                // 같은 아이템을 다시 선택하여 상세 패널 갱신
-                shopUI.ShowItemDetail(currentItem);
-            }
-        }
-        else
+        if (data.gold < item.price)
         {
             Debug.Log("골드 부족!");
+            return;
         }
+
+        // 이미 산 아이템이면 패스
+        if (data.purchasedUpgradeIDs.Contains(item.upgradeID))
+        {
+            Debug.Log("이미 구매한 아이템입니다.");
+            return;
+        }
+
+        //-------------------------
+        // 1. 골드 차감 & ID 등록
+        //-------------------------
+        data.gold -= item.price;
+        data.purchasedUpgradeIDs.Add(item.upgradeID);
+
+        //-------------------------
+        // 2. 실제 스탯 적용
+        //-------------------------
+        ApplyStat(item, data);
+
+        //-------------------------
+        // 3. 세이브 & UI 새로고침
+        //-------------------------
+        DataPersistenceManager.instance.SaveGame();
+        Debug.Log($"구매 완료 ▶ {item.itemName}");
+
+        if (shopUI != null)
+            StartCoroutine(RefreshUINextFrame(item));
+    }
+
+    /* ------------- 분리된 스탯 적용 메서드 ------------- */
+    private void ApplyStat(ItemData item, GameData g)
+    {
+        switch (item.itemType)
+        {
+            case ItemType.HeartUpgrade:
+                g.heartCount += 1;
+                playerStats?.IncreaseMaxHearts(1);
+                break;
+
+            case ItemType.EnergyAmountUpgrade:
+                g.maxEnergy += 20f;
+                g.currentEnergy = g.maxEnergy;
+                playerStats?.IncreaseMaxEnergy(20f);
+                break;
+
+            case ItemType.EnergyRegenUpgrade:
+                g.energyRegenRate += 2f;
+                playerStats?.IncreaseEnergyRegenRate(2f);
+                break;
+
+            case ItemType.AttackUpgrade:
+                // TODO: 공격력 증가 로직
+                break;
+
+            case ItemType.LuckUpgrade:
+                // TODO: 행운 증가 로직
+                break;
+        }
+    }
+
+    /* ------------- UI 새로고침을 다음 프레임으로 미룸 ------------- */
+    private IEnumerator RefreshUINextFrame(ItemData bought)
+    {
+        yield return null;                      // 한 프레임 기다리기
+        shopUI.UpdateUIAfterPurchase();         // 슬롯/버튼 상태
+        shopUI.ShowItemDetail(bought);          // 오른쪽 상세 패널
     }
 }

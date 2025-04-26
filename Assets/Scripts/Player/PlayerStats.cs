@@ -1,88 +1,93 @@
 using UnityEngine;
+using System;
 
 public class PlayerStats : MonoBehaviour, IDataPersistence
 {
-    // 최대 하트 수 (기본 3)
-    [SerializeField] private int maxHearts = 3;
-    // 새로 추가: 골드 보유량
-    [SerializeField] private int gold = 100;
-    // ---기력 관련 변수들 ---
-    [SerializeField] private float maxEnergy = 100f;       // 기력 최대치
-    [SerializeField] private float currentEnergy = 100f;   // 현재 기력
-    [SerializeField] private float energyRegenRate = 5f;   // 초당 기력 회복량
-    [SerializeField] private float energyDrainRate = 10f;  // 달릴 때/ 수영 초당 소모량
+    // ───────────── Singleton ─────────────
     public static PlayerStats Instance { get; private set; }
-    public bool IsSinking { get; set; }
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
-    // IDataPersistence 구현
-    public void LoadData(GameData data)
+
+    // ───────────── Hearts ─────────────
+    [SerializeField] private int maxHearts = 3;
+    public int MaxHearts => maxHearts;
+    public void IncreaseMaxHearts(int amt = 1) => maxHearts += amt;
+
+    // ───────────── Gold ─────────────
+    [SerializeField] private int gold = 100;
+    public int Gold => gold;
+    public event Action<int> OnGoldChanged;          // UI가 구독
+
+    public bool SpendGold(int amount)
     {
-        // 세이브 파일에 heartCount가 있다면 가져와서 적용
-        this.maxHearts = data.heartCount;
-        this.gold = data.gold;
-        this.maxEnergy = data.maxEnergy;
-        this.currentEnergy = data.currentEnergy;
-        this.energyRegenRate = data.energyRegenRate;
-        this.energyDrainRate = data.energyDrainRate;
+        if (gold < amount) return false;
+        gold -= amount;
+        OnGoldChanged?.Invoke(gold);
+        return true;
     }
-
-    public void SaveData(ref GameData data)
+    public void AddGold(int amount)
     {
-        // 현재 maxHearts를 세이브 파일에 반영
-        data.heartCount = this.maxHearts;
-        data.gold = this.gold; // 현재 골드 세이브
-
-        // 추가: 기력 관련 데이터 세이브
-        data.maxEnergy = this.maxEnergy;
-        data.currentEnergy = this.currentEnergy;
-        data.energyRegenRate = this.energyRegenRate;
-        data.energyDrainRate = this.energyDrainRate;
+        gold += amount;
+        OnGoldChanged?.Invoke(gold);
     }
 
+    // ───────────── Energy ─────────────
+    [SerializeField] private float maxEnergy = 100f;
+    [SerializeField] private float currentEnergy = 100f;
+    [SerializeField] private float energyRegenRate = 5f;
+    [SerializeField] private float energyDrainRate = 10f;
 
-    public int GetMaxHearts()
+    public float MaxEnergy => maxEnergy;
+    public float CurrentEnergy => currentEnergy;
+    public float EnergyRegenRate => energyRegenRate;
+    public float EnergyDrainRate => energyDrainRate;
+
+    public void SetCurrentEnergy(float v) => currentEnergy = Mathf.Clamp(v, 0, maxEnergy);
+    public void IncreaseMaxEnergy(float amt) { maxEnergy += amt; currentEnergy = maxEnergy; }
+    public void IncreaseEnergyRegenRate(float amt) { energyRegenRate += amt; }
+
+    // ───────────── Attack & Luck (추가) ─────────────
+    // [SerializeField] private int attackPower = 10;
+    [SerializeField] private int luck = 0;
+    // public int AttackPower => attackPower;
+    public int Luck => luck;
+
+    // public void IncreaseAttack(int amt) => attackPower += amt;
+    public void IncreaseLuck(int amt) => luck += amt;
+
+    // ───────────── IDataPersistence ─────────────
+    public void LoadData(GameData d)
     {
-        return maxHearts;
+        maxHearts = d.heartCount;
+        gold = d.gold;
+
+        maxEnergy = d.maxEnergy;
+        currentEnergy = d.currentEnergy;
+        energyRegenRate = d.energyRegenRate;
+        energyDrainRate = d.energyDrainRate;
+
+        // attackPower = d.attackPower;  
+        luck = d.luck;
     }
 
-    // 외부에서 호출할 수 있는 최대 하트 증가 메서드
-    public void IncreaseMaxHearts(int amount = 1)
+    public void SaveData(ref GameData d)
     {
-        maxHearts += amount;
+        d.heartCount = maxHearts;
+        d.gold = gold;
+
+        d.maxEnergy = maxEnergy;
+        d.currentEnergy = currentEnergy;
+        d.energyRegenRate = energyRegenRate;
+        d.energyDrainRate = energyDrainRate;
+
+        // d.attackPower = attackPower;
+        d.luck = luck;
     }
 
-
-    public float GetMaxEnergy() => maxEnergy;
-    public float GetCurrentEnergy() => currentEnergy;
-    public float GetEnergyRegenRate() => energyRegenRate;
-    public float GetEnergyDrainRate() => energyDrainRate;
-
-    public void SetCurrentEnergy(float value)
-    {
-        currentEnergy = Mathf.Clamp(value, 0f, maxEnergy);
-    }
-
-    // 상점에서 기력 능력치를 구매할 때 사용할 수 있는 예시 메서드
-    public void IncreaseMaxEnergy(float amount)
-    {
-        maxEnergy += amount;
-        currentEnergy = maxEnergy; // 구매 시 기력 풀로 채우는 식으로 처리 가능
-    }
-
-    public void IncreaseEnergyRegenRate(float amount)
-    {
-        energyRegenRate += amount;
-    }
-
+    // ───────────── 기타 상태 ─────────────
+    public bool IsSinking { get; set; }
 }

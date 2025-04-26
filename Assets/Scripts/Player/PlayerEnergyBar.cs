@@ -32,8 +32,8 @@ public class PlayerEnergyBar : MonoBehaviour
 
         if (PlayerStats.Instance != null)
         {
-            float currentEnergy = playerStats.GetCurrentEnergy();
-            float maxEnergy = playerStats.GetMaxEnergy();
+            float currentEnergy = playerStats.CurrentEnergy;
+            float maxEnergy = playerStats.MaxEnergy;
             energySlider.value = currentEnergy / maxEnergy;
         }
     }

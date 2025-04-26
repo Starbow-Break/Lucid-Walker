@@ -29,7 +29,7 @@ public class HealthUI : MonoBehaviour
     {
         // DataPersistenceManager에서 LoadData()가 끝난 이후에
         // 아래처럼 InitializeHealthUI 호출 (씬 로드 순서에 따라 달라질 수 있음)
-        InitializeHealthUI(playerStats.GetMaxHearts());
+        InitializeHealthUI(playerStats.MaxHearts);
     }
 
     // 초기 하트 UI 설정

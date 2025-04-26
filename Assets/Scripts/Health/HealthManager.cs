@@ -40,7 +40,7 @@ public class HealthManager : MonoBehaviour
         playerStats = FindObjectOfType<PlayerStats>();
         if (playerStats != null)
         {
-            maxHealth = playerStats.GetMaxHearts();
+            maxHealth = playerStats.MaxHearts;
         }
         else
         {

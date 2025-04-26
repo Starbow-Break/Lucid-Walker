@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             // 달리기 시도
             // 에너지가 0보다 큰 경우에만 달리기 시작
-            if (playerStats != null && playerStats.GetCurrentEnergy() > 0f)
+            if (playerStats != null && playerStats.CurrentEnergy > 0f)
             {
                 isRunning = true;
                 isConsumingEnergy = true;
@@ -525,10 +525,10 @@ public class PlayerController : MonoBehaviour
     {
         if (playerStats == null) return; // playerStats를 찾지 못했다면 처리 X
 
-        float currentEnergy = playerStats.GetCurrentEnergy();
-        float maxEnergy = playerStats.GetMaxEnergy();
-        float drainRate = playerStats.GetEnergyDrainRate();
-        float regenRate = playerStats.GetEnergyRegenRate();
+        float currentEnergy = playerStats.CurrentEnergy;
+        float maxEnergy = playerStats.MaxEnergy;
+        float drainRate = playerStats.EnergyDrainRate;
+        float regenRate = playerStats.EnergyRegenRate;
 
         bool isSwimmingActive = isInWater
                                     && (Mathf.Abs(_moveInput.x) > 0.1f || Mathf.Abs(_moveInput.y) > 0.1f);
