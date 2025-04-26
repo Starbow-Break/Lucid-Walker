@@ -71,22 +71,36 @@ public class HealthUI : MonoBehaviour
         {
             if (i >= currentHealth)
             {
-                // 깨지는 애니메이션 트리거
-                heartAnimators[i].SetTrigger("Broke");
-                // 애니메이션이 끝나면 빈 하트 이미지로 변경
-                StartCoroutine(UpdateHeartImageAfterAnimation(heartAnimators[i], hearts[i]));
+                Animator animator = heartAnimators[i];
+                Image image = hearts[i];
+
+                if (animator != null && animator.gameObject != null)
+                {
+                    animator.SetTrigger("Broke");
+                    StartCoroutine(UpdateHeartImageAfterAnimation(animator, image));
+                }
+                else
+                {
+                    Debug.LogWarning($"⚠️ Heart Animator #{i}는 이미 Destroy된 상태입니다.");
+                }
             }
         }
     }
+
     private IEnumerator UpdateHeartImageAfterAnimation(Animator animator, Image heartImage)
     {
+        if (animator == null || animator.gameObject == null) yield break;
+
         // 애니메이션 상태가 끝날 때까지 대기
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Heart_Idle"))
         {
+            if (animator == null || animator.gameObject == null) yield break;
             yield return null;
         }
 
         // 깨진 하트 이미지로 변경
-        heartImage.sprite = heartEmpty;
+        if (heartImage != null)  // 여기도 방어적 체크
+            heartImage.sprite = heartEmpty;
     }
+
 }

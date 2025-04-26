@@ -19,14 +19,14 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Debug.LogError("Data Persistence Manager 하나 더 존재");
-            Destroy(this.gameObject);
-            return;
+            instance = this;
         }
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
 
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
     }

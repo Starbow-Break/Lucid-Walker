@@ -15,6 +15,37 @@ public class TutorialData
     }
 }
 
+public enum CartoonSceneTriggerTime
+{
+    None,
+    BeforeStage,
+    AfterStage
+}
+
+[System.Serializable]
+public class StageProgress
+{
+    public int stageNumber;
+    public bool isCleared;
+    public bool gotTreasure;
+
+    public bool hasCartoonScene;
+    public CartoonSceneTriggerTime cartoonSceneTriggerTime;
+
+    public bool cartoonScenePlayed;
+
+    public StageProgress(int stageNumber, CartoonSceneTriggerTime cartoonSceneTriggerTime = CartoonSceneTriggerTime.None)
+    {
+        this.stageNumber = stageNumber;
+        this.isCleared = false;
+        this.gotTreasure = false;
+
+        this.cartoonSceneTriggerTime = cartoonSceneTriggerTime;
+        this.hasCartoonScene = cartoonSceneTriggerTime != CartoonSceneTriggerTime.None;
+        this.cartoonScenePlayed = false;
+    }
+}
+
 [System.Serializable]
 public class EpisodeData
 {
@@ -24,6 +55,8 @@ public class EpisodeData
     public int currentStage;
     // 해당 에피소드의 총 스테이지 수 (튜토리얼은 별도이므로 에피소드 1은 스테이지1~6와 보스로 총 7개)
     public int totalStages;
+    public List<StageProgress> stageProgresses;
+
 
     public EpisodeData(int episodeNumber, int totalStages)
     {
@@ -31,7 +64,33 @@ public class EpisodeData
         this.totalStages = totalStages;
         // 에피소드 시작 시, 첫 스테이지로 시작
         this.currentStage = 1;
+
+        stageProgresses = new List<StageProgress>();
+        for (int i = 1; i <= totalStages; i++)
+        {
+            CartoonSceneTriggerTime timing = CartoonSceneTriggerTime.None;
+
+            if (i == 1 || i == 3 || i == 5)
+                timing = CartoonSceneTriggerTime.BeforeStage;
+            else if (i == 7)
+                timing = CartoonSceneTriggerTime.AfterStage;
+
+            stageProgresses.Add(new StageProgress(i, timing));
+        }
+
     }
+    public StageProgress GetStageProgress(int stageNumber)
+    {
+        return stageProgresses.Find(sp => sp.stageNumber == stageNumber);
+    }
+}
+
+
+[System.Serializable]
+public class CutscenePlayRecord
+{
+    public int episodeNumber;
+    public bool hasPlayed;
 }
 
 [System.Serializable]
@@ -39,9 +98,13 @@ public class GameData
 {
     // 튜토리얼 진행 데이터
     public TutorialData tutorialData;
-    public Dictionary<int, bool> episodeCutscenePlayed;
+    public List<CutscenePlayRecord> cutscenePlayRecords;
     // 에피소드 진행 데이터 
     public List<EpisodeData> episodesData;
+    public int lastPlayedEpisode = 1;
+    public bool returnFromStage = false;
+    public bool stageFailed = false;
+
     // 플레이어의 현재 하트 개수 (스탯 기본 하트 :3)
     public int heartCount;
     public int gold;
@@ -62,7 +125,7 @@ public class GameData
 
         // 기본 에피소드 1 추가 (튜토리얼과는 별도, 에피소드 1은 스테이지 1~6와 보스로 총 7단계라고 가정)
         episodesData = new List<EpisodeData> { new EpisodeData(1, 7) };
-        episodeCutscenePlayed = new Dictionary<int, bool>();
+        cutscenePlayRecords = new List<CutscenePlayRecord>();
 
         // 기본 하트 개수 설정 (예: 3)
         heartCount = 3;
@@ -96,14 +159,23 @@ public class GameData
 
     public bool HasCutscenePlayed(int episodeNumber)
     {
-        return episodeCutscenePlayed.ContainsKey(episodeNumber) && episodeCutscenePlayed[episodeNumber];
+        return cutscenePlayRecords.Exists(e => e.episodeNumber == episodeNumber && e.hasPlayed);
     }
 
     public void SetCutscenePlayed(int episodeNumber)
     {
-        if (episodeCutscenePlayed.ContainsKey(episodeNumber))
-            episodeCutscenePlayed[episodeNumber] = true;
+        var record = cutscenePlayRecords.Find(e => e.episodeNumber == episodeNumber);
+        if (record != null)
+        {
+            record.hasPlayed = true;
+        }
         else
-            episodeCutscenePlayed.Add(episodeNumber, true);
+        {
+            cutscenePlayRecords.Add(new CutscenePlayRecord
+            {
+                episodeNumber = episodeNumber,
+                hasPlayed = true
+            });
+        }
     }
 }

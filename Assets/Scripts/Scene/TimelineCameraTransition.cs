@@ -8,6 +8,18 @@ public class TimelineCameraTransition : MonoBehaviour
     public CircleWipe circleWipeEffect;
     public Transform newPositionTarget; // 이동시킬 대상 (예: dummyPlayer)
 
+    private void Start()
+    {
+        if (circleWipeEffect == null)
+        {
+            circleWipeEffect = LevelManager.Circle;
+            if (circleWipeEffect == null)
+            {
+                Debug.LogError("CircleWipeEffect를 찾을 수 없습니다!");
+            }
+        }
+
+    }
     public void PlayTransition()
     {
         Debug.Log("📸 Timeline transition triggered!");

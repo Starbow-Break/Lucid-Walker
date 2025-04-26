@@ -54,9 +54,10 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(10.5f - 4.5f);
         // yield return StartCoroutine(FadeOutVolumeAfterDelay());
         BGanim.SetTrigger("TurnOff");
+        yield return new WaitForSeconds(7f); // 대충 전환 마무리 시간
 
-        // 6. 클릭 대기 상태 진입
-        canProceed = true;
+        OnTutorialComplete(); // 자동 호출
+
     }
 
     private IEnumerator FadeInVolume()
