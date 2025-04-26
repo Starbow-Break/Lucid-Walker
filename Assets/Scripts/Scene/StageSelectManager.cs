@@ -131,7 +131,9 @@ public class StageSelectManager : MonoBehaviour, IDataPersistence
 
     private void EnterStage(int stageNumber)
     {
-        LevelManager.Instance.LoadScene($"Stage{stageNumber}", "CircleWipe");
+        // 7 스테이지 → 보스 씬으로 매핑
+        string sceneName = (stageNumber == 7) ? "BossStage" : $"Stage{stageNumber}";
+        LevelManager.Instance.LoadScene(sceneName, "CircleWipe");
     }
 
     public void TryEnterStageByClick(int index)
