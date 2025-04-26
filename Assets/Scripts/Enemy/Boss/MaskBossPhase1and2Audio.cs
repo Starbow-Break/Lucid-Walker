@@ -9,11 +9,11 @@ public class MaskBossPhase1and2Audio : MonoBehaviour
 
     public void PlayWhistleSound()
     {
-        AudioManager.MaskBossPhase12Audio.PlayOneShot(_whistleClip);
+        AudioManager.Whistle.PlayOneShot(_whistleClip);
     }
 
     public void PlayFingerSnapSound()
     {
-        AudioManager.MaskBossPhase12Audio.PlayOneShot(_fingerSnapClip);
+        AudioManager.FingerSnap.PlayOneShot(_fingerSnapClip);
     }
 }

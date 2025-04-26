@@ -51,16 +51,6 @@ public class MaskBossPhase3 : MaskBoss
         // 손 방향을 올바른 방향으로 조정
         frontHand.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.down);
         backHand.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.down);
-    
-        // if(Input.GetKeyDown(KeyCode.Alpha1)) {
-        //     tongueSkill.Cast();
-        // }
-        // if(Input.GetKeyDown(KeyCode.Alpha2)) {
-        //     handAttackSkill.Cast();
-        // }
-        // if(Input.GetKeyDown(KeyCode.Alpha3)) {
-        //     spitSkill.Cast();
-        // }
 
         // 싸우는 상태가 아니거나 사망 상태이면 아무 행동도 하지 않는다.
         if(!battle || isDead) return;
