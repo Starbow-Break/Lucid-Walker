@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Coffee.UIEffects;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossStageManager : MonoBehaviour
@@ -27,6 +26,9 @@ public class BossStageManager : MonoBehaviour
 
     [Header("Cameras")]
     [SerializeField] List<CinemachineVirtualCamera> cameras;
+
+    [Header("SoundClips")]
+    [SerializeField] AudioClip applauseClip;
 
     [Header("etc")]
     [SerializeField] Animator curtainAnim;
@@ -59,7 +61,8 @@ public class BossStageManager : MonoBehaviour
         }
 
         // Phase1Start();
-        CameraManager.SwitchCamera("Spike Frame Phase Cam");
+        // CameraManager.SwitchCamera("Phase1 and 2 Cam");
+        CameraManager.SwitchCamera("Before Phase3 Cam");
         
         bossShadow.gameObject.SetActive(false);
     }
@@ -72,16 +75,14 @@ public class BossStageManager : MonoBehaviour
     // 1페이즈 시작
     IEnumerator Phase1StartFlow() {
         // 플레이어 조작 방지
-        playerController.enabled = false;
+        PlayerBlocked();
 
         // 커튼이 열릴때까지 대기
         yield return new WaitUntil(() => curtainAnim.GetCurrentAnimatorStateInfo(0).IsName("Open"));
 
+        // PlaySound(AudioManager.Applause, applauseClip, 2.5f);
+        AudioManager.Applause.PlayOneShot(applauseClip);
         // 살짝 대기
-        yield return new WaitForSeconds(1.0f);  
-
-        // 카메라 줌 인
-        CameraManager.SwitchCamera("Focusing Boss Cam");
         yield return new WaitForSeconds(2.5f);
 
         // 보스가 인사
@@ -91,6 +92,7 @@ public class BossStageManager : MonoBehaviour
 
         // 잠시 대기
         yield return new WaitForSeconds(1.0f);
+        AudioManager.Applause.Stop();
 
         /* TODO : 대사나 추가 연출 추가 예정 */
 
@@ -101,13 +103,13 @@ public class BossStageManager : MonoBehaviour
         // 보스전 시작 (페이즈 1)
         bossController[0].BattleStart();
         bossAnim[0].SetTrigger("battle_start");
-        playerController.enabled = true;
+        PlayerAwake();
     }
 
     // 2페이즈 시작
     IEnumerator Phase2StartFlow() {
         // 플레이어 컨트롤 방지
-        playerController.enabled = false;
+        PlayerBlocked();
 
         // 페이즈 1 오브젝트들 비활성화
         foreach(GameObject obj in phase1Objects) {
@@ -144,13 +146,14 @@ public class BossStageManager : MonoBehaviour
         // 보스전 시작 (페이즈 2)
         bossController[1].BattleStart();
         bossAnim[1].SetTrigger("battle_start");
-        playerController.enabled = true;
+        
+        PlayerAwake();
     }
 
     // 3페이즈 시작
     IEnumerator TransitionPhase3Flow() {
         // 플레이어 컨트롤 방지
-        playerController.enabled = false;
+        PlayerBlocked();
 
         bossAnim[1].SetTrigger("phase_finish");
         yield return null;
@@ -175,13 +178,13 @@ public class BossStageManager : MonoBehaviour
         }
 
         // 플레이어 컨트롤러 활성화
-        playerController.enabled = true;
+        PlayerAwake();
     }
 
     // 3페이즈 시작
     IEnumerator Phase3StartFlow() {
         // 플레이어 컨트롤 방지
-        playerController.enabled = false;
+        PlayerBlocked();
         
         // 카메라 초점 이동 및 Area Wall 이동
         CameraManager.ActiveCamera.Follow = bossBattleFocusPoint;
@@ -206,7 +209,7 @@ public class BossStageManager : MonoBehaviour
         // TODO : 배틀 시작
 
         // 플레이어 컨트롤 재개
-        playerController.enabled = true;
+        PlayerAwake();
     }
 
     IEnumerator ChangeBossObjectInPhase2Start() {
@@ -217,4 +220,28 @@ public class BossStageManager : MonoBehaviour
         bossAnim[0].gameObject.SetActive(false);
         bossAnim[1].gameObject.SetActive(true);
     }
+
+    private void PlayerBlocked()
+    {
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+            playerController.SetToIdleState();
+            var rb = playerController.GetComponent<Rigidbody2D>();
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            rb.Sleep();
+        }
+    }
+
+    private void PlayerAwake()
+    {
+        if (playerController != null)
+        {
+            playerController.enabled = true;
+            var rb = playerController.GetComponent<Rigidbody2D>();
+            rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
+        }
+    } 
 }

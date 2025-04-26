@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour, ICollectable
 {
+    [SerializeField] private int cost = 10;
+
     // 획득
     public void Collect(GameObject owner)
     {
-        /*
-        * TODO : 코인 획득 로직 구현해야 함
-        */
-
+        // 코인 로직
         gameObject.SetActive(false); // 코인 비활성화 (최척화 상태에 따라 Destroy로 수정할 수도 있음)
     }
 

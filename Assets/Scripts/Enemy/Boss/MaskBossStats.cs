@@ -29,7 +29,7 @@ public class MaskBossStats : MonoBehaviour, IDamageable
             coroutine = StartCoroutine(TimeAttackFlow());
         }
 
-        UpdateUI();
+        // UpdateUI();
     }
 
     public void TakeDamage(int damage, Transform attacker)
@@ -41,9 +41,9 @@ public class MaskBossStats : MonoBehaviour, IDamageable
         }
     }
 
-    void UpdateUI() {
-        healthBar.SetValue(hp, maxHp);
-    }
+    // void UpdateUI() {
+    //     healthBar.SetValue(hp, maxHp);
+    // }
 
     IEnumerator TimeAttackFlow() {
         while(hp > 0) {
