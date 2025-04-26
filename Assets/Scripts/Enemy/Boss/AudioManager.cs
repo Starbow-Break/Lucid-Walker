@@ -5,11 +5,20 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource _maskBossPhase12Audio;
+    [Header("Whistle")]
+    [SerializeField] private AudioSource _whistle;
+
+    [Header("Whistle")]
+    [SerializeField] private AudioSource _fingerSnap;
+
+    [Header("Whistle")]
+    [SerializeField] private AudioSource _applause;
 
     public static AudioManager Instance { get; private set; }
 
-    public static AudioSource MaskBossPhase12Audio => Instance._maskBossPhase12Audio;
+    public static AudioSource Whistle => Instance._whistle;
+    public static AudioSource FingerSnap => Instance._fingerSnap;
+    public static AudioSource Applause => Instance._applause;
 
     private void Awake()
     {
