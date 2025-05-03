@@ -4,7 +4,7 @@ using Cinemachine;
 using Coffee.UIEffects;
 using UnityEngine;
 
-public class BossStageManager : MonoBehaviour
+public class BossStageManager : StageManager
 {
     [Header("Player")]
     [SerializeField] PlayerController playerController;

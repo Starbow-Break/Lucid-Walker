@@ -14,6 +14,16 @@ public class TreasureBox : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    void Start()
+    {
+        bool gotTreasure = StageManager.Instance.gotTreasure;
+        if (gotTreasure)
+        {
+            isOpen = true;
+            anim.SetTrigger("already_open");
+        }
+    }
+
     void Update()
     {
         if(isInteracting && !isOpen && Input.GetKeyDown(KeyCode.Z)) {

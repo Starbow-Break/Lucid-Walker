@@ -4954,6 +4954,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 3731072931942531485, guid: 8ff61a8e45d81e34cba5760b04d91ca3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38859,6 +38863,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3282097631764727850, guid: 213a0aafbd8a04b80aa6a821d3b14390, type: 3}
   m_PrefabInstance: {fileID: 1723914598}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1732459934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1732459936}
+  - component: {fileID: 1732459935}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1732459935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732459934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739990f01e4709840a4907bff21dd6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  episode: 1
+  stage: 1
+--- !u!4 &1732459936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732459934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 268, y: -9.734967, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1733495704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4572451975601529224, guid: f17e10f5c4edd5f44aff17c5c9c1d177, type: 3}
@@ -46295,6 +46345,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1188751857}
+  - {fileID: 1732459936}
   - {fileID: 159016889}
   - {fileID: 1524066361}
   - {fileID: 451226953}
