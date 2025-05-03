@@ -21177,7 +21177,7 @@ Transform:
   m_GameObject: {fileID: 662195442}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -4.5, z: -10}
+  m_LocalPosition: {x: 132.87, y: -45.17, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23090,6 +23090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8cf81ce96404d4bba67b5aa1f56cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  episode: 1
+  stage: 7
   playerController: {fileID: 273867933}
   bossController:
   - {fileID: 485485769}
@@ -31561,7 +31563,7 @@ PrefabInstance:
       objectReference: {fileID: 19682362}
     - target: {fileID: 3941208028432973102, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3941208028432973102, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: failUIAnimator
@@ -31581,11 +31583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: 132.87
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5
+      value: -45.17
       objectReference: {fileID: 0}
     - target: {fileID: 8211347942535445689, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41209,7 +41211,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 100
+  m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1731095568}
@@ -45021,11 +45023,11 @@ MonoBehaviour:
   - {fileID: 146037263}
   - {fileID: 790832606}
   datas:
-  - interval: 1
+  - interval: 2
     pattern: 010000000200000004000000
-  - interval: 1
+  - interval: 2
     pattern: 000000000200000004000000
-  - interval: 1
+  - interval: 2
     pattern: 000000000200000003000000
   orderShuffleMin: 10
   orderShuffleMax: 20
@@ -52702,7 +52704,7 @@ Transform:
   m_GameObject: {fileID: 1877627633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 138.5, y: -40, z: -10}
+  m_LocalPosition: {x: 0, y: 0.03999996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -4,7 +4,7 @@ using Cinemachine;
 using Coffee.UIEffects;
 using UnityEngine;
 
-public class BossStageManager : MonoBehaviour
+public class BossStageManager : StageManager
 {
     [Header("Player")]
     [SerializeField] PlayerController playerController;
@@ -60,9 +60,9 @@ public class BossStageManager : MonoBehaviour
             CameraManager.Register(camera);
         }
 
-        Phase1Start();
-        CameraManager.SwitchCamera("Phase1 and 2 Cam");
-        // CameraManager.SwitchCamera("Before Phase3 Cam");
+        //Phase1Start();
+        //CameraManager.SwitchCamera("Phase1 and 2 Cam");
+        CameraManager.SwitchCamera("Before Phase3 Cam");
         
         bossShadow.gameObject.SetActive(false);
     }

@@ -23,18 +23,18 @@ public class BulletSpawner : MonoBehaviour
             float y = transform.position.y - targetPosition.y;
             float theta = Random.Range(30f, 60f) * Mathf.Deg2Rad;
 
-            float sqrT = 2 * (y + dist * Mathf.Tan(theta)) / -Physics.gravity.y;
+            SmallMaskBullet spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+            var bulletRb = spawnedBullet.GetComponent<Rigidbody2D>();
+            float g = bulletRb.gravityScale * Physics.gravity.y;
+
+            float sqrT = 2 * (y + dist * Mathf.Tan(theta)) / -g;
             if(sqrT < 0) {
                 continue;
             }
-
             float t = Mathf.Sqrt(sqrT);
             float velocity = dist / (t * Mathf.Cos(theta));
 
-            Debug.Log($"{sqrT} {t} {velocity}");
-
             Vector2 shotVelocity = new(dir * velocity * Mathf.Cos(theta), Mathf.Abs(velocity) * Mathf.Sin(theta)); 
-            SmallMaskBullet spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             spawnedBullet.SetVelocity(shotVelocity);
         }
     }

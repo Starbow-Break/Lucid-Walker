@@ -115,7 +115,7 @@ public class StageClearDoor : MonoBehaviour
         var ep = data.GetEpisodeData(currentEpisode);
         var sp = ep.GetStageProgress(stageNumber);
         sp.isCleared = true;
-        // sp.gotTreasure = true;
+        sp.gotTreasure = StageManager.Instance.gotTreasure;
 
         // currentStage 업데이트도 가능
         if (ep.currentStage < stageNumber)
