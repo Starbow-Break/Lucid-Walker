@@ -2,10 +2,4 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Polaroid : MonoBehaviour, ICollectable
-{
-    public void Collect(GameObject owner)
-    {
-        StageManager.Instance.ActGetTreasure();
-    }
-}
+public class Polaroid : EpisodeItem { }

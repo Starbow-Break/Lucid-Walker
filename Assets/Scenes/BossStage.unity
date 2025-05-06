@@ -305,6 +305,8 @@ MonoBehaviour:
   heartFull: {fileID: -1885710929, guid: 6924da090f5dd4bfdb76156649d97543, type: 3}
   heartEmpty: {fileID: -2024003890, guid: 6924da090f5dd4bfdb76156649d97543, type: 3}
   treasureIconPrefab: {fileID: 4372772220375134334, guid: 9c5699198d4ae4bd2b18c40e6ecc596e, type: 3}
+  inactiveTreasureIcon: {fileID: 0}
+  activeTreasureIcon: {fileID: 0}
 --- !u!1001 &25538757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23090,8 +23092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e8cf81ce96404d4bba67b5aa1f56cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  episode: 1
-  stage: 7
+  <episode>k__BackingField: 1
+  <stage>k__BackingField: 7
+  _healthUI: {fileID: 19682362}
   playerController: {fileID: 273867933}
   bossController:
   - {fileID: 485485769}
