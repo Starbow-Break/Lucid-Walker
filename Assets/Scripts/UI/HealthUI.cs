@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Data;
 
 public class HealthUI : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private Sprite heartFull; // 꽉 찬 하트 이미지
     [SerializeField] private Sprite heartEmpty; // 빈 하트 이미지
     [SerializeField] private GameObject treasureIconPrefab; // 보물 아이콘 Prefab
+    [SerializeField] private Sprite inactiveTreasureIcon;
+    [SerializeField] private Sprite activeTreasureIcon;
 
 
     private GameObject treasureIcon; // 보물 아이콘 참조
@@ -18,6 +21,8 @@ public class HealthUI : MonoBehaviour
 
     private List<Image> hearts = new List<Image>(); // 동적 하트 리스트
     private PlayerStats playerStats;
+
+    Image treasureIconImage;
 
     private void Awake()
     {
@@ -59,10 +64,18 @@ public class HealthUI : MonoBehaviour
 
     private void AddTreasureIcon()
     {
+        int episode = StageManager.Instance.episode;
+        int stage = StageManager.Instance.stage;
+        GameData gameData = DataPersistenceManager.instance.GetCurrentGameData();
+        var episodeData = gameData.GetEpisodeData(episode);
+        var stageProgress = episodeData.GetStageProgress(stage);
 
         // 보물 아이콘 생성
         treasureIcon = Instantiate(treasureIconPrefab, heartsContainer);
         RectTransform rectTransform = treasureIcon.GetComponent<RectTransform>();
+
+        treasureIconImage = treasureIcon.GetComponent<Image>();
+        UpdateTreasureIcon(stageProgress.gotTreasure);
     }
     // 체력 UI 업데이트
     public void UpdateHealthUI(int currentHealth)
@@ -103,4 +116,8 @@ public class HealthUI : MonoBehaviour
             heartImage.sprite = heartEmpty;
     }
 
+    public void UpdateTreasureIcon(bool value)
+    {
+        treasureIconImage.sprite = value ? activeTreasureIcon : inactiveTreasureIcon;
+    }
 }

@@ -3,8 +3,9 @@ using UnityEngine;
 [DefaultExecutionOrder(-100)]
 public class StageManager : MonoBehaviour
 {
-    [SerializeField] private int episode = 1;
-    [SerializeField] private int stage = 1;
+    [field: SerializeField] public int episode { get; private set; } = 1;
+    [field: SerializeField] public int stage { get; private set; }  = 1;
+    [SerializeField] HealthUI _healthUI;
 
     public static StageManager Instance { get; private set; }
     public bool gotTreasure { get; private set; }
@@ -35,5 +36,6 @@ public class StageManager : MonoBehaviour
     public void ActGetTreasure()
     {
         gotTreasure = true;
+        _healthUI.UpdateTreasureIcon(true);
     }
 }

@@ -1491,6 +1491,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
+      propertyPath: isOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: onSprite
       value: 
       objectReference: {fileID: 913484131, guid: 6f4c66bda8fdcdb4f89a2b768c69c624, type: 3}
@@ -3368,6 +3372,10 @@ PrefabInstance:
     - target: {fileID: 5389731459263204878, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
+      propertyPath: isOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: onSprite
@@ -35012,6 +35020,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
+      propertyPath: isOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: onSprite
       value: 
       objectReference: {fileID: 913484131, guid: 6f4c66bda8fdcdb4f89a2b768c69c624, type: 3}
@@ -35485,6 +35497,10 @@ PrefabInstance:
     - target: {fileID: 5389731459263204878, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
+      propertyPath: isOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7442279488581532932, guid: 250606ca0120c33439ef9235d7388e78, type: 3}
       propertyPath: onSprite
@@ -38892,8 +38908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739990f01e4709840a4907bff21dd6c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  episode: 1
-  stage: 1
+  <episode>k__BackingField: 1
+  <stage>k__BackingField: 1
+  _healthUI: {fileID: 1948084766}
 --- !u!4 &1732459936
 Transform:
   m_ObjectHideFlags: 0
