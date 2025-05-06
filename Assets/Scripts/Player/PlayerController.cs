@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            Debug.Log(playerStats);
             // 달리기 시도
             // 에너지가 0보다 큰 경우에만 달리기 시작
             if (playerStats != null && playerStats.CurrentEnergy > 0f)
