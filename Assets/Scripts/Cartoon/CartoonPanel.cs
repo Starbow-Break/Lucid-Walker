@@ -7,8 +7,10 @@ using Coffee.UIEffects;
 
 public class CartoonPanel : MonoBehaviour
 {
-  [Header("컷툰 패널들 (Panel1, Panel2 …)")]
+  [Header("컷툰 패널들")]
   public List<GameObject> panels;
+  [Header("패널별 효과음")]
+  public List<AudioClip> panelSFXClips;
 
   [Header("타이밍")]
   [SerializeField] private float delayBetweenPanels = 1.2f;   // 패널 간 간격
@@ -26,18 +28,13 @@ public class CartoonPanel : MonoBehaviour
     StartCoroutine(PlaySequence(onComplete));
   }
 
-  // -------------------- 내부 코루틴 --------------------
-
   private IEnumerator PlaySequence(Action onComplete)
   {
-    // 1) 디졸브-인 (Transition Rate 1 → 0)
     yield return StartCoroutine(DissolveIn());
-
-    // 2) 약간 대기 후 컷툰 진행
     yield return new WaitForSeconds(waitAfterTransition);
     yield return StartCoroutine(PlayPanelsSequentially());
 
-    // 3) 끝
+    // 끝
     onComplete?.Invoke();
     gameObject.SetActive(false);
     ResetPanels();
@@ -59,14 +56,20 @@ public class CartoonPanel : MonoBehaviour
 
   private IEnumerator PlayPanelsSequentially()
   {
-    foreach (var panel in panels)
+    for (int i = 0; i < panels.Count; i++)
     {
-      panel.SetActive(true);
+      panels[i].SetActive(true);
+
+      // 효과음 재생
+      if (i < panelSFXClips.Count && panelSFXClips[i] != null)
+      {
+        SoundManager.Instance.PlaySFX(panelSFXClips[i]);
+      }
+
       yield return new WaitForSeconds(delayBetweenPanels);
     }
 
-    // 마지막 패널이 조금 더 보여지도록
-    yield return new WaitForSeconds(1f);
+    yield return new WaitForSeconds(1f); // 마지막 컷 조금 더 보여지도록
   }
 
   private void ResetPanels()

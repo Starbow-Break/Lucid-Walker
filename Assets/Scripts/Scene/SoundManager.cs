@@ -42,6 +42,20 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        // 게임 시작 시 현재 씬(Main)에 등록된 BGM을 바로 재생
+        var currentScene = SceneManager.GetActiveScene().name;
+        foreach (var entry in sceneBGMs)
+        {
+            if (entry.sceneName == currentScene && entry.bgmClip != null)
+            {
+                PlayBackgroundMusic(entry.bgmClip);
+                break;
+            }
+        }
+    }
+
 
     // --------- SFX ----------
     public void PlaySFX(AudioClip clip)
