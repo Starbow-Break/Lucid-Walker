@@ -108,7 +108,7 @@ public class StageSelectManager : MonoBehaviour, IDataPersistence
         $"[DEBUG] Stage{sp.stageNumber} ▶ hasCartoonScene={sp.hasCartoonScene} " +
         $"trigger={sp.cartoonSceneTriggerTime} played={sp.cartoonScenePlayed}"
         );
-        // 현재 스테이지 선택 다 가능
+        // 현재 스테이지 선택 다 가능 - 깨지 않더라도
         if (sp.hasCartoonScene && sp.cartoonSceneTriggerTime == CartoonSceneTriggerTime.BeforeStage && !sp.cartoonScenePlayed)
         {
             CartoonSceneManager.Instance.PlayCartoon(sp.stageNumber, () =>
