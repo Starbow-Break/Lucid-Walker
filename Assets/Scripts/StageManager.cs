@@ -15,7 +15,7 @@ public class StageManager : MonoBehaviour
     public Action<bool> OnChangedTreasure;
     public Action<int> OnChangedCoin;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         if (Instance == null)
         {
@@ -29,13 +29,13 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         GameData gameData = DataPersistenceManager.instance.GetCurrentGameData();
-        var episodeData = gameData.GetEpisodeData(episode);
-        var stageProgress = episodeData.GetStageProgress(stage);
+        var episodeData = gameData?.GetEpisodeData(episode);
+        var stageProgress = episodeData?.GetStageProgress(stage);
 
-        gotTreasure = stageProgress.gotTreasure;
+        gotTreasure = stageProgress != null ? stageProgress.gotTreasure : false;
         gotCoin = 0;
     }
 
