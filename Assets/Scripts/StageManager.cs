@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -9,6 +10,10 @@ public class StageManager : MonoBehaviour
 
     public static StageManager Instance { get; private set; }
     public bool gotTreasure { get; private set; }
+    public int gotCoin {get; private set; }
+
+    public Action<bool> OnChangedTreasure;
+    public Action<int> OnChangedCoin;
 
     protected void Awake()
     {
@@ -31,11 +36,17 @@ public class StageManager : MonoBehaviour
         var stageProgress = episodeData.GetStageProgress(stage);
 
         gotTreasure = stageProgress.gotTreasure;
+        gotCoin = 0;
     }
 
     public void ActGetTreasure()
     {
         gotTreasure = true;
-        _healthUI.UpdateTreasureIcon(true);
+        OnChangedTreasure?.Invoke(gotTreasure);
+    }
+
+    public void AddCoin(int coin) {
+        gotCoin += coin;
+        OnChangedCoin?.Invoke(gotCoin);
     }
 }

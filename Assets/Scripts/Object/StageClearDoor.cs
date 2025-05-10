@@ -124,6 +124,8 @@ public class StageClearDoor : MonoBehaviour
         data.returnFromStage = true;
         Debug.Log($"✅ 저장 전 returnFromStage = {data.returnFromStage}");
 
+        data.gold += StageManager.Instance.gotCoin;
+
         DataPersistenceManager.instance.SaveGame();
         PlayerPrefs.Save();
         yield return null;

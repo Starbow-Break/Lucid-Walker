@@ -9,8 +9,13 @@ public class Coin : MonoBehaviour, ICollectable
     // 획득
     public void Collect(GameObject owner)
     {
-        // 코인 로직
-        gameObject.SetActive(false); // 코인 비활성화 (최척화 상태에 따라 Destroy로 수정할 수도 있음)
+        GameData gameData = DataPersistenceManager.instance.GetCurrentGameData();
+        int luck = gameData.luck;
+
+        int coinDelta = CoinHelper.GetRaiseCoin(cost, luck);
+        StageManager.Instance.AddCoin(coinDelta);
+        
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
