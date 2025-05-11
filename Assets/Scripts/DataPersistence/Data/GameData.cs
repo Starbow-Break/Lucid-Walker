@@ -118,6 +118,10 @@ public class GameData
     public float energyDrainRate;
     public float attackDamage;
     public int luck;
+
+    // 보물 스탬프 리워드
+    public List<int> claimedEpisodeRewards = new List<int>(); // 수령된 보상 에피소드
+
     public GameData()
     {
         // 튜토리얼 데이터 초기화
@@ -176,6 +180,19 @@ public class GameData
                 episodeNumber = episodeNumber,
                 hasPlayed = true
             });
+        }
+    }
+
+    public bool IsEpisodeRewardClaimed(int episodeNumber)
+    {
+        return claimedEpisodeRewards.Contains(episodeNumber);
+    }
+
+    public void MarkEpisodeRewardClaimed(int episodeNumber)
+    {
+        if (!claimedEpisodeRewards.Contains(episodeNumber))
+        {
+            claimedEpisodeRewards.Add(episodeNumber);
         }
     }
 }
