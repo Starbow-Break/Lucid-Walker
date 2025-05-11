@@ -109,7 +109,22 @@ public class StageSelectManager : MonoBehaviour, IDataPersistence
         $"trigger={sp.cartoonSceneTriggerTime} played={sp.cartoonScenePlayed}"
         );
         // 현재 스테이지 선택 다 가능 - 깨지 않더라도
-        if (sp.hasCartoonScene && sp.cartoonSceneTriggerTime == CartoonSceneTriggerTime.BeforeStage && !sp.cartoonScenePlayed)
+        // if (sp.hasCartoonScene && sp.cartoonSceneTriggerTime == CartoonSceneTriggerTime.BeforeStage && !sp.cartoonScenePlayed)
+        // {
+        //     CartoonSceneManager.Instance.PlayCartoon(sp.stageNumber, () =>
+        //     {
+        //         Debug.Log("카툰 플레이");
+        //         sp.cartoonScenePlayed = true;
+        //         EnterStage(sp.stageNumber);
+        //     });
+        // }
+
+        // else
+        // {
+        //     EnterStage(sp.stageNumber);
+        // }
+        // 카툰 디버깅용
+        if (sp.hasCartoonScene && sp.cartoonSceneTriggerTime == CartoonSceneTriggerTime.BeforeStage && (!sp.cartoonScenePlayed | sp.cartoonScenePlayed))
         {
             CartoonSceneManager.Instance.PlayCartoon(sp.stageNumber, () =>
             {
@@ -118,34 +133,19 @@ public class StageSelectManager : MonoBehaviour, IDataPersistence
                 EnterStage(sp.stageNumber);
             });
         }
-
+        else if (sp.hasCartoonScene && sp.cartoonSceneTriggerTime == CartoonSceneTriggerTime.AfterStage && (!sp.cartoonScenePlayed | sp.cartoonScenePlayed))
+        {
+            CartoonSceneManager.Instance.PlayCartoon(sp.stageNumber, () =>
+            {
+                Debug.Log("카툰 플레이");
+                sp.cartoonScenePlayed = true;
+                EnterStage(sp.stageNumber);
+            });
+        }
         else
         {
             EnterStage(sp.stageNumber);
         }
-        // 카툰 디버깅용
-        // if (sp.hasCartoonScene && sp.cartoonSceneTriggerTime == CartoonSceneTriggerTime.BeforeStage && (!sp.cartoonScenePlayed | sp.cartoonScenePlayed))
-        // {
-        //     CartoonSceneManager.Instance.PlayCartoon(sp.stageNumber, () =>
-        //     {
-        //         Debug.Log("카툰 플레이");
-        //         sp.cartoonScenePlayed = true;
-        //         EnterStage(sp.stageNumber);
-        //     });
-        // }
-        // else if (sp.hasCartoonScene && sp.cartoonSceneTriggerTime == CartoonSceneTriggerTime.AfterStage && (!sp.cartoonScenePlayed | sp.cartoonScenePlayed))
-        // {
-        //     CartoonSceneManager.Instance.PlayCartoon(sp.stageNumber, () =>
-        //     {
-        //         Debug.Log("카툰 플레이");
-        //         sp.cartoonScenePlayed = true;
-        //         EnterStage(sp.stageNumber);
-        //     });
-        // }
-        // else
-        // {
-        //     EnterStage(sp.stageNumber);
-        // }
 
     }
 
