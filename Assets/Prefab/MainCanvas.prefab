@@ -10200,6 +10200,7 @@ GameObject:
   - component: {fileID: 6117945340544711941}
   - component: {fileID: 6152375000388854315}
   - component: {fileID: 4131155077069605341}
+  - component: {fileID: 8864412200799451314}
   m_Layer: 5
   m_Name: CoinContainer
   m_TagString: Untagged
@@ -10225,7 +10226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -36, y: -59.4}
+  m_AnchoredPosition: {x: -36, y: -59.399994}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &6152375000388854315
@@ -10268,6 +10269,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &8864412200799451314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449766453690732640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9a6e5919e82c743b43bc5ff28e5dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinText: {fileID: 3061723418481770109}
 --- !u!1 &3620285627034611853
 GameObject:
   m_ObjectHideFlags: 0

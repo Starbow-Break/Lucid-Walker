@@ -67754,6 +67754,42 @@ PrefabInstance:
       propertyPath: item
       value: 
       objectReference: {fileID: 5960478657181213910, guid: 976af466ad0433a4abd2006d7494ac2a, type: 3}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[0].item
+      value: 
+      objectReference: {fileID: 7818774799368458898, guid: 48af021c1227bc54288ecdd02db0b405, type: 3}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[1].item
+      value: 
+      objectReference: {fileID: 7818774799368458898, guid: 7ab30ab2c6f86ff42baf934904a59a69, type: 3}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[2].item
+      value: 
+      objectReference: {fileID: 7818774799368458898, guid: a3ec6664fb83b31459297f88117290ca, type: 3}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[3].item
+      value: 
+      objectReference: {fileID: 5960478657181213910, guid: 976af466ad0433a4abd2006d7494ac2a, type: 3}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[0].count
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[1].count
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[2].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: spawnDatas.Array.data[3].count
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75978,8 +76014,52 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4272634018396145463, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272634018396145463, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272634018396145463, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272634018396145463, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272634018396145463, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117945340544711941, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117945340544711941, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7731181935114837550, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031950499212710846, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031950499212710846, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031950499212710846, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031950499212710846, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
