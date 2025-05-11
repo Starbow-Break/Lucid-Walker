@@ -37,32 +37,16 @@ public class BossStageManager : StageManager
     [SerializeField] BossShadow bossShadow;
     [SerializeField] List<Collider2D> phase3Colliders;
 
-    public static BossStageManager instance {
-        get {
-            if (m_instance == null) {
-                m_instance = FindObjectOfType<BossStageManager>();
-            }
-
-            return m_instance;
-        }
-    }
-    private static BossStageManager m_instance;
-
-    void Awake()
-    {
-        if (instance != this) {
-            Destroy(gameObject);
-        }
-    }
-
-    void Start() {
+    protected override void Start() {
+        base.Start();
+        
         foreach(CinemachineVirtualCamera camera in cameras) {
             CameraManager.Register(camera);
         }
 
         //Phase1Start();
         //CameraManager.SwitchCamera("Phase1 and 2 Cam");
-        CameraManager.SwitchCamera("Before Phase3 Cam");
+        CameraManager.SwitchCamera("Spike Frame Phase Cam");
         
         bossShadow.gameObject.SetActive(false);
     }
