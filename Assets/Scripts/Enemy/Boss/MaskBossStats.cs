@@ -1,17 +1,20 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class MaskBossStats : MonoBehaviour, IDamageable
 {
     [SerializeField] BossStatsData statsData;
-    [SerializeField] HealthBar healthBar;
 
     int maxHp;
     int hp;
     Coroutine coroutine = null;
     MaskBoss owner;
 
-    public float attackBatTime {
+    public event Action<float> OnDamage;
+
+    public float attackBatTime
+    {
         get { return statsData.attackBatTime; }
     }
 
@@ -28,28 +31,25 @@ public class MaskBossStats : MonoBehaviour, IDamageable
         if(owner.battle && coroutine == null && statsData.healthType == BossStatsData.HealthType.TIME_ATTACK) {
             coroutine = StartCoroutine(TimeAttackFlow());
         }
-
-        // UpdateUI();
     }
 
     public void TakeDamage(int damage, Transform attacker)
     {
-        hp -= damage;
+        if(hp <= 0) return;
 
-        if(hp <= 0) {
+        hp -= damage;
+        OnDamage?.Invoke(Mathf.Clamp01(1f * hp / maxHp) * 100f);
+
+        if (hp <= 0)
+        {
             owner.Die();
         }
     }
-
-    // void UpdateUI() {
-    //     healthBar.SetValue(hp, maxHp);
-    // }
 
     IEnumerator TimeAttackFlow() {
         while(hp > 0) {
             yield return new WaitForSeconds(0.01f);
             TakeDamage(1, transform);
-            //Debug.Log("Boss Hp : " + hp);
         }
     }
 }

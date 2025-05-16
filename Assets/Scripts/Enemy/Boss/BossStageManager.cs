@@ -46,7 +46,7 @@ public class BossStageManager : StageManager
 
         //Phase1Start();
         //CameraManager.SwitchCamera("Phase1 and 2 Cam");
-        CameraManager.SwitchCamera("Spike Frame Phase Cam");
+        CameraManager.SwitchCamera("Before Phase3 Cam");
         
         bossShadow.gameObject.SetActive(false);
     }

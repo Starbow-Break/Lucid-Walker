@@ -44,7 +44,7 @@ public class MaskBossPhase3 : MaskBoss
         isGround = false;
         gameObject.SetActive(false);
         attackCoolDownRemain = stats.attackBatTime;
-    } 
+    }
 
     void Update()
     {
