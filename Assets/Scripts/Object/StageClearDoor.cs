@@ -121,11 +121,11 @@ public class StageClearDoor : MonoBehaviour
         sq.AppendCallback(() => {
             playerAnim.Play("TurnBack");
         });
-        sq.AppendInterval(1.5f);
+        sq.AppendInterval(1f);
         sq.AppendCallback(() => {
             playerAnim.Play("BackWalk");
         });
-        sq.Append(playerRenderer.DOColor(new Color(1f, 1f, 1f, 0f), 2f));
+        sq.Append(playerRenderer.DOColor(new Color(1f, 1f, 1f, 0f), 3f));
         sq.AppendInterval(0.5f);
         
         sq.OnComplete(() => isComplete = true);

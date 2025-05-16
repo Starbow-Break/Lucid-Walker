@@ -71,7 +71,8 @@ public class TreasureBox : MonoBehaviour
             {
                 float offset = Random.Range(-spawnBound, spawnBound);
                 GameObject spawnedItem = Instantiate(spawnData.item, spawnPoint.position, Quaternion.identity);
-                spawnedItem.transform.DOLocalJump(spawnPoint.position + offset * Vector3.right, 3.0f, 1, 1.0f, false);
+                //spawnedItem.transform.DOLocalJump(spawnPoint.position + offset * Vector3.right, 3.0f, 1, 1.0f, false);
+                spawnedItem.transform.DOMove(spawnPoint.position + Vector3.up * 2f, 0.5f, false).SetEase(Ease.OutExpo);
             }
         }
     }
