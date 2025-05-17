@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3350945151223283273}
   - component: {fileID: -6170562460034070604}
   - component: {fileID: 4664367066057536776}
+  - component: {fileID: 7713036643426098553}
   m_Layer: 0
   m_Name: "\uC544\uC774\uD15C) 1_3_\uB9CC\uB144\uD544"
   m_TagString: Untagged
@@ -55,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,3 +172,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f5600f3e155194b99098e218b0fad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7713036643426098553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5960478657181213910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 1, g: 0.47614014, b: 0, a: 1}
+  glowBrightness: 2
+  outlineWidth: 2
+  alphaThreshold: 0.01
+  drawOutside: 0
+  enableInstancing: 0
