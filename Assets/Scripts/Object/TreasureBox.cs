@@ -10,6 +10,7 @@ public class TreasureBox : MonoBehaviour
         public int count;
     }
 
+    [SerializeField] EpisodeItem episodeItem;
     [SerializeField] List<SpawnData> spawnDatas;
     [SerializeField] Transform spawnPoint;
     [SerializeField, Min(0f)] float spawnBound = 0.5f;
@@ -65,14 +66,19 @@ public class TreasureBox : MonoBehaviour
 
     void SpawnItem()
     {
-        foreach(var spawnData in spawnDatas)
+        if (episodeItem != null)
         {
-            for(int i = 0; i < spawnData.count; i++)
+            var spawnedEpisodeItem = Instantiate(episodeItem, spawnPoint.position, Quaternion.identity);
+            spawnedEpisodeItem.transform.DOMove(spawnPoint.position + Vector3.up * 2f, 0.5f, false).SetEase(Ease.OutExpo);
+        }
+        
+        foreach (var spawnData in spawnDatas)
+        {
+            for (int i = 0; i < spawnData.count; i++)
             {
                 float offset = Random.Range(-spawnBound, spawnBound);
                 GameObject spawnedItem = Instantiate(spawnData.item, spawnPoint.position, Quaternion.identity);
-                //spawnedItem.transform.DOLocalJump(spawnPoint.position + offset * Vector3.right, 3.0f, 1, 1.0f, false);
-                spawnedItem.transform.DOMove(spawnPoint.position + Vector3.up * 2f, 0.5f, false).SetEase(Ease.OutExpo);
+                spawnedItem.transform.DOLocalJump(spawnPoint.position + offset * Vector3.right, 3.0f, 1, 1.0f, false);
             }
         }
     }

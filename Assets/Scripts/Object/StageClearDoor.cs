@@ -103,6 +103,8 @@ public class StageClearDoor : MonoBehaviour
 
     IEnumerator PlayerEnterSequence()
     {
+        PlayerBlocked();
+        
         Sequence sq = DOTween.Sequence().SetAutoKill(false);
         bool isComplete = false;
 
@@ -112,22 +114,25 @@ public class StageClearDoor : MonoBehaviour
         sq.OnStart(() => playerAnim.Play("MoveDoor"));
         sq.Append(playerAnim.transform.DOMoveX(transform.position.x, duration)
             .SetEase(Ease.Linear));
-        sq.AppendCallback(() => {
+        sq.AppendCallback(() =>
+        {
             playerAnim.Play("Idle");
         });
 
         sq.AppendInterval(0.5f);
 
-        sq.AppendCallback(() => {
+        sq.AppendCallback(() =>
+        {
             playerAnim.Play("TurnBack");
         });
         sq.AppendInterval(1f);
-        sq.AppendCallback(() => {
+        sq.AppendCallback(() =>
+        {
             playerAnim.Play("BackWalk");
         });
         sq.Append(playerRenderer.DOColor(new Color(1f, 1f, 1f, 0f), 3f));
         sq.AppendInterval(0.5f);
-        
+
         sq.OnComplete(() => isComplete = true);
 
         yield return new WaitUntil(() => isComplete);
@@ -199,6 +204,21 @@ public class StageClearDoor : MonoBehaviour
         }
     }
 
+    private void PlayerBlocked()
+    {
+        var playerController = playerAnim.gameObject.GetComponent<PlayerController>();
+
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+            playerController.SetToIdleState();
+            var rb = playerController.GetComponent<Rigidbody2D>();
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            rb.Sleep();
+        }
+    }
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         if (interactingPlayer == other.gameObject)

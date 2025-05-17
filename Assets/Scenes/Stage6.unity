@@ -103649,8 +103649,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
+      propertyPath: episodeItem
+      value: 
+      objectReference: {fileID: 6092569974157727448, guid: a3b5a415a1beacf4189c8f0f61fed697, type: 3}
+    - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
       propertyPath: spawnDatas.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5315511049218275020, guid: f96e0bb535bcef340b72fa99efa3f2a8, type: 3}
       propertyPath: spawnDatas.Array.data[1].item
@@ -107778,7 +107782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6117945340544711941, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 7731181935114837550, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
       propertyPath: m_SizeDelta.x
@@ -107798,11 +107802,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8031950499212710846, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 8031950499212710846, guid: 265d79bbc10ef4baea83690c770e9b91, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
