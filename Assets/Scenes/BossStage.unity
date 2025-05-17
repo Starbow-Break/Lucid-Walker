@@ -39727,8 +39727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398544853}
   - component: {fileID: 1398544854}
-  - component: {fileID: 1398544855}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Back Upper Arm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -39766,7 +39765,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 484966327
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -39786,19 +39785,6 @@ CapsuleCollider2D:
   m_Offset: {x: 2.2286103, y: -0.17608108}
   m_Size: {x: 4.8145213, y: 1.2120992}
   m_Direction: 1
---- !u!114 &1398544855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398544852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4ced460bb7e3e4ba6b71f36ec09df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stats: {fileID: 370691848}
 --- !u!1 &1399764710
 GameObject:
   m_ObjectHideFlags: 0
@@ -45818,8 +45804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684210812}
   - component: {fileID: 1684210813}
-  - component: {fileID: 1684210814}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Back Forearm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -45858,7 +45843,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 484966327
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -45878,19 +45863,6 @@ CapsuleCollider2D:
   m_Offset: {x: 1.5892682, y: -0.017106371}
   m_Size: {x: 4.200107, y: 1.637987}
   m_Direction: 1
---- !u!114 &1684210814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684210811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4ced460bb7e3e4ba6b71f36ec09df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stats: {fileID: 370691848}
 --- !u!1 &1691602455 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1680591853729050189, guid: 33a2d72e80a4a474fbe129993694509f, type: 3}
@@ -58153,8 +58125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083990899}
   - component: {fileID: 2083990900}
-  - component: {fileID: 2083990901}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Back Hand
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -58192,7 +58163,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 484966327
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -58212,19 +58183,6 @@ CapsuleCollider2D:
   m_Offset: {x: 1.6813815, y: 0.6118987}
   m_Size: {x: 4.8915873, y: 1.6714243}
   m_Direction: 1
---- !u!114 &2083990901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083990898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4ced460bb7e3e4ba6b71f36ec09df6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stats: {fileID: 370691848}
 --- !u!1 &2084353202
 GameObject:
   m_ObjectHideFlags: 0
