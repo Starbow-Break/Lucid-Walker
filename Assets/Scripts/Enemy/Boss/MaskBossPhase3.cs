@@ -136,6 +136,8 @@ public class MaskBossPhase3 : MaskBoss
         );
     }
 
+    
+
     public void TriggerJump()
     {
         anim.SetTrigger("jump");

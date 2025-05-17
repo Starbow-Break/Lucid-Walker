@@ -14,7 +14,7 @@ public class BossSpriteController : MonoBehaviour
 
     private void OnDisable()
     {
-        _stats.OnDamage += OnDamage;
+        _stats.OnDamage -= OnDamage;
     }
 
     private void Start()
@@ -40,8 +40,6 @@ public class BossSpriteController : MonoBehaviour
 
     public void OnDamage(float percent)
     {
-        return;
-
         if (percent <= 15f)
         {
             SetSpriteResolversToPhase(3);

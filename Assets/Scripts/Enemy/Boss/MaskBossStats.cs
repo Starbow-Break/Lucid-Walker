@@ -38,6 +38,7 @@ public class MaskBossStats : MonoBehaviour, IDamageable
         if(hp <= 0) return;
 
         hp -= damage;
+        Debug.Log($"Boss Hp : {hp}");
         OnDamage?.Invoke(Mathf.Clamp01(1f * hp / maxHp) * 100f);
 
         if (hp <= 0)

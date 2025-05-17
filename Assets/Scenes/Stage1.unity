@@ -46240,6 +46240,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65cf97c114344996a8eee3727ad5adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &809710643053585006 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8565277823677205855, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
+  m_PrefabInstance: {fileID: 809710643053584995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &809710643053585009 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 90878394781431692, guid: 2bd0dd02972dc4457bf90a7dc82ecfcf, type: 3}
+  m_PrefabInstance: {fileID: 809710643053584995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2465645591002597043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46253,13 +46263,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7661769884926587843}
     - target: {fileID: 2277427061413202811, guid: d04ba0880f2e5bb449581c5c7ce01b55, type: 3}
-      propertyPath: stageNumber
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: playerAnim
+      value: 
+      objectReference: {fileID: 809710643053585006}
     - target: {fileID: 2277427061413202811, guid: d04ba0880f2e5bb449581c5c7ce01b55, type: 3}
       propertyPath: stageClearUI
       value: 
       objectReference: {fileID: 1948084763}
+    - target: {fileID: 2277427061413202811, guid: d04ba0880f2e5bb449581c5c7ce01b55, type: 3}
+      propertyPath: playerRenderer
+      value: 
+      objectReference: {fileID: 809710643053585009}
     - target: {fileID: 5209347889206036394, guid: d04ba0880f2e5bb449581c5c7ce01b55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 268
