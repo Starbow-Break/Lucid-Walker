@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterMAT
+  m_Name: WaterMAT 1
   m_Shader: {fileID: -6465566751694194690, guid: 617ab9d1dc4704f36889d4dd65562039, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -59,7 +59,7 @@ Material:
     - _DistortionScale: 30
     - _DistortionStrength: 0.0025
     - _DstBlend: 10
-    - _LineLength: 0.968
+    - _LineLength: 0.498
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -74,8 +74,8 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _BodyColor: {r: 0.16862746, g: 0.28235295, b: 0.27450982, a: 0.77254903}
-    - _CausticColor: {r: 0.2569865, g: 0.902192, b: 0.990566, a: 0.72156864}
+    - _BodyColor: {r: 0.12758097, g: 0.35114884, b: 0.4433962, a: 0.77254903}
+    - _CausticColor: {r: 0.031772878, g: 0.35140055, b: 0.3962264, a: 0.72156864}
     - _CausticTilling: {r: 0.5, g: 1.5, b: 0, a: 0}
     - _CausticeScrollDir: {r: 0.045, g: 0, b: 0, a: 0}
     - _DistortionDir: {r: 0.05, g: 0, b: 0, a: 0}
