@@ -23,6 +23,12 @@ public class SmallMaskBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player"))
+        {
+            var damageable = collision.GetComponent<IDamageable>();
+            damageable?.TakeDamage(1, transform);
+        }
+
         Destroy(gameObject);
     }
 }

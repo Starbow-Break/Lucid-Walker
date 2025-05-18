@@ -20,7 +20,10 @@ public class MaskBossPhase3 : MaskBoss
     
     public bool isGround;
 
-    public Vector3 bodyLocalPosition {
+    private bool stopTimer = true;
+
+    public Vector3 bodyLocalPosition
+    {
         get { return body.localPosition; }
     }
 
@@ -55,7 +58,10 @@ public class MaskBossPhase3 : MaskBoss
         // 싸우는 상태가 아니거나 사망 상태이면 아무 행동도 하지 않는다.
         if(!battle || isDead) return;
 
-        attackCoolDownRemain -= Time.deltaTime;
+        if (!stopTimer)
+        {
+            attackCoolDownRemain -= Time.deltaTime;
+        }
 
         if(attackCoolDownRemain <= 0.0f) {
             attackCoolDownRemain = stats.attackBatTime;
@@ -71,7 +77,9 @@ public class MaskBossPhase3 : MaskBoss
         {
             Shake();
             isGround = true;
-            if(!battle) {
+            stopTimer = false;
+            if (!battle)
+            {
                 BattleStart();
             }
         }
@@ -168,6 +176,11 @@ public class MaskBossPhase3 : MaskBoss
     
     public void Shake() {
         CameraShake.instance.ShakeActiveCamera(shakeIntensity, shakeTime);
+    }
+
+    public void StopTimer()
+    {
+        stopTimer = true;
     }
 
     private void OnDrawGizmos()
