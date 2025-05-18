@@ -16,7 +16,7 @@ public class MainSceneManager : MonoBehaviour
         {
             // 플레이어 위치를 앉은 상태로 Teleport
             player.transform.position = chairPosition.position;
-            player.SetActive(false);
+            // player.SetActive(false);
 
             // 2.의자 자동 연출 실행
             chairSystem.StartAutoSequence();

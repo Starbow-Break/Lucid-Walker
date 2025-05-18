@@ -29,6 +29,8 @@ public class MainChairconnect : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Transform chairPosition;
     [SerializeField] private GameObject ep1panel;
+    [SerializeField] private StageSelectManager stageSelectMgr;
+
 
     private void Start()
     {
@@ -56,9 +58,21 @@ public class MainChairconnect : MonoBehaviour
                 {
                     // 상호작용 시작
                     isInteracting = true;
+                    if (stageSelectMgr != null)
+                        stageSelectMgr.enabled = true;
 
                     // 플레이어 비활성화
-                    player.SetActive(false);
+                    // player.SetActive(false);
+                    var movement = player.GetComponent<PlayerController>();
+                    var renderer = player.GetComponent<SpriteRenderer>();
+
+                    var rb = movement.GetComponent<Rigidbody2D>();
+                    rb.isKinematic = true;
+                    rb.velocity = Vector3.zero;
+                    rb.Sleep();
+
+                    movement.enabled = false;
+                    renderer.enabled = false;
 
                     chairUI.SetActive(false);
 
@@ -97,6 +111,15 @@ public class MainChairconnect : MonoBehaviour
 
                     // 플레이어 다시 활성화
                     player.SetActive(true);
+                    var movement = player.GetComponent<PlayerController>();
+                    var renderer = player.GetComponent<SpriteRenderer>();
+
+                    var rb = movement.GetComponent<Rigidbody2D>();
+                    rb.isKinematic = false;
+                    rb.velocity = Vector3.zero;
+
+                    movement.enabled = true;
+                    renderer.enabled = true;
                     chairUI.SetActive(true);
 
 
@@ -108,6 +131,7 @@ public class MainChairconnect : MonoBehaviour
                         player.transform.localScale = new Vector3(0.72f, player.transform.localScale.y, 0.72f); // 항상 오른쪽 보기
                         data.returnFromStage = false;
                         DataPersistenceManager.instance.SaveGame();
+                        fromstage = false;
                     }
 
                     // 의자 애니메이션 종료
@@ -124,6 +148,9 @@ public class MainChairconnect : MonoBehaviour
                     smalltv3_Animator.SetBool("On", false);
                     smalltv4_Animator.SetBool("On", false);
                     smalltv5_Animator.SetBool("On", false);
+
+                    if (stageSelectMgr != null)
+                        stageSelectMgr.enabled = false;
 
                     // UI 패널 비활성화
                     if (panel != null)
@@ -151,12 +178,12 @@ public class MainChairconnect : MonoBehaviour
         isInteracting = true;
         fromstage = true;
 
-        if (player != null)
-        {
-            player.transform.position = chairPosition.position;
-            player.SetActive(false);
-            Debug.Log($"▶ StartAutoSequence() 호출됨, player active: {player.activeSelf}");
-        }
+        // if (player != null)
+        // {
+        //     player.transform.position = chairPosition.position;
+        //     player.SetActive(false);
+        //     Debug.Log($"▶ StartAutoSequence() 호출됨, player active: {player.activeSelf}");
+        // }
 
         if (chairUI != null)
             chairUI.SetActive(false);
