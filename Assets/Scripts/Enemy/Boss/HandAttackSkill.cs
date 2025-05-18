@@ -15,6 +15,8 @@ public class HandAttackSkill : Skill
     }
 
     protected override IEnumerator SkillFlow() {
+        maskBoss.StopTimer();
+        
         float gravityScale = maskBossRigidBody.gravityScale;
 
         maskBoss.TriggerJump();

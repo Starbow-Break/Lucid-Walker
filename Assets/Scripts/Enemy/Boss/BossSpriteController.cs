@@ -22,25 +22,9 @@ public class BossSpriteController : MonoBehaviour
         SetSpriteResolversToPhase(1);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetSpriteResolversToPhase(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetSpriteResolversToPhase(2);
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SetSpriteResolversToPhase(3);
-        }
-    } 
-
     public void OnDamage(float percent)
     {
-        if (percent <= 15f)
+        if (percent <= 0f)
         {
             SetSpriteResolversToPhase(3);
         }

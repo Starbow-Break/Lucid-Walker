@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MaskBossStats : MonoBehaviour, IDamageable
 {
     [SerializeField] BossStatsData statsData;
+    [SerializeField] List<SpriteRenderer> _renderers;
+
+    [SerializeField] Color _hurtColor;
 
     int maxHp;
     int hp;
@@ -27,9 +31,16 @@ public class MaskBossStats : MonoBehaviour, IDamageable
         hp = maxHp;
     }
 
-    void Update() {
-        if(owner.battle && coroutine == null && statsData.healthType == BossStatsData.HealthType.TIME_ATTACK) {
+    void Update()
+    {
+        if (owner.battle && coroutine == null && statsData.healthType == BossStatsData.HealthType.TIME_ATTACK)
+        {
             coroutine = StartCoroutine(TimeAttackFlow());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            StartCoroutine(HurtFlow());
         }
     }
 
@@ -40,10 +51,32 @@ public class MaskBossStats : MonoBehaviour, IDamageable
         hp -= damage;
         Debug.Log($"Boss Hp : {hp}");
         OnDamage?.Invoke(Mathf.Clamp01(1f * hp / maxHp) * 100f);
+        StartCoroutine(HurtFlow());
 
         if (hp <= 0)
         {
             owner.Die();
+        }
+    }
+
+    IEnumerator HurtFlow()
+    {
+        Debug.Log("Hurt");
+        yield return ColorChangeFlow(_renderers, Color.white, _hurtColor, 0.1f);
+        yield return ColorChangeFlow(_renderers, _hurtColor, Color.white, 0.1f);
+    }
+
+    IEnumerator ColorChangeFlow(List<SpriteRenderer> renderers, Color start, Color end, float duration)
+    {
+        float currentTime = 0.0f;
+        while(currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            Color color = Color.Lerp(start, end, currentTime / duration);
+            foreach(var renderer in renderers) {
+                renderer.color = color;
+            }
+            yield return null;
         }
     }
 
