@@ -6,44 +6,39 @@ public class ChestConnect : MonoBehaviour
 {
     public GameObject uiPanel;
 
-    private bool isInteracting = false;
+    private bool isPlayerInside = false;
+
+    private void Update()
+    {
+        if (!isPlayerInside) return;
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            bool isActive = uiPanel.activeSelf;
+            uiPanel.SetActive(!isActive);
+        }
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(WaitForKeyPress(collision.gameObject));
+            isPlayerInside = true;
         }
-
     }
 
-    private IEnumerator WaitForKeyPress(GameObject player)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        while (true)
+        if (collision.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                if (!isInteracting)
-                {
-                    isInteracting = true;
-                    uiPanel.SetActive(true);
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Z) && isInteracting)
-            {
-                isInteracting = false;
-                uiPanel.SetActive(false);
-            }
-
-            yield return null;
+            isPlayerInside = false;
+            uiPanel.SetActive(false); // 나가면 무조건 닫기
         }
     }
 
     public void OnCloseButtonPressed()
     {
-        if (!isInteracting) return;
-        isInteracting = false;
         uiPanel.SetActive(false);
     }
 }

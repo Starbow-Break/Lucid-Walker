@@ -128,7 +128,12 @@ public class GameData
         tutorialData = new TutorialData();
 
         // 기본 에피소드 1 추가 (튜토리얼과는 별도, 에피소드 1은 스테이지 1~6와 보스로 총 7단계라고 가정)
-        episodesData = new List<EpisodeData> { new EpisodeData(1, 7) };
+        // episodesData = new List<EpisodeData> { new EpisodeData(1, 7) };
+        episodesData = new List<EpisodeData>
+        {
+            new EpisodeData(1, 7),   // EP1: 7스테이지
+            new EpisodeData(2, 3)    // EP2: 일단 3스테이지로 초기화 (내용은 추후 세부화)
+        };
         cutscenePlayRecords = new List<CutscenePlayRecord>();
 
         // 기본 하트 개수 설정 (예: 3)

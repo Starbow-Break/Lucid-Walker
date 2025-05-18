@@ -17,9 +17,9 @@ public class EpisodeTab : MonoBehaviour
     [SerializeField] private Sprite selectedSprite;
     [SerializeField] private Sprite unselectedSprite;
 
-    [Header("Reward UI")]
-    [SerializeField] private EpisodeRewardUI ep1RewardUI;
-    [SerializeField] private EpisodeRewardUI ep2RewardUI;
+    [Header("Treasure Managers")]
+    [SerializeField] private EpisodeTreasureManager ep1TreasureManager;
+    [SerializeField] private EpisodeTreasureManager ep2TreasureManager;
 
     private int selectedEpisode = 1;
 
@@ -49,9 +49,13 @@ public class EpisodeTab : MonoBehaviour
         bool allCollected = epData.stageProgresses.FindAll(p => p.stageNumber <= 6).TrueForAll(p => p.gotTreasure);
         bool alreadyClaimed = gameData.IsEpisodeRewardClaimed(episode);
 
+
+        ep1TreasureManager.gameObject.SetActive(episode == 1);
+        ep2TreasureManager.gameObject.SetActive(episode == 2);
+
         if (episode == 1)
-            ep1RewardUI.Init(1, allCollected, alreadyClaimed);
+            ep1TreasureManager.ApplyTreasureState(epData);
         else
-            ep2RewardUI.Init(2, allCollected, alreadyClaimed);
+            ep2TreasureManager.ApplyTreasureState(epData);
     }
 }
