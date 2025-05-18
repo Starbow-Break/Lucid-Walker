@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1571634032100025072}
   - component: {fileID: -2747642491208633636}
   - component: {fileID: 3074118073283883276}
+  - component: {fileID: 6968967342335910043}
   m_Layer: 0
   m_Name: "\uC544\uC774\uD15C) 1_4_\uC778\uC774\uC5B4"
   m_TagString: Untagged
@@ -55,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 32767
+  m_SortingOrder: 9000
   m_Sprite: {fileID: 21300000, guid: 40303bbe6101b814792bd6c1e294f1cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -171,3 +172,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b8fbdbd4fa511488d0976eabb54e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6968967342335910043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7382829191298368131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.9764706, g: 0, b: 0.5830741, a: 1}
+  glowBrightness: 2
+  outlineWidth: 2
+  alphaThreshold: 0.01
+  drawOutside: 0
+  enableInstancing: 0

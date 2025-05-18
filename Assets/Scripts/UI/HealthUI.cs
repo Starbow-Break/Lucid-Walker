@@ -37,6 +37,16 @@ public class HealthUI : MonoBehaviour
         InitializeHealthUI(playerStats.MaxHearts);
     }
 
+    private void OnEnable()
+    {
+        StageManager.Instance.OnChangedTreasure += UpdateTreasureIcon;
+    }
+
+    private void OnDisable()
+    {
+        StageManager.Instance.OnChangedTreasure -= UpdateTreasureIcon;
+    }
+
     // 초기 하트 UI 설정
     public void InitializeHealthUI(int maxHealth)
     {

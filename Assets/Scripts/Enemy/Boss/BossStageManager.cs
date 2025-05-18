@@ -37,25 +37,9 @@ public class BossStageManager : StageManager
     [SerializeField] BossShadow bossShadow;
     [SerializeField] List<Collider2D> phase3Colliders;
 
-    public static BossStageManager instance {
-        get {
-            if (m_instance == null) {
-                m_instance = FindObjectOfType<BossStageManager>();
-            }
-
-            return m_instance;
-        }
-    }
-    private static BossStageManager m_instance;
-
-    void Awake()
-    {
-        if (instance != this) {
-            Destroy(gameObject);
-        }
-    }
-
-    void Start() {
+    protected override void Start() {
+        base.Start();
+        
         foreach(CinemachineVirtualCamera camera in cameras) {
             CameraManager.Register(camera);
         }
@@ -71,6 +55,7 @@ public class BossStageManager : StageManager
     public void Phase2Start() => StartCoroutine(Phase2StartFlow());
     public void Phase3Start() => StartCoroutine(Phase3StartFlow());
     public void TransitionPhase3() => StartCoroutine(TransitionPhase3Flow());
+    public void BossDie() => StartCoroutine(BossDieFlow());
 
     // 1페이즈 시작
     IEnumerator Phase1StartFlow() {
@@ -207,6 +192,21 @@ public class BossStageManager : StageManager
         phase3Temp.SetActive(true);
 
         // TODO : 배틀 시작
+
+        // 플레이어 컨트롤 재개
+        PlayerAwake();
+    }
+
+    IEnumerator BossDieFlow()
+    {
+        // 플레이어 컨트롤 방지
+        PlayerBlocked();
+
+        bossAnim[2].SetTrigger("die");
+        yield return null;
+        yield return new WaitForSeconds(bossAnim[2].GetCurrentAnimatorClipInfo(0)[0].clip.length);
+
+        CameraManager.SwitchCamera("After Phase3 Cam");
 
         // 플레이어 컨트롤 재개
         PlayerAwake();

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,10 @@ public class StageClearDoor : MonoBehaviour
     [SerializeField] Transform keyHole; // 열쇠 구멍
     [SerializeField] KeyGuide keyGuide;
     [SerializeField] private int stageNumber;
+
+    [Header("Player")]
+    [SerializeField] Animator playerAnim;
+    [SerializeField] SpriteRenderer playerRenderer;
 
     Animator anim;
     GameObject interactingPlayer = null;
@@ -90,10 +95,51 @@ public class StageClearDoor : MonoBehaviour
 
     IEnumerator StageClearSequence()
     {
-
         interactingPlayer = null;
         keyGuide.InActive();
+        yield return PlayerEnterSequence();
+        StartCoroutine(ActStageClearSequence());
+    }
 
+    IEnumerator PlayerEnterSequence()
+    {
+        PlayerBlocked();
+        
+        Sequence sq = DOTween.Sequence().SetAutoKill(false);
+        bool isComplete = false;
+
+        float dist = (transform.position - playerAnim.transform.position).magnitude;
+        float duration = dist / 3.0f;
+
+        sq.OnStart(() => playerAnim.Play("MoveDoor"));
+        sq.Append(playerAnim.transform.DOMoveX(transform.position.x, duration)
+            .SetEase(Ease.Linear));
+        sq.AppendCallback(() =>
+        {
+            playerAnim.Play("Idle");
+        });
+
+        sq.AppendInterval(0.5f);
+
+        sq.AppendCallback(() =>
+        {
+            playerAnim.Play("TurnBack");
+        });
+        sq.AppendInterval(1f);
+        sq.AppendCallback(() =>
+        {
+            playerAnim.Play("BackWalk");
+        });
+        sq.Append(playerRenderer.DOColor(new Color(1f, 1f, 1f, 0f), 3f));
+        sq.AppendInterval(0.5f);
+
+        sq.OnComplete(() => isComplete = true);
+
+        yield return new WaitUntil(() => isComplete);
+    }
+
+    IEnumerator ActStageClearSequence()
+    {
         // UI 활성화
         stageClearUI.SetActive(true);
 
@@ -123,6 +169,8 @@ public class StageClearDoor : MonoBehaviour
 
         data.returnFromStage = true;
         Debug.Log($"✅ 저장 전 returnFromStage = {data.returnFromStage}");
+
+        data.gold += StageManager.Instance.gotCoin;
 
         DataPersistenceManager.instance.SaveGame();
         PlayerPrefs.Save();
@@ -156,6 +204,21 @@ public class StageClearDoor : MonoBehaviour
         }
     }
 
+    private void PlayerBlocked()
+    {
+        var playerController = playerAnim.gameObject.GetComponent<PlayerController>();
+
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+            playerController.SetToIdleState();
+            var rb = playerController.GetComponent<Rigidbody2D>();
+            rb.isKinematic = true;
+            rb.velocity = Vector3.zero;
+            rb.Sleep();
+        }
+    }
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         if (interactingPlayer == other.gameObject)
